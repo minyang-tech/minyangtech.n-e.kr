@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>민양테크 Docs | Game System</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../common.css">
+    <style>
+        /* --- Docs Layout --- */
+        .docs-container { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 160px); padding-top: 80px; }
+        .docs-sidebar { width: 280px; padding: 40px 20px; border-right: 1px solid var(--border-color); position: sticky; top: 80px; height: fit-content; }
+        .sidebar-group { margin-bottom: 30px; }
+        .sidebar-group h4 { font-size: 0.85rem; color: var(--accent-color); margin-bottom: 12px; opacity: 0.8; }
+        .sidebar-group ul { list-style: none; padding: 0; }
+        .sidebar-group ul li { margin-bottom: 8px; }
+        .sidebar-group ul li a { text-decoration: none; color: var(--text-color); opacity: 0.6; transition: 0.3s; font-size: 0.95rem; }
+        .sidebar-group ul li a:hover, .sidebar-group ul li a.active { opacity: 1; font-weight: bold; color: var(--accent-color); }
+
+        /* --- Main Content --- */
+        .docs-content { flex: 1; padding: 40px 60px; line-height: 1.8; }
+        .docs-content h1 { font-size: 2.2rem; margin-bottom: 10px; font-weight: 800; }
+        .docs-content .last-updated { font-size: 0.9rem; opacity: 0.5; margin-bottom: 30px; }
+        .docs-body section { margin-bottom: 40px; }
+        .docs-body h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--accent-color); border-left: 4px solid var(--accent-color); padding-left: 15px; }
+        .docs-body p { margin-bottom: 10px; }
+        .docs-body blockquote { background: var(--card-bg); border-radius: 10px; padding: 20px; border-left: 5px solid var(--accent-color); margin: 15px 0 30px 0; font-weight: 500; }
+        .warn-quote { border-left-color: #ff4757 !important; } /* 경고용 붉은색 */
+
+        /* --- Header & Footer --- */
+        .back-btn { background: none; border: 1px solid var(--border-color); color: var(--text-color); padding: 8px 15px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .back-btn:hover { background: var(--text-color); color: var(--bg-color); }
+
+        @media (max-width: 900px) {
+            .docs-container { flex-direction: column; }
+            .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); position: relative; top: 0; }
+            .docs-content { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="https://minyangtech.n-e.kr" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> <span id="back-txt">메인으로</span>
+            </a>
+            <a href="../index.html" class="logo-link" style="margin-left: 15px;">
+                <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" alt="민양테크 로고">
+            </a>
+        </div>
+        <div class="controls">
+            <div class="lang-dropdown">
+                <span id="current-lang-label">언어 선택 ▾</span>
+                <ul class="lang-menu">
+                    <li onclick="changeLanguage('en')">English</li>
+                    <li onclick="changeLanguage('ko')">한국어</li>
+                </ul>
+            </div>
+            <div class="toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <main class="docs-container">
+        <aside class="docs-sidebar" id="sidebar-target"></aside>
+
+        <article class="docs-content">
+            <h1 id="page-title">Game System</h1>
+            <p class="last-updated">Last Updated: 2024.05.22</p>
+            <hr style="border:0; border-top:1px solid var(--border-color); margin: 30px 0;">
+            
+            <div class="docs-body">
+                <section>
+                    <h3 id="sec-intro-title">[소개]</h3>
+                    <p id="sec-intro-content">Make A Country의 게임 시스템.</p>
+                </section>
+
+                <section>
+                    <h3 id="sec-sys-title">[시스템]</h3>
+                    
+                    <p><strong id="sub-economy">- 국가 경제 시스템</strong></p>
+                    <blockquote id="desc-economy" class="warn-quote">
+                        군비를 과도하게 늘려 [군비경쟁상태]에 도입할 경우, 시민들의 민심과 함께 관련 주식과 국가 경제도 무너집니다. <br>
+                        무너지지 않게 조심하세요. <br> 이에따라 만약 돈을 계속 찍을 경우, 인플레이션이 발생합니다.
+                    </blockquote>
+
+                    <p><strong id="sub-minsim">- 민심</strong></p>
+                    <blockquote id="desc-minsim">
+                        과도한 군비경쟁 또는 경제의 부실, 정치 이념의 잘못됨 등 문제가 겹칠경우 민심은 하락하며, 이럴 경우 전국에서 시위가 발생하게 됩니다. <br> 
+                        시위를 진압하는법은 2가지로, 당신이 국가 정치 이념을 사회주의 또는 공산주의로 했을경우 "무력 진압"을 통해 진압이 가능합니다. 이럴 경우 민심과 지지도는 하락하지만 시위는 확실히 멈춥니다. <br> 
+                        2번째 방법으로는 당신이 민주주의 일경우 (공산주의 또는 사회주의도 가능) "평화적 진압"이 가능하며, 이럴경우 민심은 회복하지만 경제적 손실이 발생합니다.
+                    </blockquote>
+
+                    <p><strong id="sub-politics">- 정치</strong></p>
+                    <blockquote id="desc-politics">
+                        이념을 정하는데 중요하며, 게임 시작시 결정하게 됩니다. <br> 
+                        국가 정치는 크게 3종류로, "입헌군주제", "자유민주주의", "사회주의(공산주의)"입니다. <br> 
+                        각 이념은 게임 중 "전국공산당회" 또는 "의회"에서 변경이 가능합니다.
+                    </blockquote>
+
+                    <p><strong id="sub-jawon">- 자원</strong></p>
+                    <blockquote id="desc-jawon">
+                        당신 국가의 자원은 무한하지 않습니다. 언젠가는 고갈이 되며, 자원은 크게 3종류입니다. <br> 
+                        "돈", "물", "에너지". <br> 
+                        돈은 은행을 통해 찍어내며, 물은 근처 호수와 시설을 통해, 에너지는 기반 시설로 생산할 수 있습니다. <br> 
+                        만약 자원이 고갈될 경우 근처 국가와 전쟁을 통해 얻을 수 있습니다.
+                    </blockquote>
+
+                    <p><strong id="sub-diplomacy">- 외교</strong></p>
+                    <blockquote id="desc-diplomacy">
+                        근처 국가와의 외교를 통해 전쟁 없이도 자원을 얻을 수 있습니다. <br> 
+                        전쟁은 물자와 인력의 소모가 있지만, 외교를 통해 민심과 자원 둘 다 챙길 수도 있습니다.
+                    </blockquote>
+
+                    <p><strong id="sub-tech">- 기술</strong></p>
+                    <blockquote id="desc-tech">
+                        충분한 자원과 기술만 있다면 당신의 국가의 기술을 발전시킬 수 있습니다. <br> 
+                        주요 기술은 농업, 경공업, 중공업, AI/로켓산업 등이 있습니다. <br> 
+                        AI 로켓산업부터는 달을 식민지화 할 수 있습니다.
+                    </blockquote>
+
+                    <p><strong id="sub-war">- 대전쟁</strong></p>
+                    <blockquote id="desc-war" class="warn-quote">
+                        전쟁 중 패배할 것 같을 때 핵무기를 보유하고 있다면 특별 이벤트 [대전쟁](The Great War)을 일으킬 수 있습니다. <br> 
+                        자신이 보유한 모든 핵무기를 사용하여 상대편의 경제, 민심, 인구를 파괴하며, 일정 확률로 건물도 파괴됩니다.
+                    </blockquote>
+
+                    <p><strong id="sub-pop">- 인구</strong></p>
+                    <blockquote id="desc-pop">
+                        전쟁과 시설 운영에는 인구가 필요합니다. 인구가 없다면 공장이 멈추고 경제적 손실이 발생합니다. <br> 
+                        저출산과 고령화를 막아야 합니다.
+                    </blockquote>
+                </section>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <h3 id="footer-contact">저희와 연락하세요!</h3>
+        <div class="footer-sns">
+            <a href="https://x.com/minyang_tech" target="_blank"><img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/logo-white.png?raw=true" class="x-logo-img" alt="X Logo"></a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <div class="footer-email"><a href="mailto:minyangtech.info@gmail.com">minyangtech.info@gmail.com</a></div>
+        <div class="footer-legal">
+            <a href="../../Policy.html" id="privacy-link">개인정보 처리방침</a>
+            <a href="../../guideline.html" id="guideline-link">가이드라인</a>
+        </div>
+        <div id="copyright-text" class="footer-copyright"><p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p></div>
+    </footer>
+
+    <script>
+        async function loadSidebar() {
+            const target = document.getElementById('sidebar-target');
+            try {
+                const response = await fetch('../nav.html'); 
+                const data = await response.text();
+                target.innerHTML = data;
+                const links = target.querySelectorAll('a');
+                const currentFile = window.location.pathname.split('/').pop();
+                links.forEach(link => { if (link.getAttribute('href').includes(currentFile)) link.classList.add('active'); });
+            } catch (error) { target.innerHTML = "<p>Menu Load Error</p>"; }
+        }
+
+        const translations = {
+            'ko': {
+                'back': '메인으로', 'langLabel': '한국어 ▾', 'contact': '저희와 연락하세요!', 'privacy': '개인정보 처리방침', 'copyright': '민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.',
+                'introT': '[소개]', 'introC': 'Make A Country의 게임 시스템.',
+                'sysT': '[시스템]',
+                'subEco': '- 국가 경제 시스템', 'descEco': '군비를 과도하게 늘려 [군비경쟁상태]에 도입할 경우... 인플레이션이 발생합니다.',
+                'subMin': '- 민심', 'descMin': '과도한 군비경쟁 또는 경제 부실 시 시위가 발생합니다. 무력 진압 또는 평화적 진압이 가능합니다.',
+                'subPol': '- 정치', 'descPol': '입헌군주제, 자유민주주의, 사회주의 중 선택하며 의회에서 변경 가능합니다.',
+                'subJaw': '- 자원', 'descJaw': '돈, 물, 에너지는 유한하며 전쟁이나 시설을 통해 확보해야 합니다.',
+                'subDip': '- 외교', 'descDip': '외교를 통해 전쟁 없이 자원과 민심을 얻을 수 있습니다.',
+                'subTec': '- 기술', 'descTec': '농업부터 AI 로켓산업까지 발전시키며 달 식민지화가 가능합니다.',
+                'subWar': '- 대전쟁', 'descWar': '핵무기로 [대전쟁]을 일으켜 상대를 불지옥으로 만들 수 있습니다.',
+                'subPop': '- 인구', 'descPop': '인구는 경제와 전쟁의 핵심입니다. 저출산 고령화를 방지하세요.'
+            },
+            'en': {
+                'back': 'Home', 'langLabel': 'English ▾', 'contact': 'Contact Us!', 'privacy': 'Privacy Policy', 'copyright': 'All rights reserved by Minyang Tech.',
+                'introT': '[Introduction]', 'introC': 'Game system of Make A Country.',
+                'sysT': '[System]',
+                'subEco': '- Economy System', 'descEco': 'Excessive military spending causes inflation and economic collapse.',
+                'subMin': '- Public Sentiment', 'descMin': 'Protests occur if economy fails. Choose between Force or Peaceful suppression.',
+                'subPol': '- Politics', 'descPol': 'Choose Constitutional Monarchy, Democracy, or Socialism.',
+                'subJaw': '- Resources', 'descJaw': 'Money, Water, and Energy are finite. Secure them via facilities or war.',
+                'subDip': '- Diplomacy', 'descDip': 'Gain resources without blood through diplomatic relations.',
+                'subTec': '- Technology', 'descTec': 'Advance from Agriculture to AI Rockets and Moon Colonization.',
+                'subWar': '- The Great War', 'descWar': 'Unleash nuclear weapons to destroy enemy economy and population.',
+                'subPop': '- Population', 'descPop': 'Labor is key to economy. Prevent low birth rates and aging.'
+            }
+        };
+
+        function changeLanguage(lang) {
+            localStorage.setItem('selectedLang', lang);
+            const t = translations[lang];
+            document.getElementById('back-txt').textContent = t.back;
+            document.getElementById('current-lang-label').textContent = t.langLabel;
+            document.getElementById('footer-contact').textContent = t.contact;
+            document.getElementById('privacy-link').textContent = t.privacy;
+            document.getElementById('copyright-text').innerHTML = `<p>${t.copyright}</p>`;
+            
+            document.getElementById('sec-intro-title').textContent = t.introT;
+            document.getElementById('sec-intro-content').textContent = t.introC;
+            document.getElementById('sec-sys-title').textContent = t.sysT;
+            
+            document.getElementById('sub-economy').textContent = t.subEco;
+            document.getElementById('desc-economy').innerHTML = t.descEco;
+            document.getElementById('sub-minsim').textContent = t.subMin;
+            document.getElementById('desc-minsim').innerHTML = t.descMin;
+            document.getElementById('sub-politics').textContent = t.subPol;
+            document.getElementById('desc-politics').innerHTML = t.descPol;
+            document.getElementById('sub-jawon').textContent = t.subJaw;
+            document.getElementById('desc-jawon').innerHTML = t.descJaw;
+            document.getElementById('sub-diplomacy').textContent = t.subDip;
+            document.getElementById('desc-diplomacy').innerHTML = t.descDip;
+            document.getElementById('sub-tech').textContent = t.subTec;
+            document.getElementById('desc-tech').innerHTML = t.descTec;
+            document.getElementById('sub-war').textContent = t.subWar;
+            document.getElementById('desc-war').innerHTML = t.descWar;
+            document.getElementById('sub-pop').textContent = t.subPop;
+            document.getElementById('desc-pop').innerHTML = t.descPop;
+        }
+
+        function toggleDarkMode() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+
+        window.onload = () => {
+            loadSidebar();
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('dark-mode-toggle').checked = true;
+            }
+            changeLanguage(localStorage.getItem('selectedLang') || 'ko');
+        };
+    </script>
+</body>
+</html>
