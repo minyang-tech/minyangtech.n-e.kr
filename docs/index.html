@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>민양테크 Docs | 고객지원</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../common.css"> <style>
+        /* --- Docs Layout --- */
+        .docs-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 160px);
+            padding-top: 80px;
+        }
+
+        /* --- Sidebar Style (nav.html이 로드된 후 적용됨) --- */
+        .docs-sidebar {
+            width: 280px;
+            padding: 40px 20px;
+            border-right: 1px solid var(--border-color);
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+        }
+        /* nav.html 내부 스타일들 */
+        .sidebar-group { margin-bottom: 30px; }
+        .sidebar-group h4 {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            opacity: 0.8;
+        }
+        .sidebar-group ul { list-style: none; padding: 0; }
+        .sidebar-group ul li { margin-bottom: 8px; }
+        .sidebar-group ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            opacity: 0.6;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+        .sidebar-group ul li a:hover, .sidebar-group ul li a.active {
+            opacity: 1;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        /* --- Main Content --- */
+        .docs-content {
+            flex: 1;
+            padding: 40px 60px;
+            line-height: 1.8;
+        }
+        .docs-content h1 { font-size: 2.2rem; margin-bottom: 20px; font-weight: 800; }
+        .docs-content p { margin-bottom: 20px; opacity: 0.9; }
+
+        /* --- Header Back Button --- */
+        .back-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { background: var(--text-color); color: var(--bg-color); }
+
+        @media (max-width: 900px) {
+            .docs-container { flex-direction: column; }
+            .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); position: relative; top: 0; }
+            .docs-content { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="https://minyangtech.n-e.kr" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> <span id="back-txt">메인으로</span>
+            </a>
+            <a href="index.html" class="logo-link" style="margin-left: 15px;">
+                <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" alt="민양테크 로고">
+            </a>
+        </div>
+        <div class="controls">
+            <div class="lang-dropdown">
+                <span id="current-lang-label">언어 선택 ▾</span>
+                <ul class="lang-menu">
+                    <li onclick="changeLanguage('en')">English</li>
+                    <li onclick="changeLanguage('ko')">한국어</li>
+                </ul>
+            </div>
+            <div class="toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <main class="docs-container">
+        <aside class="docs-sidebar" id="sidebar-target"></aside>
+
+        <article class="docs-content">
+            <h1 id="docs-title">문서 센터</h1>
+            <p id="docs-welcome">민양테크의 공식 가이드와 게임 시스템 문서를 확인하세요.</p>
+            <hr style="border:0; border-top:1px solid var(--border-color); margin: 30px 0;">
+            
+            <div class="docs-body">
+                <h3>소개</h3>
+                <p>이곳은 민양테크 프로젝트의 상세 정보를 기록하는 공간입니다.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <h3 id="footer-contact">저희와 연락하세요!</h3>
+        <div class="footer-sns">
+            <a href="https://x.com/minyang_tech" target="_blank">
+                <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/logo-white.png?raw=true" class="x-logo-img" alt="X Logo">
+            </a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </div>
+        <div class="footer-email">
+            <a href="mailto:minyangtech.info@gmail.com">minyangtech.info@gmail.com</a>
+        </div>
+        <div class="footer-legal">
+            <a href="../Policy.html" id="privacy-link">개인정보 처리방침</a>
+            <a href="../guideline.html" id="guideline-link">가이드라인</a>
+        </div>
+        <div class="footer-copyright" id="copyright-text">
+            <p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. 사이드바 불러오기 로직
+        async function loadSidebar() {
+            const target = document.getElementById('sidebar-target');
+            try {
+                // nav.html 파일을 불러옴 (index.html과 같은 폴더에 있을 경우)
+                const response = await fetch('nav.html'); 
+                const data = await response.text();
+                target.innerHTML = data;
+
+                // 현재 페이지 활성화 표시
+                const links = target.querySelectorAll('a');
+                const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+                links.forEach(link => {
+                    const href = link.getAttribute('href').split('/').pop();
+                    if (href === currentFile) {
+                        link.classList.add('active');
+                    }
+                });
+            } catch (error) {
+                target.innerHTML = "<p>메뉴를 불러오지 못했습니다.</p>";
+            }
+        }
+
+        // 2. 언어 및 다크모드 유지
+        const translations = {
+            'ko': {
+                'back': '메인으로', 'langLabel': '한국어 ▾', 'contact': '저희와 연락하세요!',
+                'privacy': '개인정보 처리방침', 'copyright': '민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.',
+                'title': '문서 센터', 'welcome': '민양테크의 공식 가이드와 게임 시스템 문서를 확인하세요.'
+            },
+            'en': {
+                'back': 'Home', 'langLabel': 'English ▾', 'contact': 'Contact Us!',
+                'privacy': 'Privacy Policy', 'copyright': 'Copyright © Minyang Tech. All rights reserved.',
+                'title': 'Docs Center', 'welcome': 'Check out MinYang Tech\'s official guides and game systems.'
+            }
+        };
+
+        function changeLanguage(lang) {
+            localStorage.setItem('selectedLang', lang);
+            const t = translations[lang];
+            document.getElementById('back-txt').textContent = t.back;
+            document.getElementById('current-lang-label').textContent = t.langLabel;
+            document.getElementById('footer-contact').textContent = t.contact;
+            document.getElementById('privacy-link').textContent = t.privacy;
+            document.getElementById('copyright-text').innerHTML = `<p>${t.copyright}</p>`;
+            document.getElementById('docs-title').textContent = t.title;
+            document.getElementById('docs-welcome').textContent = t.welcome;
+        }
+
+        function toggleDarkMode() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+
+        window.onload = () => {
+            loadSidebar(); // 사이드바 로드
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('dark-mode-toggle').checked = true;
+            }
+            const savedLang = localStorage.getItem('selectedLang') || 'ko';
+            changeLanguage(savedLang);
+        };
+    </script>
+</body>
+</html>
