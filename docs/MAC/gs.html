@@ -156,33 +156,47 @@
         }
 
         const translations = {
-            'ko': {
-                'back': '메인으로', 'langLabel': '한국어 ▾', 'contact': '저희와 연락하세요!', 'privacy': '개인정보 처리방침', 'copyright': '민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.',
-                'introT': '[소개]', 'introC': 'Make A Country의 게임 시스템.',
-                'sysT': '[시스템]',
-                'subEco': '- 국가 경제 시스템', 'descEco': '군비를 과도하게 늘려 [군비경쟁상태]에 도입할 경우... 인플레이션이 발생합니다.',
-                'subMin': '- 민심', 'descMin': '과도한 군비경쟁 또는 경제 부실 시 시위가 발생합니다. 무력 진압 또는 평화적 진압이 가능합니다.',
-                'subPol': '- 정치', 'descPol': '입헌군주제, 자유민주주의, 사회주의 중 선택하며 의회에서 변경 가능합니다.',
-                'subJaw': '- 자원', 'descJaw': '돈, 물, 에너지는 유한하며 전쟁이나 시설을 통해 확보해야 합니다.',
-                'subDip': '- 외교', 'descDip': '외교를 통해 전쟁 없이 자원과 민심을 얻을 수 있습니다.',
-                'subTec': '- 기술', 'descTec': '농업부터 AI 로켓산업까지 발전시키며 달 식민지화가 가능합니다.',
-                'subWar': '- 대전쟁', 'descWar': '핵무기로 [대전쟁]을 일으켜 상대를 불지옥으로 만들 수 있습니다.',
-                'subPop': '- 인구', 'descPop': '인구는 경제와 전쟁의 핵심입니다. 저출산 고령화를 방지하세요.'
-            },
-            'en': {
-                'back': 'Home', 'langLabel': 'English ▾', 'contact': 'Contact Us!', 'privacy': 'Privacy Policy', 'copyright': 'All rights reserved by Minyang Tech.',
-                'introT': '[Introduction]', 'introC': 'Game system of Make A Country.',
-                'sysT': '[System]',
-                'subEco': '- Economy System', 'descEco': 'Excessive military spending causes inflation and economic collapse.',
-                'subMin': '- Public Sentiment', 'descMin': 'Protests occur if economy fails. Choose between Force or Peaceful suppression.',
-                'subPol': '- Politics', 'descPol': 'Choose Constitutional Monarchy, Democracy, or Socialism.',
-                'subJaw': '- Resources', 'descJaw': 'Money, Water, and Energy are finite. Secure them via facilities or war.',
-                'subDip': '- Diplomacy', 'descDip': 'Gain resources without blood through diplomatic relations.',
-                'subTec': '- Technology', 'descTec': 'Advance from Agriculture to AI Rockets and Moon Colonization.',
-                'subWar': '- The Great War', 'descWar': 'Unleash nuclear weapons to destroy enemy economy and population.',
-                'subPop': '- Population', 'descPop': 'Labor is key to economy. Prevent low birth rates and aging.'
-            }
-        };
+    'ko': {
+        'back': '메인으로', 
+        'langLabel': '한국어 ▾', 
+        'contact': '저희와 연락하세요!', 
+        'privacy': '개인정보 처리방침', 
+        'copyright': '민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.',
+        'introT': '[소개]', 
+        'introC': 'Make A Country의 게임 시스템.',
+        'sysT': '[시스템]',
+        'subEco': '- 국가 경제 시스템', 
+        'descEco': '군비를 과도하게 늘려 [군비경쟁상태]에 도입할 경우, 시민들의 민심과 함께 관련 주식과 국가 경제도 무너집니다. <br> 무너지지 않게 조심하세요. <br> 이에따라 만약 돈을 계속 찍을 경우, 인플레이션이 발생합니다.',
+        'subMin': '- 민심', 
+        'descMin': '과도한 군비경쟁 또는 경제의 부실, 정치 이념의 잘못됨 등 문제가 겹칠경우 민심은 하락하며, 이럴 경우 전국에서 시위가 발생하게 됩니다. <br> 시위를 진압하는법은 2가지로, 당신이 국가 정치 이념을 사회주의 또는 공산주의로 했을경우 "무력 진압"을 통해 진압이 가능합니다. 이럴 경우 민심과 지지도는 하락하지만 시위는 확실히 멈춥니다. <br> 2번째 방법으로는 당신이 민주주의 일경우 (공산주의 또는 사회주의도 가능) "평화적 진압"이 가능하며, 이럴경우 민심은 회복하지만 경제적 손실이 발생합니다.',
+        'subPol': '- 정치', 
+        'descPol': '이념을 정하는데 중요하며, 게임 시작시 결정하게 됩니다. <br> 국가 정치는 크게 3종류로, "입헌군주제", "자유민주주의", "사회주의(공산주의)"입니다. <br> 각 이념은 게임 중 "전국공산당회" 또는 "의회"에서 변경이 가능합니다.',
+        'subJaw': '- 자원', 
+        'descJaw': '당신 국가의 자원은 무한하지 않습니다. 언젠가는 고갈이 되며, 자원은 크게 3종류입니다. <br> "돈", "물", "에너지". <br> 돈은 은행을 통해 찍어내며, 물은 근처 호수와 시설을 통해, 에너지는 기반 시설로 생산할 수 있습니다. <br> 만약 자원이 고갈될 경우 근처 국가와 전쟁을 통해 얻을 수 있습니다.',
+        'subDip': '- 외교', 
+        'descDip': '근처 국가와의 외교를 통해 전쟁 없이도 자원을 얻을 수 있습니다. <br> 전쟁은 물자와 인력의 소모가 있지만, 외교를 통해 민심과 자원 둘 다 챙길 수도 있습니다.',
+        'subTec': '- 기술', 
+        'descTec': '충분한 자원과 기술만 있다면 당신의 국가의 기술을 발전시킬 수 있습니다. <br> 주요 기술은 농업, 경공업, 중공업, AI/로켓산업 등이 있습니다. <br> AI 로켓산업부터는 달을 식민지화 할 수 있습니다.',
+        'subWar': '- 대전쟁', 
+        'descWar': '전쟁 중 패배할 것 같을 때 핵무기를 보유하고 있다면 특별 이벤트 [대전쟁](The Great War)을 일으킬 수 있습니다. <br> 자신이 보유한 모든 핵무기를 사용하여 상대편의 경제, 민심, 인구를 파괴하며, 일정 확률로 건물도 파괴됩니다.',
+        'subPop': '- 인구', 
+        'descPop': '전쟁과 시설 운영에는 인구가 필요합니다. 인구가 없다면 공장이 멈추고 경제적 손실이 발생합니다. <br> 저출산과 고령화를 막아야 합니다.'
+    },
+    'en': {
+        // 영어 번역도 위와 같은 방식으로 긴 문장을 넣어주시면 됩니다!
+        'back': 'Home', 'langLabel': 'English ▾', 'contact': 'Contact Us!', 'privacy': 'Privacy Policy', 'copyright': 'All rights reserved by Minyang Tech.',
+        'introT': '[Introduction]', 'introC': 'Game system of Make A Country.',
+        'sysT': '[System]',
+        'subEco': '- Economy System', 'descEco': 'If you excessively increase military spending... inflation occurs.',
+        'subMin': '- Public Sentiment', 'descMin': 'Protests occur if economy fails. Choose between Force or Peaceful suppression.',
+        'subPol': '- Politics', 'descPol': 'Choose Constitutional Monarchy, Democracy, or Socialism.',
+        'subJaw': '- Resources', 'descJaw': 'Money, Water, and Energy are finite.',
+        'subDip': '- Diplomacy', 'descDip': 'Gain resources without blood through diplomatic relations.',
+        'subTec': '- Technology', 'descTec': 'Advance from Agriculture to AI Rockets and Moon Colonization.',
+        'subWar': '- The Great War', 'descWar': 'Unleash nuclear weapons to destroy enemy economy and population.',
+        'subPop': '- Population', 'descPop': 'Labor is key to economy. Prevent low birth rates and aging.'
+    }
+};
 
         function changeLanguage(lang) {
             localStorage.setItem('selectedLang', lang);
