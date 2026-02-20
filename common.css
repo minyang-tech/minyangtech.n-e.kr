@@ -177,7 +177,7 @@ body.dark-mode .x-logo-img { filter: brightness(0) invert(1); }
         font-weight: 700;
     }
 
-    /* 2차창작활동 가이드라인 버튼 */
+    /* 가이드라인 버튼 */
     .report-floating-btn {
         display: flex !important;
         position: fixed !important;
@@ -195,7 +195,7 @@ body.dark-mode .x-logo-img { filter: brightness(0) invert(1); }
         align-items: center;
         gap: 8px;
         z-index: 9998;
-    }
+    } /* what*/
 }
 
 /* PC 버전에서는 하단 바와 버튼 숨김 */
