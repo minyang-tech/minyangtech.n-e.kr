@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>민양테크 News | 새로운 소식</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../common.css"> 
+    <style>
+        /* --- News Layout --- */
+        .news-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            min-height: calc(100vh - 160px);
+            padding: 100px 20px 60px;
+        }
+
+        .news-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .news-header h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+        .news-header p { opacity: 0.7; font-size: 1.1rem; }
+
+        /* --- News Card Style --- */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .news-card {
+            display: flex;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+
+        .news-img {
+            width: 300px;
+            min-width: 300px;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .news-info {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .news-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .news-excerpt {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Header Back Button --- */
+        .back-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { background: var(--text-color); color: var(--bg-color); }
+
+        @media (max-width: 768px) {
+            .news-card { flex-direction: column; }
+            .news-img { width: 100%; height: 180px; }
+            .news-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="https://minyangtech.n-e.kr" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> <span id="back-txt">메인으로</span>
+            </a>
+            <a href="index.html" class="logo-link" style="margin-left: 15px;">
+                <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" alt="민양테크 로고">
+            </a>
+        </div>
+        <div class="controls">
+            <div class="lang-dropdown">
+                <span id="current-lang-label">언어 선택 ▾</span>
+                <ul class="lang-menu">
+                    <li onclick="changeLanguage('en')">English</li>
+                    <li onclick="changeLanguage('ko')">한국어</li>
+                </ul>
+            </div>
+            <div class="toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <main class="news-container">
+        <section class="news-header">
+            <h1 id="news-title">새로운 소식</h1>
+            <p id="news-welcome">민양테크의 최신 업데이트와 공지사항을 확인하세요.</p>
+        </section>
+
+        <div class="news-list" id="news-feed">
+            </div>
+    </main>
+
+    <footer>
+        <h3 id="footer-contact">Connect with Us</h3>
+        <div class="footer-sns">
+            <a href="https://x.com/minyang_tech" target="_blank">
+                <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/logo-white.png?raw=true" class="x-logo-img" alt="X Logo">
+            </a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </div>
+        <div class="footer-email">
+            <a href="mailto:minyangtech.info@gmail.com">minyangtech.info@gmail.com</a>
+        </div>
+        <div class="footer-copyright" id="copyright-text">
+            <p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        let newsData = [];
+
+        // 1. 뉴스 데이터 불러오기
+        async function fetchNews() {
+            const feed = document.getElementById('news-feed');
+            try {
+                // 루트 폴더의 news-data.json 호출
+                const response = await fetch('../news-data.json');
+                newsData = await response.getJson ? await response.json() : JSON.parse(await response.text());
+                
+                // ID 기준 내림차순 정렬 (최신순)
+                newsData.sort((a, b) => b.id - a.id);
+                
+                renderNews();
+            } catch (error) {
+                console.error("News Load Error:", error);
+                feed.innerHTML = "<p style='text-align:center; opacity:0.5;'>뉴스를 불러오는 중에 문제가 발생했습니다.</p>";
+            }
+        }
+
+        // 2. 뉴스 렌더링
+        function renderNews() {
+            const feed = document.getElementById('news-feed');
+            const lang = localStorage.getItem('selectedLang') || 'ko';
+            feed.innerHTML = '';
+
+            newsData.forEach(item => {
+                const title = lang === 'ko' ? item.title_ko : item.title_en;
+                const content = lang === 'ko' ? item.content_ko : item.content_en;
+                
+                // 줄바꿈 문자를 공백으로 치환하여 요약문 생성
+                const excerpt = content.replace(/\n/g, ' ');
+
+                const card = `
+                    <div class="news-card">
+                        <div class="news-img" style="background-image: url('${item.image}')"></div>
+                        <div class="news-info">
+                            <span class="news-date">${item.date}</span>
+                            <h2 class="news-title">${title}</h2>
+                            <p class="news-excerpt">${excerpt}</p>
+                        </div>
+                    </div>
+                `;
+                feed.innerHTML += card;
+            });
+        }
+
+        // 3. 다국어 및 테마 설정
+        const translations = {
+            'ko': {
+                'back': '메인으로', 'langLabel': '한국어 ▾', 'contact': '저희와 연락하세요!',
+                'copyright': '민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.',
+                'title': '새로운 소식', 'welcome': '민양테크의 최신 업데이트와 공지사항을 확인하세요.'
+            },
+            'en': {
+                'back': 'Home', 'langLabel': 'English ▾', 'contact': 'Connect with Us',
+                'copyright': 'Copyright © Minyang Tech. All rights reserved.',
+                'title': 'Latest News', 'welcome': 'Stay updated with the latest news from Minyang Tech.'
+            }
+        };
+
+        function changeLanguage(lang) {
+            localStorage.setItem('selectedLang', lang);
+            const t = translations[lang];
+            document.getElementById('back-txt').textContent = t.back;
+            document.getElementById('current-lang-label').textContent = t.langLabel;
+            document.getElementById('footer-contact').textContent = t.contact;
+            document.getElementById('copyright-text').innerHTML = `<p>${t.copyright}</p>`;
+            document.getElementById('news-title').textContent = t.title;
+            document.getElementById('news-welcome').textContent = t.welcome;
+            
+            renderNews(); // 언어 변경 시 뉴스 목록 다시 그리기
+        }
+
+        function toggleDarkMode() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+
+        window.onload = () => {
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('dark-mode-toggle').checked = true;
+            }
+            const savedLang = localStorage.getItem('selectedLang') || 'ko';
+            changeLanguage(savedLang);
+            fetchNews();
+        };
+    </script>
+</body>
+</html>
