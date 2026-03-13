@@ -1,92 +1,11 @@
 [
   {
-    "id": 2,
-    "date": "2025-12-20",
-    "title_ko": "Trigger Card의 개발이 시작되었습니다.",
-    "title_en": "Initiating the development of Trigger Card.",
-    "content_ko": "오늘 2025년 12월 20일로 Trigger Card의 개발이 시작되었어요!\n2026년 1분기~2분기 내로 만나요!\n-민양테크",
-    "content_en": "We are pleased to announce that development of Trigger Card has commenced today, Dec 20, 2025.\nExpected release: Q1~Q2 2026.\n-MinYang Tech",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
-  },
-  {
     "id": 1,
-    "date": "2025-12-20",
-    "title_ko": "테스트 메시지",
-    "title_en": "Test Message",
-    "content_ko": "신경 쓸 필요없어요.",
-    "content_en": "You Don't Have to care it.",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
-  },
-  {
-    "id": 3,
-    "date": "2025-12-21",
-    "title_ko": "홈페이지 전체 완전 리뉴얼!!!!",
-    "title_en": "Our Website has been Reborn!!!!",
-    "content_ko": "민양테크 홈페이지 완전 바꿨는데요 \n 글자 수 테스트를 위해서 계속 늘릴건데요 \n 글을 뭐라고 적어야 할지 모르겠네요 \n 뭐라고 적어야 할까요.. \n 민양테크의 게임을 이용해주셔서 감사합니다. \n 근데 진짜 솔직히 적을게없어요 \n 민양테크를 이용해주시는 고객여러분께 감사의 말씀드립니다. \n 감사합니다. \n -민양테크",
-    "content_en": "Minyang Tech website has been completely renewed! \n I will keep increasing the character count just to test the text limit. \n I honestly don't know what to write here.. \n What should I even say? \n Thank you for using Minyang Tech's games. \n But really, to be honest, I have nothing to write about. \n I would like to express my gratitude to all the customers who use Minyang Tech. \n Thank you. \n -Minyang Tech",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
-  },
-   {
-  "id": 4,
-  "date": "2025-12-22",
-  "title_ko": "Trigger Card의 EULA를 확인해주세요.",
-  "title_en": "Please check the EULA for Trigger Card.",
-  "content_ko": "민양테크는 법적 문제를 우려해 당사의 제품인 Trigger Card에 EULA를 걸었습니다. \n 자세한 내용은 아래를 참고해주세요 👇 \n https://minyangtech.n-e.kr/EULA/Trigger_Card.html \n 민양테크를 이용해주시는 고객여러분께 감사의 말씀 드립니다. \n 감사합니다. \n -민양테크",
-  "content_en": "Minyang Tech has implemented an EULA for our product, Trigger Card, due to potential legal considerations. \n Please refer to the link below for more details 👇 \n https://minyangtech.n-e.kr/EULA/Trigger_Card.html \n We would like to express our sincere gratitude to all our customers for choosing Minyang Tech. \n Thank you. \n - Minyang Tech",
-  "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
-},
-{
-  "id": 5,
-  "date": "2025-12-23",
-  "title_ko": "Trigger Card의 EULA가 업데이트 되었습니다..",
-  "title_en": "Please check the Updata For EULA for Trigger Card.",
-  "content_ko": "민양테크는 법적문제를 우려하여, 기존 EULA 4번의 \n [회사는 유저가 회사가 만든 게임을 플레이하다가 발생한 PC 문제, 2차 개조로 인한 문제 등 어떠한 문제도 회사는 책임을 지지 아니합니다.] 항목을 \n [회사는 유저가 회사가 만든 게임을 플레이하다가 발생한 PC 문제, 2차 개조로 인한 문제 또는 사용자의 부주의로 인한 계정 정보 유출이나, 공식적으로 제공되지 않는 외부 모드(Mod) 사용으로 인한 데이터 손실 등 어떠한 문제도 회사는 책임을 지지 아니합니다.] \n 와 같이 업데이트 하였습니다. \n 감사합니다. \n -민양테크",
-  "content_en": "Minyang Tech has updated Section 4 of our existing EULA to address potential legal considerations. \n\n [Original]: The Company shall not be held liable for any issues, including PC malfunctions or problems arising from secondary modifications, occurring while the user is playing games developed by the Company. \n\n [Updated]: The Company shall not be held liable for any issues, including PC malfunctions, problems arising from secondary modifications, leakage of account information due to user negligence, or data loss caused by the use of unofficial third-party mods, occurring while the user is playing games developed by the Company. \n\n Thank you for your continued support. \n - Minyang Tech",
-  "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
-},
-{
-  "id": 6,
-  "date": "2026-1-19",
-  "title_ko": "업데이트/리뉴얼/수정",
-  "title_en": "Updated/Modified",
-  "content_ko": "민양테크는 웹사이트에 있던 일부 문제를 해결하고, \n Trigger Card의 EULA를 업데이트하였습니다. 7장이 삭제되었습니다. (기존 8장(관할법원) 섹션이 7장으로 내려왔습니다.) \n Trigger Card 탭의 문제점을 일부 수정하였으며, Steam에서 Itch.io로 수정하였습니다. \n 이용해주셔서 감사합니다. \n 문의 : minyangtech.info@gmail.com",
-  "content_en": "Minyang Tech has resolved several issues on the website and updated the EULA for Trigger Card. Section 7 has been removed (the former Section 8 regarding Jurisdiction has been moved down to Section 7). We have fixed some issues in the Trigger Card tab and updated the platform from Steam to itch.io. Thank you for your support. \n Inquiries: minyangtech.info@gmail.com",
-  "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
-},
-{
-  "id": 7,
-  "date": "2026-1-25",
-  "title_ko": "2차 창작 가이드라인",
-  "title_en": "Secondary Creation Guidelines",
-  "content_ko": "민양테크는 민양테크가 제작한 제품을 보호하고자 2차 창작 가이드라인을 배포합니다. \n 민양테크가 만든 제품으로 2차 창작을 진행하고자 할 경우, 반드시 해당 가이드라인을 읽어주세요. \n 해당 가이드라인에 위반되는 행위를 할 시 민양테크의 직접적인 제지가 있을 수 있습니다. \n 이용해주셔서 감사합니다. \n 문의 : minyangtech.info@gmail.com",
-  "content_en": "Minyang Tech is releasing these Secondary Creation Guidelines to protect our original products.\nIf you wish to create secondary works based on Minyang Tech's products, please make sure to read these guidelines.\nAny actions that violate these guidelines may be subject to direct intervention by Minyang Tech.\nThank you for your cooperation.\nInquiry: minyangtech.info@gmail.com",
-  "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
-},
-{
-  "id": 8,
-  "date": "2026-1-26",
-  "title_ko": "개인정보 처리방침 수정",
-  "title_en": "Privacy Policy Update",
-  "content_ko": "안녕하세요 고객여러분? \n 민양테크입니다. \n \n 민양테크는 뉴스에 '댓글' 기능을 추가하며, 개인정보 처리방침이 수정되었습니다. \n 민양테크를 이용해주시는 여러분들이 댓글을 다실려면, \n 개인정보 처리방침에 반드시 동의해야합니다. \n 이용해주셔서 감사합니다. \n 문의 : minyangtech.info@gmail.com",
-  "content_en": "Hello, valued customers.\nThis is Minyang Tech.\n\nWe have updated our Privacy Policy as a new 'Comments' feature has been added to our News section.\nTo post comments on Minyang Tech's website, you must agree to the updated Privacy Policy.\nThank you for using our services.\nInquiry: minyangtech.info@gmail.com",
-  "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
-},
-  {
-  "id": 9,
-  "date": "2026-2-6",
-  "title_ko": "개인정보 처리방침 수정",
-  "title_en": "Privacy Policy Update",
-  "content_ko": "안녕하세요 고객여러분? \n 민양테크입니다. \n \n 민양테크는 개인정보보호법과 내부 결정으로, 댓글 기능을 제거하게 되었습니다. \n 이에따라, 개인정보 처리방침이 수정되었으며, 기존 댓글 기능은 '좋아요'로 수정되었습니다. \n 이용해주셔서 감사합니다. \n 문의 : minyangtech.info@gmail.com",
-  "content_en": "Dear Valued Customers,\n This is Minyang Tech.\n \n In compliance with the Personal Information Protection Act and following our internal policy, we have decided to discontinue the comment feature on our platform.\n Accordingly, our Privacy Policy has been updated, and the existing comment section has been replaced with a 'Like' feature.\n Thank you for your continued support and understanding.\n Contact: minyangtech.info@gmail.com",
-  "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
-},
-  {
-    "id": 10,
-    "date": "2026-2-20",
-    "title_ko": "가이드라인 수정!",
-    "title_en": "We Changed Our GuideLine",
-    "content_ko": "가이드라인 확인 부탁드립니다! \n 이 가이드라인은 2026년 2월 23일까지의 유예기간 하에 적용됩니다.",
-    "content_en": "Please Check Our New GuideLine! \n This guideline will adapted by 2026 Feb 23",
+    "date": "2026-3-14",
+    "title_ko": "웹사이트 개혁!",
+    "title_en": "We Changed Our Site!",
+    "content_ko": "본 웹사이트는 2026년 3월 14일자로 다른 기능을 전부 빼고, docs와 News의 기능만을 남긴채로 작동합니다. \n News 채널에서 가끔식 개발 일지같은걸 올립니다.",
+    "content_en": "As of March 14, 2026, this website operates with all other functions removed, leaving only the functions of docs and News.\n I sometimes post things like a development journal on the News channel.",
     "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
   }
 ]
