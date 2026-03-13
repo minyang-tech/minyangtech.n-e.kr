@@ -66,7 +66,7 @@
         .news-card {
             display: flex; background: var(--card-bg); border: 1px solid var(--brd);
             border-radius: 16px; overflow: hidden; transition: 0.3s;
-            text-decoration: none; color: inherit;
+            text-decoration: none; color: inherit; cursor: pointer;
         }
         .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-color: var(--accent); }
         .news-img { width: 300px; min-width: 300px; height: 200px; background-size: cover; background-position: center; }
@@ -74,6 +74,13 @@
         .news-date { font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
         .news-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; }
         .news-excerpt { font-size: 0.95rem; opacity: 0.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.6; }
+
+        /* --- [추가] 상세 보기(Post View) 스타일 --- */
+        #post-view { display: none; } /* 기본적으로 숨김 */
+        .post-back { display: inline-block; margin-bottom: 25px; text-decoration: none; color: var(--accent); font-weight: 600; cursor: pointer; }
+        .post-hero-img { width: 100%; height: 400px; border-radius: 20px; background-size: cover; background-position: center; margin-bottom: 40px; }
+        .post-full-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; }
+        .post-content { font-size: 1.1rem; line-height: 1.8; white-space: pre-wrap; }
 
         /* --- 푸터 --- */
         footer {
@@ -99,6 +106,8 @@
             .filter-container { flex-direction: column; align-items: stretch; }
             .header-left { gap: 20px; }
             .nav-links { gap: 15px; font-size: 0.9rem; }
+            .post-hero-img { height: 250px; }
+            .post-full-title { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -124,24 +133,30 @@
     </header>
 
     <main class="news-container">
-        <section class="news-header">
-            <h1 id="news-title">새로운 소식</h1>
-            <p id="news-welcome">민양테크의 최신 업데이트를 확인하세요.</p>
-        </section>
+        <div id="list-ui">
+            <section class="news-header">
+                <h1 id="news-title">새로운 소식</h1>
+                <p id="news-welcome">민양테크의 최신 업데이트를 확인하세요.</p>
+            </section>
 
-        <div class="filter-container">
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="news-search" placeholder="뉴스 제목이나 내용 검색...">
+            <div class="filter-container">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="news-search" placeholder="뉴스 제목이나 내용 검색...">
+                </div>
+                <select id="news-sort" class="sort-select">
+                    <option value="newest">최신순</option>
+                    <option value="oldest">오래된순</option>
+                </select>
             </div>
-            <select id="news-sort" class="sort-select">
-                <option value="newest">최신순</option>
-                <option value="oldest">오래된순</option>
-            </select>
+
+            <div class="news-list" id="news-feed"></div>
         </div>
 
-        <div class="news-list" id="news-feed">
-            </div>
+        <div id="post-view">
+            <a onclick="closePost()" class="post-back"><i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기</a>
+            <div id="post-body"></div>
+        </div>
     </main>
 
     <footer>
@@ -175,16 +190,70 @@
         }
         toggle.addEventListener('change', () => updateTheme(toggle.checked));
 
-        // 데이터 페칭
+        // 데이터 페칭 및 초기 로드
         async function fetchNews() {
             try {
                 const response = await fetch('../news-data.json');
                 newsData = await response.json();
-                applyFilterAndSort();
+                
+                // URL 파라미터 체크하여 상세 페이지 여부 결정
+                checkUrlParam();
             } catch (error) {
                 console.error("Load Error:", error);
                 document.getElementById('news-feed').innerHTML = "<p style='text-align:center; opacity:0.5;'>데이터를 불러올 수 없습니다.</p>";
             }
+        }
+
+        // URL 파라미터 확인 로직
+        function checkUrlParam() {
+            const params = new URLSearchParams(window.location.search);
+            const postId = params.get('id');
+
+            if (postId) {
+                showPost(postId);
+            } else {
+                showList();
+            }
+        }
+
+        // 목록 보기 실행
+        function showList() {
+            document.getElementById('list-ui').style.display = 'block';
+            document.getElementById('post-view').style.display = 'none';
+            window.scrollTo(0,0);
+            applyFilterAndSort();
+        }
+
+        // 상세 보기 실행
+        function showPost(id) {
+            const post = newsData.find(item => item.id == id);
+            if (!post) {
+                alert("존재하지 않는 기사입니다.");
+                closePost();
+                return;
+            }
+
+            document.getElementById('list-ui').style.display = 'none';
+            document.getElementById('post-view').style.display = 'block';
+            window.scrollTo(0,0);
+
+            document.getElementById('post-body').innerHTML = `
+                <div class="news-date">${post.date}</div>
+                <h1 class="post-full-title">${post.title_ko}</h1>
+                <div class="post-hero-img" style="background-image: url('${post.image}')"></div>
+                <div class="post-content">${post.content_ko}</div>
+            `;
+            
+            // URL 강제 업데이트 (뒤로가기 지원용)
+            if(!window.location.search.includes(`id=${id}`)) {
+                history.pushState(null, '', `?id=${id}`);
+            }
+        }
+
+        // 목록으로 돌아가기
+        function closePost() {
+            history.pushState(null, '', window.location.pathname);
+            showList();
         }
 
         // 필터 및 정렬 엔진
@@ -207,7 +276,7 @@
             
             data.forEach(item => {
                 feed.innerHTML += `
-                    <div class="news-card">
+                    <div class="news-card" onclick="showPost(${item.id})">
                         <div class="news-img" style="background-image: url('${item.image}')"></div>
                         <div class="news-info">
                             <span class="news-date">${item.date}</span>
@@ -218,6 +287,9 @@
                 `;
             });
         }
+
+        // 뒤로가기 버튼 처리
+        window.onpopstate = () => checkUrlParam();
 
         searchInput.addEventListener('input', applyFilterAndSort);
         sortSelect.addEventListener('change', applyFilterAndSort);
