@@ -7,7 +7,8 @@
     <title>민양테크 Docs | 고객지원</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../common.css"> <style>
+    <link rel="stylesheet" href="../common.css"> 
+    <style>
         /* --- Docs Layout --- */
         .docs-container {
             display: flex;
@@ -17,7 +18,7 @@
             padding-top: 80px;
         }
 
-        /* --- Sidebar Style (nav.html이 로드된 후 적용됨) --- */
+        /* --- Sidebar Style --- */
         .docs-sidebar {
             width: 280px;
             padding: 40px 20px;
@@ -26,7 +27,6 @@
             top: 80px;
             height: fit-content;
         }
-        /* nav.html 내부 스타일들 */
         .sidebar-group { margin-bottom: 30px; }
         .sidebar-group h4 {
             font-size: 0.85rem;
@@ -73,6 +73,44 @@
             transition: 0.3s;
         }
         .back-btn:hover { background: var(--text-color); color: var(--bg-color); }
+
+        /* --- Updated Footer Style --- */
+        footer {
+            padding: 60px 20px 40px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 80px;
+        }
+        .footer-sns {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .footer-sns a {
+            color: var(--text-color);
+            font-size: 2rem;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+        .footer-sns a:hover { opacity: 1; color: var(--accent-color); }
+        .x-logo-img { height: 24px; filter: grayscale(1); }
+        .dark-mode .x-logo-img { filter: grayscale(1) invert(1); }
+        
+        .footer-email { margin-bottom: 20px; }
+        .footer-email a {
+            text-decoration: none;
+            color: var(--text-color);
+            opacity: 0.6;
+            font-weight: 500;
+        }
+        .footer-email a:hover { opacity: 1; }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            opacity: 0.4;
+        }
 
         @media (max-width: 900px) {
             .docs-container { flex-direction: column; }
@@ -134,11 +172,7 @@
             </a>
         </div>
         <div class="footer-email">
-            <a href="mailto:minyangtech.info@gmail.com">minyangtech.info@gmail.com</a>
-        </div>
-        <div class="footer-legal">
-            <a href="../Policy.html" id="privacy-link">개인정보 처리방침</a>
-            <a href="../guideline.html" id="guideline-link">가이드라인</a>
+            <a href="mailto:support@minyangtech.n-e.kr">support@minyangtech.n-e.kr</a>
         </div>
         <div class="footer-copyright" id="copyright-text">
             <p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p>
@@ -146,16 +180,14 @@
     </footer>
 
     <script>
-        // 1. 사이드바 불러오기 로직
+        // 1. 사이드바 불러오기
         async function loadSidebar() {
             const target = document.getElementById('sidebar-target');
             try {
-                // nav.html 파일을 불러옴 (index.html과 같은 폴더에 있을 경우)
                 const response = await fetch('nav.html'); 
                 const data = await response.text();
                 target.innerHTML = data;
 
-                // 현재 페이지 활성화 표시
                 const links = target.querySelectorAll('a');
                 const currentFile = window.location.pathname.split('/').pop() || 'index.html';
                 links.forEach(link => {
@@ -169,16 +201,16 @@
             }
         }
 
-        // 2. 언어 및 다크모드 유지
+        // 2. 다국어 설정
         const translations = {
             'ko': {
                 'back': '메인으로', 'langLabel': '한국어 ▾', 'contact': '저희와 연락하세요!',
-                'privacy': '개인정보 처리방침', 'copyright': '민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.',
+                'copyright': '민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.',
                 'title': '문서 센터', 'welcome': '민양테크의 공식 가이드와 게임 시스템 문서를 확인하세요.'
             },
             'en': {
                 'back': 'Home', 'langLabel': 'English ▾', 'contact': 'Contact Us!',
-                'privacy': 'Privacy Policy', 'copyright': 'Copyright © Minyang Tech. All rights reserved.',
+                'copyright': 'Copyright © Minyang Tech. All rights reserved.',
                 'title': 'Docs Center', 'welcome': 'Check out MinYang Tech\'s official guides and game systems.'
             }
         };
@@ -189,7 +221,6 @@
             document.getElementById('back-txt').textContent = t.back;
             document.getElementById('current-lang-label').textContent = t.langLabel;
             document.getElementById('footer-contact').textContent = t.contact;
-            document.getElementById('privacy-link').textContent = t.privacy;
             document.getElementById('copyright-text').innerHTML = `<p>${t.copyright}</p>`;
             document.getElementById('docs-title').textContent = t.title;
             document.getElementById('docs-welcome').textContent = t.welcome;
@@ -201,7 +232,7 @@
         }
 
         window.onload = () => {
-            loadSidebar(); // 사이드바 로드
+            loadSidebar();
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.body.classList.add('dark-mode');
                 document.getElementById('dark-mode-toggle').checked = true;
