@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 Not Found - 민양테크</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link rel="stylesheet" href="common.css">
-
     <style>
         /* 404 전용 스타일 */
         .error-container {
@@ -75,20 +73,21 @@
             .img-404 { width: 250px; }
             .img-mascot { width: 140px; margin-top: -30px; }
             .error-msg { font-size: 1.2rem; }
+            /* 모바일 하단 네비게이터 제거 대응 */
+            .mobile-bottom-nav { display: none !important; }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="header-left">
-            <a href="index.html" class="logo-link">
+            <a href="https://minyangtech.n-e.kr" class="logo-link">
                 <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" alt="Logo">
             </a>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="NEWS.html" id="nav-news">뉴스</a></li>
-                    <li><a href="AboutUs.html" id="nav-about">About Us</a></li>
-                    <li><a href="Product.html" id="nav-products">제품</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/docs" id="nav-docs">Docs</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/news" id="nav-news">News</a></li>
                 </ul>
             </nav>
         </div>
@@ -115,11 +114,11 @@
             <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%EB%A7%88%EC%8A%A4%EC%BD%94%ED%8A%B8%20%EC%BA%90%EB%A6%AD%ED%84%B0.png?raw=true" alt="Mascot" class="img-mascot">
         </div>
         <p class="error-msg" id="error-text">페이지를 찾을 수 없습니다.</p>
-        <a href="index.html" class="home-btn" id="home-btn-text">홈으로 돌아가기</a>
+        <a href="https://minyangtech.n-e.kr" class="home-btn" id="home-btn-text">홈으로 돌아가기</a>
     </main>
 
     <footer>
-        <h3 id="footer-contact">저희와 연락하세요!</h3>
+        <h3 id="footer-contact">Connect with Us</h3>
         <div class="footer-sns">
             <a href="https://x.com/minyang_tech" target="_blank">
                 <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/logo-white.png?raw=true" class="x-logo-img" alt="X Logo">
@@ -131,27 +130,23 @@
         <div class="footer-email">
             <a href="mailto:minyangtech.info@gmail.com">minyangtech.info@gmail.com</a>
         </div>
-        <div class="footer-legal">
-    <a href="Policy.html" id="privacy-link">개인정보 처리방침</a>
-    <a href="guideline.html" id="guideline-link">가이드라인</a>
-</div>
         <div class="footer-copyright" id="copyright-text">
-            <p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p>
+            <p>Copyright © Minyang Tech. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
         const translations = {
             'ko': { 
-                'news': '뉴스', 'about': 'About Us', 'products': '제품', 
+                'docs': '문서(Docs)', 'news': '뉴스', 
                 'langLabel': '언어 선택 ▾', 'error': '요청하신 페이지를 찾을 수 없습니다.', 
                 'home': '홈으로 돌아가기', 'contact': '저희와 연락하세요!',
                 'copyright': '민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.'
             },
             'en': { 
-                'news': 'NEWS', 'about': 'ABOUT US', 'products': 'PRODUCTS', 
+                'docs': 'Docs', 'news': 'News', 
                 'langLabel': 'Language ▾', 'error': "The page you requested could not be found.", 
-                'home': 'Back to Home', 'contact': 'Contact Us!',
+                'home': 'Back to Home', 'contact': 'Connect with Us',
                 'copyright': 'Copyright © Minyang Tech. All rights reserved.'
             }
         };
@@ -159,9 +154,8 @@
         function changeLanguage(lang) {
             localStorage.setItem('selectedLang', lang);
             const t = translations[lang];
+            document.getElementById('nav-docs').textContent = t.docs;
             document.getElementById('nav-news').textContent = t.news;
-            document.getElementById('nav-about').textContent = t.about;
-            document.getElementById('nav-products').textContent = t.products;
             document.getElementById('current-lang-label').textContent = t.langLabel;
             document.getElementById('error-text').textContent = t.error;
             document.getElementById('home-btn-text').textContent = t.home;
@@ -183,27 +177,5 @@
             }
         };
     </script>
-    <a href="guideline.html" class="report-floating-btn">
-    <i class="fa-solid fa-arrow-up-right-from-square"></i> 가이드라인
-</a>
-
-<nav class="mobile-bottom-nav">
-    <a href="index.html" class="nav-item">
-        <i class="fa-solid fa-house"></i>
-        <span>홈</span>
-    </a>
-    <a href="NEWS.html" class="nav-item">
-        <i class="fa-solid fa-newspaper"></i>
-        <span>뉴스</span>
-    </a>
-    <a href="AboutUs.html" class="nav-item">
-        <i class="fa-solid fa-circle-info"></i>
-        <span>About Us</span>
-    </a>
-    <a href="Product.html" class="nav-item">
-        <i class="fa-solid fa-box-archive"></i>
-        <span>제품</span>
-    </a>
-</nav>
 </body>
 </html>
