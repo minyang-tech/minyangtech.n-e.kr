@@ -4,100 +4,198 @@
     <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>민양테크 | 공식 홈페이지</title>
-    <meta name="description" content="창의적인 아이디어를 기반으로 만드는 게임 및 소프트웨어 2인 개발팀 민양테크입니다.">
-    <meta name="og:title" content="민양테크">
-    <meta name="og:image" content="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true">
-
+    <title>이동 중... - 민양테크</title>
+    <meta http-equiv="refresh" content="5; url=https://minyangtech.n-e.kr/docs">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="common.css">
 
     <style>
-        /* --- Hero Slider --- */
-        .hero-container { position: relative; width: 100%; height: 500px; overflow: hidden; }
-        .hero-wrapper { display: flex; width: 500%; height: 100%; transition: transform 0.6s ease-in-out; }
-        .hero-slide { width: 20%; display: flex; justify-content: center; align-items: center; background-size: cover; background-position: center; background-color: #1a1a1a; color: white; }
-        .hero-slide h1 { font-size: 3rem; font-weight: 800; text-shadow: 0 4px 10px rgba(0,0,0,0.7); text-align: center; padding: 0 20px; }
-        .slide-dots { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; z-index: 10; }
-        .dot { width: 12px; height: 12px; background: rgba(255,255,255,0.4); border-radius: 50%; cursor: pointer; transition: 0.3s; }
-        .dot.active { background: #fff; width: 35px; border-radius: 10px; }
-
-        /* --- About Section --- */
-        .about-intro-section { padding: 100px 10%; display: flex; align-items: center; gap: 50px; background-color: var(--bg-color); }
-        .about-image { flex: 1; max-width: 500px; border-radius: 20px; overflow: hidden; opacity: 0; transform: translateX(-50px); transition: 1s; }
-        .about-image img { width: 100%; height: auto; display: block; }
-        .about-text { flex: 1.2; opacity: 0; transform: translateX(50px); transition: 1s; }
-        .about-text h2 { font-size: 2.2rem; margin-bottom: 20px; color: var(--accent-color); font-weight: 800; }
-        .about-text .highlight-box { background-color: var(--accent-color); color: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; line-height: 1.6; font-weight: 600; font-size: 1.1rem; }
-        .about-text p { line-height: 1.8; opacity: 0.8; font-size: 1.05rem; }
-
-        /* --- News Section --- */
-        .news-section { padding: 80px 5%; text-align: center; background: var(--card-bg); }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .news-card { background: var(--bg-color); border-radius: 15px; overflow: hidden; border: 1px solid var(--border-color); text-align: left; transition: 0.3s; cursor: pointer; }
-        .news-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .news-card img { width: 100%; height: 200px; object-fit: cover; }
-        .news-card-body { padding: 20px; }
-        .news-card-body h3 { font-size: 1.25rem; margin-top: 10px; color: var(--accent-color); font-weight: 700; line-height: 1.4; }
-        .news-card-body small { color: #888; font-weight: 500; }
-        .more-btn { display: inline-block; margin-top: 40px; padding: 14px 40px; border: 2px solid var(--text-color); color: var(--text-color); text-decoration: none; border-radius: 30px; font-weight: bold; transition: 0.3s; }
-        .more-btn:hover { background: var(--text-color); color: var(--bg-color); }
-
-        /* --- Mobile Responsive & Fix --- */
-        @media (max-width: 900px) {
-            .hero-container { height: 350px; }
-            .hero-slide h1 { font-size: 1.8rem; }
-            .about-intro-section { flex-direction: column; text-align: center; padding: 60px 5%; gap: 40px; }
-            .about-image { order: 2; transform: translateY(30px) !important; opacity: 1 !important; margin: 0 auto; }
-            .about-text { order: 1; transform: translateY(0) !important; opacity: 1 !important; }
-
-            /* 하단바 강제 박제 */
-            .mobile-bottom-nav {
-                display: flex !important;
-                position: fixed !important;
-                bottom: 15px !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                width: 92% !important;
-                z-index: 10000 !important;
-            }
-
-            .report-floating-btn {
-                display: flex !important;
-                position: fixed !important;
-                bottom: 90px !important;
-                right: 20px !important;
-                left: auto !important;
-                z-index: 9999 !important;
-            }
+        /* 민양테크 404 페이지 스타일 적용 및 리다이렉트 전용 수정 */
+        :root {
+            --accent-color: #007bff; /* 파란색 포인트 컬러 */
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --footer-bg: #f8f9fa;
         }
 
-        @media (max-width: 600px) {
-            .hero-container { height: 280px; }
-            .hero-slide h1 { font-size: 1.5rem; }
-            .news-grid { grid-template-columns: 1fr; gap: 20px; }
-            .about-text .highlight-box { font-size: 0.95rem; padding: 15px; }
-            .slide-dots { bottom: 15px; }
+        .dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --footer-bg: #121212;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* 헤더 스타일 (이전 코드 활용) */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo-link img { height: 40px; }
+
+        .controls { display: flex; gap: 20px; align-items: center; }
+        
+        .lang-dropdown { position: relative; cursor: pointer; }
+        .lang-menu { 
+            display: none; position: absolute; top: 100%; right: 0; 
+            background: var(--bg-color); border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px; list-style: none; padding: 10px 0; min-width: 120px; z-index: 100;
+        }
+        .lang-dropdown:hover .lang-menu { display: block; }
+        .lang-menu li { padding: 8px 20px; transition: background 0.2s; }
+        .lang-menu li:hover { background: rgba(0,123,255,0.1); }
+
+        /* 다크모드 토글 스위치 (이전 코드 활용) */
+        .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { 
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; 
+            background-color: #ccc; transition: .4s; border-radius: 34px; 
+        }
+        .slider:before { 
+            position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; 
+            background-color: white; transition: .4s; border-radius: 50%; 
+        }
+        input:checked + .slider { background-color: var(--accent-color); }
+        input:checked + .slider:before { transform: translateX(24px); }
+
+        /* 리다이렉트 메인 컨텐츠 스타일 */
+        .redirect-container {
+            flex: 1;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+            text-align: center; 
+            padding: 80px 5%;
+        }
+
+        .visual-elements { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        /* 로딩 스피너 애니메이션 */
+        .loader {
+            border: 6px solid #f3f3f3; /* Light grey */
+            border-top: 6px solid var(--accent-color); /* Blue */
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 30px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .img-mascot { 
+            width: 150px; 
+            max-width: 40%; 
+            height: auto; 
+            margin-top: -20px; /* 로더와 약간 겹치게 */
+            z-index: 2;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+            opacity: 0.8;
+        }
+
+        .status-msg { 
+            font-size: 1.6rem; 
+            margin-bottom: 15px; 
+            opacity: 0.9; 
+            font-weight: 700;
+            word-break: keep-all;
+            color: var(--text-color);
+        }
+
+        .sub-msg {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.7;
+            font-weight: 400;
+        }
+
+        .direct-link { 
+            padding: 14px 35px; 
+            background: transparent; 
+            color: var(--accent-color); 
+            text-decoration: none; 
+            border: 2px solid var(--accent-color);
+            border-radius: 50px; 
+            font-weight: 600; 
+            transition: all 0.3s ease; 
+        }
+
+        .direct-link:hover { 
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-3px); 
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2); 
+        }
+
+        /* 푸터 스타일 (이전 코드 활용) */
+        footer {
+            background-color: var(--footer-bg);
+            padding: 50px 5% 30px;
+            text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        #footer-contact { font-size: 1.3rem; margin-bottom: 25px; opacity: 0.8; }
+        
+        .footer-sns { display: flex; justify-content: center; gap: 25px; margin-bottom: 30px; align-items: center;}
+        .footer-sns a { color: var(--text-color); font-size: 2rem; text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
+        .footer-sns a:hover { opacity: 1; color: var(--accent-color); }
+        .x-logo-img { height: 28px; filter: grayscale(1) invert(0); } /* 기본 다크 로고 */
+        
+        .dark-mode .x-logo-img { filter: grayscale(1) invert(1); } /* 다크모드 시 화이트 로고 */
+
+        .footer-email a { color: var(--accent-color); text-decoration: none; font-weight: 500; margin-bottom: 25px; display: inline-block; }
+
+        .footer-copyright { font-size: 0.9rem; opacity: 0.6; line-height: 1.6; }
+
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; }
+            .logo-link img { height: 32px; }
+            .controls { gap: 15px; }
+            .redirect-container { padding: 60px 5% 80px; }
+            .loader { width: 60px; height: 60px; border-width: 5px; }
+            .img-mascot { width: 120px; margin-top: -15px; }
+            .status-msg { font-size: 1.3rem; }
+            .sub-msg { font-size: 1rem; }
         }
     </style>
 </head>
-<body> <header>
+<body>
+    <header>
         <div class="header-left">
-            <a href="index.html" class="logo-link">
-                <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" alt="민양테크 로고">
+            <a href="https://minyangtech.n-e.kr" class="logo-link">
+                <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" alt="Logo">
             </a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="NEWS.html" id="nav-news">뉴스</a></li>
-                    <li><a href="AboutUs.html" id="nav-about">About Us</a></li>
-                    <li><a href="Product.html" id="nav-products">제품</a></li>
-                </ul>
-            </nav>
         </div>
         <div class="controls">
             <div class="lang-dropdown">
-                <span id="current-lang-label">언어 선택 ▾</span>
+                <span id="current-lang-label">Language ▾</span>
                 <ul class="lang-menu">
                     <li onclick="changeLanguage('en')">English</li>
                     <li onclick="changeLanguage('ko')">한국어</li>
@@ -112,47 +210,18 @@
         </div>
     </header>
 
-    <section class="hero-container">
-        <div class="hero-wrapper" id="hero-wrapper">
-            <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true');"><h1 id="hero-1">민양테크</h1></div>
-            <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true');"><h1 id="hero-2">창의적인 아이디어</h1></div>
-            <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true');"><h1 id="hero-3">미래를 여는 기술</h1></div>
-            <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true');"><h1 id="hero-4">사용자 중심의 경험</h1></div>
-            <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true');"><h1 id="hero-5">민양테크와 함께하세요</h1></div>
+    <main class="redirect-container">
+        <div class="visual-elements">
+            <div class="loader"></div>
+            <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%EB%A7%88%EC%8A%A4%EC%BD%94%ED%8A%B8%20%EC%BA%90%EB%A6%AD%ED%84%B0.png?raw=true" alt="Mascot" class="img-mascot">
         </div>
-        <div class="slide-dots">
-            <div class="dot active" onclick="moveSlide(0)"></div>
-            <div class="dot" onclick="moveSlide(1)"></div>
-            <div class="dot" onclick="moveSlide(2)"></div>
-            <div class="dot" onclick="moveSlide(3)"></div>
-            <div class="dot" onclick="moveSlide(4)"></div>
-        </div>
-    </section>
-
-    <section class="about-intro-section">
-        <div class="about-image reveal">
-            <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%EB%A7%88%EC%8A%A4%EC%BD%94%EB%93%9C%20%EC%BA%90.png?raw=true" alt="Minyang Mascot">
-        </div>
-        <div class="about-text reveal">
-            <h2 id="intro-title">민양테크?</h2>
-            <div class="highlight-box" id="intro-highlight">
-                민양테크는 창의적인 아이디어를 기반으로 <br>
-                새로운 미래를 만들어가는 혁신 그룹입니다.
-            </div>
-            <p id="intro-desc">
-                우리는 단순한 제품을 넘어 사용자에게 새로운 경험을 선사합니다.
-            </p>
-        </div>
-    </section>
-
-    <section class="news-section">
-        <h2 id="news-title">최신 뉴스</h2>
-        <div id="latest-news-grid" class="news-grid"></div>
-        <a href="NEWS.html" class="more-btn" id="more-btn">더 알아보기</a>
-    </section>
+        <p class="status-msg" id="status-text">문서 페이지로 이동 중입니다.</p>
+        <p class="sub-msg" id="sub-text">잠시만 기다려 주세요...</p>
+        <a href="https://minyangtech.n-e.kr/docs" class="direct-link" id="direct-link-text">자동으로 이동하지 않으면 여기를 클릭하세요.</a>
+    </main>
 
     <footer>
-        <h3 id="footer-contact">저희와 연락하세요!</h3>
+        <h3 id="footer-contact">Connect with Us</h3>
         <div class="footer-sns">
             <a href="https://x.com/minyang_tech" target="_blank">
                 <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/logo-white.png?raw=true" class="x-logo-img" alt="X Logo">
@@ -164,140 +233,66 @@
         <div class="footer-email">
             <a href="mailto:minyangtech.info@gmail.com">minyangtech.info@gmail.com</a>
         </div>
-        <div class="footer-legal">
-            <a href="Policy.html" id="privacy-link">개인정보 처리방침</a>
-            <a href="guideline.html" id="guideline-link">가이드라인</a>
-        </div>
         <div class="footer-copyright" id="copyright-text">
-            <p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p>
+            <p>Copyright © Minyang Tech. All rights reserved.</p>
         </div>
     </footer>
 
-    <a href="guideline.html" class="report-floating-btn">
-        <i class="fa-solid fa-arrow-up-right-from-square"></i> 가이드라인
-    </a>
-
-    <nav class="mobile-bottom-nav">
-        <a href="index.html" class="nav-item">
-            <i class="fa-solid fa-house"></i>
-            <span>홈</span>
-        </a>
-        <a href="NEWS.html" class="nav-item">
-            <i class="fa-solid fa-newspaper"></i>
-            <span>뉴스</span>
-        </a>
-        <a href="AboutUs.html" class="nav-item">
-            <i class="fa-solid fa-circle-info"></i>
-            <span>About Us</span>
-        </a>
-        <a href="Product.html" class="nav-item">
-            <i class="fa-solid fa-box-archive"></i>
-            <span>제품</span>
-        </a>
-    </nav>
-
     <script>
+        // 자바스크립트를 이용한 즉시 리다이렉트
+        // replace()를 사용하여 뒤로가기 시 무한루프 방지
+        window.location.replace("https://minyangtech.n-e.kr/docs");
+
+        // 다국어 번역 데이터
         const translations = {
             'ko': { 
-                'news': '뉴스', 'about': 'About Us', 'products': '제품', 'langLabel': '한국어 ▾', 'latest': '최신 뉴스', 'more': '더 알아보기', 'contact': '저희와 연락하세요!',
-                'introT': '민양테크를 소개합니다',
-                'introH': '2인 비영리 개발팀입니다',
-                'introD': '우리는 단순한 제품을 경험을 선사합니다.',
-                'h1': '민양테크', 'h2': '창의적인 아이디어', 'h3': '좋은 게임', 'h4': '사용자 중심의 경험', 'h5': '쓸내용이없어요',
-                'privacy': '개인정보 처리방침',
+                'title': '이동 중... - 민양테크',
+                'langLabel': '언어 선택 ▾', 
+                'status': '문서 페이지로 이동 중입니다.', 
+                'sub': '잠시만 기다려 주세요...',
+                'direct': '자동으로 이동하지 않으면 여기를 클릭하세요.',
+                'contact': '저희와 연락하세요!',
                 'copyright': '민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.'
             },
             'en': { 
-                'news': 'NEWS', 'about': 'ABOUT US', 'products': 'PRODUCTS', 'langLabel': 'English ▾', 'latest': 'Latest News', 'more': 'Read More', 'contact': 'Contact Us!',
-                'introT': 'Introducing MinYang Tech',
-                'introH': 'We are 2people dev team',
-                'introD': 'We make simple products to users.',
-                'h1': 'MinYang Tech', 'h2': 'Creative Ideas', 'h3': 'Good Game', 'h4': 'User-Centric Experience', 'h5': 'i dont have any idea to write in here',
-                'privacy': 'Privacy Policy',
+                'title': 'Redirecting... - Minyang Tech',
+                'langLabel': 'Language ▾', 
+                'status': 'Redirecting to the documentation page.', 
+                'sub': 'Please wait a moment...',
+                'direct': 'Click here if you are not redirected automatically.',
+                'contact': 'Connect with Us',
                 'copyright': 'Copyright © Minyang Tech. All rights reserved.'
             }
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-
-        let currentIdx = 0;
-        function moveSlide(idx) {
-            currentIdx = idx;
-            const wrapper = document.getElementById('hero-wrapper');
-            if (wrapper) wrapper.style.transform = `translateX(-${idx * 20}%)`;
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-        }
-
-        setInterval(() => {
-            currentIdx = (currentIdx + 1) % 5;
-            moveSlide(currentIdx);
-        }, 5000);
-
+        // 언어 변경 함수
         function changeLanguage(lang) {
             localStorage.setItem('selectedLang', lang);
             const t = translations[lang];
-            
-            document.getElementById('nav-news').textContent = t.news;
-            document.getElementById('nav-about').textContent = t.about;
-            document.getElementById('nav-products').textContent = t.products;
+            document.title = t.title;
             document.getElementById('current-lang-label').textContent = t.langLabel;
-            document.getElementById('news-title').textContent = t.latest;
-            document.getElementById('more-btn').textContent = t.more;
+            document.getElementById('status-text').textContent = t.status;
+            document.getElementById('sub-text').textContent = t.sub;
+            document.getElementById('direct-link-text').textContent = t.direct;
             document.getElementById('footer-contact').textContent = t.contact;
-            document.getElementById('intro-title').textContent = t.introT;
-            document.getElementById('intro-highlight').innerHTML = t.introH;
-            document.getElementById('intro-desc').textContent = t.introD;
-            document.getElementById('privacy-link').textContent = t.privacy;
             document.getElementById('copyright-text').innerHTML = `<p>${t.copyright}</p>`;
-
-            for(let i=1; i<=5; i++) {
-                const el = document.getElementById(`hero-${i}`);
-                if(el) el.textContent = t[`h${i}`];
-            }
-            loadNews();
         }
 
-        async function loadNews() {
-            const grid = document.getElementById('latest-news-grid');
-            if(!grid) return;
-            try {
-                const lang = localStorage.getItem('selectedLang') || 'ko';
-                const res = await fetch('news-data.json');
-                const data = await res.json();
-                data.sort((a, b) => b.id - a.id);
-
-                grid.innerHTML = data.slice(0, 3).map(item => `
-                    <div class="news-card reveal" onclick="location.href='NEWS.html?id=${item.id}'">
-                        <img src="${item.image || 'https://via.placeholder.com/400x200'}" alt="news">
-                        <div class="news-card-body">
-                            <small>${item.date}</small>
-                            <h3>${lang === 'ko' ? item.title_ko : item.title_en}</h3>
-                        </div>
-                    </div>
-                `).join('');
-                document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-            } catch (e) { grid.innerHTML = "<p>뉴스를 불러올 수 없습니다.</p>"; }
-        }
-
+        // 다크모드 토글 함수
         function toggleDarkMode() {
             const isDark = document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
         }
 
-        window.onload = () => {
+        // 초기 설정 로드 (언어, 다크모드)
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('selectedLang') || 'ko';
+            changeLanguage(savedLang);
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.body.classList.add('dark-mode');
                 document.getElementById('dark-mode-toggle').checked = true;
             }
-            const savedLang = localStorage.getItem('selectedLang') || 'ko';
-            changeLanguage(savedLang);
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        };
+        });
     </script>
 </body>
 </html>
