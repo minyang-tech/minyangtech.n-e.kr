@@ -9,250 +9,221 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../common.css"> 
     <style>
+        :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
+        body.dark-mode { --txt: #f5f5f5; --bg: #121212; --brd: #333; --card-bg: #1e1e1e; }
+
+        body { 
+            font-family: 'Pretendard', sans-serif; 
+            background-color: var(--bg); color: var(--txt); 
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+        }
+
+        /* --- [복구] 상단 헤더 스타일 --- */
+        header { 
+            width: 100%; height: 80px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 5%; border-bottom: 1px solid var(--brd); 
+            background-color: var(--bg); position: fixed; top: 0; left: 0; z-index: 1000;
+            box-sizing: border-box;
+        }
+        .header-left { display: flex; align-items: center; gap: 40px; }
+        .logo-link img { height: 40px !important; width: auto !important; display: block; }
+        
+        .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+        .nav-links a.active { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
+
+        /* --- 검색 및 필터 UI --- */
+        .filter-container {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 30px; gap: 15px; flex-wrap: wrap;
+        }
+        .search-box { position: relative; flex: 1; min-width: 250px; }
+        .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+        .search-box input {
+            width: 100%; padding: 12px 15px 12px 40px; border-radius: 12px;
+            border: 1px solid var(--brd); background: var(--card-bg);
+            color: var(--txt); font-size: 0.95rem; outline: none; transition: 0.2s;
+            box-sizing: border-box;
+        }
+        .search-box input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+        .sort-select {
+            padding: 12px 15px; border-radius: 12px; border: 1px solid var(--brd);
+            background: var(--card-bg); color: var(--txt); outline: none; cursor: pointer; font-weight: 600;
+        }
+
         /* --- News Layout --- */
         .news-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            min-height: calc(100vh - 160px);
-            padding: 100px 20px 60px;
+            max-width: 1000px; margin: 0 auto; min-height: calc(100vh - 160px);
+            padding: 130px 20px 60px; /* 헤더 공간 확보 */
         }
-
-        .news-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
+        .news-header { text-align: center; margin-bottom: 40px; }
         .news-header h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
-        .news-header p { opacity: 0.7; font-size: 1.1rem; }
-
-        /* --- News Card Style --- */
-        .news-list {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
+        
+        .news-list { display: flex; flex-direction: column; gap: 30px; }
         .news-card {
-            display: flex;
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: 0.3s;
-            text-decoration: none;
-            color: inherit;
+            display: flex; background: var(--card-bg); border: 1px solid var(--brd);
+            border-radius: 16px; overflow: hidden; transition: 0.3s;
+            text-decoration: none; color: inherit;
         }
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-color: var(--accent); }
+        .news-img { width: 300px; min-width: 300px; height: 200px; background-size: cover; background-position: center; }
+        .news-info { padding: 30px; flex: 1; display: flex; flex-direction: column; }
+        .news-date { font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+        .news-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; }
+        .news-excerpt { font-size: 0.95rem; opacity: 0.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.6; }
 
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-color: var(--accent-color);
+        /* --- 푸터 --- */
+        footer {
+            width: 100%; padding: 50px 20px; border-top: 1px solid var(--brd);
+            background-color: var(--bg); display: flex; flex-direction: column; align-items: center; text-align: center;
+            box-sizing: border-box;
         }
+        .x-logo-img { height: 24px !important; filter: invert(1); transition: 0.3s; }
+        body.dark-mode .x-logo-img { filter: invert(0); }
+        .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
 
-        .news-img {
-            width: 300px;
-            min-width: 300px;
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .news-info {
-            padding: 30px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .news-date {
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .news-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .news-excerpt {
-            font-size: 0.95rem;
-            opacity: 0.7;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            line-height: 1.6;
-        }
-
-        /* --- Header Back Button --- */
-        .back-btn {
-            background: none;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 8px 15px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-        }
-        .back-btn:hover { background: var(--text-color); color: var(--bg-color); }
+        /* 다크모드 스위치 */
+        .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
+        input:checked + .slider { background: var(--accent); }
+        input:checked + .slider:before { transform: translateX(22px); }
 
         @media (max-width: 768px) {
             .news-card { flex-direction: column; }
             .news-img { width: 100%; height: 180px; }
-            .news-header h1 { font-size: 2rem; }
+            .filter-container { flex-direction: column; align-items: stretch; }
+            .header-left { gap: 20px; }
+            .nav-links { gap: 15px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="header-left">
-            <a href="https://minyangtech.n-e.kr" class="back-btn">
-                <i class="fa-solid fa-arrow-left"></i> <span id="back-txt">메인으로</span>
+            <a href="https://minyangtech.n-e.kr" class="logo-link">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="Logo">
             </a>
-            <a href="index.html" class="logo-link" style="margin-left: 15px;">
-                <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" alt="민양테크 로고">
-            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="https://minyangtech.n-e.kr/docs">Docs</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/news" class="active">News</a></li>
+                </ul>
+            </nav>
         </div>
         <div class="controls">
-            <div class="lang-dropdown">
-                <span id="current-lang-label">언어 선택 ▾</span>
-                <ul class="lang-menu">
-                    <li onclick="changeLanguage('en')">English</li>
-                    <li onclick="changeLanguage('ko')">한국어</li>
-                </ul>
-            </div>
-            <div class="toggle-container">
-                <label class="switch">
-                    <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
-                    <span class="slider"></span>
-                </label>
-            </div>
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider"></span>
+            </label>
         </div>
     </header>
 
     <main class="news-container">
         <section class="news-header">
             <h1 id="news-title">새로운 소식</h1>
-            <p id="news-welcome">민양테크의 최신 업데이트와 공지사항을 확인하세요.</p>
+            <p id="news-welcome">민양테크의 최신 업데이트를 확인하세요.</p>
         </section>
+
+        <div class="filter-container">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="news-search" placeholder="뉴스 제목이나 내용 검색...">
+            </div>
+            <select id="news-sort" class="sort-select">
+                <option value="newest">최신순</option>
+                <option value="oldest">오래된순</option>
+            </select>
+        </div>
 
         <div class="news-list" id="news-feed">
             </div>
     </main>
 
     <footer>
-        <h3 id="footer-contact">Connect with Us</h3>
-        <div class="footer-sns">
+        <div class="footer-sns" style="display: flex; gap: 30px; margin-bottom: 25px; align-items: center;">
             <a href="https://x.com/minyang_tech" target="_blank">
-                <img src="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/logo-white.png?raw=true" class="x-logo-img" alt="X Logo">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X">
             </a>
             <a href="https://www.youtube.com/@minyangtech" target="_blank">
                 <i class="fa-brands fa-youtube"></i>
             </a>
         </div>
         <div class="footer-email">
-            <a href="mailto:minyangtech.info@gmail.com">minyangtech.info@gmail.com</a>
+            <a href="mailto:support@minyangtech.n-e.kr" style="text-decoration:none; color:var(--txt); opacity:0.6;">support@minyangtech.n-e.kr</a>
         </div>
-        <div class="footer-copyright" id="copyright-text">
+        <div class="footer-copyright" style="font-size:13px; opacity:0.4; margin-top:15px;">
             <p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p>
         </div>
     </footer>
 
     <script>
         let newsData = [];
+        const toggle = document.getElementById('dark-mode-toggle');
+        const searchInput = document.getElementById('news-search');
+        const sortSelect = document.getElementById('news-sort');
 
-        // 1. 뉴스 데이터 불러오기
+        // 테마 로직
+        function updateTheme(isDark) {
+            document.body.classList.toggle('dark-mode', isDark);
+            toggle.checked = isDark;
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+        toggle.addEventListener('change', () => updateTheme(toggle.checked));
+
+        // 데이터 페칭
         async function fetchNews() {
-            const feed = document.getElementById('news-feed');
             try {
-                // 루트 폴더의 news-data.json 호출
                 const response = await fetch('../news-data.json');
-                newsData = await response.getJson ? await response.json() : JSON.parse(await response.text());
-                
-                // ID 기준 내림차순 정렬 (최신순)
-                newsData.sort((a, b) => b.id - a.id);
-                
-                renderNews();
+                newsData = await response.json();
+                applyFilterAndSort();
             } catch (error) {
-                console.error("News Load Error:", error);
-                feed.innerHTML = "<p style='text-align:center; opacity:0.5;'>뉴스를 불러오는 중에 문제가 발생했습니다.</p>";
+                console.error("Load Error:", error);
+                document.getElementById('news-feed').innerHTML = "<p style='text-align:center; opacity:0.5;'>데이터를 불러올 수 없습니다.</p>";
             }
         }
 
-        // 2. 뉴스 렌더링
-        function renderNews() {
+        // 필터 및 정렬 엔진
+        function applyFilterAndSort() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const sortOrder = sortSelect.value;
+
+            let filtered = newsData.filter(item => 
+                item.title_ko.toLowerCase().includes(searchTerm) || 
+                item.content_ko.toLowerCase().includes(searchTerm)
+            );
+
+            filtered.sort((a, b) => sortOrder === 'newest' ? b.id - a.id : a.id - b.id);
+            renderNews(filtered);
+        }
+
+        function renderNews(data) {
             const feed = document.getElementById('news-feed');
-            const lang = localStorage.getItem('selectedLang') || 'ko';
-            feed.innerHTML = '';
-
-            newsData.forEach(item => {
-                const title = lang === 'ko' ? item.title_ko : item.title_en;
-                const content = lang === 'ko' ? item.content_ko : item.content_en;
-                
-                // 줄바꿈 문자를 공백으로 치환하여 요약문 생성
-                const excerpt = content.replace(/\n/g, ' ');
-
-                const card = `
+            feed.innerHTML = data.length ? '' : "<p style='text-align:center; padding: 50px; opacity:0.5;'>검색 결과가 없습니다.</p>";
+            
+            data.forEach(item => {
+                feed.innerHTML += `
                     <div class="news-card">
                         <div class="news-img" style="background-image: url('${item.image}')"></div>
                         <div class="news-info">
                             <span class="news-date">${item.date}</span>
-                            <h2 class="news-title">${title}</h2>
-                            <p class="news-excerpt">${excerpt}</p>
+                            <h2 class="news-title">${item.title_ko}</h2>
+                            <p class="news-excerpt">${item.content_ko.replace(/\n/g, ' ')}</p>
                         </div>
                     </div>
                 `;
-                feed.innerHTML += card;
             });
         }
 
-        // 3. 다국어 및 테마 설정
-        const translations = {
-            'ko': {
-                'back': '메인으로', 'langLabel': '한국어 ▾', 'contact': '저희와 연락하세요!',
-                'copyright': '민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.',
-                'title': '새로운 소식', 'welcome': '민양테크의 최신 업데이트와 공지사항을 확인하세요.'
-            },
-            'en': {
-                'back': 'Home', 'langLabel': 'English ▾', 'contact': 'Connect with Us',
-                'copyright': 'Copyright © Minyang Tech. All rights reserved.',
-                'title': 'Latest News', 'welcome': 'Stay updated with the latest news from Minyang Tech.'
-            }
-        };
-
-        function changeLanguage(lang) {
-            localStorage.setItem('selectedLang', lang);
-            const t = translations[lang];
-            document.getElementById('back-txt').textContent = t.back;
-            document.getElementById('current-lang-label').textContent = t.langLabel;
-            document.getElementById('footer-contact').textContent = t.contact;
-            document.getElementById('copyright-text').innerHTML = `<p>${t.copyright}</p>`;
-            document.getElementById('news-title').textContent = t.title;
-            document.getElementById('news-welcome').textContent = t.welcome;
-            
-            renderNews(); // 언어 변경 시 뉴스 목록 다시 그리기
-        }
-
-        function toggleDarkMode() {
-            const isDark = document.body.classList.toggle('dark-mode');
-            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-        }
+        searchInput.addEventListener('input', applyFilterAndSort);
+        sortSelect.addEventListener('change', applyFilterAndSort);
 
         window.onload = () => {
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                document.body.classList.add('dark-mode');
-                document.getElementById('dark-mode-toggle').checked = true;
-            }
-            const savedLang = localStorage.getItem('selectedLang') || 'ko';
-            changeLanguage(savedLang);
+            if (localStorage.getItem('darkMode') === 'enabled') updateTheme(true);
             fetchNews();
         };
     </script>
