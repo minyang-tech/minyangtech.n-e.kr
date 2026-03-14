@@ -7,7 +7,7 @@
     <title>민양테크 Docs | Game System</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../../common.css">
+    <link rel="stylesheet" href="/docs/common.css">
     <style>
         /* --- 변수 및 기본 스타일 통일 --- */
         :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
@@ -39,14 +39,12 @@
         /* --- Docs Layout --- */
         .docs-container { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 160px); padding-top: 80px; }
         
-        /* --- Sidebar Style --- */
+        /* --- Sidebar Style (디자인 통일) --- */
         .docs-sidebar { width: 280px; padding: 40px 20px; border-right: 1px solid var(--brd); position: sticky; top: 80px; height: fit-content; }
-        .sidebar-group { margin-bottom: 30px; }
-        .sidebar-group h4 { font-size: 0.85rem; color: var(--accent); margin-bottom: 12px; opacity: 0.8; }
-        .sidebar-group ul { list-style: none; padding: 0; }
-        .sidebar-group ul li { margin-bottom: 8px; }
-        .sidebar-group ul li a { text-decoration: none; color: var(--txt); opacity: 0.6; transition: 0.3s; font-size: 0.95rem; }
-        .sidebar-group ul li a:hover, .sidebar-group ul li a.active { opacity: 1; font-weight: bold; color: var(--accent); }
+        .docs-sidebar ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+        .docs-sidebar li { margin-bottom: 8px !important; list-style: none !important; }
+        .docs-sidebar a { text-decoration: none; color: var(--txt); opacity: 0.6; transition: 0.3s; font-size: 0.95rem; display: block; }
+        .docs-sidebar a:hover, .docs-sidebar a.active { opacity: 1; font-weight: bold; color: var(--accent); }
 
         /* --- Main Content --- */
         .docs-content { flex: 1; padding: 40px 60px; line-height: 1.8; }
@@ -57,6 +55,7 @@
         .docs-body p { margin-bottom: 10px; }
         .docs-body blockquote { background: var(--card-bg); border-radius: 10px; padding: 20px; border-left: 5px solid var(--accent); margin: 15px 0 30px 0; font-weight: 500; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .warn-quote { border-left-color: #ff4757 !important; }
+        .warn1-quote { border-left-color: #ff4757 !important; } /* 중단 안내용 별도 컬러 */
 
         /* --- Footer (통합 디자인) --- */
         footer {
@@ -86,7 +85,6 @@
             .docs-container { flex-direction: column; }
             .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; }
             .docs-content { padding: 40px 20px; }
-            .header-left { gap: 20px; }
         }
     </style>
 </head>
@@ -128,48 +126,48 @@
                 <section>
                     <h3 id="sec-sys-title">[시스템]</h3>
 
-                    <p><strong id="sub-war">- 중요</strong></p>
-                    <blockquote id="desc-war" class="warn1-quote">
+                    <p><strong>- 중요</strong></p>
+                    <blockquote class="warn1-quote">
                         본 프로젝트는 [무기한] 개발 중단 상태입니다.
                     </blockquote>
                     
-                    <p><strong id="sub-economy">- 국가 경제 시스템</strong></p>
-                    <blockquote id="desc-economy" class="warn-quote">
+                    <p><strong>- 국가 경제 시스템</strong></p>
+                    <blockquote class="warn-quote">
                         군비를 과도하게 늘려 [군비경쟁상태]에 도입할 경우, 시민들의 민심과 함께 관련 주식과 국가 경제도 무너집니다. 무너지지 않게 조심하세요. 이에따라 만약 돈을 계속 찍을 경우, 인플레이션이 발생합니다.
                     </blockquote>
 
-                    <p><strong id="sub-minsim">- 민심</strong></p>
-                    <blockquote id="desc-minsim">
+                    <p><strong>- 민심</strong></p>
+                    <blockquote>
                         과도한 군비경쟁 또는 경제의 부실, 정치 이념의 잘못됨 등 문제가 겹칠경우 민심은 하락하며, 이럴 경우 전국에서 시위가 발생하게 됩니다. 시위를 진압하는법은 2가지로, 당신이 국가 정치 이념을 사회주의 또는 공산주의로 했을경우 "무력 진압"을 통해 진압이 가능합니다. 이럴 경우 민심과 지지도는 하락하지만 시위는 확실히 멈춥니다.  2번째 방법으로는 당신이 민주주의 일경우 (공산주의 또는 사회주의도 가능) "평화적 진압"이 가능하며, 이럴경우 민심은 회복하지만 경제적 손실이 발생합니다.
                     </blockquote>
 
-                    <p><strong id="sub-politics">- 정치</strong></p>
-                    <blockquote id="desc-politics">
+                    <p><strong>- 정치</strong></p>
+                    <blockquote>
                         이념을 정하는데 중요하며, 게임 시작시 결정하게 됩니다. 국가 정치는 크게 3종류로, "입헌군주제", "자유민주주의", "사회주의(공산주의)"입니다. 각 이념은 게임 중 "전국공산당회" 또는 "의회"에서 변경이 가능합니다.
                     </blockquote>
 
-                    <p><strong id="sub-jawon">- 자원</strong></p>
-                    <blockquote id="desc-jawon">
-                        당신 국가의 자원은 무한하지 않습니다. 언젠가는 고갈이 되며, 자원은 크게 3종류입니다. "돈", "물", "에너지". 돈은 은행을 통해 찍어내며, 물은 근처 호수와 시설을 통해, 에너지는 기반 시설로 생산할 수 있습니다. 만약 자원이 고갈될 경우 근처 국가와 전쟁을 통해 얻을 수 있습니다.
+                    <p><strong>- 자원</strong></p>
+                    <blockquote>
+                        당신의 국가의 자원은 무한하지 않습니다. 언젠가는 고갈이 되며, 자원은 크게 3종류입니다. "돈", "물", "에너지". 돈은 은행을 통해 찍어내며, 물은 근처 호수와 시설을 통해, 에너지는 기반 시설로 생산할 수 있습니다. 만약 자원이 고갈될 경우 근처 국가와 전쟁을 통해 얻을 수 있습니다.
                     </blockquote>
 
-                    <p><strong id="sub-diplomacy">- 외교</strong></p>
-                    <blockquote id="desc-diplomacy">
+                    <p><strong>- 외교</strong></p>
+                    <blockquote>
                         근처 국가와의 외교를 통해 전쟁 없이도 자원을 얻을 수 있습니다. 전쟁은 물자와 인력의 소모가 있지만, 외교를 통해 민심과 자원 둘 다 챙길 수도 있습니다.
                     </blockquote>
 
-                    <p><strong id="sub-tech">- 기술</strong></p>
-                    <blockquote id="desc-tech">
+                    <p><strong>- 기술</strong></p>
+                    <blockquote>
                         충분한 자원과 기술만 있다면 당신의 국가의 기술을 발전시킬 수 있습니다. 주요 기술은 농업, 경공업, 중공업, AI/로켓산업 등이 있습니다. AI 로켓산업부터는 달을 식민지화 할 수 있습니다.
                     </blockquote>
 
-                    <p><strong id="sub-war">- 대전쟁</strong></p>
-                    <blockquote id="desc-war" class="warn-quote">
+                    <p><strong>- 대전쟁</strong></p>
+                    <blockquote class="warn-quote">
                         전쟁 중 패배할 것 같을 때 핵무기를 보유하고 있다면 특별 이벤트 [대전쟁](The Great War)을 일으킬 수 있습니다. 자신이 보유한 모든 핵무기를 사용하여 상대편의 경제, 민심, 인구를 파괴하며, 일정 확률로 건물도 파괴됩니다.
                     </blockquote>
 
-                    <p><strong id="sub-pop">- 인구</strong></p>
-                    <blockquote id="desc-pop">
+                    <p><strong>- 인구</strong></p>
+                    <blockquote>
                         전쟁과 시설 운영에는 인구가 필요합니다. 인구가 없다면 공장이 멈추고 경제적 손실이 발생합니다. 저출산과 고령화를 막아야 합니다.
                     </blockquote>
                 </section>
@@ -200,18 +198,28 @@
     </footer>
 
     <script>
+        // 사이드바 로드 함수 (경로 및 Active 로직 최적화)
         async function loadSidebar() {
             const target = document.getElementById('sidebar-target');
             try {
                 const response = await fetch('../nav.html'); 
+                if (!response.ok) throw new Error('Sidebar not found');
+                
                 const data = await response.text();
                 target.innerHTML = data;
+
                 const links = target.querySelectorAll('a');
-                const currentFile = window.location.pathname.split('/').pop();
-                links.forEach(link => { 
-                    if (link.getAttribute('href').includes(currentFile)) link.classList.add('active'); 
+                const currentPath = window.location.pathname;
+                
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (currentPath.includes(href)) {
+                        link.classList.add('active');
+                    }
                 });
-            } catch (error) { target.innerHTML = "<p>Menu Load Error</p>"; }
+            } catch (error) {
+                target.innerHTML = "<p style='opacity:0.5; padding:20px;'>메뉴를 불러오지 못했습니다.</p>";
+            }
         }
 
         function toggleDarkMode() {
@@ -223,7 +231,8 @@
             loadSidebar();
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.body.classList.add('dark-mode');
-                document.getElementById('dark-mode-toggle').checked = true;
+                const toggle = document.getElementById('dark-mode-toggle');
+                if (toggle) toggle.checked = true;
             }
         };
     </script>
