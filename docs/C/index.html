@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera | 민양테크 Docs</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../common.css"> 
+    <style>
+        /* --- 변수 및 기본 스타일 (Docs 공통) --- */
+        :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
+        body.dark-mode { --txt: #f5f5f5; --bg: #121212; --brd: #333; --card-bg: #1e1e1e; }
+
+        body { 
+            font-family: 'Pretendard', sans-serif; 
+            background-color: var(--bg); color: var(--txt); 
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+        }
+
+        /* --- 헤더 --- */
+        header { 
+            width: 100%; height: 80px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 5%; border-bottom: 1px solid var(--brd); 
+            background-color: var(--bg); position: fixed; top: 0; left: 0; z-index: 1000;
+            box-sizing: border-box;
+        }
+        .header-left { display: flex; align-items: center; gap: 40px; }
+        .logo-link img { height: 40px !important; width: auto !important; display: block; }
+        
+        .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+        .nav-links a.active { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
+
+        /* --- Docs Layout --- */
+        .docs-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 160px);
+            padding-top: 80px;
+        }
+
+        /* --- Sidebar --- */
+        .docs-sidebar {
+            width: 280px;
+            padding: 40px 20px;
+            border-right: 1px solid var(--brd);
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+        }
+
+        /* --- Main Content --- */
+        .docs-content { flex: 1; padding: 40px 60px; line-height: 1.8; }
+        .docs-content h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
+        .docs-content .subtitle { font-size: 1.2rem; opacity: 0.6; margin-bottom: 30px; letter-spacing: 1px; }
+        
+        /* 정보 리스트 스타일링 */
+        .docs-body h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 2px solid var(--brd); padding-bottom: 10px; }
+        .info-list { list-style: none; padding: 0; margin: 20px 0; }
+        .info-list li { margin-bottom: 12px; display: flex; align-items: center; }
+        .info-list li strong { min-width: 100px; color: var(--accent); font-weight: 700; }
+
+        .status-badge {
+            display: inline-block;
+            background: rgba(0, 123, 255, 0.1);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 60px 20px 40px; text-align: center;
+            border-top: 1px solid var(--brd); background-color: var(--bg);
+        }
+        .footer-sns { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; align-items: center; }
+        .x-logo-img { height: 24px !important; width: auto !important; filter: invert(1); transition: 0.3s; }
+        body.dark-mode .x-logo-img { filter: invert(0); }
+        
+        .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
+        .footer-email a { text-decoration: none; color: var(--txt); opacity: 0.6; font-weight: 500; }
+        .footer-email a:hover { opacity: 1; }
+        .footer-copyright { font-size: 0.85rem; opacity: 0.4; }
+
+        /* 다크모드 스위치 */
+        .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
+        input:checked + .slider { background: var(--accent); }
+        input:checked + .slider:before { transform: translateX(22px); }
+
+        @media (max-width: 900px) {
+            .docs-container { flex-direction: column; }
+            .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; }
+            .docs-content { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="https://minyangtech.n-e.kr" class="logo-link">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="민양테크 로고">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="https://minyangtech.n-e.kr/docs" class="active">Docs</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/news">News</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="controls">
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
+    <main class="docs-container">
+        <aside class="docs-sidebar" id="sidebar-target">
+            </aside>
+
+        <article class="docs-content">
+            <h1>Camera</h1>
+            <p class="subtitle">Unity Project</p>
+            <hr style="border:0; border-top:1px solid var(--brd); margin: 20px 0;">
+            
+            <div class="docs-body">
+                <h2>개요</h2>
+                <ul class="info-list">
+                    <li><strong>제목</strong> <span>Camera</span></li>
+                    <li><strong>장르</strong> <span>퍼즐, 공상과학 (Sci-Fi)</span></li>
+                    <li><strong>플랫폼</strong> <span>Unity (PC)</span></li>
+                </ul>
+
+                <div class="status-badge">
+                    <i class="fa-solid fa-gear fa-spin" style="margin-right: 8px;"></i> 현재 개발중인 프로젝트입니다.
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <h3 style="margin-bottom:20px;">Connect with Us</h3>
+        <div class="footer-sns">
+            <a href="https://x.com/minyang_tech" target="_blank">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X Logo">
+            </a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </div>
+        <div class="footer-email">
+            <a href="mailto:support@minyangtech.n-e.kr">support@minyangtech.n-e.kr</a>
+        </div>
+        <div class="footer-copyright">
+            <p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        async function loadSidebar() {
+            const target = document.getElementById('sidebar-target');
+            try {
+                const response = await fetch('nav.html'); 
+                const data = await response.text();
+                target.innerHTML = data;
+
+                const links = target.querySelectorAll('a');
+                const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+                links.forEach(link => {
+                    const href = link.getAttribute('href').split('/').pop();
+                    if (href === currentFile) {
+                        link.classList.add('active');
+                    }
+                });
+            } catch (error) {
+                target.innerHTML = "<p>메뉴를 불러오지 못했습니다.</p>";
+            }
+        }
+
+        function toggleDarkMode() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+
+        window.onload = () => {
+            loadSidebar();
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('dark-mode-toggle').checked = true;
+            }
+        };
+    </script>
+</body>
+</html>
