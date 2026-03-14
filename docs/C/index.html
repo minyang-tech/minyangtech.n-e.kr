@@ -51,7 +51,7 @@
         .docs-content h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
         .docs-content .subtitle { font-size: 1.2rem; opacity: 0.6; margin-bottom: 30px; letter-spacing: 1px; }
         
-        /* 정보 리스트 스타일링 */
+        /* 마크다운/정보 스타일링 */
         .docs-body h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 2px solid var(--brd); padding-bottom: 10px; }
         .info-list { list-style: none; padding: 0; margin: 20px 0; }
         .info-list li { margin-bottom: 12px; display: flex; align-items: center; }
@@ -124,19 +124,21 @@
         <article class="docs-content">
             <h1>Camera</h1>
             <p class="subtitle">Unity Project</p>
-            <hr style="border:0; border-top:1px solid var(--brd); margin: 20px 0;">
+            <hr style="border:0; border-top:1px solid var(--brd); margin: 30px 0;">
             
             <div class="docs-body">
-                <h2>개요</h2>
-                <ul class="info-list">
-                    <li><strong>제목</strong> <span>Camera</span></li>
-                    <li><strong>장르</strong> <span>퍼즐, 공상과학 (Sci-Fi)</span></li>
-                    <li><strong>플랫폼</strong> <span>Unity (PC)</span></li>
-                </ul>
+                <section>
+                    <h2>개요</h2>
+                    <ul class="info-list">
+                        <li><strong>제목</strong> <span>Camera</span></li>
+                        <li><strong>장르</strong> <span>퍼즐, 공상과학 (Sci-Fi)</span></li>
+                        <li><strong>플랫폼</strong> <span>Unity (PC)</span></li>
+                    </ul>
 
-                <div class="status-badge">
-                    <i class="fa-solid fa-gear fa-spin" style="margin-right: 8px;"></i> 현재 개발중인 프로젝트입니다.
-                </div>
+                    <div class="status-badge">
+                        <i class="fa-solid fa-gear fa-spin" style="margin-right: 8px;"></i> 현재 개발중인 프로젝트입니다.
+                    </div>
+                </section>
             </div>
         </article>
     </main>
@@ -160,30 +162,31 @@
     </footer>
 
     <script>
-        // 사이드바 불러오기 및 경로 자동 활성화
+        // 사이드바 로드 및 경로 인식 최적화 (문서 센터 로직 적용)
         async function loadSidebar() {
             const target = document.getElementById('sidebar-target');
             try {
-                // 현재 파일이 있는 폴더에서 nav.html을 찾아보고, 없으면 상위 폴더도 확인 시도
+                // 현재 파일이 docs 하위 폴더에 있다면 '../nav.html', 루트라면 'nav.html'
                 let response = await fetch('nav.html');
                 if (!response.ok) response = await fetch('../nav.html');
                 
-                if (!response.ok) throw new Error('Sidebar fetch failed');
+                if (!response.ok) throw new Error('Sidebar not found');
                 
                 const data = await response.text();
                 target.innerHTML = data;
 
                 const links = target.querySelectorAll('a');
-                const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+                const currentPath = window.location.pathname;
                 
                 links.forEach(link => {
                     const href = link.getAttribute('href');
-                    if (href && (href.includes(currentFile) || currentFile.includes(href.split('/').pop()))) {
+                    // 링크의 href가 현재 경로의 끝부분과 일치하거나 포함되어 있으면 active
+                    if (href && (currentPath.endsWith(href) || currentPath.includes('/' + href))) {
                         link.classList.add('active');
                     }
                 });
             } catch (error) {
-                target.innerHTML = "<p style='opacity:0.5; padding:20px; font-size:0.85rem;'>메뉴를 불러오지 못했습니다.</p>";
+                target.innerHTML = "<p style='opacity:0.5; padding:20px; font-size:0.9rem;'>메뉴를 불러오지 못했습니다.</p>";
             }
         }
 
