@@ -54,14 +54,12 @@
             top: 80px;
             height: fit-content;
         }
-        /* 사이드바 내부 스타일은 nav.html에서 로드됨 */
 
         /* --- Main Content --- */
         .docs-content { flex: 1; padding: 40px 60px; line-height: 1.8; }
         .docs-content h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
         .docs-content .subtitle { font-size: 1.2rem; opacity: 0.6; margin-bottom: 30px; }
         
-        /* 마크다운 스타일링 */
         .docs-body h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 2px solid var(--brd); padding-bottom: 10px; }
         .docs-body ul { list-style: none; padding: 0; }
         .docs-body ul li { margin-bottom: 10px; display: flex; gap: 10px; }
@@ -81,7 +79,6 @@
         .footer-email a:hover { opacity: 1; }
         .footer-copyright { font-size: 0.85rem; opacity: 0.4; }
 
-        /* 다크모드 스위치 */
         .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
@@ -162,28 +159,33 @@
     </footer>
 
     <script>
-        // 사이드바 불러오기 (nav.html)
+        // 사이드바 불러오기 (경로 및 Active 충돌 수정 버전)
         async function loadSidebar() {
             const target = document.getElementById('sidebar-target');
             try {
-                const response = await fetch('nav.html'); 
+                // 현재 폴더가 /VOV/ 이므로 한 단계 위인 ../nav.html 호출
+                const response = await fetch('../nav.html'); 
+                if (!response.ok) throw new Error('Sidebar not found');
+                
                 const data = await response.text();
                 target.innerHTML = data;
 
                 const links = target.querySelectorAll('a');
-                const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+                // 단순 파일명이 아닌 전체 경로를 포함하는지 체크하여 충돌 방지
+                const currentPath = window.location.pathname;
+                
                 links.forEach(link => {
-                    const href = link.getAttribute('href').split('/').pop();
-                    if (href === currentFile) {
+                    const href = link.getAttribute('href');
+                    // 링크의 주소가 현재 브라우저 주소창에 포함되어 있다면 활성화
+                    if (currentPath.includes(href)) {
                         link.classList.add('active');
                     }
                 });
             } catch (error) {
-                target.innerHTML = "<p>메뉴를 불러오지 못했습니다.</p>";
+                target.innerHTML = "<p style='opacity:0.5; padding:20px;'>메뉴를 불러오지 못했습니다.</p>";
             }
         }
 
-        // 다크모드 제어
         function toggleDarkMode() {
             const isDark = document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
@@ -193,7 +195,8 @@
             loadSidebar();
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.body.classList.add('dark-mode');
-                document.getElementById('dark-mode-toggle').checked = true;
+                const toggle = document.getElementById('dark-mode-toggle');
+                if (toggle) toggle.checked = true;
             }
         };
     </script>
