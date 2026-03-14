@@ -78,8 +78,9 @@
         body.dark-mode .x-logo-img { filter: invert(0); }
         .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
         
+        .footer-email { margin-bottom: 15px; }
         .footer-email a { text-decoration: none; color: var(--txt); opacity: 0.6; font-weight: 500; }
-        .footer-copyright { font-size: 0.85rem; opacity: 0.4; margin-top: 15px; }
+        .footer-copyright { font-size: 0.85rem; opacity: 0.4; }
 
         /* 다크모드 스위치 */
         .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
@@ -159,12 +160,15 @@
     </footer>
 
     <script>
-        // 사이드바 불러오기 및 Active 표시 로직
+        // 사이드바 불러오기 및 경로 자동 활성화
         async function loadSidebar() {
             const target = document.getElementById('sidebar-target');
             try {
-                const response = await fetch('nav.html'); 
-                if (!response.ok) throw new Error('Sidebar load failed');
+                // 현재 파일이 있는 폴더에서 nav.html을 찾아보고, 없으면 상위 폴더도 확인 시도
+                let response = await fetch('nav.html');
+                if (!response.ok) response = await fetch('../nav.html');
+                
+                if (!response.ok) throw new Error('Sidebar fetch failed');
                 
                 const data = await response.text();
                 target.innerHTML = data;
@@ -174,12 +178,12 @@
                 
                 links.forEach(link => {
                     const href = link.getAttribute('href');
-                    if (href && href.includes(currentFile)) {
+                    if (href && (href.includes(currentFile) || currentFile.includes(href.split('/').pop()))) {
                         link.classList.add('active');
                     }
                 });
             } catch (error) {
-                target.innerHTML = "<p style='opacity:0.5; padding:20px;'>메뉴를 불러오지 못했습니다.</p>";
+                target.innerHTML = "<p style='opacity:0.5; padding:20px; font-size:0.85rem;'>메뉴를 불러오지 못했습니다.</p>";
             }
         }
 
