@@ -91,6 +91,24 @@
             .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; }
             .docs-content { padding: 40px 20px; }
         }
+
+        /* 사이드바 점 없애고 글자색 맞추기 */
+.docs-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.docs-sidebar a {
+    text-decoration: none;
+    color: var(--txt);
+    opacity: 0.7;
+}
+
+.docs-sidebar a.active {
+    color: var(--accent);
+    font-weight: bold;
+    opacity: 1;
+}
     </style>
 </head>
 <body>
