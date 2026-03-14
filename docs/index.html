@@ -4,12 +4,12 @@
     <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>민양테크 Docs | 고객지원</title>
+    <title>문서 센터 | 민양테크 Docs</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../common.css"> 
+    <link rel="stylesheet" href="/docs/common.css"> 
     <style>
-        /* --- 변수 통일 --- */
+        /* --- 변수 및 기본 스타일 통일 --- */
         :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
         body.dark-mode { --txt: #f5f5f5; --bg: #121212; --brd: #333; --card-bg: #1e1e1e; }
 
@@ -20,7 +20,7 @@
             margin: 0;
         }
 
-        /* --- 헤더 (News 페이지와 통일) --- */
+        /* --- 헤더 (통합 디자인) --- */
         header { 
             width: 100%; height: 80px; 
             display: flex; justify-content: space-between; align-items: center; 
@@ -37,40 +37,26 @@
         .nav-links a.active { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
 
         /* --- Docs Layout --- */
-        .docs-container {
-            display: flex;
-            max-width: 1400px;
-            margin: 0 auto;
-            min-height: calc(100vh - 160px);
-            padding-top: 80px; /* 헤더 고정 높이만큼 패딩 */
-        }
-
-        /* --- Sidebar Style --- */
-        .docs-sidebar {
-            width: 280px;
-            padding: 40px 20px;
-            border-right: 1px solid var(--brd);
-            position: sticky;
-            top: 80px;
-            height: fit-content;
-        }
-        .sidebar-group { margin-bottom: 30px; }
-        .sidebar-group h4 { font-size: 0.85rem; color: var(--accent); margin-bottom: 12px; opacity: 0.8; }
-        .sidebar-group ul { list-style: none; padding: 0; }
-        .sidebar-group ul li { margin-bottom: 8px; }
-        .sidebar-group ul li a {
-            text-decoration: none; color: var(--txt); opacity: 0.6; transition: 0.3s; font-size: 0.95rem;
-        }
-        .sidebar-group ul li a:hover, .sidebar-group ul li a.active {
-            opacity: 1; font-weight: bold; color: var(--accent);
-        }
+        .docs-container { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 160px); padding-top: 80px; }
+        
+        /* --- Sidebar Style (디자인 강제 통일) --- */
+        .docs-sidebar { width: 280px; padding: 40px 20px; border-right: 1px solid var(--brd); position: sticky; top: 80px; height: fit-content; }
+        .docs-sidebar ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+        .docs-sidebar li { margin-bottom: 8px !important; list-style: none !important; }
+        .docs-sidebar a { text-decoration: none; color: var(--txt); opacity: 0.6; transition: 0.3s; font-size: 0.95rem; display: block; }
+        .docs-sidebar a:hover, .docs-sidebar a.active { opacity: 1; font-weight: bold; color: var(--accent); }
 
         /* --- Main Content --- */
         .docs-content { flex: 1; padding: 40px 60px; line-height: 1.8; }
-        .docs-content h1 { font-size: 2.2rem; margin-bottom: 20px; font-weight: 800; }
-        .docs-content p { margin-bottom: 20px; opacity: 0.9; }
+        .docs-content h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
+        .docs-content .subtitle { font-size: 1.2rem; opacity: 0.6; margin-bottom: 30px; letter-spacing: 1px; }
+        
+        /* 마크다운 스타일링 */
+        .docs-body h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 2px solid var(--brd); padding-bottom: 10px; }
+        .docs-body h3 { font-size: 1.4rem; margin-top: 25px; color: var(--accent); }
+        .docs-body p { margin-bottom: 20px; opacity: 0.9; }
 
-        /* --- Footer (X 로고 수정 포함) --- */
+        /* --- Footer (통합 디자인) --- */
         footer {
             padding: 60px 20px 40px; text-align: center;
             border-top: 1px solid var(--brd); background-color: var(--bg);
@@ -78,10 +64,10 @@
         .footer-sns { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; align-items: center; }
         .x-logo-img { height: 24px !important; width: auto !important; filter: invert(1); transition: 0.3s; }
         body.dark-mode .x-logo-img { filter: invert(0); }
-        
         .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
+        
+        .footer-email { margin-bottom: 15px; }
         .footer-email a { text-decoration: none; color: var(--txt); opacity: 0.6; font-weight: 500; }
-        .footer-email a:hover { opacity: 1; }
         .footer-copyright { font-size: 0.85rem; opacity: 0.4; }
 
         /* 다크모드 스위치 */
@@ -96,7 +82,6 @@
             .docs-container { flex-direction: column; }
             .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; }
             .docs-content { padding: 40px 20px; }
-            .header-left { gap: 20px; }
         }
     </style>
 </head>
@@ -122,17 +107,18 @@
     </header>
 
     <main class="docs-container">
-        <aside class="docs-sidebar" id="sidebar-target">
-            </aside>
+        <aside class="docs-sidebar" id="sidebar-target"></aside>
 
         <article class="docs-content">
-            <h1 id="docs-title">문서 센터</h1>
-            <p id="docs-welcome">민양테크의 공식 가이드와 게임 시스템 문서를 확인하세요.</p>
+            <h1>문서 센터</h1>
+            <p class="subtitle">민양테크의 공식 가이드와 프로젝트 문서</p>
             <hr style="border:0; border-top:1px solid var(--brd); margin: 30px 0;">
             
             <div class="docs-body">
-                <h3>소개</h3>
-                <p>이곳은 민양테크 프로젝트의 상세 정보를 기록하는 공간입니다.</p>
+                <section>
+                    <h3>소개</h3>
+                    <p>이곳은 민양테크 프로젝트의 상세 정보를 기록하는 공간입니다. 좌측 메뉴를 통해 각 게임의 시스템, 업데이트 내역 및 가이드를 확인하실 수 있습니다.</p>
+                </section>
             </div>
         </article>
     </main>
@@ -156,28 +142,33 @@
     </footer>
 
     <script>
-        // 사이드바 불러오기
+        // 사이드바 로드 및 경로 인식 최적화
         async function loadSidebar() {
             const target = document.getElementById('sidebar-target');
             try {
+                // 현재 파일이 docs 루트에 있다면 'nav.html', 하위 폴더에 있다면 '../nav.html'
+                // 여기서는 index.html 기준이므로 'nav.html'을 시도합니다.
                 const response = await fetch('nav.html'); 
+                if (!response.ok) throw new Error('Sidebar not found');
+                
                 const data = await response.text();
                 target.innerHTML = data;
 
                 const links = target.querySelectorAll('a');
-                const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+                const currentPath = window.location.pathname;
+                
                 links.forEach(link => {
-                    const href = link.getAttribute('href').split('/').pop();
-                    if (href === currentFile) {
+                    const href = link.getAttribute('href');
+                    // 링크의 href가 현재 경로에 포함되어 있거나 파일명이 일치하면 active
+                    if (href && (currentPath.endsWith(href) || currentPath.includes('/' + href))) {
                         link.classList.add('active');
                     }
                 });
             } catch (error) {
-                target.innerHTML = "<p>메뉴를 불러오지 못했습니다.</p>";
+                target.innerHTML = "<p style='opacity:0.5; padding:20px; font-size:0.9rem;'>메뉴를 불러오지 못했습니다.</p>";
             }
         }
 
-        // 다크모드
         function toggleDarkMode() {
             const isDark = document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
@@ -187,7 +178,8 @@
             loadSidebar();
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.body.classList.add('dark-mode');
-                document.getElementById('dark-mode-toggle').checked = true;
+                const toggle = document.getElementById('dark-mode-toggle');
+                if (toggle) toggle.checked = true;
             }
         };
     </script>
