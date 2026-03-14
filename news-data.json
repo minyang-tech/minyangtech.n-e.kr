@@ -4,8 +4,8 @@
     "date": "2026-3-14",
     "title_ko": "웹사이트 개혁!",
     "title_en": "We Changed Our Site!",
-    "content_ko": "본 웹사이트는 2026년 3월 14일자로 다른 기능을 전부 빼고, docs와 News의 기능만을 남긴채로 작동합니다. \n News 채널에서 가끔식 개발 일지같은걸 올립니다.",
-    "content_en": "As of March 14, 2026, this website operates with all other functions removed, leaving only the functions of docs and News.\n I sometimes post things like a development journal on the News channel.",
+    "content_ko": "본 웹사이트는 2026년 3월 14일자로 다른 기능을 전부 빼고, docs와 News의 기능만을 남긴채로 작동합니다. \n News 채널에서 가끔식 개발 일지같은걸 올립니다. \n ## 멋지죠?",
+    "content_en": "As of March 14, 2026, this website operates with all other functions removed, leaving only the functions of docs and News.\n I sometimes post things like a development journal on the News channel. \n ## Isn't It Cool?",
     "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
   }
 ]
