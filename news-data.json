@@ -3,9 +3,9 @@
     "id": 1,
     "date": "2026-3-14",
     "title_ko": "웹사이트 개혁!",
-    "title_en": "We Changed Our Site!",
+    "title_en": "--",
     "content_ko": "본 웹사이트는 2026년 3월 14일자로 다른 기능을 전부 빼고, docs와 News의 기능만을 남긴채로 작동합니다. \n News 채널에서 가끔식 개발 일지같은걸 올립니다. \n ## 멋지죠?",
-    "content_en": "As of March 14, 2026, this website operates with all other functions removed, leaving only the functions of docs and News.\n I sometimes post things like a development journal on the News channel. \n ## Isn't It Cool?",
+    "content_en": "--",
     "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
   },
 {
@@ -25,5 +25,15 @@
     "content_ko": "# 프로젝트 무기한 개발 중단 안내 \n 안녕하세요 여러분 Whoasked입니다. \n 저는 아래 프로젝트들을 개발 중단하고자합니다. \n 다만, 이는 언제든지 개발이 재게될 수 있으며, 완전한 개발 포기가 아님을 알립니다. \n ## Stelrun \n (주)스텔라이브 사의 ip를 이용하여 만들던 [스텔라이브]의 팬게임이 저작권의 우려와 개발 문제로 인해 개발을 중지합니다. \n 다만, 언제든지 재게될 수 있습니다. \n ## Make A Country \n 로블록스에서 진행되던 본 프로젝트는 프로젝트의 방대함을 감당하지 못하어 무기한 개발을 중지합니다. \n 이는 개발이 언제든지 재게 될 수 있으나, 어려울거 같습니다. \n \n 위와 같은 이유로, 저희는 [Camera] 프로젝트를 최우선적으로 개발할것입니다. \n 이용해주셔서 감사합니다. \n 문의 : [support@minyangtech.n-e.kr](mailto:support@minyangtech.n-e.kr)",
     "content_en": "--",
     "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
-  }
+  },
+{
+    "id": 4,
+    "date": "2026-3-20",
+    "title_ko": "Camera",
+    "title_en": "--",
+    "content_ko": "# 카메라. \n 개발자(기여자) : Whoasked0482 \n GetSystemMetrics \n ## 개요 \n 벨브 코퍼레이션의 F-Stop 메커니즘에 영감받고 포탈 시리즈, 하프라이프 시리즈, 그리고 슈퍼리미널에 일부 요소를 영감받음. \n 개발 시작일 : 2026년 3월 14일(토) \n 출시일 : 미정 \n ## 엔진 \n 유니티 3D, Windows \n ## 라이선스 \n GPL 3
+0 License. /n ## 중요 /n - 민양테크는 학생들의 개발팀입니다. 수익은 창출하지않습니다. /n - 본 프로젝트를 이용해 무엇을 하던 저희는 신경쓰지도, 건들지도 않습니다. /n 위에서 말했듯, 이 프로젝트는 일부 게임에서 영감받았습니다. /n 플레이해주셔서 감사합니다. /n /n <support@minyangtech.n-e.kr>"
+    "content_en": "--",
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+}
 ]
