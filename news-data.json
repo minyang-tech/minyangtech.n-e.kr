@@ -34,5 +34,14 @@
     "content_ko": "# 카메라.\n개발자(기여자) : Whoasked0482\nGetSystemMetrics\n## 개요\n벨브 코퍼레이션의 F-Stop 메커니즘에 영감받고 포탈 시리즈, 하프라이프 시리즈, 그리고 슈퍼리미널에 일부 요소를 영감받음.\n개발 시작일 : 2026년 3월 14일(토)\n출시일 : 미정\n## 엔진\n유니티 3D, Windows\n## 라이선스\nGPL 3 License.\n## 중요\n- 민양테크는 학생들의 개발팀입니다. 수익은 창출하지않습니다.\n- 본 프로젝트를 이용해 무엇을 하던 저희는 신경쓰지도, 건들지도 않습니다.\n위에서 말했듯, 이 프로젝트는 일부 게임에서 영감받았습니다.\n플레이해주셔서 감사합니다.\n\nsupport@minyangtech.n-e.kr",
     "content_en": "--",
     "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+  },
+  {
+    "id": 5,
+    "date": "2026-03-26",
+    "title_ko": "Camera 업데이트 2026.3.21",
+    "title_en": "--",
+    "content_ko": "# 카메라 업데이트 \n 업데이트 내역 \n - 젤 추가(포탈 시리즈에서 영감받음) \n - 카메라가 이제 작동됨 \n 약간의 버그를 수정함. \n \n 이용해주셔서 감사합니다. \n 문의 : <support@minyangtech.n-e.kr> \n 디스코드 : https://minyangtech.n-e.kr/g/dis",
+    "content_en": "--",
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
   }
 ]
