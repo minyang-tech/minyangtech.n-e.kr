@@ -240,7 +240,20 @@
 
             document.getElementById('post-body').innerHTML = `
                 <div class="news-date">${post.date}</div>
-                <h1 class="post-full-title">${post.title_ko}</h1>
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+    <h1 class="post-full-title" style="margin:0;">${post.title_ko}</h1>
+    <button onclick="sharePost()" style="
+        border:none;
+        background:var(--accent);
+        color:#fff;
+        padding:10px 14px;
+        border-radius:10px;
+        cursor:pointer;
+        font-weight:600;
+    ">
+        <i class="fa-solid fa-share"></i>
+    </button>
+</div>
                 <div class="post-hero-img" style="background-image: url('${post.image}')"></div>
                 <div class="post-content">${htmlContent}</div>
             `;
@@ -299,6 +312,20 @@
             if (localStorage.getItem('darkMode') === 'enabled') updateTheme(true);
             fetchNews();
         };
+function sharePost() {
+    const url = window.location.href;
+
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "이 글 한번 봐봐",
+            url: url
+        });
+    } else {
+        navigator.clipboard.writeText(url);
+        alert("링크가 복사됨!");
+    }
+}
     </script>
 </body>
 </html>
