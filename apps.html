@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>민양테크 Apps | 애플리케이션</title>
+    <meta property="og:title" content="민양테크 Apps">
+    <meta property="og:description" content="민양테크에서 개발한 앱들을 만나보세요.">
+    <meta property="og:image" content="https://github.com/minyang-tech/minyangtech.github.io/blob/main/image%2F%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
+    <meta property="og:url" content="https://minyangtech.n-e.kr/apps">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../common.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
+        body.dark-mode { --txt: #f5f5f5; --bg: #121212; --brd: #333; --card-bg: #1e1e1e; }
+
+        body { font-family: 'Pretendard', sans-serif; background-color: var(--bg); color: var(--txt); transition: 0.3s; margin: 0; }
+
+        /* Header */
+        header { 
+            width: 100%; height: 80px; display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 5%; border-bottom: 1px solid var(--brd); background-color: var(--bg); 
+            position: fixed; top: 0; left: 0; z-index: 1000; box-sizing: border-box;
+        }
+        .header-left { display: flex; align-items: center; gap: 40px; }
+        .logo-link img { height: 40px !important; width: auto !important; display: block; }
+        .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+        .nav-links a.active { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
+
+        /* Main Container */
+        .app-container { max-width: 1100px; margin: 0 auto; min-height: calc(100vh - 160px); padding: 130px 20px 60px; }
+        .page-header { text-align: center; margin-bottom: 40px; }
+        .page-header h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+
+        /* List UI */
+        .app-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+        .app-card { 
+            background: var(--card-bg); border: 1px solid var(--brd); border-radius: 20px; 
+            overflow: hidden; transition: 0.3s; cursor: pointer; display: flex; flex-direction: column;
+        }
+        .app-card:hover { transform: translateY(-7px); border-color: var(--accent); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .app-card-img { width: 100%; height: 200px; background-size: cover; background-position: center; }
+        .app-card-info { padding: 25px; flex: 1; }
+        .app-card-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+        .app-card-tag { font-size: 0.8rem; background: rgba(0,123,255,0.1); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+
+        /* Detail View */
+        #post-view { display: none; }
+        .post-back { display: inline-block; margin-bottom: 25px; text-decoration: none; color: var(--accent); font-weight: 600; cursor: pointer; }
+        
+        .app-detail-wrapper { display: flex; gap: 40px; margin-top: 20px; flex-wrap: wrap; }
+        .app-detail-left { flex: 1; min-width: 300px; }
+        .app-detail-right { flex: 1; min-width: 300px; }
+        
+        .app-main-img { width: 100%; border-radius: 20px; border: 1px solid var(--brd); }
+        .app-spec-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        .app-spec-table th, .app-spec-table td { padding: 12px; border-bottom: 1px solid var(--brd); text-align: left; }
+        .app-spec-table th { font-weight: 700; opacity: 0.6; width: 120px; }
+
+        .download-btn { 
+            display: block; width: 100%; padding: 18px; background: var(--accent); color: #fff; 
+            text-align: center; border-radius: 12px; font-weight: 800; font-size: 1.1rem; 
+            text-decoration: none; transition: 0.3s; margin-top: 20px;
+        }
+        .download-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
+
+        /* Dark Mode Toggle */
+        .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
+        input:checked + .slider { background: var(--accent); }
+        input:checked + .slider:before { transform: translateX(22px); }
+
+        footer { 
+            width: 100%; padding: 50px 20px; border-top: 1px solid var(--brd); background-color: var(--bg); 
+            display: flex; flex-direction: column; align-items: center; text-align: center; box-sizing: border-box;
+        }
+        .x-logo-img { height: 24px !important; filter: invert(1); transition: 0.3s; }
+        body.dark-mode .x-logo-img { filter: invert(0); }
+        .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
+
+        @media (max-width: 768px) {
+            .app-detail-wrapper { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="https://minyangtech.n-e.kr" class="logo-link">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="Logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="https://minyangtech.n-e.kr/docs">Docs</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/news">News</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/apps" class="active">Apps</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="controls">
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <div id="list-ui">
+            <section class="page-header">
+                <h1>Apps</h1>
+                <p>민양테크가 제공하는 편리한 애플리케이션 리스트입니다.</p>
+            </section>
+            <div class="app-list" id="app-feed"></div>
+        </div>
+
+        <div id="post-view">
+            <a onclick="closeApp()" class="post-back"><i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기</a>
+            <div id="post-body"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-sns" style="display: flex; gap: 30px; margin-bottom: 25px; align-items: center;">
+            <a href="https://x.com/minyang_tech" target="_blank">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X">
+            </a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </div>
+        <div class="footer-email">
+            <a href="mailto:support@minyangtech.n-e.kr" style="text-decoration:none; color:var(--txt); opacity:0.6;">support@minyangtech.n-e.kr</a>
+        </div>
+        <div class="footer-copyright" style="font-size:13px; opacity:0.4; margin-top:15px;">
+            <p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        let appData = [];
+        const toggle = document.getElementById('dark-mode-toggle');
+
+        function updateTheme(isDark) {
+            document.body.classList.toggle('dark-mode', isDark);
+            toggle.checked = isDark;
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+        toggle.addEventListener('change', () => updateTheme(toggle.checked));
+
+        async function fetchApps() {
+            try {
+                const response = await fetch('../app-data.json');
+                appData = await response.json();
+                checkUrlParam();
+            } catch (error) {
+                console.error("Load Error:", error);
+                document.getElementById('app-feed').innerHTML = "<p>데이터를 불러올 수 없습니다.</p>";
+            }
+        }
+
+        function checkUrlParam() {
+            const params = new URLSearchParams(window.location.search);
+            const appId = params.get('id');
+            if (appId) { showApp(appId); } else { showList(); }
+        }
+
+        function showList() {
+            document.getElementById('list-ui').style.display = 'block';
+            document.getElementById('post-view').style.display = 'none';
+            renderAppList();
+        }
+
+        function renderAppList() {
+            const feed = document.getElementById('app-feed');
+            feed.innerHTML = '';
+            appData.forEach(app => {
+                feed.innerHTML += `
+                    <div class="app-card" onclick="showApp(${app.id})">
+                        <div class="app-card-img" style="background-image: url('${app.image}')"></div>
+                        <div class="app-card-info">
+                            <span class="app-card-tag">${app.category}</span>
+                            <h2 class="app-card-title">${app.name}</h2>
+                            <p style="opacity:0.7; font-size:0.9rem;">${app.short_desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function showApp(id) {
+            const app = appData.find(a => a.id == id);
+            if (!app) return;
+
+            document.getElementById('list-ui').style.display = 'none';
+            document.getElementById('post-view').style.display = 'block';
+            window.scrollTo(0,0);
+
+            const contentHtml = marked.parse(app.description || "");
+
+            document.getElementById('post-body').innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+                    <h1 style="font-size:2.5rem; margin:0;">${app.name}</h1>
+                    <button onclick="shareApp()" style="border:none; background:var(--accent); color:#fff; padding:12px 16px; border-radius:12px; cursor:pointer;">
+                        <i class="fa-solid fa-share"></i>
+                    </button>
+                </div>
+                <div class="app-detail-wrapper">
+                    <div class="app-detail-left">
+                        <img src="${app.image}" class="app-main-img">
+                        <div style="margin-top:20px;">${contentHtml}</div>
+                    </div>
+                    <div class="app-detail-right">
+                        <table class="app-spec-table">
+                            <tr><th>출시일</th><td>${app.release_date}</td></tr>
+                            <tr><th>플랫폼</th><td>${app.platform}</td></tr>
+                            <tr><th>최소 사양</th><td>${app.min_spec}</td></tr>
+                            <tr><th>권장 사양</th><td>${app.rec_spec}</td></tr>
+                            <tr><th>오픈소스</th><td>${app.is_opensource ? '공개' : '비공개'}</td></tr>
+                            ${app.source_url ? `<tr><th>소스코드</th><td><a href="${app.source_url}" target="_blank" style="color:var(--accent)">GitHub 바로가기</a></td></tr>` : ''}
+                        </table>
+                        <a href="${app.download_url}" class="download-btn" target="_blank">
+                            <i class="fa-solid fa-download"></i> 다운로드
+                        </a>
+                    </div>
+                </div>
+            `;
+            if(!window.location.search.includes(`id=${id}`)) {
+                history.pushState(null, '', `?id=${id}`);
+            }
+        }
+
+        function closeApp() {
+            history.pushState(null, '', window.location.pathname);
+            showList();
+        }
+
+        function shareApp() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: document.title, url: url });
+            } else {
+                navigator.clipboard.writeText(url);
+                alert("링크가 복사되었습니다!");
+            }
+        }
+
+        window.onpopstate = () => checkUrlParam();
+        window.onload = () => {
+            if (localStorage.getItem('darkMode') === 'enabled') updateTheme(true);
+            fetchApps();
+        };
+    </script>
+</body>
+</html>
