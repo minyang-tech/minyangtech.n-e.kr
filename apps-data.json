@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "테스트",
+    "category": "Test",
+    "short_desc": "테스트용입니다",
+    "description": "### 주요 기능: 없어요 ",
+    "image": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EA%B0%9C%EB%B0%9C.png?raw=true",
+    "release_date": "2026-03-27",
+    "platform": "Windows xp~11",
+    "min_spec": "Intel i3 / 4GB RAM (NOT REAL)",
+    "rec_spec": "Intel i5 / 8GB RAM (NOT REAL)",
+    "is_opensource": true,
+    "source_url": "https://github.com/minyangtech/minyangtech/",
+    "download_url": "https://github.com/minyangtech/minyangtech/releases/latest"
+  }
+]
