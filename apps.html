@@ -159,7 +159,7 @@
 
         async function fetchApps() {
             try {
-                const response = await fetch('../app-data.json');
+                const response = await fetch('../apps-data.json');
                 appData = await response.json();
                 checkUrlParam();
             } catch (error) {
