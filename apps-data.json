@@ -16,21 +16,6 @@
   },
   {
     "id": 2,
-    "name": "POOP GENERATOR",
-    "category": "DO NOT DOWNLOAD",
-    "short_desc": "POOP GENERATOR",
-    "description": "# 경고 : 프로그램을 실행시켜 발생한 위험은 저희가 책임지지않습니다. \n ## 똥 생성기! \n 이 프로그램을 실행시키면 당신의 C드라이브와 바탕화면에 대략 100개의 똥이미지와 txt파일을 생성시킵니다. \n 이는 오직 장난용으로, 사용할 경우 책임은 사용한 사용자에 있으며 본 민양테크는 이를 책임지지않습니다. \n 이 프로젝트의 복제는 허용하나, 불법적 목적으로 복제하는것은 불허합니다. \n **다운로드 버튼 누르면 바로 다운로드됩니다.**",
-    "image": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EA%B0%9C%EB%B0%9C.png?raw=true",
-    "release_date": "2026-03-28",
-    "platform": "Windows 10~11",
-    "min_spec": "NOTHING NEEDㅣ필요사양 없음",
-    "rec_spec": "NOTHING NEEDㅣ필요사양 없음",
-    "is_opensource": true,
-    "source_url": "https://github.com/minyangtech/GOOD-GOOD-GOOD",
-    "download_url": "https://github.com/minyangtech/GOOD-GOOD-GOOD/releases/download/poop/poop.exe"
-  },
-  {
-    "id": 3,
     "name": "이모지_CUSTOME",
     "category": "뻘짓",
     "short_desc": "직접만든 3D 이모지. 놀란거임 아니 있는 이모지인가 잘 모르겠음",
