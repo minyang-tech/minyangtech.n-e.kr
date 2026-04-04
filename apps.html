@@ -34,6 +34,25 @@
         .nav-links a:hover { opacity: 1; color: var(--accent); }
         .nav-links a.active { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
 
+        /* Filter UI */
+        .filter-container {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 30px; gap: 15px; flex-wrap: wrap;
+        }
+        .search-box { position: relative; flex: 1; min-width: 250px; }
+        .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+        .search-box input {
+            width: 100%; padding: 12px 15px 12px 40px; border-radius: 12px;
+            border: 1px solid var(--brd); background: var(--card-bg);
+            color: var(--txt); font-size: 0.95rem; outline: none; transition: 0.2s;
+            box-sizing: border-box;
+        }
+        .search-box input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+        .sort-select {
+            padding: 12px 15px; border-radius: 12px; border: 1px solid var(--brd);
+            background: var(--card-bg); color: var(--txt); outline: none; cursor: pointer; font-weight: 600;
+        }
+
         /* Main Container */
         .app-container { max-width: 1100px; margin: 0 auto; min-height: calc(100vh - 160px); padding: 130px 20px 60px; }
         .page-header { text-align: center; margin-bottom: 40px; }
@@ -89,6 +108,7 @@
 
         @media (max-width: 768px) {
             .app-detail-wrapper { flex-direction: column; }
+            .filter-container { flex-direction: column; align-items: stretch; }
         }
     </style>
 </head>
@@ -120,6 +140,18 @@
                 <h1>Apps</h1>
                 <p>민양테크가 제공하는 편리한 애플리케이션 리스트입니다.</p>
             </section>
+
+            <div class="filter-container">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="app-search" placeholder="앱 이름이나 설명 검색...">
+                </div>
+                <select id="app-sort" class="sort-select">
+                    <option value="newest">최신순</option>
+                    <option value="oldest">오래된순</option>
+                </select>
+            </div>
+
             <div class="app-list" id="app-feed"></div>
         </div>
 
@@ -149,6 +181,8 @@
     <script>
         let appData = [];
         const toggle = document.getElementById('dark-mode-toggle');
+        const searchInput = document.getElementById('app-search');
+        const sortSelect = document.getElementById('app-sort');
 
         function updateTheme(isDark) {
             document.body.classList.toggle('dark-mode', isDark);
@@ -177,13 +211,29 @@
         function showList() {
             document.getElementById('list-ui').style.display = 'block';
             document.getElementById('post-view').style.display = 'none';
-            renderAppList();
+            applyFilterAndSort(); // Filter logic applied here
         }
 
-        function renderAppList() {
+        // Filter and Sort Logic added
+        function applyFilterAndSort() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const sortOrder = sortSelect.value;
+
+            let filtered = appData.filter(app => 
+                app.name.toLowerCase().includes(searchTerm) || 
+                app.short_desc.toLowerCase().includes(searchTerm) ||
+                app.category.toLowerCase().includes(searchTerm)
+            );
+
+            filtered.sort((a, b) => sortOrder === 'newest' ? b.id - a.id : a.id - b.id);
+            renderAppList(filtered);
+        }
+
+        function renderAppList(data) {
             const feed = document.getElementById('app-feed');
-            feed.innerHTML = '';
-            appData.forEach(app => {
+            feed.innerHTML = data.length ? '' : "<p style='text-align:center; grid-column: 1/-1; padding: 50px; opacity:0.5;'>검색 결과가 없습니다.</p>";
+            
+            data.forEach(app => {
                 feed.innerHTML += `
                     <div class="app-card" onclick="showApp(${app.id})">
                         <div class="app-card-img" style="background-image: url('${app.image}')"></div>
@@ -255,6 +305,11 @@
         }
 
         window.onpopstate = () => checkUrlParam();
+        
+        // Listeners for filter and sort
+        searchInput.addEventListener('input', applyFilterAndSort);
+        sortSelect.addEventListener('change', applyFilterAndSort);
+
         window.onload = () => {
             if (localStorage.getItem('darkMode') === 'enabled') updateTheme(true);
             fetchApps();
