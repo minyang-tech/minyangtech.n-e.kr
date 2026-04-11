@@ -1,33 +1,180 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
     <meta charset="UTF-8">
-    <title>임시 프로필</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetSystemMetrics | 민양테크</title>
+    <meta property="og:title" content="@GetSystemMetrics">
+    <meta property="og:description" content="만나서 반갑습니다.">
+    <meta property="og:image" content="https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/856e1d6825b328230640aeadc626b0d4.png?raw=true">
+    <meta property="og:url" content="https://minyangtech.n-e.kr/@getsystemmetrics">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../common.css"> 
+
     <style>
-        body {
+        :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
+        body.dark-mode { --txt: #f5f5f5; --bg: #121212; --brd: #333; --card-bg: #1e1e1e; }
+
+        body { 
+            font-family: 'Pretendard', sans-serif; 
+            background-color: var(--bg); color: var(--txt); 
+            transition: background-color 0.3s, color 0.3s;
             margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: sans-serif;
-            background-color: #f5f5f5;
         }
-        .container {
-            text-align: center;
+
+        /* --- Header --- */
+        header { 
+            width: 100%; height: 80px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 5%; border-bottom: 1px solid var(--brd); 
+            background-color: var(--bg); position: fixed; top: 0; left: 0; z-index: 1000;
+            box-sizing: border-box;
         }
-        a {
-            display: block;
-            margin-top: 10px;
-            text-decoration: none;
-            color: #007bff;
+        .header-left { display: flex; align-items: center; gap: 40px; }
+        .logo-link img { height: 40px !important; width: auto !important; display: block; }
+        
+        .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+
+        /* --- Layout --- */
+        .profile-container {
+            max-width: 1100px; margin: 0 auto; min-height: calc(100vh - 160px);
+            padding: 130px 20px 60px; display: flex; gap: 40px;
+        }
+
+        /* --- Left Side: Profile Card --- */
+        .profile-side { flex: 0 0 280px; }
+        .side-card { 
+            background: var(--card-bg); border: 1px solid var(--brd); 
+            border-radius: 20px; padding: 30px; text-align: center; position: sticky; top: 110px;
+        }
+        .side-img { width: 100%; aspect-ratio: 1/1; border-radius: 16px; object-fit: cover; margin-bottom: 20px; border: 1px solid var(--brd); }
+        .side-name { font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; display: block; }
+        .side-links { display: flex; flex-direction: column; gap: 10px; text-align: left; }
+        .side-links a { text-decoration: none; color: var(--txt); font-size: 0.9rem; opacity: 0.8; transition: 0.2s; display: flex; align-items: center; gap: 8px; }
+        .side-links a:hover { color: var(--accent); opacity: 1; }
+
+        /* --- Right Side: Main Content --- */
+        .profile-main { flex: 1; min-width: 0; }
+        .profile-title-link { text-decoration: none; color: var(--txt); transition: 0.2s; }
+        .profile-title-link:hover { color: var(--accent); }
+        .profile-title-link h1 { font-size: 2.5rem; font-weight: 900; margin: 0 0 20px 0; border-bottom: 1px solid var(--brd); padding-bottom: 10px; }
+        
+        .streak-img { max-width: 100%; height: auto; border-radius: 10px; margin-top: 10px; }
+
+        /* --- Footer Info --- */
+        .center-email { margin: 40px 0 20px; text-align: center; border-top: 1px solid var(--brd); padding-top: 30px; }
+        .center-email a { text-decoration: none; color: var(--accent); font-weight: 700; font-size: 1.1rem; }
+
+        /* --- Footer --- */
+        footer {
+            width: 100%; padding: 50px 20px; border-top: 1px solid var(--brd);
+            background-color: var(--bg); display: flex; flex-direction: column; align-items: center; text-align: center;
+            box-sizing: border-box;
+        }
+        .x-logo-img { height: 24px !important; filter: invert(1); transition: 0.3s; }
+        body.dark-mode .x-logo-img { filter: invert(0); }
+        .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
+
+        .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
+        input:checked + .slider { background: var(--accent); }
+        input:checked + .slider:before { transform: translateX(22px); }
+
+        @media (max-width: 900px) {
+            .profile-container { flex-direction: column; align-items: center; }
+            .profile-side { flex: none; width: 100%; max-width: 400px; }
+            .side-card { position: static; }
+            .profile-main { width: 100%; text-align: center; }
+            .profile-title-link h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div>[이곳은 유저 프로필이 들어올 공간입니다.]</div>
-        <a href="../docs/index.html">[돌아가기]</a>
-    </div>
+    <header>
+        <div class="header-left">
+            <a href="https://minyangtech.n-e.kr" class="logo-link">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="Logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="https://minyangtech.n-e.kr/docs">Docs</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/news">News</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/apps">Apps</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="controls">
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
+    <main class="profile-container">
+        <aside class="profile-side">
+            <div class="side-card">
+                <img src="https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/856e1d6825b328230640aeadc626b0d4.png?raw=true" alt="Profile" class="side-img">
+                <span class="side-name">@GetSystemMetrics</span>
+                <div class="side-links">
+                    <a href="https://discord.com/users/1482642500094001237" target="_blank"><i class="fa-brands fa-discord"></i> Discord Profile</a>
+                </div>
+            </div>
+        </aside>
+
+        <section class="profile-main">
+            <a href="https://github.com/GetSystemMetrics" class="profile-title-link" target="_blank">
+                <h1>@GetSystemMetrics</h1>
+            </a>
+            
+            <div class="stats-area">
+                <img src="https://github-readme-streak-stats.herokuapp.com/?user=GetSystemMetrics&theme=dark" alt="COMMIT Streak" class="streak-img">
+            </div>
+
+            <div class="center-email">
+                <a href="mailto:whoasked@minyangtech.n-e.kr">whoasked@minyangtech.n-e.kr</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-sns" style="display: flex; gap: 30px; margin-bottom: 25px; align-items: center;">
+            <a href="https://x.com/minyang_tech" target="_blank">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X">
+            </a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </div>
+        <div class="footer-email">
+            <a href="mailto:support@minyangtech.n-e.kr" style="text-decoration:none; color:var(--txt); opacity:0.6;">support@minyangtech.n-e.kr</a>
+        </div>
+        <div class="footer-copyright" style="font-size:13px; opacity:0.4; margin-top:15px;">
+            <p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('dark-mode-toggle');
+
+        function updateTheme(isDark) {
+            document.body.classList.toggle('dark-mode', isDark);
+            toggle.checked = isDark;
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+
+        toggle.addEventListener('change', () => updateTheme(toggle.checked));
+
+        window.onload = () => {
+            if (localStorage.getItem('darkMode') === 'enabled') updateTheme(true);
+        };
+    </script>
 </body>
 </html>
