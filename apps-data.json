@@ -43,5 +43,20 @@
     "is_opensource": false,
     "source_url": "https://minyangtech.n-e.kr/404",
     "download_url": "https://minyangtech.n-e.kr/g/invite1"
+  },
+  {
+    "id": 4,
+    "name": "MarkQuote",
+    "category": "Apps",
+    "short_desc": "마크다운을 html로 만들고 Quote를 만드는 앱.",
+    "description": "**다운로드 버튼 클릭시 바로 다운로드됩니다** \n # 마크다운을 html로 만들어서 복사가 가능한 앱 \n ## Quote를 생성가능한 앱 \n *Discord Bot 'Make It Quote'에서 영감받음.",
+    "image": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EA%B0%9C%EB%B0%9C.png?raw=true",
+    "release_date": "2026-04-12",
+    "platform": "Windows",
+    "min_spec": "CPU : 듀얼코어(i3급) \n RAM : 4GB \n 저장공간 : 200MB",
+    "rec_spec": "CPU: i5이상 \n RAM : 8GB \n SSD 필수",
+    "is_opensource": true,
+    "source_url": "https://github.com/minyang-tech/quote-markdown",
+    "download_url": "https://github.com/minyang-tech/quote-markdown/releases/download/release/MarkQuote.Setup.1.0.0.exe"
   }
 ]
