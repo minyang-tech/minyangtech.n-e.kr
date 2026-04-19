@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "date": "2026-04-19",
+    "title_ko": "CMR-0001: Project, Camera's error.",
+    "title_en": "--",
+    "author_name": "@Whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "content_ko": "발견자 : [@🧇🥛Whoasked☪️🤍](../@whoasked) \n버그의 종류 : 오류\n내용 : 본 게임에서 큐브를 발판위에 올리고, 카메라를 통해 올려져 있던 큐브 따위를 저장하면 발판은 아직 큐브 따위의 오브젝트가 발판 위에 있다고 인식되어, 발판이 비활성화되지않고 계속 켜져있는 문제.\n해결 : ❌\n\n2026-04-19 \n",
+    "content_en": "--",
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+  },
+  {
+    "id": 2,
+    "date": "2026-04-19",
+    "title_ko": "CMR-0002: Project, Camera's error.",
+    "title_en": "--",
+    "author_name": "@Whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "content_ko": "발견자 : [@🧇🥛Whoasked☪️🤍](../@whoasked) \n버그의 종류 : 오류\n내용 : 큐브 따위의 오브젝트를 카메라를 통해 저장하고 다시 내뿜을떄 알수없는 이유로 큐브가 땅 밑, 또는 소환 자체를 하지 않게됨.\n해결 : ❌\n\n2026-04-19 ",
+    "content_en": "--",
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+  }
+]
