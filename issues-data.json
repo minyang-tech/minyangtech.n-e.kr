@@ -7,7 +7,7 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "content_ko": "발견자 : [@🧇🥛Whoasked☪️🤍](../@whoasked) \n버그의 종류 : 오류\n내용 : 본 게임에서 큐브를 발판위에 올리고, 카메라를 통해 올려져 있던 큐브 따위를 저장하면 발판은 아직 큐브 따위의 오브젝트가 발판 위에 있다고 인식되어, 발판이 비활성화되지않고 계속 켜져있는 문제.\n해결 : ❌\n\n2026-04-19 \n",
+    "content_ko": "발견자 : [@🧇🥛Whoasked☪️🤍](../@whoasked) \n버그의 종류 : 오류\n내용 : 본 게임에서 큐브를 발판위에 올리고, 카메라를 통해 올려져 있던 큐브 따위를 저장하면 발판은 아직 큐브 따위의 오브젝트가 발판 위에 있다고 인식되어, 발판이 비활성화되지않고 계속 켜져있는 문제.\n발동 조건 : 크기가 조절되거나, 아이템 배출구를 통해 생성된 큐브를 버튼 위에 올려두고 다시 카메라로 save 할 경우 발동됨.\n해결 : ❌\n\n2026-04-19 \n",
     "content_en": "--",
     "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
   },
@@ -19,7 +19,7 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "content_ko": "발견자 : [@🧇🥛Whoasked☪️🤍](../@whoasked) \n버그의 종류 : 오류\n내용 : 큐브 따위의 오브젝트를 카메라를 통해 저장하고 다시 내뿜을떄 알수없는 이유로 큐브가 땅 밑, 또는 소환 자체를 하지 않게됨.\n해결 : ❌\n\n2026-04-19 ",
+    "content_ko": "발견자 : [@🧇🥛Whoasked☪️🤍](../@whoasked) \n버그의 종류 : 오류\n내용 : 큐브 따위의 오브젝트를 카메라를 통해 저장하고 다시 내뿜을떄 알수없는 이유로 큐브가 땅 밑, 또는 소환 자체를 하지 않게됨.\n발동 조건 : 카메라를 들고 오브젝트를 카메라에 save 한 후, 카메라를 잠시 내렸다가 다시 올리고 카메라에 저장된 오브젝트를 load 시도할때.\n해결 : ❌\n\n2026-04-19 ",
     "content_en": "--",
     "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
   }
