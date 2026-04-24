@@ -1,0 +1,82 @@
+/* Unified header rules for non-g pages */
+header {
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    min-width: 0;
+}
+
+.logo-link img {
+    height: 40px !important;
+    width: auto !important;
+    display: block;
+}
+
+.nav-links {
+    display: flex !important;
+    list-style: none;
+    align-items: center;
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    line-height: 1.2 !important;
+    white-space: nowrap;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 850px) {
+    header {
+        min-height: 72px;
+        padding: 10px 4%;
+        gap: 10px;
+    }
+
+    .header-left {
+        gap: 12px;
+        flex: 1 1 auto;
+    }
+
+    header nav {
+        min-width: 0;
+        flex: 1 1 auto;
+    }
+
+    header .nav-links {
+        display: flex !important;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        padding-bottom: 2px;
+    }
+
+    header .nav-links li {
+        flex: 0 0 auto;
+    }
+
+    header .nav-links a {
+        font-size: 14px !important;
+    }
+}
