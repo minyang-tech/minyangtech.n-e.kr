@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Grammar | 민양테크 Docs</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="/assets/css/header-unified.css">
+    <style>
+        /* --- 변수 및 기본 스타일 통일 --- */
+        :root { --accent: #3ecf8e; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #f9f9f9; --code-bg: #282c34; --code-txt: #abb2bf; }
+        body.dark-mode { --txt: #f5f5f5; --bg: #121212; --brd: #333; --card-bg: #1e1e1e; --code-bg: #000; --code-txt: #3ecf8e; }
+
+        body { 
+            font-family: 'Pretendard', sans-serif; 
+            background-color: var(--bg); color: var(--txt); 
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+        }
+
+        /* --- 헤더 --- */
+        header { 
+            width: 100%; height: 80px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 5%; border-bottom: 1px solid var(--brd); 
+            background-color: var(--bg); position: fixed; top: 0; left: 0; z-index: 1000;
+            box-sizing: border-box;
+        }
+        .header-left { display: flex; align-items: center; gap: 40px; }
+        .logo-link img { height: 40px !important; width: auto !important; display: block; }
+        
+        .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+        .nav-links a.active { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
+
+        /* --- Docs Layout --- */
+        .docs-container { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 160px); padding-top: 80px; }
+        
+        /* --- Sidebar Style --- */
+        .docs-sidebar { width: 280px; padding: 40px 20px; border-right: 1px solid var(--brd); position: sticky; top: 80px; height: fit-content; }
+        .docs-sidebar ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+        .docs-sidebar li { margin-bottom: 8px !important; list-style: none !important; }
+        .docs-sidebar a { text-decoration: none; color: var(--txt); opacity: 0.6; transition: 0.3s; font-size: 0.95rem; display: block; }
+        .docs-sidebar a:hover, .docs-sidebar a.active { opacity: 1; font-weight: bold; color: var(--accent); }
+
+        /* --- Main Content --- */
+        .docs-content { flex: 1; padding: 40px 60px; line-height: 1.8; }
+        .docs-content h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
+        .docs-content .subtitle { font-size: 1.2rem; opacity: 0.6; margin-bottom: 30px; letter-spacing: 1px; }
+        
+        /* 문법 가이드 스타일링 */
+        .docs-body h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 2px solid var(--brd); padding-bottom: 10px; }
+        .code-block { 
+            background: var(--code-bg); 
+            color: var(--code-txt); 
+            padding: 20px; 
+            border-radius: 8px; 
+            font-family: 'Fira Code', monospace; 
+            margin: 20px 0;
+            overflow-x: auto;
+            border: 1px solid var(--brd);
+        }
+        .example-card {
+            background: var(--card-bg);
+            border: 1px solid var(--brd);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .highlight { color: var(--accent); font-weight: bold; }
+
+        /* --- Footer --- */
+        footer {
+            padding: 60px 20px 40px; text-align: center;
+            border-top: 1px solid var(--brd); background-color: var(--bg);
+        }
+        .footer-sns { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; align-items: center; }
+        .x-logo-img { height: 24px !important; width: auto !important; filter: invert(1); transition: 0.3s; }
+        body.dark-mode .x-logo-img { filter: invert(0); }
+        .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
+        
+        .footer-email { margin-bottom: 15px; }
+        .footer-email a { text-decoration: none; color: var(--txt); opacity: 0.6; font-weight: 500; }
+        .footer-copyright { font-size: 0.85rem; opacity: 0.4; }
+
+        /* 다크모드 스위치 */
+        .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
+        input:checked + .slider { background: var(--accent); }
+        input:checked + .slider:before { transform: translateX(22px); }
+
+        @media (max-width: 900px) {
+            .docs-container { flex-direction: column; }
+            .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; }
+            .docs-content { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="https://minyangtech.n-e.kr" class="logo-link">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="Logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="https://minyangtech.n-e.kr/docs" class="active">Docs</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/news">News</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/apps">Apps</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/issues">Issues</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/eula">EULA</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="controls">
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
+    <main class="docs-container">
+        <aside class="docs-sidebar" id="sidebar-target"></aside>
+
+        <article class="docs-content">
+            <h1>Template Grammar</h1>
+            <p class="subtitle">변수 참조 및 조건식 사용법</p>
+            <hr style="border:0; border-top:1px solid var(--brd); margin: 30px 0;">
+            
+            <div class="docs-body">
+                <section>
+                    <h2>기본 문법</h2>
+                    <p>IXO Engine의 Inspector 창에서 <span class="highlight">Value</span> 또는 조건식 입력란에 변수를 참조할 때 사용합니다.</p>
+                    <div class="code-block">
+                        {{variableName}}
+                    </div>
+                </section>
+
+                <section>
+                    <h2>실전 활용 예시</h2>
+                    <div class="example-card">
+                        <ol>
+                            <li><strong>변수 생성:</strong> <code>Input Field</code> 노드의 <strong>Ref Key</strong>를 <code>playerName</code>으로 설정합니다.</li>
+                            <li><strong>변수 출력:</strong> <code>Add Text</code> 노드의 <strong>Value</strong>에 <code>안녕하세요, {{playerName}}님!</code> 이라고 입력합니다.</li>
+                            <li><strong>결과:</strong> 사용자가 입력한 이름이 텍스트에 실시간으로 적용되어 출력됩니다.</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>조건식 체인 (Logical Logic)</h2>
+                    <p><code>If / Else</code> 노드 등에서 여러 조건을 복합적으로 검사할 때 사용합니다. <code>AND</code>와 <code>OR</code> 연산자를 지원합니다.</p>
+                    <div class="code-block">
+                        {{score}} > 10 AND {{role}} == 'admin' OR {{username}} == 'root'
+                    </div>
+                    <p><i class="fa-solid fa-circle-info"></i> <strong>평가 순서:</strong> 왼쪽에서 오른쪽으로 <code>AND</code>를 우선 평가한 후 <code>OR</code> 체인을 처리합니다.</p>
+                </section>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <h3 style="margin-bottom:20px;">Connect with Us</h3>
+        <div class="footer-sns">
+            <a href="https://x.com/minyangtech" target="_blank">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X Logo">
+            </a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </div>
+        <div class="footer-email">
+            <a href="mailto:support@minyangtech.n-e.kr">support@minyangtech.n-e.kr</a>
+        </div>
+        <div class="footer-copyright">
+            <p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        async function loadSidebar() {
+            const target = document.getElementById('sidebar-target');
+            try {
+                let response = await fetch('nav.html');
+                if (!response.ok) response = await fetch('../nav.html');
+                const data = await response.text();
+                target.innerHTML = data;
+
+                const links = target.querySelectorAll('a');
+                const currentPath = window.location.pathname;
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && (currentPath.endsWith(href) || currentPath.includes(href))) {
+                        link.classList.add('active');
+                    }
+                });
+            } catch (error) {
+                target.innerHTML = "<p style='opacity:0.5; padding:20px; font-size:0.9rem;'>메뉴를 불러오지 못했습니다.</p>";
+            }
+        }
+
+        document.getElementById('dark-mode-toggle').addEventListener('change', () => {
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        });
+
+        window.onload = () => {
+            loadSidebar();
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('dark-mode-toggle').checked = true;
+            }
+        };
+    </script>
+</body>
+</html>
