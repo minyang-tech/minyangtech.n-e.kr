@@ -1,7 +1,7 @@
 # MINYANGTECH
 Student's Game Dev Team.
 
-![Static Badge](https://img.shields.io/badge/License-MIT-brightgreen)
+![Static Badge](https://img.shields.io/badge/License-EULA-brightgreen)
 ![Static Badge](https://img.shields.io/badge/discord-%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC-blue?style=flat&logo=discord&link=https%3A%2F%2Fdiscord.gg%2FTMd5jReNyC)
 ![Static Badge](https://img.shields.io/badge/X-%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC-blue?style=flat&logo=x&labelColor=black&color=gray&link=https%3A%2F%2Fx.com%2Fminyang_tech)  
 
