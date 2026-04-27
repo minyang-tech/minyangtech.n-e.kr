@@ -1,21 +1,53 @@
-MIT License
+# 민양테크 표준 최종 사용자 라이선스 계약
+## Minyang Tech Standard End User License Agreement (EULA)
 
-Copyright (c) 2025 Minyang Tech
+**최종 업데이트: 2026년 4월 24일**
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+본 약관은 민양테크(이하 “제작자”)가 제공하는 모든 소프트웨어, 콘텐츠, 다운로드 자료 및 서비스(이하 “서비스”)의 이용에 적용됩니다. 사용자가 서비스를 이용하거나 소프트웨어를 다운로드하는 경우, 본 약관에 동의한 것으로 간주됩니다.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+---
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+### 1. 적용 범위
+본 약관은 민양테크가 제공하는 모든 서비스에 적용됩니다. 단, 특정 서비스 또는 소프트웨어에 별도의 약관이 존재하는 경우 해당 약관이 우선 적용됩니다.
+
+### 2. 저작권 및 권리
+본 서비스에 포함된 모든 콘텐츠와 소프트웨어에 대한 저작권 및 지식재산권은 제작자(민양테크)에게 귀속됩니다. 본 약관에서 명시적으로 허용되지 않은 권리는 사용자에게 부여되지 않습니다.
+
+### 3. 이용 허가 (라이선스)
+제작자는 사용자에게 개인적이고 비상업적인 용도로 서비스 및 소프트웨어를 사용할 수 있는 제한적, 비독점적, 양도 불가능한 라이선스를 부여합니다.
+
+### 4. 금지 행위
+사용자는 다음 행위를 해서는 안 됩니다:
+- 콘텐츠 및 소프트웨어의 무단 복제, 배포, 재판매
+- 역공학(Reverse Engineering), 디컴파일, 디스어셈블
+- 제작자의 사전 허가 없는 상업적 이용
+- 서비스를 이용한 불법 행위
+- 콘텐츠를 무단 수정 후 배포
+
+### 5. 서비스 변경 및 중단
+제작자는 서비스의 일부 또는 전부를 언제든지 수정, 변경하거나 중단할 수 있습니다.
+
+### 6. 보증의 부인
+본 서비스는 **“있는 그대로(AS IS)”** 제공됩니다. 제작자는 서비스의 안정성, 정확성, 오류 없음, 특정 목적에의 적합성 등을 보증하지 않습니다.
+
+### 7. 책임의 제한
+법령이 허용하는 최대한의 범위 내에서, 제작자는 서비스 이용 또는 이용 불가로 인해 발생하는 직접적, 간접적, 우발적, 결과적 손해에 대해 책임을 지지 않습니다.
+
+### 8. 약관의 변경
+본 약관은 사전 공지 없이 변경될 수 있으며, 변경 이후에도 서비스를 계속 이용할 경우 변경된 약관에 동의한 것으로 간주됩니다.
+
+### 9. 준거법
+본 약관은 대한민국 법률에 따라 해석되고 적용됩니다.
+
+### 10. 미성년자 관련 사항
+제작자가 미성년자인 경우, 본 약관은 법정대리인의 동의 하에 효력이 인정될 수 있습니다.
+
+### 11. 이용 제한
+제작자는 사용자가 본 약관을 위반하는 경우, 사전 통지 없이 서비스 이용을 제한하거나 중단할 수 있습니다.
+
+### 12. 문의
+약관 및 서비스 관련 문의는 아래 이메일로 연락 바랍니다.
+- **Email:** support@minyangtech.n-e.kr
+
+---
+Copyright © 2026 Minyang Tech. All rights reserved.
