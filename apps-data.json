@@ -1,36 +1,6 @@
 [
   {
     "id": 1,
-    "name": "테스트",
-    "category": "Test",
-    "short_desc": "테스트용입니다",
-    "description": "### 주요 기능: 없어요 ",
-    "image": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EA%B0%9C%EB%B0%9C.png?raw=true",
-    "release_date": "2026-03-27",
-    "platform": "Windows xp~11",
-    "min_spec": "Intel i3 / 4GB RAM (NOT REAL)",
-    "rec_spec": "Intel i5 / 8GB RAM (NOT REAL)",
-    "is_opensource": true,
-    "source_url": "https://github.com/minyangtech/minyangtech/",
-    "download_url": "https://github.com/minyangtech/minyangtech/releases/download/asd/cool.image"
-  },
-  {
-    "id": 2,
-    "name": "이모지_CUSTOME",
-    "category": "뻘짓",
-    "short_desc": "직접만든 3D 이모지. 놀란거임 아니 있는 이모지인가 잘 모르겠음",
-    "description": "**다운로드 버튼 클릭시 바로 다운로드됨** \n .fbx 파일 형식임. \n 3D",
-    "image": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/asdasd.png?raw=true",
-    "release_date": "2026-03-28",
-    "platform": "Windows 10~11",
-    "min_spec": "NOTHING NEEDㅣ필요사양 없음",
-    "rec_spec": "NOTHING NEEDㅣ필요사양 없음",
-    "is_opensource": true,
-    "source_url": "https://github.com/minyangtech/GOOD-GOOD-GOOD",
-    "download_url": "https://github.com/minyangtech/GOOD-GOOD-GOOD/releases/download/asd/default.fbx"
-  },
-  {
-    "id": 3,
     "name": "나우봇",
     "category": "BOT",
     "short_desc": "서버 통계/상태, 환율 조회, 미니게임을 제공하는 봇!",
@@ -45,7 +15,7 @@
     "download_url": "https://minyangtech.n-e.kr/g/invite1"
   },
   {
-    "id": 4,
+    "id": 2,
     "name": "MarkQuote",
     "category": "Apps",
     "short_desc": "마크다운을 html로 만들고 Quote를 만드는 앱.",
