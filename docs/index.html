@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <!-- 인코딩 설정을 가장 상단에 배치하여 글자 깨짐 방지 -->
@@ -38,15 +38,16 @@
             margin: 0;
         }
 
+        /* --- 헤더 (참조 코드 스타일 적용) --- */
         header { 
             width: 100%; height: 80px; 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0 5%; border-bottom: 1px solid var(--brd); 
             background-color: var(--bg); position: fixed; top: 0; left: 0; z-index: 1000;
-            box-sizing: border-box; /* 패딩이 너비에 영향을 주지 않도록 설정 */
+            box-sizing: border-box;
         }
         .header-left { display: flex; align-items: center; gap: 40px; }
-        .logo-link img { height: 40px; display: block; }
+        .logo-link img { height: 40px !important; width: auto !important; display: block; }
         
         .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
         .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
@@ -74,9 +75,9 @@
             border-top: 1px solid var(--brd); background-color: var(--bg);
         }
         .footer-sns { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; align-items: center; }
-        .x-logo-img { height: 24px; width: auto; filter: invert(1); transition: 0.3s; }
+        .x-logo-img { height: 24px !important; width: auto !important; filter: invert(1); transition: 0.3s; }
         body.dark-mode .x-logo-img { filter: invert(0); }
-        .fa-youtube { font-size: 32px; color: #FF0000; }
+        .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
         
         .footer-email { margin-bottom: 15px; }
         .footer-email a { text-decoration: none; color: var(--txt); opacity: 0.6; font-weight: 500; }
@@ -100,7 +101,7 @@
     <header>
         <div class="header-left">
             <a href="https://minyangtech.n-e.kr" class="logo-link">
-                <img src="https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="Logo">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="Logo">
             </a>
             <nav>
                 <ul class="nav-links">
