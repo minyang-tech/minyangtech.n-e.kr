@@ -1,22 +1,33 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-    <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
+    <!-- 인코딩 설정을 가장 상단에 배치하여 글자 깨짐 방지 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>민양테크 | 민양테크 Docs</title>
-<meta property="og:title" content="민양테크 Docs">
-<meta property="og:description" content="민양테크 공식 문서 사이트입니다.">
-<meta property="og:image" content="https://github.com/minyang-tech/minyangtech.github.io/blob/main/image%2F%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
-<meta property="og:url" content="https://minyangtech.n-e.kr/news">
-<meta property="og:type" content="website">
-    
+
+    <meta name="description" content="민양테크 공식 문서 사이트입니다. 민양테크의 다양한 정보를 제공합니다.">
+    <link rel="icon" href="/favicon.ico">
+
+    <!-- Font Awesome (유튜브 아이콘 등을 위해 필요) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/assets/css/header-shared.css">
-    <link rel="stylesheet" href="/common.css">
-    <link rel="stylesheet" href="/assets/css/header-unified.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="민양테크 | 민양테크 Docs">
+    <meta property="og:description" content="민양테크 공식 문서 사이트입니다.">
+    <meta property="og:url" content="https://minyangtech.n-e.kr/docs">
+    <meta property="og:image" content="https://minyangtech.n-e.kr/image/MINYANG%20TECH.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "민양테크 Docs",
+      "url": "https://minyangtech.n-e.kr/"
+    }
+    </script>
+
     <style>
-        /* --- 蹂??諛?湲곕낯 ?ㅽ????듭씪 --- */
         :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
         body.dark-mode { --txt: #f5f5f5; --bg: #121212; --brd: #333; --card-bg: #1e1e1e; }
 
@@ -27,56 +38,50 @@
             margin: 0;
         }
 
-        /* --- ?ㅻ뜑 (?듯빀 ?붿옄?? --- */
         header { 
             width: 100%; height: 80px; 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0 5%; border-bottom: 1px solid var(--brd); 
             background-color: var(--bg); position: fixed; top: 0; left: 0; z-index: 1000;
+            box-sizing: border-box; /* 패딩이 너비에 영향을 주지 않도록 설정 */
         }
         .header-left { display: flex; align-items: center; gap: 40px; }
         .logo-link img { height: 40px; display: block; }
         
-        .nav-links { display: flex; list-style: none; gap: 25px; }
+        .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
         .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
         .nav-links a:hover { opacity: 1; color: var(--accent); }
         .nav-links a.active { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
 
-        /* --- Docs Layout --- */
         .docs-container { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 160px); padding-top: 80px; }
         
-        /* --- Sidebar Style (?붿옄??媛뺤젣 ?듭씪) --- */
         .docs-sidebar { width: 280px; padding: 40px 20px; border-right: 1px solid var(--brd); position: sticky; top: 80px; height: fit-content; }
-        .docs-sidebar ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
-        .docs-sidebar li { margin-bottom: 8px !important; list-style: none !important; }
+        .docs-sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .docs-sidebar li { margin-bottom: 8px; }
         .docs-sidebar a { text-decoration: none; color: var(--txt); opacity: 0.6; transition: 0.3s; font-size: 0.95rem; display: block; }
         .docs-sidebar a:hover, .docs-sidebar a.active { opacity: 1; font-weight: bold; color: var(--accent); }
 
-        /* --- Main Content --- */
         .docs-content { flex: 1; padding: 40px 60px; line-height: 1.8; }
         .docs-content h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
         .docs-content .subtitle { font-size: 1.2rem; opacity: 0.6; margin-bottom: 30px; letter-spacing: 1px; }
         
-        /* 留덊겕?ㅼ슫 ?ㅽ??쇰쭅 */
         .docs-body h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 2px solid var(--brd); padding-bottom: 10px; }
         .docs-body h3 { font-size: 1.4rem; margin-top: 25px; color: var(--accent); }
         .docs-body p { margin-bottom: 20px; opacity: 0.9; }
 
-        /* --- Footer (?듯빀 ?붿옄?? --- */
         footer {
             padding: 60px 20px 40px; text-align: center;
             border-top: 1px solid var(--brd); background-color: var(--bg);
         }
         .footer-sns { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; align-items: center; }
-        .x-logo-img { height: 24px !important; width: auto !important; filter: invert(1); transition: 0.3s; }
+        .x-logo-img { height: 24px; width: auto; filter: invert(1); transition: 0.3s; }
         body.dark-mode .x-logo-img { filter: invert(0); }
-        .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
+        .fa-youtube { font-size: 32px; color: #FF0000; }
         
         .footer-email { margin-bottom: 15px; }
         .footer-email a { text-decoration: none; color: var(--txt); opacity: 0.6; font-weight: 500; }
         .footer-copyright { font-size: 0.85rem; opacity: 0.4; }
 
-        /* ?ㅽ겕紐⑤뱶 ?ㅼ쐞移?*/
         .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
@@ -86,7 +91,7 @@
 
         @media (max-width: 900px) {
             .docs-container { flex-direction: column; }
-            .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; }
+            .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; box-sizing: border-box; }
             .docs-content { padding: 40px 20px; }
         }
     </style>
@@ -95,7 +100,7 @@
     <header>
         <div class="header-left">
             <a href="https://minyangtech.n-e.kr" class="logo-link">
-                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="Logo">
+                <img src="https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="Logo">
             </a>
             <nav>
                 <ul class="nav-links">
@@ -151,48 +156,47 @@
     </footer>
 
     <script>
-        // ?ъ씠?쒕컮 濡쒕뱶 諛?寃쎈줈 ?몄떇 理쒖쟻??
         async function loadSidebar() {
             const target = document.getElementById('sidebar-target');
             try {
-                // ?꾩옱 ?뚯씪??docs 猷⑦듃???덈떎硫?'nav.html', ?섏쐞 ?대뜑???덈떎硫?'../nav.html'
-                // ?ш린?쒕뒗 index.html 湲곗??대?濡?'nav.html'???쒕룄?⑸땲??
+                // nav.html을 불러올 때 캐싱 방지 및 정확한 경로 설정
                 const response = await fetch('nav.html'); 
                 if (!response.ok) throw new Error('Sidebar not found');
                 
                 const data = await response.text();
                 target.innerHTML = data;
 
+                // 활성화된 링크 표시 로직
                 const links = target.querySelectorAll('a');
                 const currentPath = window.location.pathname;
                 
                 links.forEach(link => {
                     const href = link.getAttribute('href');
-                    // 留곹겕??href媛 ?꾩옱 寃쎈줈???ы븿?섏뼱 ?덇굅???뚯씪紐낆씠 ?쇱튂?섎㈃ active
                     if (href && (currentPath.endsWith(href) || currentPath.includes('/' + href))) {
                         link.classList.add('active');
                     }
                 });
             } catch (error) {
-                target.innerHTML = "<p style='opacity:0.5; padding:20px; font-size:0.9rem;'>硫붾돱瑜?遺덈윭?ㅼ? 紐삵뻽?듬땲??</p>";
+                target.innerHTML = "<p style='opacity:0.5; padding:20px; font-size:0.9rem;'>메뉴를 불러오지 못했습니다.</p>";
             }
         }
+
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
 
         function toggleDarkMode() {
             const isDark = document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
         }
 
-        window.onload = () => {
+        darkModeToggle.addEventListener('change', toggleDarkMode);
+
+        window.addEventListener('DOMContentLoaded', () => {
             loadSidebar();
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.body.classList.add('dark-mode');
-                const toggle = document.getElementById('dark-mode-toggle');
-                if (toggle) toggle.checked = true;
+                if (darkModeToggle) darkModeToggle.checked = true;
             }
-        };
+        });
     </script>
 </body>
 </html>
-
-
