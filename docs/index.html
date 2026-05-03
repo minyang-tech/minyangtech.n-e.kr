@@ -1,31 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- 인코딩 설정을 가장 상단에 배치하여 글자 깨짐 방지 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>민양테크 | 민양테크 Docs</title>
 
-    <meta name="description" content="민양테크 공식 문서 사이트입니다. 민양테크의 다양한 정보를 제공합니다.">
     <link rel="icon" href="/favicon.ico">
-
-    <!-- Font Awesome (유튜브 아이콘 등을 위해 필요) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="민양테크 | 민양테크 Docs">
-    <meta property="og:description" content="민양테크 공식 문서 사이트입니다.">
-    <meta property="og:url" content="https://minyangtech.n-e.kr/docs">
-    <meta property="og:image" content="https://minyangtech.n-e.kr/image/MINYANG%20TECH.png">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "민양테크 Docs",
-      "url": "https://minyangtech.n-e.kr/"
-    }
-    </script>
 
     <style>
         :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
@@ -38,52 +19,124 @@
             margin: 0;
         }
 
-        /* --- 헤더 스타일 --- */
-        header { 
-            width: 100%; height: 80px; 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 0 5%; border-bottom: 1px solid var(--brd); 
-            background-color: var(--bg); position: fixed; top: 0; left: 0; z-index: 1000;
+        /* --- Unified Header Rules 적용 --- */
+        header {
+            width: 100%;
+            min-height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
             box-sizing: border-box;
+            position: fixed; /* Docs 페이지 특성상 상단 고정 */
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: var(--bg);
+            border-bottom: 1px solid var(--brd);
         }
-        .header-left { display: flex; align-items: center; gap: 40px; }
-        .logo-link img { height: 40px !important; width: auto !important; display: block; }
-        
-        .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
-        .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            min-width: 0;
+        }
+
+        .logo-link img {
+            height: 40px !important;
+            width: auto !important;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex !important;
+            list-style: none;
+            align-items: center;
+            gap: 22px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--txt);
+            font-weight: 600;
+            opacity: 0.7;
+            transition: 0.2s;
+            line-height: 1.2 !important;
+            white-space: nowrap;
+        }
+
         .nav-links a:hover { opacity: 1; color: var(--accent); }
         .nav-links a.active { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
 
-        /* --- 레이아웃 --- */
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        /* --- 모바일 대응 (header-unified.css 스타일) --- */
+        @media (max-width: 850px) {
+            header {
+                min-height: 72px;
+                padding: 0 4%; /* 상하 패딩 제거하여 높이 유지 */
+                gap: 10px;
+            }
+
+            .header-left {
+                gap: 12px;
+                flex: 1 1 auto;
+                min-width: 0; /* 넘침 방지 */
+            }
+
+            header nav {
+                min-width: 0;
+                flex: 1 1 auto;
+                overflow: hidden; /* 스크롤 영역 제한 */
+            }
+
+            header .nav-links {
+                display: flex !important;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 12px;
+                padding-bottom: 2px;
+            }
+
+            /* 가로 스크롤바 숨기기 (선택 사항) */
+            header .nav-links::-webkit-scrollbar { display: none; }
+
+            header .nav-links li {
+                flex: 0 0 auto;
+            }
+
+            header .nav-links a {
+                font-size: 14px !important;
+            }
+        }
+
+        /* --- Layout --- */
         .docs-container { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 160px); padding-top: 80px; }
-        
         .docs-sidebar { width: 280px; padding: 40px 20px; border-right: 1px solid var(--brd); position: sticky; top: 80px; height: fit-content; }
         .docs-sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .docs-sidebar li { margin-bottom: 8px; }
-        .docs-sidebar a { text-decoration: none; color: var(--txt); opacity: 0.6; transition: 0.3s; font-size: 0.95rem; display: block; }
+        .docs-sidebar a { text-decoration: none; color: var(--txt); opacity: 0.6; transition: 0.3s; font-size: 0.95rem; display: block; padding: 8px 0; }
         .docs-sidebar a:hover, .docs-sidebar a.active { opacity: 1; font-weight: bold; color: var(--accent); }
 
         .docs-content { flex: 1; padding: 40px 60px; line-height: 1.8; }
-        .docs-content h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
-        .docs-content .subtitle { font-size: 1.2rem; opacity: 0.6; margin-bottom: 30px; letter-spacing: 1px; }
-        
-        .docs-body h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 2px solid var(--brd); padding-bottom: 10px; }
-        .docs-body h3 { font-size: 1.4rem; margin-top: 25px; color: var(--accent); }
-        .docs-body p { margin-bottom: 20px; opacity: 0.9; }
+        .docs-content h1 { font-size: 2.5rem; margin: 0 0 10px 0; font-weight: 800; }
+        .docs-content .subtitle { font-size: 1.2rem; opacity: 0.6; margin-bottom: 30px; }
 
-        footer {
-            padding: 60px 20px 40px; text-align: center;
-            border-top: 1px solid var(--brd); background-color: var(--bg);
+        @media (max-width: 900px) {
+            .docs-container { flex-direction: column; padding-top: 72px; }
+            .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; padding: 20px; }
+            .docs-content { padding: 40px 20px; }
         }
-        .footer-sns { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; align-items: center; }
-        .x-logo-img { height: 24px !important; width: auto !important; filter: invert(1); transition: 0.3s; }
-        body.dark-mode .x-logo-img { filter: invert(0); }
-        .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
-        
-        .footer-email { margin-bottom: 15px; }
-        .footer-email a { text-decoration: none; color: var(--txt); opacity: 0.6; font-weight: 500; }
-        .footer-copyright { font-size: 0.85rem; opacity: 0.4; }
 
+        /* Dark Mode Switch */
         .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
@@ -91,43 +144,10 @@
         input:checked + .slider { background: var(--accent); }
         input:checked + .slider:before { transform: translateX(22px); }
 
-        /* --- 모바일 대응 (반드시 필요한 부분) --- */
-        @media (max-width: 900px) {
-            header {
-                height: auto;
-                padding: 15px 5%;
-                flex-direction: column; /* 세로 배치 */
-                gap: 15px;
-            }
-            .header-left {
-                flex-direction: column;
-                gap: 15px;
-                width: 100%;
-            }
-            .nav-links {
-                gap: 15px;
-                font-size: 0.9rem;
-            }
-            .controls {
-                position: absolute;
-                top: 15px;
-                right: 5%;
-            }
-            .docs-container {
-                flex-direction: column;
-                padding-top: 140px; /* 헤더가 길어진 만큼 여백 추가 */
-            }
-            .docs-sidebar { 
-                width: 100%; 
-                border-right: none; 
-                border-bottom: 1px solid var(--brd); 
-                position: relative; 
-                top: 0; 
-                box-sizing: border-box; 
-                padding: 20px;
-            }
-            .docs-content { padding: 40px 20px; }
-        }
+        footer { padding: 60px 20px 40px; text-align: center; border-top: 1px solid var(--brd); }
+        .footer-sns { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; align-items: center; }
+        .x-logo-img { height: 24px; filter: invert(1); }
+        body.dark-mode .x-logo-img { filter: invert(0); }
     </style>
 </head>
 <body>
@@ -161,10 +181,9 @@
             <h1>민양테크 Docs</h1>
             <p class="subtitle">민양테크 공식 문서 사이트입니다.</p>
             <hr style="border:0; border-top:1px solid var(--brd); margin: 30px 0;">
-            
             <div class="docs-body">
                 <section>
-                    <h3>소개</h3>
+                    <h3 style="color:var(--accent);">소개</h3>
                     <p>민양테크의 다양한 정보를 제공합니다.</p>
                 </section>
             </div>
@@ -172,17 +191,9 @@
     </main>
 
     <footer>
-        <h3 style="margin-bottom:20px;">Connect with Us</h3>
         <div class="footer-sns">
-            <a href="https://x.com/minyangtech" target="_blank">
-                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X Logo">
-            </a>
-            <a href="https://www.youtube.com/@minyangtech" target="_blank">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-        </div>
-        <div class="footer-email">
-            <a href="mailto:support@minyangtech.n-e.kr">support@minyangtech.n-e.kr</a>
+            <a href="https://x.com/minyangtech" target="_blank"><img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X"></a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank"><i class="fa-brands fa-youtube" style="font-size:32px; color:#FF0000;"></i></a>
         </div>
         <div class="footer-copyright">
             <p>Copyright © 2026 민양테크. All rights reserved.</p>
@@ -194,39 +205,30 @@
             const target = document.getElementById('sidebar-target');
             try {
                 const response = await fetch('nav.html'); 
-                if (!response.ok) throw new Error('Sidebar not found');
-                
+                if (!response.ok) throw new Error();
                 const data = await response.text();
                 target.innerHTML = data;
-
                 const links = target.querySelectorAll('a');
                 const currentPath = window.location.pathname;
-                
                 links.forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href && (currentPath.endsWith(href) || currentPath.includes('/' + href))) {
-                        link.classList.add('active');
-                    }
+                    if (currentPath.includes(link.getAttribute('href'))) link.classList.add('active');
                 });
-            } catch (error) {
-                target.innerHTML = "<p style='opacity:0.5; padding:20px; font-size:0.9rem;'>메뉴를 불러오지 못했습니다.</p>";
+            } catch (e) {
+                target.innerHTML = "<p style='opacity:0.5; padding:20px;'>메뉴를 불러오지 못했습니다.</p>";
             }
         }
 
         const darkModeToggle = document.getElementById('dark-mode-toggle');
-
-        function toggleDarkMode() {
+        darkModeToggle.addEventListener('change', () => {
             const isDark = document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-        }
-
-        darkModeToggle.addEventListener('change', toggleDarkMode);
+        });
 
         window.addEventListener('DOMContentLoaded', () => {
             loadSidebar();
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.body.classList.add('dark-mode');
-                if (darkModeToggle) darkModeToggle.checked = true;
+                darkModeToggle.checked = true;
             }
         });
     </script>
