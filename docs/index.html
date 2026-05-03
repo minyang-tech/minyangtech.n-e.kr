@@ -19,21 +19,22 @@
             margin: 0;
         }
 
-        /* --- Unified Header Rules 적용 --- */
+        /* --- Header: 고정 및 높이 제한 --- */
         header {
             width: 100%;
-            min-height: 80px;
+            height: 80px; /* 높이 엄격 고정 */
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 5%;
             box-sizing: border-box;
-            position: fixed; /* Docs 페이지 특성상 상단 고정 */
+            position: fixed;
             top: 0;
             left: 0;
             z-index: 1000;
             background-color: var(--bg);
             border-bottom: 1px solid var(--brd);
+            overflow: hidden; /* 헤더가 아래로 늘어나는 것 방지 */
         }
 
         .header-left {
@@ -41,12 +42,22 @@
             align-items: center;
             gap: 28px;
             min-width: 0;
+            flex: 1; /* 가용 공간 차지 */
         }
 
         .logo-link img {
             height: 40px !important;
             width: auto !important;
             display: block;
+            flex-shrink: 0;
+        }
+
+        /* --- Nav: 스크롤 영역 제한 --- */
+        header nav {
+            min-width: 0;
+            flex: 1;
+            display: flex;
+            align-items: center;
         }
 
         .nav-links {
@@ -76,45 +87,40 @@
             align-items: center;
             gap: 14px;
             flex-shrink: 0;
+            margin-left: 10px;
         }
 
-        /* --- 모바일 대응 (header-unified.css 스타일) --- */
+        /* --- 모바일 대응: 한 줄 유지 및 탭 스크롤 --- */
         @media (max-width: 850px) {
             header {
-                min-height: 72px;
-                padding: 0 4%; /* 상하 패딩 제거하여 높이 유지 */
+                height: 72px; /* 모바일 높이 고정 */
+                padding: 0 4%;
                 gap: 10px;
             }
 
             .header-left {
                 gap: 12px;
-                flex: 1 1 auto;
-                min-width: 0; /* 넘침 방지 */
+                width: auto;
+                flex: 1;
+                overflow: hidden; /* 로고와 메뉴가 헤더를 뚫고 나가지 않게 함 */
             }
 
             header nav {
-                min-width: 0;
-                flex: 1 1 auto;
-                overflow: hidden; /* 스크롤 영역 제한 */
-            }
-
-            header .nav-links {
-                display: flex !important;
-                flex-wrap: nowrap;
-                overflow-x: auto;
+                overflow-x: auto; /* 탭 부분만 가로 스크롤 허용 */
                 -webkit-overflow-scrolling: touch;
-                gap: 12px;
-                padding-bottom: 2px;
+                scrollbar-width: none; /* 파이어폭스 스크롤바 숨기기 */
             }
 
-            /* 가로 스크롤바 숨기기 (선택 사항) */
-            header .nav-links::-webkit-scrollbar { display: none; }
-
-            header .nav-links li {
-                flex: 0 0 auto;
+            header nav::-webkit-scrollbar {
+                display: none; /* 크롬/사파리 스크롤바 숨기기 */
             }
 
-            header .nav-links a {
+            .nav-links {
+                gap: 15px;
+                padding: 0 5px;
+            }
+
+            .nav-links a {
                 font-size: 14px !important;
             }
         }
@@ -137,7 +143,7 @@
         }
 
         /* Dark Mode Switch */
-        .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
+        .switch { width: 44px; height: 22px; position: relative; display: flex; align-items: center; flex-shrink: 0; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
         .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
