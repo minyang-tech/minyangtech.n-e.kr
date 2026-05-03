@@ -10,89 +10,122 @@
     <link rel="stylesheet" href="/common.css">
     <link rel="stylesheet" href="/assets/css/header-unified.css">
     <style>
-        /* --- 변수 및 기본 스타일 통일 --- */
-        :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
-        body.dark-mode { --txt: #f5f5f5; --bg: #121212; --brd: #333; --card-bg: #1e1e1e; }
+    /* --- 통합 헤더 스타일 (Docs 레이아웃 최적화) --- */
+    header {
+        width: 100%;
+        height: 80px; /* 높이 엄격 고정 */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 5%;
+        box-sizing: border-box;
+        position: fixed; /* Docs 페이지 상단 고정 */
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background-color: var(--bg);
+        border-bottom: 1px solid var(--brd);
+        overflow: hidden; /* 헤더 전체가 아래로 늘어나는 현상 방지 */
+    }
 
-        body { 
-            font-family: 'Pretendard', sans-serif; 
-            background-color: var(--bg); color: var(--txt); 
-            transition: background-color 0.3s, color 0.3s;
-            margin: 0;
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 28px; /* header-unified.css 규격 */
+        min-width: 0;
+        flex: 1; /* 가용한 공간을 차지하여 nav의 스크롤 영역 확보 */
+    }
+
+    .logo-link img {
+        height: 40px !important;
+        width: auto !important;
+        display: block;
+        flex-shrink: 0; /* 로고 크기 유지 */
+    }
+
+    /* 네비게이션 영역 */
+    header nav {
+        min-width: 0;
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links {
+        display: flex !important;
+        list-style: none;
+        align-items: center;
+        gap: 22px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: var(--txt);
+        font-weight: 600;
+        opacity: 0.7;
+        transition: 0.2s;
+        line-height: 1.2 !important;
+        white-space: nowrap; /* 글자 줄바꿈 방지 */
+    }
+
+    .nav-links a:hover { opacity: 1; color: var(--accent); }
+    .nav-links a.active { 
+        opacity: 1; 
+        color: var(--accent); 
+        border-bottom: 2px solid var(--accent); 
+    }
+
+    .controls {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-shrink: 0;
+        margin-left: 10px;
+    }
+
+    /* --- 모바일 대응 (850px 이하) --- */
+    @media (max-width: 850px) {
+        header {
+            height: 72px; /* 모바일 전용 고정 높이 */
+            padding: 0 4%;
+            gap: 10px;
         }
 
-        /* --- 헤더 (통합 디자인) --- */
-        header { 
-            width: 100%; height: 80px; 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 0 5%; border-bottom: 1px solid var(--brd); 
-            background-color: var(--bg); position: fixed; top: 0; left: 0; z-index: 1000;
-            box-sizing: border-box;
+        .header-left {
+            gap: 12px;
+            flex: 1;
+            overflow: hidden; /* 내부 요소가 헤더를 벗어나지 않도록 제한 */
         }
-        .header-left { display: flex; align-items: center; gap: 40px; }
-        .logo-link img { height: 40px !important; width: auto !important; display: block; }
-        
-        .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
-        .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
-        .nav-links a:hover { opacity: 1; color: var(--accent); }
-        .nav-links a.active { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
 
-        /* --- Docs Layout --- */
-        .docs-container { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 160px); padding-top: 80px; }
-        
-        /* --- Sidebar Style (Game System 참고 수정) --- */
-        .docs-sidebar { width: 280px; padding: 40px 20px; border-right: 1px solid var(--brd); position: sticky; top: 80px; height: fit-content; }
-        /* 사이드바 내부 리스트 스타일 강제 적용 */
-        .docs-sidebar ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
-        .docs-sidebar li { margin-bottom: 8px !important; list-style: none !important; }
-        .docs-sidebar a { text-decoration: none; color: var(--txt); opacity: 0.6; transition: 0.3s; font-size: 0.95rem; display: block; }
-        .docs-sidebar a:hover, .docs-sidebar a.active { opacity: 1; font-weight: bold; color: var(--accent); }
-
-        /* --- Main Content --- */
-        .docs-content { flex: 1; padding: 40px 60px; line-height: 1.8; }
-        .docs-content h1 { font-size: 2.2rem; margin-bottom: 10px; font-weight: 800; }
-        .docs-content .subtitle { font-size: 1.2rem; opacity: 0.6; margin-bottom: 30px; }
-        
-        /* 마크다운 스타일링 */
-        .docs-body h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 2px solid var(--brd); padding-bottom: 10px; }
-        .docs-body ul { list-style: none; padding: 0; }
-        .docs-body ul li { margin-bottom: 10px; display: flex; gap: 10px; }
-        .docs-body ul li strong { min-width: 80px; color: var(--accent); }
-
-        /* --- Footer (통합 디자인) --- */
-        footer {
-            padding: 60px 20px 40px; text-align: center;
-            border-top: 1px solid var(--brd); background-color: var(--bg);
+        header nav {
+            overflow-x: auto; /* 메뉴 탭 부분만 가로 스크롤 허용 */
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* 파이어폭스 스크롤바 제거 */
         }
-        .footer-sns { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; align-items: center; }
-        .x-logo-img { height: 24px !important; width: auto !important; filter: invert(1); transition: 0.3s; }
-        body.dark-mode .x-logo-img { filter: invert(0); }
-        .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
-        
-        .footer-email { margin-bottom: 15px; }
-        .footer-email a { text-decoration: none; color: var(--txt); opacity: 0.6; font-weight: 500; }
-        .footer-copyright { font-size: 0.85rem; opacity: 0.4; }
 
-        /* 다크모드 스위치 */
-        .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
-        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
-        input:checked + .slider { background: var(--accent); }
-        input:checked + .slider:before { transform: translateX(22px); }
-
-        @media (max-width: 900px) {
-            .docs-container { flex-direction: column; }
-            .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; }
-            .docs-content { padding: 40px 20px; }
+        header nav::-webkit-scrollbar {
+            display: none; /* 크롬, 사파리 스크롤바 제거 */
         }
-    </style>
+
+        .nav-links {
+            gap: 15px;
+            padding: 0 5px;
+        }
+
+        .nav-links a {
+            font-size: 14px !important;
+        }
+    }
+</style>
 </head>
 <body>
     <header>
         <div class="header-left">
             <a href="https://minyangtech.n-e.kr" class="logo-link">
-                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="Logo">
+                <!-- 이미지 경로 및 Alt 확인 -->
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="민양테크 로고">
             </a>
             <nav>
                 <ul class="nav-links">
