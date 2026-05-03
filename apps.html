@@ -260,6 +260,14 @@
 
             const contentHtml = marked.parse(app.description || "");
 
+            // AI 사용 안내 문구 생성 (is_ai가 true일 경우에만 생성)
+            const aiNoticeHtml = app.is_ai ? `
+                <div style="margin-top: 20px; padding: 15px; background: rgba(0, 123, 255, 0.05); border-radius: 12px; border-left: 4px solid var(--accent); font-size: 0.85rem; line-height: 1.6; opacity: 0.8;">
+                    <i class="fa-solid fa-robot" style="margin-right: 5px; color: var(--accent);"></i>
+                    본 애플리케이션은 <strong>「인공지능 산업 육성 및 신뢰 기반 조성 등에 관한 기본법」</strong>에 의거하여, 제작 과정에서 AI 기술이 활용되었음을 밝힙니다.
+                </div>
+            ` : '';
+
             document.getElementById('post-body').innerHTML = `
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
                     <h1 style="font-size:2.5rem; margin:0;">${app.name}</h1>
@@ -284,6 +292,8 @@
                         <a href="${app.download_url}" class="download-btn" target="_blank">
                             <i class="fa-solid fa-download"></i> 다운로드
                         </a>
+                        <!-- 다운로드 버튼 바로 밑에 AI 안내 문구 삽입 -->
+                        ${aiNoticeHtml}
                     </div>
                 </div>
             `;

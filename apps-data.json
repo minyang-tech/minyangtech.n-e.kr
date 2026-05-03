@@ -12,7 +12,8 @@
     "rec_spec": "요구사항 없음",
     "is_opensource": false,
     "source_url": "https://minyangtech.n-e.kr/404",
-    "download_url": "https://minyangtech.n-e.kr/g/invite1"
+    "download_url": "https://minyangtech.n-e.kr/g/invite1",
+    "is_ai" : true
   },
   {
     "id": 2,
@@ -27,6 +28,7 @@
     "rec_spec": "CPU: i5이상 \n RAM : 8GB \n SSD 필수",
     "is_opensource": true,
     "source_url": "https://github.com/minyang-tech/quote-markdown",
-    "download_url": "https://github.com/minyang-tech/quote-markdown/releases/download/release/MarkQuote.Setup.1.0.0.exe"
+    "download_url": "https://github.com/minyang-tech/quote-markdown/releases/download/release/MarkQuote.Setup.1.0.0.exe",
+    "is_ai" : true
   }
 ]
