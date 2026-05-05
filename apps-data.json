@@ -30,5 +30,21 @@
     "source_url": "https://github.com/minyang-tech/quote-markdown",
     "download_url": "https://github.com/minyang-tech/quote-markdown/releases/download/release/MarkQuote.Setup.1.0.0.exe",
     "is_ai" : true
+  },
+  {
+    "id": 3,
+    "name": "IXO Engie",
+    "category": "Apps",
+    "short_desc": "코딩없이 노드로만 앱 빌드하기",
+    "description": "**다운로드 버튼 클릭시 바로 다운로드됩니다** \n ## 코딩 없이 노드로만 앱 빌드가 가능한 앱 \n TMI : Naver Connected",
+    "image": "https://github.com/minyang-tech/IXO-Engine/blob/main/IXO%20ENGINE%20START.png?raw=true",
+    "release_date": "2026-05-20",
+    "platform": "Windows",
+    "min_spec": "Windows 10 64-bit / Ubuntu 20.04급 Linux / macOS 11 이상 \nRAM 4GB \n 듀얼코어 CPU \n 여유 저장공간 500MB 이상",
+    "rec_spec": "Windows 11 / Ubuntu 22.04 또는 24.04 / macOS 13 이상 \n RAM 8GB 이상 \n4코어 이상 CPU \n여유 저장공간 1GB 이상",
+    "is_opensource": true,
+    "source_url": "https://github.com/minyang-tech/IXO-Engine/",
+    "download_url": "https://github.com/minyang-tech/IXO-Engine/releases/download/beta/IXO.Engine.Setup.1.0.0.exe",
+    "is_ai" : true
   }
 ]
