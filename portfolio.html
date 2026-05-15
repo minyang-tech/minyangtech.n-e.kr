@@ -124,6 +124,26 @@
         .news-header { text-align: center; margin-bottom: 40px; }
         .news-header h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
         .news-list { display: flex; flex-direction: column; gap: 30px; }
+        .author-group { display: flex; flex-direction: column; gap: 18px; }
+        .author-group + .author-group { margin-top: 18px; }
+        .author-group-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--brd);
+        }
+        .author-group-header img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--brd);
+            background: #eee;
+        }
+        .author-group-name { font-size: 1.15rem; font-weight: 800; }
+        .author-group-link { font-size: 0.85rem; opacity: 0.6; margin-top: 2px; }
+        .author-group-items { display: flex; flex-direction: column; gap: 30px; }
         .news-card {
             display: flex;
             background: var(--card-bg);
@@ -252,7 +272,8 @@
     </footer>
 
     <script>
-        const defaultCover = 'https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png';
+        const defaultAvatar = 'https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png';
+        const placeholderCover = 'image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png';
         let portfolioData = [];
         const toggle = document.getElementById('dark-mode-toggle');
         const searchInput = document.getElementById('portfolio-search');
@@ -281,8 +302,12 @@
             return match ? `https://www.youtube.com/embed/${match[1]}` : '';
         }
 
+        function hasValue(value) {
+            return value !== undefined && value !== null && String(value).trim() !== '' && String(value).trim() !== '--';
+        }
+
         function renderAsset(asset) {
-            if (!asset || !asset.type || !asset.src) return '';
+            if (!asset || !hasValue(asset.type) || !hasValue(asset.src)) return '';
 
             if (asset.type === 'image') {
                 return `<div class="post-media-container"><div class="post-hero-img" style="background-image: url('${asset.src}')"></div></div>`;
@@ -301,10 +326,10 @@
             }
 
             if (asset.type === 'file') {
-                const label = asset.title || asset.src.split('/').pop();
+                const label = hasValue(asset.title) ? asset.title : asset.src.split('/').pop();
                 return `<a class="asset-file" href="${asset.src}" target="_blank" rel="noopener">
                     <i class="fa-solid fa-paperclip"></i>
-                    <span>${label}<small>${asset.description || '파일 열기'}</small></span>
+                    <span>${label}<small>${hasValue(asset.description) ? asset.description : '파일 열기'}</small></span>
                 </a>`;
             }
 
@@ -312,8 +337,9 @@
         }
 
         function renderAssets(assets = []) {
-            const mediaHtml = assets.filter(asset => asset.type !== 'file').map(renderAsset).join('');
-            const fileHtml = assets.filter(asset => asset.type === 'file').map(renderAsset).join('');
+            const validAssets = assets.filter(asset => hasValue(asset?.type) && hasValue(asset?.src));
+            const mediaHtml = validAssets.filter(asset => asset.type !== 'file').map(renderAsset).join('');
+            const fileHtml = validAssets.filter(asset => asset.type === 'file').map(renderAsset).join('');
             return `${mediaHtml}${fileHtml ? `<div class="asset-list">${fileHtml}</div>` : ''}`;
         }
 
@@ -331,7 +357,7 @@
 
             marked.setOptions({ breaks: true, gfm: true });
             const htmlContent = marked.parse(post.content_ko || '');
-            const hasLink = post.author_link && post.author_link !== '#';
+            const hasLink = hasValue(post.author_link) && post.author_link !== '#';
             const authorClickAttr = hasLink ? `onclick="goToAuthor('${post.author_link}')"` : '';
             const authorClass = hasLink ? 'post-author clickable' : 'post-author';
 
@@ -344,8 +370,8 @@
                     </button>
                 </div>
                 <div class="${authorClass}" ${authorClickAttr}>
-                    <img src="${post.author_img || defaultCover}" class="author-img" alt="Author">
-                    <span class="author-name">${post.author_name || '민양테크'}</span>
+                    <img src="${hasValue(post.author_img) ? post.author_img : defaultAvatar}" class="author-img" alt="Author">
+                    <span class="author-name">${hasValue(post.author_name) ? post.author_name : '민양테크'}</span>
                 </div>
                 ${renderAssets(post.assets)}
                 <div class="post-content">${htmlContent}</div>
@@ -370,13 +396,39 @@
             const feed = document.getElementById('portfolio-feed');
             feed.innerHTML = data.length ? '' : "<p style='text-align:center; padding:50px; opacity:0.5;'>등록된 포트폴리오가 없습니다.</p>";
 
-            data.forEach(item => {
+            if (!data.length) return;
+
+            const grouped = data.reduce((groups, item) => {
+                const key = hasValue(item.author_link) ? item.author_link : (hasValue(item.author_name) ? item.author_name : 'unknown');
+                if (!groups.has(key)) groups.set(key, []);
+                groups.get(key).push(item);
+                return groups;
+            }, new Map());
+
+            grouped.forEach(items => {
+                const author = items[0];
+                const group = document.createElement('section');
+                group.className = 'author-group';
+                group.innerHTML = `
+                    <div class="author-group-header">
+                        <img src="${hasValue(author.author_img) ? author.author_img : defaultAvatar}" alt="">
+                        <div>
+                            <div class="author-group-name">${hasValue(author.author_name) ? author.author_name : '민양테크'}</div>
+                            <div class="author-group-link">${hasValue(author.author_link) ? author.author_link : ''}</div>
+                        </div>
+                    </div>
+                    <div class="author-group-items"></div>
+                `;
+
+                const itemContainer = group.querySelector('.author-group-items');
+                items.forEach(item => {
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = marked.parse(item.content_ko || '');
                 const plainText = tempDiv.textContent || '';
-                const cover = item.cover || item.assets?.find(asset => asset.type === 'image')?.src || defaultCover;
+                const imageAsset = item.assets?.find(asset => asset.type === 'image' && hasValue(asset.src));
+                const cover = hasValue(item.cover) ? item.cover : (imageAsset?.src || placeholderCover);
 
-                feed.innerHTML += `
+                    itemContainer.innerHTML += `
                     <div class="news-card" onclick="showPost(${item.id})">
                         <div class="news-img" style="background-image: url('${cover}')"></div>
                         <div class="news-info">
@@ -386,6 +438,9 @@
                         </div>
                     </div>
                 `;
+                });
+
+                feed.appendChild(group);
             });
         }
 

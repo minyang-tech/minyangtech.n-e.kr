@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/common.css">
     <link rel="stylesheet" href="/assets/css/header-unified.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         /* --- 변수 및 기본 스타일 통일 --- */
         :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
@@ -58,6 +59,13 @@
         .node-table th, .node-table td { padding: 15px; border-bottom: 1px solid var(--brd); text-align: left; }
         .node-table th { background: rgba(62, 207, 142, 0.05); color: var(--accent); font-weight: 700; }
         .node-table td strong { color: var(--accent); }
+        .reference-content h1 { font-size: 2rem; margin-top: 42px; }
+        .reference-content h2 { font-size: 1.5rem; margin-top: 32px; }
+        .reference-content table { width: 100%; border-collapse: collapse; margin: 18px 0 28px; font-size: 0.95rem; }
+        .reference-content th, .reference-content td { padding: 12px 14px; border-bottom: 1px solid var(--brd); text-align: left; vertical-align: top; }
+        .reference-content th { background: rgba(62, 207, 142, 0.05); color: var(--accent); font-weight: 700; }
+        .reference-content code { background: rgba(0, 123, 255, 0.08); padding: 2px 6px; border-radius: 6px; }
+        .reference-content hr { border: 0; border-top: 1px solid var(--brd); margin: 34px 0; }
 
         /* --- Footer --- */
         footer {
@@ -123,33 +131,9 @@
             
             <div class="docs-body">
                 <section>
-                    <h2>핵심 노드 목록</h2>
-                    <p>IXO Engine에서 사용 가능한 주요 노드들의 기능 요약입니다.</p>
-                    
-                    <table class="node-table">
-                        <thead>
-                            <tr>
-                                <th>노드 이름</th>
-                                <th>설명</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><strong>Add Text</strong></td><td>화면에 텍스트를 출력하는 기본 노드입니다.</td></tr>
-                            <tr><td><strong>Add Image</strong></td><td>이미지 경로 또는 URL을 통해 이미지를 렌더링합니다.</td></tr>
-                            <tr><td><strong>Input Field</strong></td><td>사용자의 입력을 받아 변수로 저장 및 전달합니다.</td></tr>
-                            <tr><td><strong>If / Else</strong></td><td>조건식 결과에 따라 실행 흐름을 두 갈래로 분기합니다.</td></tr>
-                            <tr><td><strong>Loop</strong></td><td>반복적인 로직 실행을 제어합니다.</td></tr>
-                            <tr><td><strong>Wait</strong></td><td>지정한 밀리초(ms)만큼 지연 후 다음 노드를 실행합니다.</td></tr>
-                            <tr><td><strong>Switch</strong></td><td>여러 케이스 중 조건에 일치하는 분기로 점프합니다.</td></tr>
-                            <tr><td><strong>HTTP Request</strong></td><td>외부 API 호출을 통해 데이터를 주고받습니다.</td></tr>
-                            <tr><td><strong>String Join</strong></td><td>여러 문자열을 결합하여 새로운 문장을 만듭니다.</td></tr>
-                            <tr><td><strong>Math Operator</strong></td><td>사칙연산 및 복잡한 수식을 처리합니다.</td></tr>
-                            <tr><td><strong>Script</strong></td><td>사용자 정의 JS 코드를 통해 커스텀 로직을 작성합니다.</td></tr>
-                            <tr><td><strong>System Info</strong></td><td>실행 환경에 대한 정보를 데이터로 생성합니다.</td></tr>
-                            <tr><td><strong>Audio Player</strong></td><td>오디오 재생을 제어하는 트리거 노드입니다.</td></tr>
-                            <tr><td><strong>File Watcher</strong></td><td>특정 파일의 변경을 감지하여 이벤트를 발생시킵니다.</td></tr>
-                        </tbody>
-                    </table>
+                    <h2>노드 상세 문서</h2>
+                    <p>현재 런타임 구현 기준의 노드 동작, 상태, 예시를 정리한 레퍼런스입니다.</p>
+                    <div class="reference-content" id="node-reference-target"></div>
                 </section>
             </div>
         </article>
@@ -195,6 +179,18 @@
             }
         }
 
+        async function loadNodeReference() {
+            const target = document.getElementById('node-reference-target');
+            try {
+                const response = await fetch('nodes-reference.md');
+                if (!response.ok) throw new Error('Node reference not found');
+                marked.setOptions({ breaks: true, gfm: true });
+                target.innerHTML = marked.parse(await response.text());
+            } catch (error) {
+                target.innerHTML = "<p style='opacity:0.5;'>노드 문서를 불러오지 못했습니다.</p>";
+            }
+        }
+
         document.getElementById('dark-mode-toggle').addEventListener('change', () => {
             const isDark = document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
@@ -202,6 +198,7 @@
 
         window.onload = () => {
             loadSidebar();
+            loadNodeReference();
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.body.classList.add('dark-mode');
                 document.getElementById('dark-mode-toggle').checked = true;
