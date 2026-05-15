@@ -9,10 +9,10 @@
   "cover": "(../image/민양테크 바탕화면.png",
   "content_ko": "민양테크 웹사이트를 제작하였음. \n 해당 웹사이트는 github pages를 통해 정적 호스팅됨. \n 제작자는 [@whoasked](../@whoasked)로, 제작 과정 중, [@getsystemmetrics](../@getsystemmetrics)도 지금은 삭제되어 사라진 뉴스 글에 좋아요 남기기 등 일부기능의 오류 수정을 하는데 일부 참여함.",
   "assets": [
-    { "type": "image", "src": "이미지 URL" },
-    { "type": "video", "src": "mp4 또는 YouTube URL" },
-    { "type": "embed", "src": "임베드 URL" },
-    { "type": "file", "src": "파일 URL", "title": "파일명", "description": "설명" }
+    { "type": "image", "src": "--" },
+    { "type": "video", "src": "--" },
+    { "type": "embed", "src": "--" },
+    { "type": "file", "src": "--", "title": "--", "description": "--" }
   ]
 }
 ]
