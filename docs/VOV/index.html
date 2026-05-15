@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>벨리오벨리 | 민양테크 Docs</title>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
     <link rel="stylesheet" href="/common.css">
     <link rel="stylesheet" href="/assets/css/header-unified.css">
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.3.1/dist/purify.min.js" integrity="sha384-80VlBZnyAwkkqtSfg5NhPyZff6nU4K/qniLBL8Jnm4KDv6jZhLiYtJbhglg/i9ww" crossorigin="anonymous"></script>
+    <script src="/assets/js/security.js"></script>
     <style>
     /* --- 통합 헤더 스타일 (Docs 레이아웃 최적화) --- */
     header {
@@ -197,12 +199,8 @@
         async function loadSidebar() {
             const target = document.getElementById('sidebar-target');
             try {
-                // 상위 폴더의 nav.html을 불러옵니다.
-                const response = await fetch('../nav.html'); 
-                if (!response.ok) throw new Error('Sidebar not found');
-                
-                const data = await response.text();
-                target.innerHTML = data;
+                const data = await SiteSecurity.secureFetchText('../nav.html', 'c98380912ab25dbfd8232fdaeed72ed30156bc6f88e7d7796139a8a918b3f0f6');
+                SiteSecurity.setSanitizedHtml(target, data);
 
                 const links = target.querySelectorAll('a');
                 const currentPath = window.location.pathname;
@@ -215,7 +213,7 @@
                     }
                 });
             } catch (error) {
-                target.innerHTML = "<p style='opacity:0.5; padding:20px;'>메뉴를 불러오지 못했습니다.</p>";
+                SiteSecurity.appendTextMessage(target, '메뉴를 불러오지 못했습니다.');
             }
         }
 

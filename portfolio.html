@@ -11,10 +11,12 @@
     <meta property="og:url" content="https://minyangtech.n-e.kr/portfolio">
     <meta property="og:type" content="website">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
     <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="assets/css/header-unified.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" integrity="sha384-948ahk4ZmxYVYOc+rxN1H2gM1EJ2Duhp7uHtZ4WSLkV4Vtx5MUqnV+l7u9B+jFv+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.3.1/dist/purify.min.js" integrity="sha384-80VlBZnyAwkkqtSfg5NhPyZff6nU4K/qniLBL8Jnm4KDv6jZhLiYtJbhglg/i9ww" crossorigin="anonymous"></script>
+    <script src="assets/js/security.js"></script>
 
     <style>
         :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
@@ -288,12 +290,11 @@
 
         async function fetchPortfolio() {
             try {
-                const response = await fetch('portfolio.json');
-                portfolioData = await response.json();
+                portfolioData = await SiteSecurity.secureFetchJson('portfolio.json', 'c7ea879bf236678e4f7c8bb1cdb59ed4f1cebe90ecc6905d5c059d7730338aaf');
                 checkUrlParam();
             } catch (error) {
                 console.error('Load Error:', error);
-                document.getElementById('portfolio-feed').innerHTML = "<p style='text-align:center; opacity:0.5;'>데이터를 불러올 수 없습니다.</p>";
+                SiteSecurity.appendTextMessage(document.getElementById('portfolio-feed'), '데이터를 불러올 수 없습니다.');
             }
         }
 
@@ -307,44 +308,87 @@
         }
 
         function renderAsset(asset) {
-            if (!asset || !hasValue(asset.type) || !hasValue(asset.src)) return '';
-
+            if (!asset || !hasValue(asset.type) || !hasValue(asset.src)) return null;
+            const src = SiteSecurity.safeUrl(asset.src);
+            if (!src) return null;
             if (asset.type === 'image') {
-                return `<div class="post-media-container"><div class="post-hero-img" style="background-image: url('${asset.src}')"></div></div>`;
+                const container = document.createElement('div');
+                container.className = 'post-media-container';
+                const image = document.createElement('div');
+                image.className = 'post-hero-img';
+                image.style.backgroundImage = `url("${src}")`;
+                container.appendChild(image);
+                return container;
             }
-
             if (asset.type === 'video') {
-                const youtubeUrl = renderYoutube(asset.src);
+                const container = document.createElement('div');
+                container.className = 'post-media-container';
+                const youtubeUrl = renderYoutube(src);
                 if (youtubeUrl) {
-                    return `<div class="post-media-container"><iframe class="post-video" src="${youtubeUrl}" allowfullscreen></iframe></div>`;
+                    const iframe = document.createElement('iframe');
+                    iframe.className = 'post-video';
+                    iframe.src = youtubeUrl;
+                    iframe.allowFullscreen = true;
+                    container.appendChild(iframe);
+                    return container;
                 }
-                return `<div class="post-media-container"><video class="post-video" controls${asset.poster ? ` poster="${asset.poster}"` : ''}><source src="${asset.src}"></video></div>`;
+                const video = document.createElement('video');
+                video.className = 'post-video';
+                video.controls = true;
+                const poster = SiteSecurity.safeUrl(asset.poster);
+                if (poster) video.poster = poster;
+                const source = document.createElement('source');
+                source.src = src;
+                video.appendChild(source);
+                container.appendChild(video);
+                return container;
             }
-
             if (asset.type === 'embed') {
-                return `<div class="post-media-container"><iframe class="post-embed" src="${asset.src}" loading="lazy" allowfullscreen></iframe></div>`;
+                const container = document.createElement('div');
+                container.className = 'post-media-container';
+                const iframe = document.createElement('iframe');
+                iframe.className = 'post-embed';
+                iframe.src = src;
+                iframe.loading = 'lazy';
+                iframe.allowFullscreen = true;
+                container.appendChild(iframe);
+                return container;
             }
-
             if (asset.type === 'file') {
-                const label = hasValue(asset.title) ? asset.title : asset.src.split('/').pop();
-                return `<a class="asset-file" href="${asset.src}" target="_blank" rel="noopener">
-                    <i class="fa-solid fa-paperclip"></i>
-                    <span>${label}<small>${hasValue(asset.description) ? asset.description : '파일 열기'}</small></span>
-                </a>`;
+                const link = document.createElement('a');
+                link.className = 'asset-file';
+                link.href = src;
+                link.target = '_blank';
+                link.rel = 'noopener';
+                const icon = document.createElement('i');
+                icon.className = 'fa-solid fa-paperclip';
+                const text = document.createElement('span');
+                text.textContent = hasValue(asset.title) ? asset.title : src.split('/').pop();
+                const small = document.createElement('small');
+                small.textContent = hasValue(asset.description) ? asset.description : '파일 열기';
+                text.appendChild(small);
+                link.append(icon, text);
+                return link;
             }
-
-            return '';
+            return null;
         }
 
         function renderAssets(assets = []) {
             const validAssets = assets.filter(asset => hasValue(asset?.type) && hasValue(asset?.src));
-            const mediaHtml = validAssets.filter(asset => asset.type !== 'file').map(renderAsset).join('');
-            const fileHtml = validAssets.filter(asset => asset.type === 'file').map(renderAsset).join('');
-            return `${mediaHtml}${fileHtml ? `<div class="asset-list">${fileHtml}</div>` : ''}`;
+            const nodes = validAssets.filter(asset => asset.type !== 'file').map(renderAsset).filter(Boolean);
+            const files = validAssets.filter(asset => asset.type === 'file').map(renderAsset).filter(Boolean);
+            if (files.length) {
+                const list = document.createElement('div');
+                list.className = 'asset-list';
+                list.append(...files);
+                nodes.push(list);
+            }
+            return nodes;
         }
 
         function goToAuthor(url) {
-            if (url && url !== '#') window.open(url, '_blank');
+            const safeUrl = SiteSecurity.safeUrl(url);
+            if (safeUrl) window.open(safeUrl, '_blank', 'noopener');
         }
 
         function showPost(id) {
@@ -355,27 +399,42 @@
             document.getElementById('post-view').style.display = 'block';
             window.scrollTo(0, 0);
 
-            marked.setOptions({ breaks: true, gfm: true });
-            const htmlContent = marked.parse(post.content_ko || '');
             const hasLink = hasValue(post.author_link) && post.author_link !== '#';
-            const authorClickAttr = hasLink ? `onclick="goToAuthor('${post.author_link}')"` : '';
             const authorClass = hasLink ? 'post-author clickable' : 'post-author';
-
-            document.getElementById('post-body').innerHTML = `
-                <div class="news-date" style="color:var(--accent); font-weight:600; margin-bottom:10px;">${post.date || ''}</div>
-                <div style="display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:15px;">
-                    <h1 class="post-full-title" style="margin:0;">${post.title_ko || ''}</h1>
-                    <button onclick="sharePost()" style="border:none; background:var(--accent); color:#fff; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600;">
-                        <i class="fa-solid fa-share"></i>
-                    </button>
-                </div>
-                <div class="${authorClass}" ${authorClickAttr}>
-                    <img src="${hasValue(post.author_img) ? post.author_img : defaultAvatar}" class="author-img" alt="Author">
-                    <span class="author-name">${hasValue(post.author_name) ? post.author_name : '민양테크'}</span>
-                </div>
-                ${renderAssets(post.assets)}
-                <div class="post-content">${htmlContent}</div>
-            `;
+            const body = document.getElementById('post-body');
+            body.replaceChildren();
+            const date = document.createElement('div');
+            date.className = 'news-date';
+            date.textContent = post.date || '';
+            const titleRow = document.createElement('div');
+            titleRow.style.cssText = 'display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:15px;';
+            const title = document.createElement('h1');
+            title.className = 'post-full-title';
+            title.style.margin = '0';
+            title.textContent = post.title_ko || '';
+            const share = document.createElement('button');
+            share.type = 'button';
+            share.style.cssText = 'border:none; background:var(--accent); color:#fff; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600;';
+            share.addEventListener('click', sharePost);
+            const icon = document.createElement('i');
+            icon.className = 'fa-solid fa-share';
+            share.appendChild(icon);
+            titleRow.append(title, share);
+            const author = document.createElement('div');
+            author.className = authorClass;
+            if (hasLink) author.addEventListener('click', () => goToAuthor(post.author_link));
+            const authorImg = document.createElement('img');
+            authorImg.className = 'author-img';
+            authorImg.alt = 'Author';
+            authorImg.src = SiteSecurity.safeUrl(hasValue(post.author_img) ? post.author_img : defaultAvatar);
+            const authorName = document.createElement('span');
+            authorName.className = 'author-name';
+            authorName.textContent = hasValue(post.author_name) ? post.author_name : '민양테크';
+            author.append(authorImg, authorName);
+            const content = document.createElement('div');
+            content.className = 'post-content';
+            SiteSecurity.setMarkdown(content, post.content_ko || '');
+            body.append(date, titleRow, author, ...renderAssets(post.assets), content);
 
             if (!window.location.search.includes(`id=${id}`)) history.pushState(null, '', `?id=${id}`);
         }
@@ -394,9 +453,11 @@
 
         function renderPortfolio(data) {
             const feed = document.getElementById('portfolio-feed');
-            feed.innerHTML = data.length ? '' : "<p style='text-align:center; padding:50px; opacity:0.5;'>등록된 포트폴리오가 없습니다.</p>";
-
-            if (!data.length) return;
+            feed.replaceChildren();
+            if (!data.length) {
+                SiteSecurity.appendTextMessage(feed, '등록된 포트폴리오가 없습니다.');
+                return;
+            }
 
             const grouped = data.reduce((groups, item) => {
                 const key = hasValue(item.author_link) ? item.author_link : (hasValue(item.author_name) ? item.author_name : 'unknown');
@@ -409,35 +470,50 @@
                 const author = items[0];
                 const group = document.createElement('section');
                 group.className = 'author-group';
-                group.innerHTML = `
-                    <div class="author-group-header">
-                        <img src="${hasValue(author.author_img) ? author.author_img : defaultAvatar}" alt="">
-                        <div>
-                            <div class="author-group-name">${hasValue(author.author_name) ? author.author_name : '민양테크'}</div>
-                            <div class="author-group-link">${hasValue(author.author_link) ? author.author_link : ''}</div>
-                        </div>
-                    </div>
-                    <div class="author-group-items"></div>
-                `;
-
-                const itemContainer = group.querySelector('.author-group-items');
+                const header = document.createElement('div');
+                header.className = 'author-group-header';
+                const authorImg = document.createElement('img');
+                authorImg.src = SiteSecurity.safeUrl(hasValue(author.author_img) ? author.author_img : defaultAvatar);
+                const meta = document.createElement('div');
+                const name = document.createElement('div');
+                name.className = 'author-group-name';
+                name.textContent = hasValue(author.author_name) ? author.author_name : '민양테크';
+                const link = document.createElement('div');
+                link.className = 'author-group-link';
+                link.textContent = hasValue(author.author_link) ? author.author_link : '';
+                meta.append(name, link);
+                header.append(authorImg, meta);
+                const itemContainer = document.createElement('div');
+                itemContainer.className = 'author-group-items';
+                group.append(header, itemContainer);
                 items.forEach(item => {
                 const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = marked.parse(item.content_ko || '');
+                SiteSecurity.setMarkdown(tempDiv, item.content_ko || '');
                 const plainText = tempDiv.textContent || '';
                 const imageAsset = item.assets?.find(asset => asset.type === 'image' && hasValue(asset.src));
                 const cover = hasValue(item.cover) ? item.cover : (imageAsset?.src || placeholderCover);
 
-                    itemContainer.innerHTML += `
-                    <div class="news-card" onclick="showPost(${item.id})">
-                        <div class="news-img" style="background-image: url('${cover}')"></div>
-                        <div class="news-info">
-                            <span class="news-date">${item.date || ''}</span>
-                            <h2 class="news-title" style="margin:10px 0;">${item.title_ko || ''}</h2>
-                            <p class="news-excerpt">${plainText.substring(0, 140)}${plainText.length > 140 ? '...' : ''}</p>
-                        </div>
-                    </div>
-                `;
+                    const card = document.createElement('div');
+                    card.className = 'news-card';
+                    card.addEventListener('click', () => showPost(item.id));
+                    const image = document.createElement('div');
+                    image.className = 'news-img';
+                    image.style.backgroundImage = `url("${SiteSecurity.safeUrl(cover)}")`;
+                    const info = document.createElement('div');
+                    info.className = 'news-info';
+                    const date = document.createElement('span');
+                    date.className = 'news-date';
+                    date.textContent = item.date || '';
+                    const title = document.createElement('h2');
+                    title.className = 'news-title';
+                    title.style.margin = '10px 0';
+                    title.textContent = item.title_ko || '';
+                    const excerpt = document.createElement('p');
+                    excerpt.className = 'news-excerpt';
+                    excerpt.textContent = `${plainText.substring(0, 140)}${plainText.length > 140 ? '...' : ''}`;
+                    info.append(date, title, excerpt);
+                    card.append(image, info);
+                    itemContainer.appendChild(card);
                 });
 
                 feed.appendChild(group);

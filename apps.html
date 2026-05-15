@@ -11,10 +11,12 @@
     <meta property="og:url" content="https://minyangtech.n-e.kr/apps">
     <meta property="og:type" content="website">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
     <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="assets/css/header-unified.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" integrity="sha384-948ahk4ZmxYVYOc+rxN1H2gM1EJ2Duhp7uHtZ4WSLkV4Vtx5MUqnV+l7u9B+jFv+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.3.1/dist/purify.min.js" integrity="sha384-80VlBZnyAwkkqtSfg5NhPyZff6nU4K/qniLBL8Jnm4KDv6jZhLiYtJbhglg/i9ww" crossorigin="anonymous"></script>
+    <script src="assets/js/security.js"></script>
 
     <style>
         :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
@@ -197,12 +199,11 @@
 
         async function fetchApps() {
             try {
-                const response = await fetch('../apps-data.json');
-                appData = await response.json();
+                appData = await SiteSecurity.secureFetchJson('apps-data.json', 'a294e2e6e519cc6dc2c3292d7329a9557496a6896c660fbb5bd4ea499d69f165');
                 checkUrlParam();
             } catch (error) {
                 console.error("Load Error:", error);
-                document.getElementById('app-feed').innerHTML = "<p>데이터를 불러올 수 없습니다.</p>";
+                SiteSecurity.appendTextMessage(document.getElementById('app-feed'), '데이터를 불러올 수 없습니다.');
             }
         }
 
@@ -235,19 +236,33 @@
 
         function renderAppList(data) {
             const feed = document.getElementById('app-feed');
-            feed.innerHTML = data.length ? '' : "<p style='text-align:center; grid-column: 1/-1; padding: 50px; opacity:0.5;'>검색 결과가 없습니다.</p>";
+            feed.replaceChildren();
+            if (!data.length) {
+                SiteSecurity.appendTextMessage(feed, '검색 결과가 없습니다.');
+                return;
+            }
             
             data.forEach(app => {
-                feed.innerHTML += `
-                    <div class="app-card" onclick="showApp(${app.id})">
-                        <div class="app-card-img" style="background-image: url('${app.image}')"></div>
-                        <div class="app-card-info">
-                            <span class="app-card-tag">${app.category}</span>
-                            <h2 class="app-card-title">${app.name}</h2>
-                            <p style="opacity:0.7; font-size:0.9rem;">${app.short_desc}</p>
-                        </div>
-                    </div>
-                `;
+                const card = document.createElement('div');
+                card.className = 'app-card';
+                card.addEventListener('click', () => showApp(app.id));
+                const image = document.createElement('div');
+                image.className = 'app-card-img';
+                image.style.backgroundImage = `url("${SiteSecurity.safeUrl(app.image)}")`;
+                const info = document.createElement('div');
+                info.className = 'app-card-info';
+                const tag = document.createElement('span');
+                tag.className = 'app-card-tag';
+                tag.textContent = app.category || '';
+                const title = document.createElement('h2');
+                title.className = 'app-card-title';
+                title.textContent = app.name || '';
+                const desc = document.createElement('p');
+                desc.style.cssText = 'opacity:0.7; font-size:0.9rem;';
+                desc.textContent = app.short_desc || '';
+                info.append(tag, title, desc);
+                card.append(image, info);
+                feed.appendChild(card);
             });
         }
 
@@ -259,45 +274,79 @@
             document.getElementById('post-view').style.display = 'block';
             window.scrollTo(0,0);
 
-            const contentHtml = marked.parse(app.description || "");
-
-            // AI 사용 안내 문구 생성 (is_ai가 true일 경우에만 생성)
-            const aiNoticeHtml = app.is_ai ? `
-                <div style="margin-top: 20px; padding: 15px; background: rgba(0, 123, 255, 0.05); border-radius: 12px; border-left: 4px solid var(--accent); font-size: 0.85rem; line-height: 1.6; opacity: 0.8;">
-                    <i class="fa-solid fa-robot" style="margin-right: 5px; color: var(--accent);"></i>
-                    본 애플리케이션은 <strong>「인공지능 산업 육성 및 신뢰 기반 조성 등에 관한 기본법」</strong>에 의거하여, 제작 과정에서 AI 기술이 활용되었음을 밝힙니다.
-                </div>
-            ` : '';
-
-            document.getElementById('post-body').innerHTML = `
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
-                    <h1 style="font-size:2.5rem; margin:0;">${app.name}</h1>
-                    <button onclick="shareApp()" style="border:none; background:var(--accent); color:#fff; padding:12px 16px; border-radius:12px; cursor:pointer;">
-                        <i class="fa-solid fa-share"></i>
-                    </button>
-                </div>
-                <div class="app-detail-wrapper">
-                    <div class="app-detail-left">
-                        <img src="${app.image}" class="app-main-img">
-                        <div style="margin-top:20px;">${contentHtml}</div>
-                    </div>
-                    <div class="app-detail-right">
-                        <table class="app-spec-table">
-                            <tr><th>출시일</th><td>${app.release_date}</td></tr>
-                            <tr><th>플랫폼</th><td>${app.platform}</td></tr>
-                            <tr><th>최소 사양</th><td>${app.min_spec}</td></tr>
-                            <tr><th>권장 사양</th><td>${app.rec_spec}</td></tr>
-                            <tr><th>오픈소스</th><td>${app.is_opensource ? '공개' : '비공개'}</td></tr>
-                            ${app.source_url ? `<tr><th>소스코드</th><td><a href="${app.source_url}" target="_blank" style="color:var(--accent)">GitHub 바로가기</a></td></tr>` : ''}
-                        </table>
-                        <a href="${app.download_url}" class="download-btn" target="_blank">
-                            <i class="fa-solid fa-download"></i> 다운로드
-                        </a>
-                        <!-- 다운로드 버튼 바로 밑에 AI 안내 문구 삽입 -->
-                        ${aiNoticeHtml}
-                    </div>
-                </div>
-            `;
+            const body = document.getElementById('post-body');
+            body.replaceChildren();
+            const top = document.createElement('div');
+            top.style.cssText = 'display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;';
+            const title = document.createElement('h1');
+            title.style.cssText = 'font-size:2.5rem; margin:0;';
+            title.textContent = app.name || '';
+            const share = document.createElement('button');
+            share.type = 'button';
+            share.style.cssText = 'border:none; background:var(--accent); color:#fff; padding:12px 16px; border-radius:12px; cursor:pointer;';
+            share.addEventListener('click', shareApp);
+            const shareIcon = document.createElement('i');
+            shareIcon.className = 'fa-solid fa-share';
+            share.appendChild(shareIcon);
+            top.append(title, share);
+            const wrapper = document.createElement('div');
+            wrapper.className = 'app-detail-wrapper';
+            const left = document.createElement('div');
+            left.className = 'app-detail-left';
+            const image = document.createElement('img');
+            image.className = 'app-main-img';
+            image.src = SiteSecurity.safeUrl(app.image);
+            const markdown = document.createElement('div');
+            markdown.style.marginTop = '20px';
+            SiteSecurity.setMarkdown(markdown, app.description || '');
+            left.append(image, markdown);
+            const right = document.createElement('div');
+            right.className = 'app-detail-right';
+            const table = document.createElement('table');
+            table.className = 'app-spec-table';
+            [
+                ['출시일', app.release_date],
+                ['플랫폼', app.platform],
+                ['최소 사양', app.min_spec],
+                ['권장 사양', app.rec_spec],
+                ['오픈소스', app.is_opensource ? '공개' : '비공개']
+            ].forEach(([label, value]) => {
+                const row = table.insertRow();
+                const th = document.createElement('th');
+                th.textContent = label;
+                const td = document.createElement('td');
+                td.textContent = value || '';
+                row.append(th, td);
+            });
+            if (SiteSecurity.safeUrl(app.source_url)) {
+                const row = table.insertRow();
+                const th = document.createElement('th');
+                th.textContent = '소스코드';
+                const td = document.createElement('td');
+                const link = document.createElement('a');
+                link.href = SiteSecurity.safeUrl(app.source_url);
+                link.target = '_blank';
+                link.rel = 'noopener';
+                link.style.color = 'var(--accent)';
+                link.textContent = 'GitHub 바로가기';
+                td.appendChild(link);
+                row.append(th, td);
+            }
+            const download = document.createElement('a');
+            download.className = 'download-btn';
+            download.target = '_blank';
+            download.rel = 'noopener';
+            download.href = SiteSecurity.safeUrl(app.download_url);
+            download.textContent = '다운로드';
+            right.append(table, download);
+            if (app.is_ai) {
+                const notice = document.createElement('div');
+                notice.style.cssText = 'margin-top:20px; padding:15px; background:rgba(0, 123, 255, 0.05); border-radius:12px; border-left:4px solid var(--accent); font-size:0.85rem; line-height:1.6; opacity:0.8;';
+                notice.textContent = '본 애플리케이션은 「인공지능 산업 육성 및 신뢰 기반 조성 등에 관한 기본법」에 의거하여, 제작 과정에서 AI 기술이 활용되었음을 밝힙니다.';
+                right.appendChild(notice);
+            }
+            wrapper.append(left, right);
+            body.append(top, wrapper);
             if(!window.location.search.includes(`id=${id}`)) {
                 history.pushState(null, '', `?id=${id}`);
             }
