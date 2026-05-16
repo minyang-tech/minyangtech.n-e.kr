@@ -1,7 +1,8 @@
 (function () {
     const allowedTags = [
         'a', 'p', 'em', 'strong', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-        'blockquote', 'code', 'pre', 'hr', 'br', 'img', 'table', 'thead', 'tbody', 'tr', 'th', 'td'
+        'blockquote', 'code', 'pre', 'hr', 'br', 'img', 'table', 'thead', 'tbody', 'tr', 'th', 'td',
+        'div', 'span', 'section'
     ];
     const allowedAttrs = ['href', 'title', 'src', 'alt', 'class', 'lang', 'dir'];
 
@@ -14,7 +15,9 @@
     }
 
     async function sha256Hex(text) {
-        const bytes = new TextEncoder().encode(text);
+        // Deployment may normalize CRLF to LF, so hash canonical text content instead of platform line endings.
+        const canonicalText = text.replace(/\r\n/g, '\n');
+        const bytes = new TextEncoder().encode(canonicalText);
         const digest = await crypto.subtle.digest('SHA-256', bytes);
         return Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
     }

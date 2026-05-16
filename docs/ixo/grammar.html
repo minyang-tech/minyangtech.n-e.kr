@@ -193,9 +193,9 @@
             try {
                 let data;
                 try {
-                    data = await SiteSecurity.secureFetchText('nav.html', 'c98380912ab25dbfd8232fdaeed72ed30156bc6f88e7d7796139a8a918b3f0f6');
+                    data = await SiteSecurity.secureFetchText('nav.html', '7264dbbdac80d6fa3555104c608c5e3ecc646b6d547ef71bd46e15daed52085a');
                 } catch {
-                    data = await SiteSecurity.secureFetchText('../nav.html', 'c98380912ab25dbfd8232fdaeed72ed30156bc6f88e7d7796139a8a918b3f0f6');
+                    data = await SiteSecurity.secureFetchText('../nav.html', '7264dbbdac80d6fa3555104c608c5e3ecc646b6d547ef71bd46e15daed52085a');
                 }
                 SiteSecurity.setSanitizedHtml(target, data);
 
