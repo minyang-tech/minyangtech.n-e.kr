@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
     <link rel="stylesheet" href="/common.css">
     <link rel="stylesheet" href="/assets/css/header-unified.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" integrity="sha384-948ahk4ZmxYVYOc+rxN1H2gM1EJ2Duhp7uHtZ4WSLkV4Vtx5MUqnV+l7u9B+jFv+" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.3.1/dist/purify.min.js" integrity="sha384-80VlBZnyAwkkqtSfg5NhPyZff6nU4K/qniLBL8Jnm4KDv6jZhLiYtJbhglg/i9ww" crossorigin="anonymous"></script>
     <script src="/assets/js/security.js"></script>
     <style>
@@ -59,6 +60,13 @@
         .info-list { list-style: none; padding: 0; margin: 20px 0; }
         .info-list li { margin-bottom: 12px; display: flex; align-items: center; }
         .info-list li strong { min-width: 120px; color: var(--accent); font-weight: 700; }
+        .reference-content h1 { font-size: 2rem; margin-top: 42px; }
+        .reference-content h2 { font-size: 1.5rem; margin-top: 32px; }
+        .reference-content table { width: 100%; border-collapse: collapse; margin: 18px 0 28px; font-size: 0.95rem; }
+        .reference-content th, .reference-content td { padding: 12px 14px; border-bottom: 1px solid var(--brd); text-align: left; vertical-align: top; }
+        .reference-content th { background: rgba(62, 207, 142, 0.05); color: var(--accent); font-weight: 700; }
+        .reference-content code { background: rgba(0, 123, 255, 0.08); padding: 2px 6px; border-radius: 6px; }
+        .reference-content hr { border: 0; border-top: 1px solid var(--brd); margin: 34px 0; }
 
         .status-badge {
             display: inline-block;
@@ -130,53 +138,11 @@
 
         <article class="docs-content">
             <h1>IXO Engine</h1>
-            <p class="subtitle">Visual Node-Based Game Engine</p>
+            <p class="subtitle">Visual Node-Based App Builder</p>
             <hr style="border:0; border-top:1px solid var(--brd); margin: 30px 0;">
             
             <div class="docs-body">
-                <section>
-                    <h2>소개</h2>
-                    <p>IXO Engine은 복잡한 텍스트 코딩 없이 노드 연결만으로 로직과 인터랙션을 설계할 수 있는 비주얼 프로그래밍 기반의 앱 제작 엔진입니다.</p>
-                    
-                    <ul class="info-list">
-                        <li><strong>엔진 명칭</strong> <span>IXO Engine (v1.0)</span></li>
-                        <li><strong>주요 기능</strong> <span>노드 에디터, 실시간 런타임 프리뷰, 변수 시스템</span></li>
-                        <li><strong>개발 언어</strong> <span>React, JavaScript (Web-based)</span></li>
-                        <li><strong>지원 플랫폼</strong> <span>Web Browsers, Desktop (via Electron)</span></li>
-                    </ul>
-
-                    <div class="status-badge">
-                        <i class="fa-solid fa-rocket" style="margin-right: 8px;"></i> 현재 안정화 및 기능 확장 단계에 있습니다.
-                    </div>
-                </section>
-
-                <section>
-                    <h2>핵심 특징</h2>
-                    <ul class="info-list">
-                        <li><strong>Intuitive Editor</strong> <span>드래그 앤 드롭 방식으로 직관적인 로직 설계가 가능합니다.</span></li>
-                        <li><strong>Template Engine</strong> <span>{{variable}} 문법을 통해 데이터 치환과 조건 평가를 지원합니다.</span></li>
-                        <li><strong>Extensibility</strong> <span>Script 노드를 사용하여 자신만의 커스텀 JS 로직을 추가할 수 있습니다.</span></li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>내보내기 방법</h2>
-                    <ul class="info-list">
-                        <li> IXO Engine에서 앱을 다 제작 후, .exe (리눅스 유저의 경우 다르게 나옵니다)로 내보내는법.</li>
-                        <li>1. 진행중인 파일을 저장합니다.</li>
-                        <li>2. 화면 좌측, [File]을 클릭합니다.</li>
-                        <li>3. Export 버튼을 클릭해주세요. </li>
-                        <li>4. 앱 아이콘과 앱 이름을 지정해주세요. </li>
-                        <li>5. 경로를 지정해주세요, 하지않을시 내보내기가 되지않습니다.</li>
-                        <li>6. 확장자를 지정해주세요. 가능한 확장자는 아래와 같습니다.</li>
-.exe (PC, Windows.) <br>
-.app (PC, Mac) <br>
-.apk (Mobile, Android etc.) <br>
-.ipa(Mobile, iPhone / Ipad etc.)
-
-                        <li>7. 내보내기 버튼을 눌러주세요.</li>
-                    </ul>
-                </section>
+                <div class="reference-content" id="main-reference-target"></div>
             </div>
         </article>
     </main>
@@ -226,6 +192,16 @@
             }
         }
 
+        async function loadMainReference() {
+            const target = document.getElementById('main-reference-target');
+            try {
+                const markdown = await SiteSecurity.secureFetchText('main.md', '243159a329d1ca92112544b01634d103ce7c94683d9c7286bd94a57643687f1f');
+                SiteSecurity.setMarkdown(target, markdown);
+            } catch (error) {
+                SiteSecurity.appendTextMessage(target, 'IXO Engine 문서를 불러오지 못했습니다.');
+            }
+        }
+
         function toggleDarkMode() {
             const isDark = document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
@@ -235,6 +211,7 @@
 
         window.onload = () => {
             loadSidebar();
+            loadMainReference();
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.body.classList.add('dark-mode');
                 const toggle = document.getElementById('dark-mode-toggle');
