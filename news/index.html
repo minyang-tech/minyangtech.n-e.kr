@@ -215,7 +215,7 @@
         // 뉴스 데이터 로드
         async function fetchNews() {
             try {
-                newsData = await SiteSecurity.secureFetchJson('../news-data.json', '16a0b4679d5d7fefdc0c8b58960860c62636c6b7f0c7b147b0b5dda66ef7d680');
+                newsData = await SiteSecurity.secureFetchJson('../news-data.json', 'a30d931834590efc3d1936afbde3066238ce7131af8dc56c98b1e011a5ef7d85');
                 checkUrlParam();
             } catch (error) {
                 console.error("Load Error:", error);
@@ -260,6 +260,22 @@
         function goToAuthor(url) {
             const safeUrl = SiteSecurity.safeUrl(url);
             if (safeUrl) window.open(safeUrl, '_blank', 'noopener');
+        }
+
+        function loadTwitterEmbeds(target) {
+            if (!target?.querySelector?.('.twitter-tweet')) return;
+            if (window.twttr?.widgets?.load) {
+                window.twttr.widgets.load(target);
+                return;
+            }
+            if (document.getElementById('twitter-wjs')) return;
+            const script = document.createElement('script');
+            script.id = 'twitter-wjs';
+            script.async = true;
+            script.src = 'https://platform.twitter.com/widgets.js';
+            script.charset = 'utf-8';
+            script.onload = () => window.twttr?.widgets?.load?.(target);
+            document.body.appendChild(script);
         }
 
         // 상세 게시글 보기
@@ -315,6 +331,7 @@
             const media = renderMedia(post.image);
             if (media) body.appendChild(media);
             body.appendChild(content);
+            loadTwitterEmbeds(content);
 
             if(!window.location.search.includes(`id=${id}`)) history.pushState(null, '', `?id=${id}`);
         }

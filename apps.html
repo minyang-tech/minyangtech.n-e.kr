@@ -82,6 +82,16 @@
         .app-detail-right { flex: 1; min-width: 300px; }
         
         .app-main-img { width: 100%; border-radius: 20px; border: 1px solid var(--brd); }
+        .app-screenshot-gallery { margin-top: 24px; }
+        .app-screenshot-gallery h2 { font-size: 1.15rem; margin: 0 0 14px; }
+        .app-screenshot-grid { display: grid; gap: 14px; }
+        .app-screenshot-grid img {
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid var(--brd);
+            background: var(--card-bg);
+            object-fit: cover;
+        }
         .app-spec-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
         .app-spec-table th, .app-spec-table td { padding: 12px; border-bottom: 1px solid var(--brd); text-align: left; }
         .app-spec-table th { font-weight: 700; opacity: 0.6; width: 120px; }
@@ -199,7 +209,7 @@
 
         async function fetchApps() {
             try {
-                appData = await SiteSecurity.secureFetchJson('apps-data.json', 'e24571e3d92bed08d3c94f99adb0230e8a4b34110bdc05d83e55de0ed55c186b');
+                appData = await SiteSecurity.secureFetchJson('apps-data.json', '85e47525ac475f5a3f1eec46ab0a0ad82c4ed8eefd46cb282365861ae1b71d48');
                 checkUrlParam();
             } catch (error) {
                 console.error("Load Error:", error);
@@ -300,6 +310,26 @@
             markdown.style.marginTop = '20px';
             SiteSecurity.setMarkdown(markdown, app.description || '');
             left.append(image, markdown);
+            if (Array.isArray(app.screenshots) && app.screenshots.length) {
+                const gallery = document.createElement('div');
+                gallery.className = 'app-screenshot-gallery';
+                const galleryTitle = document.createElement('h2');
+                galleryTitle.textContent = 'Screenshots';
+                const galleryGrid = document.createElement('div');
+                galleryGrid.className = 'app-screenshot-grid';
+                app.screenshots.forEach((src, index) => {
+                    const safeSrc = SiteSecurity.safeUrl(src);
+                    if (!safeSrc) return;
+                    const shot = document.createElement('img');
+                    shot.src = safeSrc;
+                    shot.alt = `${app.name || 'App'} screenshot ${index + 1}`;
+                    galleryGrid.appendChild(shot);
+                });
+                if (galleryGrid.children.length) {
+                    gallery.append(galleryTitle, galleryGrid);
+                    left.appendChild(gallery);
+                }
+            }
             const right = document.createElement('div');
             right.className = 'app-detail-right';
             const table = document.createElement('table');
