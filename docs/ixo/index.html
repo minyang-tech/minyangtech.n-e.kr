@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
@@ -172,9 +172,9 @@
                 // 현재 폴더 구조에 따라 nav.html 경로 탐색
                 let data;
                 try {
-                    data = await SiteSecurity.secureFetchText('nav.html', '7264dbbdac80d6fa3555104c608c5e3ecc646b6d547ef71bd46e15daed52085a');
+                    data = await SiteSecurity.secureFetchText('nav.html', '515422a4f137da969e5cc66530cc53caaa32956911b648f6bbd09b63f2d23b9d');
                 } catch {
-                    data = await SiteSecurity.secureFetchText('../nav.html', '7264dbbdac80d6fa3555104c608c5e3ecc646b6d547ef71bd46e15daed52085a');
+                    data = await SiteSecurity.secureFetchText('../nav.html', '515422a4f137da969e5cc66530cc53caaa32956911b648f6bbd09b63f2d23b9d');
                 }
                 SiteSecurity.setSanitizedHtml(target, data);
 
@@ -195,7 +195,7 @@
         async function loadMainReference() {
             const target = document.getElementById('main-reference-target');
             try {
-                const markdown = await SiteSecurity.secureFetchText('main.md', '243159a329d1ca92112544b01634d103ce7c94683d9c7286bd94a57643687f1f');
+                const markdown = await SiteSecurity.secureFetchText('main.md', 'ecd4670e785e15d2a66db40467f4975fdac515c0eea5aa6b2b5373ba0a87e615');
                 SiteSecurity.setMarkdown(target, markdown);
             } catch (error) {
                 SiteSecurity.appendTextMessage(target, 'IXO Engine 문서를 불러오지 못했습니다.');
@@ -221,3 +221,5 @@
     </script>
 </body>
 </html>
+
+

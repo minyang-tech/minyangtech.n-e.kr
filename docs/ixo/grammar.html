@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
@@ -175,9 +175,9 @@
             try {
                 let data;
                 try {
-                    data = await SiteSecurity.secureFetchText('nav.html', '7264dbbdac80d6fa3555104c608c5e3ecc646b6d547ef71bd46e15daed52085a');
+                    data = await SiteSecurity.secureFetchText('nav.html', '515422a4f137da969e5cc66530cc53caaa32956911b648f6bbd09b63f2d23b9d');
                 } catch {
-                    data = await SiteSecurity.secureFetchText('../nav.html', '7264dbbdac80d6fa3555104c608c5e3ecc646b6d547ef71bd46e15daed52085a');
+                    data = await SiteSecurity.secureFetchText('../nav.html', '515422a4f137da969e5cc66530cc53caaa32956911b648f6bbd09b63f2d23b9d');
                 }
                 SiteSecurity.setSanitizedHtml(target, data);
 
@@ -220,3 +220,5 @@
     </script>
 </body>
 </html>
+
+
