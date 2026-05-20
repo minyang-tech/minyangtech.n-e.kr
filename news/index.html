@@ -215,7 +215,7 @@
         // 뉴스 데이터 로드
         async function fetchNews() {
             try {
-                newsData = await SiteSecurity.secureFetchJson('../news-data.json', 'a30d931834590efc3d1936afbde3066238ce7131af8dc56c98b1e011a5ef7d85');
+                newsData = await SiteSecurity.secureFetchJson('../news-data.json', '74d79fcd6401d3b0a21cac8be89ea6605ac920f0b58011cdda4b873fca8b20a1');
                 checkUrlParam();
             } catch (error) {
                 console.error("Load Error:", error);
