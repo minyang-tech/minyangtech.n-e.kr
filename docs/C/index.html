@@ -176,9 +176,9 @@
                 // 현재 파일이 docs 하위 폴더에 있다면 '../nav.html', 루트라면 'nav.html'
                 let data;
                 try {
-                    data = await SiteSecurity.secureFetchText('nav.html', '7264dbbdac80d6fa3555104c608c5e3ecc646b6d547ef71bd46e15daed52085a');
+                    data = await SiteSecurity.secureFetchText('nav.html', '515422a4f137da969e5cc66530cc53caaa32956911b648f6bbd09b63f2d23b9d');
                 } catch {
-                    data = await SiteSecurity.secureFetchText('../nav.html', '7264dbbdac80d6fa3555104c608c5e3ecc646b6d547ef71bd46e15daed52085a');
+                    data = await SiteSecurity.secureFetchText('../nav.html', '515422a4f137da969e5cc66530cc53caaa32956911b648f6bbd09b63f2d23b9d');
                 }
                 SiteSecurity.setSanitizedHtml(target, data);
 
