@@ -1,18 +1,64 @@
 [
-    {
-  "id": 1,
-  "date": "2026-05-15",
-  "title_ko": "민양테크 웹사이트",
-  "author_name": "whoasked",
-  "author_img": "",
-  "author_link": "../@whoasked",
-  "cover": "(../image/민양테크 바탕화면.png",
-  "content_ko": "민양테크 웹사이트를 제작하였음. \n 해당 웹사이트는 github pages를 통해 정적 호스팅됨. \n 제작자는 [@whoasked](../@whoasked)로, 제작 과정 중, [@getsystemmetrics](../@getsystemmetrics)도 지금은 삭제되어 사라진 뉴스 글에 좋아요 남기기 등 일부기능의 오류 수정을 하는데 일부 참여함.",
-  "assets": [
-    { "type": "image", "src": "--" },
-    { "type": "video", "src": "--" },
-    { "type": "embed", "src": "--" },
-    { "type": "file", "src": "--", "title": "--", "description": "--" }
-  ]
-}
+  {
+    "id": 2,
+    "date": "2026-05-22",
+    "title_ko": "IXO Engine 1.1.0",
+    "author_name": "@whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "cover": "https://github.com/minyang-tech/IXO-Engine/blob/main/screenshot/export.png?raw=true",
+    "content_ko": "IXO Engine은 엔트리 스타일의 노드 기반 코딩으로 누구나 간단하게 앱을 만들 수 있도록 제작한 데스크톱 앱 제작 엔진입니다.\n\n1.1.0 업데이트에서는 노드 권한 분리, 네트워크 보안 강화, Canvas Builder, UI 스타일링, Scene/Page, Asset Manager, Export App Polish, Action System, Vector Drawer 등 실사용 제작 흐름에 필요한 기능을 중심으로 고도화했습니다.\n\n주요 작업\n\n- HTTPS 통신 노드에 timeout, AbortController, 최대 응답 크기 제한, localhost 및 사설망 차단, 사용자 승인 흐름을 적용했습니다.\n- Canvas Builder에서 UI CSS, 커스텀 버튼, Vector Drawer, 기본 UI Components, 테마 프리셋을 사용할 수 있게 개선했습니다.\n- Action System으로 Open URL, Run Function, Set Variable, Toggle UI, Go Scene, Play Sound, Request HTTPS 같은 버튼 동작을 정식화했습니다.\n- Scene/Page System을 추가해 한 화면짜리 데모를 넘어 여러 화면을 가진 앱을 만들 수 있도록 확장했습니다.\n- Asset Manager를 추가해 이미지, 사운드, 아이콘을 모아 관리하고 export에 필요한 파일만 포함할 수 있게 했습니다.\n- 저장 UX를 개선해 한 번 저장한 .ixo 파일은 Ctrl+S로 바로 저장하고, Ctrl+Shift+S는 Save As로 분리했습니다.\n- 오픈소스 기여가 쉬워지도록 core, runtime, renderer, editor, utils 중심으로 파일 구조를 정리했습니다.\n\n이번 업데이트의 목표는 IXO Engine을 단순한 노드 데모가 아니라 실제 앱 제작에 투입할 수 있는 제작 도구에 가깝게 끌어올리는 것이었습니다.\n\n[GitHub Repository](https://github.com/minyang-tech/IXO-Engine)  \n[IXO Engine Docs](https://minyangtech.n-e.kr/docs/ixo/index)  \n[Release](https://github.com/minyang-tech/IXO-Engine/releases/tag/%EC%A0%95%EC%8B%9D)",
+    "assets": [
+      {
+        "type": "image",
+        "src": "https://github.com/minyang-tech/IXO-Engine/blob/main/screenshot/export.png?raw=true"
+      },
+      {
+        "type": "image",
+        "src": "https://github.com/minyang-tech/IXO-Engine/blob/main/screenshot/coming%20soon.png?raw=true"
+      },
+      {
+        "type": "file",
+        "src": "https://github.com/minyang-tech/IXO-Engine",
+        "title": "IXO Engine GitHub",
+        "description": "소스 코드와 릴리스 관리 저장소"
+      },
+      {
+        "type": "file",
+        "src": "https://minyangtech.n-e.kr/docs/ixo/index",
+        "title": "IXO Engine Docs",
+        "description": "기능 설명, 노드 문서, 템플릿 문법 문서"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "date": "2026-05-15",
+    "title_ko": "민양테크 웹사이트",
+    "author_name": "whoasked",
+    "author_img": "",
+    "author_link": "../@whoasked",
+    "cover": "(../image/민양테크 바탕화면.png",
+    "content_ko": "민양테크 웹사이트를 제작하였음. \n 해당 웹사이트는 github pages를 통해 정적 호스팅됨. \n 제작자는 [@whoasked](../@whoasked)로, 제작 과정 중, [@getsystemmetrics](../@getsystemmetrics)도 지금은 삭제되어 사라진 뉴스 글에 좋아요 남기기 등 일부기능의 오류 수정을 하는데 일부 참여함.",
+    "assets": [
+      {
+        "type": "image",
+        "src": "--"
+      },
+      {
+        "type": "video",
+        "src": "--"
+      },
+      {
+        "type": "embed",
+        "src": "--"
+      },
+      {
+        "type": "file",
+        "src": "--",
+        "title": "--",
+        "description": "--"
+      }
+    ]
+  }
 ]
