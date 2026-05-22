@@ -142,5 +142,17 @@
     "content_ko": "안녕하세요, 민양테크입니다.\n\nIXO Engine이 2026년 5월 20일 정식 출시되었습니다.\n\nIXO Engine은 엔트리 스타일의 노드 기반 코딩 방식으로, 코드를 직접 작성하지 않아도 입력, 조건, 계산, 화면 구성, 네트워크 기능 등을 연결해 앱을 제작할 수 있도록 만든 비주얼 앱 빌더입니다.\n\n이번 정식 출시 버전에서는 Windows와 Linux 배포본, Canvas Builder, UI Viewer, 노드 검색, 프로젝트 내보내기, 업데이트 확인, 보안 안내 및 네트워크 노드 보호 기능 등을 함께 제공합니다.\n\n기다려주신 분들께 진심으로 감사드립니다. 앞으로도 사용성이 부족한 부분은 빠르게 개선하고, 더 안정적인 제작 경험을 제공할 수 있도록 업데이트를 이어가겠습니다.\n\n다운로드 및 자세한 내용은 아래 Release 페이지에서 확인하실 수 있습니다.\n\n[IXO Engine 정식 Release](https://github.com/minyang-tech/IXO-Engine/releases/tag/%EC%A0%95%EC%8B%9D)\n\n<blockquote class=\"twitter-tweet\"><p lang=\"ko\" dir=\"ltr\"><a href=\"https://t.co/ewOde8FLlI\">https://t.co/ewOde8FLlI</a><br><br>IXO Engine이 정식 출시됬습니다!<br><br>기다려주신분들께 감사의 말씀 드립니다.<br><br>이용해주셔서 감사합니다.<br><br>문의 : support@minyangtech.n-e.kr</p>&mdash; 민양테크 (@minyangtech) <a href=\"https://twitter.com/minyangtech/status/2057073855001239893?ref_src=twsrc%5Etfw\">May 20, 2026</a></blockquote> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>\n\n이용해주셔서 감사합니다.\n문의 : <support@minyangtech.n-e.kr>",
     "content_en": "--",
     "image": "/image/ixo-engine/export.png"
+  },
+  {
+    "id": 13,
+    "date": "2026-05-22",
+    "title_ko": "[공지] IXO Engine 1.1.0 버전 업데이트",
+    "title_en": "--",
+    "author_name": "@whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "content_ko": "안녕하세요, 민양테크입니다.\n\nIXO Engine V1.1.0 버전이 업데이트 되었습니다.\n아래는 주요 변경사항입니다.\n\n변경 사항:\n\n- 노드 권한 분리 구조를 추가했습니다.\n- HTTPS 통신 노드의 보안 정책을 강화했습니다.\n- 최대 응답 크기 제한, timeout 설정, AbortController 기반 요청 중단 처리를 적용했습니다.\n- 신규 업데이트가 GitHub Release에 올라올 경우 설정에서 바로 업데이트 페이지로 이동할 수 있게 개선했습니다.\n- Canvas Builder 기반 UI 제작 기능을 강화했습니다.\n- 각 UI에 CSS 스타일을 적용할 수 있게 했습니다.\n- Vector Drawer를 추가해 아이콘과 간단한 도형을 직접 제작할 수 있게 했습니다.\n- 커스텀 버튼 제작 기능을 추가했습니다.\n- Theme Presets를 추가해 Mint Console, Glass Panel, Pixel Retro, Clean SaaS, Game HUD 같은 테마를 빠르게 적용할 수 있게 했습니다.\n- Action System을 추가해 버튼 클릭 시 Open URL, Run Function, Set Variable, Toggle UI, Go Scene, Play Sound, Request HTTPS 같은 동작을 연결할 수 있게 했습니다.\n- Scene/Page System을 추가해 여러 화면을 가진 앱 제작 흐름을 지원합니다.\n- Navbar, Card, Modal, Toast, Form, List, Sidebar, Dialog, Loading Spinner 등 기본 UI Components를 추가했습니다.\n- Asset Manager를 추가해 이미지, 사운드, 아이콘 파일을 관리하고 export 시 필요한 파일만 포함할 수 있게 했습니다.\n- Export App Polish를 개선해 내보낸 앱의 창 제목, 아이콘, 기본 크기, 리사이즈 여부, 배경색, startup splash 설정을 지원합니다.\n- Undo/Redo 안정성을 개선했습니다.\n- 한 번 저장한 .ixo 파일은 다시 경로를 고르지 않고 바로 저장할 수 있도록 저장 UX를 개선했습니다.\n- 오픈소스 기여가 쉽도록 core, renderer, runtime, editor, utils 중심으로 파일 구조를 정리했습니다.\n- Linux CI 빌드 안정화를 위해 package-lock.json 문제를 수정했습니다.\n\n이용해주셔서 감사합니다.\n문의 : <support@minyangtech.n-e.kr>",
+    "content_en": "--",
+    "image": "/image/ixo-engine/export.png"
   }
 ]
