@@ -44,7 +44,7 @@
     "rec_spec": "Windows 11 / Ubuntu 22.04 또는 24.04 \n RAM 8GB 이상 \n4코어 이상 CPU \n여유 저장공간 1GB 이상",
     "is_opensource": true,
     "source_url": "https://github.com/minyang-tech/IXO-Engine/",
-    "download_url": "https://github.com/minyang-tech/IXO-Engine/releases/tag/%EC%A0%95%EC%8B%9D",
+    "download_url": "https://github.com/minyang-tech/IXO-Engine/releases/tag/V1.1",
     "is_ai": true,
     "screenshots": [
       "image/ixo-engine/export.png",
