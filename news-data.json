@@ -154,5 +154,17 @@
     "content_ko": "안녕하세요, 민양테크입니다.\n\nIXO Engine V1.1.0 버전이 업데이트 되었습니다.\n아래는 주요 변경사항입니다.\n\n변경 사항:\n\n- 노드 권한 분리 구조를 추가했습니다.\n- HTTPS 통신 노드의 보안 정책을 강화했습니다.\n- 최대 응답 크기 제한, timeout 설정, AbortController 기반 요청 중단 처리를 적용했습니다.\n- 신규 업데이트가 GitHub Release에 올라올 경우 설정에서 바로 업데이트 페이지로 이동할 수 있게 개선했습니다.\n- Canvas Builder 기반 UI 제작 기능을 강화했습니다.\n- 각 UI에 CSS 스타일을 적용할 수 있게 했습니다.\n- Vector Drawer를 추가해 아이콘과 간단한 도형을 직접 제작할 수 있게 했습니다.\n- 커스텀 버튼 제작 기능을 추가했습니다.\n- Theme Presets를 추가해 Mint Console, Glass Panel, Pixel Retro, Clean SaaS, Game HUD 같은 테마를 빠르게 적용할 수 있게 했습니다.\n- Action System을 추가해 버튼 클릭 시 Open URL, Run Function, Set Variable, Toggle UI, Go Scene, Play Sound, Request HTTPS 같은 동작을 연결할 수 있게 했습니다.\n- Scene/Page System을 추가해 여러 화면을 가진 앱 제작 흐름을 지원합니다.\n- Navbar, Card, Modal, Toast, Form, List, Sidebar, Dialog, Loading Spinner 등 기본 UI Components를 추가했습니다.\n- Asset Manager를 추가해 이미지, 사운드, 아이콘 파일을 관리하고 export 시 필요한 파일만 포함할 수 있게 했습니다.\n- Export App Polish를 개선해 내보낸 앱의 창 제목, 아이콘, 기본 크기, 리사이즈 여부, 배경색, startup splash 설정을 지원합니다.\n- Undo/Redo 안정성을 개선했습니다.\n- 한 번 저장한 .ixo 파일은 다시 경로를 고르지 않고 바로 저장할 수 있도록 저장 UX를 개선했습니다.\n- 오픈소스 기여가 쉽도록 core, renderer, runtime, editor, utils 중심으로 파일 구조를 정리했습니다.\n- Linux CI 빌드 안정화를 위해 package-lock.json 문제를 수정했습니다.\n\n이용해주셔서 감사합니다.\n문의 : <support@minyangtech.n-e.kr>",
     "content_en": "--",
     "image": "/image/ixo-engine/export.png"
+  },
+  {
+    "id": 14,
+    "date": "2026-05-23",
+    "title_ko": "[공지] V1.1.1 Fix 버전 릴리즈.",
+    "title_en": "--",
+    "author_name": "@whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "content_ko": "안녕하세요, 민양테크입니다.\n\nIXO Engine V1.1.1 Fix 버전이 릴리즈되었습니다.\n\n이번 버전은 V1.1 업데이트 이후 확인된 UI 사용성 문제와 배포 파일 혼선을 정리하고, Canvas Builder 중심의 제작 흐름을 더 안정적으로 다듬기 위한 수정 버전입니다.\n\n주요 변경 사항:\n\n- 배포 산출물 버전 표기가 1.0.1로 보이던 문제를 정리했습니다.\n- Windows와 Linux 배포 파일을 V1.1.1 기준으로 다시 패키징했습니다.\n- 기존의 오래된 dist 계열 빌드 폴더를 정리하고 release 폴더를 기준 배포 위치로 통일했습니다.\n- Scene을 왼쪽 사이드바에서 버튼으로 생성, 전환, 정리할 수 있도록 개선했습니다.\n- Canvas Builder에서 UI를 추가하거나 수정하는 흐름을 더 사용자 친화적으로 다듬었습니다.\n- Asset Manager에 업로드한 이미지 파일을 Canvas Builder로 끌어 놓아 이미지 UI와 연결 노드를 만들 수 있게 했습니다.\n- Asset Manager에 업로드한 .ixo 파일을 노드 워크스페이스 또는 Canvas Builder로 끌어 놓아 노드와 UI를 붙여넣을 수 있게 했습니다.\n- Vector와 Custom Button을 복잡한 path 문자열만으로 작성하지 않고, 직접 그리듯이 편집할 수 있는 Vector Draw Pad를 추가했습니다.\n- 사용자 지정 테마 업로드 기능을 추가했습니다.\n- 테마가 버튼 일부가 아니라 사이드바, 워크스페이스, Inspector, 입력창, 로그 패널 등 IXO Engine 편집기 전체에 반영되도록 개선했습니다.\n- 웹사이트 Docs를 현재 V1.1.1 상태에 맞게 업데이트했습니다.\n- 빌드, JSON 해시, npm audit, CI용 npm ci 검증을 다시 진행했습니다.\n\n이번 Fix 버전은 큰 기능 추가보다는, 실제 사용자가 앱을 만들 때 헷갈리거나 불편할 수 있는 부분을 줄이는 데 집중했습니다.\n\n이용해주셔서 감사합니다.\n문의 : <support@minyangtech.n-e.kr>",
+    "content_en": "--",
+    "image": "/image/ixo-engine/export.png"
   }
 ]
