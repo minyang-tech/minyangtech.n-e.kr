@@ -87,6 +87,54 @@
 | 채우기 시작 / 중지 | 도형 채우기를 제어합니다. | Stable |
 | 그림 지우기 | 드로잉 결과를 지웁니다. | Stable |
 
+### Canvas Builder 연동
+
+- Canvas Builder에서 Text, Image, Button, Custom Button, Vector, Input, Container를 추가하면 대응되는 Visual 노드가 자동 생성됩니다.
+- Inspector에서 UI 값을 수정하면 연결된 노드의 `Value` 또는 `Ref Key`도 함께 갱신됩니다.
+- 연결된 UI를 삭제하면 의미 없는 연결 노드도 함께 정리됩니다.
+- 이미지 asset을 Asset Manager에서 Canvas Builder로 끌어 놓으면 `이미지 출력` 노드와 이미지 UI가 함께 생성됩니다.
+- `.ixo` asset을 Node Workspace 또는 Canvas Builder로 끌어 놓으면 파일 안의 노드와 UI가 현재 프로젝트에 붙여넣어집니다.
+
+## Scene / Page
+
+| 기능 | 역할 | 상태 |
+|---|---|---|
+| Scene Manager | 사이드바 버튼으로 현재 Scene을 전환하고 새 Scene을 만듭니다. | Stable |
+| UI Scene 속성 | 각 UI 요소가 표시될 Scene을 지정합니다. | Stable |
+| Go Scene Action | 버튼 액션으로 다른 Scene으로 이동합니다. | Stable |
+| 화면 시작 노드 | 특정 Scene이 활성화되었는지 조건 흐름으로 사용할 수 있습니다. | Stable |
+
+Scene은 `main`을 기본값으로 사용합니다. 새 UI는 현재 활성 Scene에 추가되며, Scene을 정리하면 해당 UI는 기본적으로 `main`으로 이동합니다.
+
+## Asset Manager
+
+| Asset | 역할 | 상태 |
+|---|---|---|
+| Image Asset | `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, `.svg`를 이미지 UI로 드래그 배치합니다. | Stable |
+| IXO Asset | `.ixo` 프로젝트 파일의 노드와 UI를 현재 작업 공간에 붙여넣습니다. | Stable |
+| Audio Asset | 사운드 노드와 배경음 흐름에 사용할 파일을 보관합니다. | Stable |
+| Clean Unused | UI와 액션에서 참조하지 않는 asset을 정리합니다. | Stable |
+
+## Vector Drawer
+
+| 기능 | 역할 | 상태 |
+|---|---|---|
+| Vector Draw Pad | Custom Button과 Vector UI를 마우스로 직접 그려 SVG path로 변환합니다. | Stable |
+| Preset Shapes | Box, Triangle, Star 같은 기본 도형을 즉시 적용합니다. | Stable |
+| Advanced SVG Path | 필요한 경우 직접 SVG path를 편집할 수 있습니다. | Stable |
+
+Vector는 기본적으로 닫힌 path는 채우기(fill), 열린 path는 선(stroke)으로 렌더링합니다.
+
+## Theme Presets
+
+| 기능 | 역할 | 상태 |
+|---|---|---|
+| Preset Theme | Mint Console, Glass Panel, Pixel Retro, Clean SaaS, Game HUD 등 기본 테마를 적용합니다. | Stable |
+| Custom Theme Upload | JSON 또는 `.ixo-theme` 파일을 업로드해 편집기 UI에 적용합니다. | Stable |
+| Editor-wide Theme | 테마가 사이드바, 워크스페이스, Inspector, 버튼, 입력창, 로그 패널에 함께 반영됩니다. | Stable |
+
+테마는 편집기 UI의 가시 영역에 적용됩니다. export 산출물의 앱 UI는 Canvas Builder와 export 설정을 기준으로 유지됩니다.
+
 ## Data
 
 | 노드 | 역할 | 상태 |

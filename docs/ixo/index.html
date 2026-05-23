@@ -195,7 +195,7 @@
         async function loadMainReference() {
             const target = document.getElementById('main-reference-target');
             try {
-                const markdown = await SiteSecurity.secureFetchText('main.md', 'ecd4670e785e15d2a66db40467f4975fdac515c0eea5aa6b2b5373ba0a87e615');
+                const markdown = await SiteSecurity.secureFetchText('main.md', '6f96035b67df02054b2bc127259d500eee92b1984cb9bb692d59f37ad6521238');
                 SiteSecurity.setMarkdown(target, markdown);
             } catch (error) {
                 SiteSecurity.appendTextMessage(target, 'IXO Engine 문서를 불러오지 못했습니다.');
