@@ -1,4 +1,4 @@
-﻿# IXO Engine Node Library
+# IXO Engine Node Library
 
 이 문서는 현재 IXO Engine 코드 기준으로 제공되는 노드의 목적을 정리합니다. 현재 공개된 모든 노드는 런타임에 적용된 상태입니다.
 

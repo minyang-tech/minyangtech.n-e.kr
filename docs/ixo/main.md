@@ -1,4 +1,4 @@
-﻿# IXO Engine
+# IXO Engine
 
 IXO Engine은 엔트리 스타일의 노드 기반 코딩과 Canvas Builder를 결합한 데스크톱 앱 제작 엔진입니다. 사용자는 노드를 연결해 로직을 만들고, UI Viewer와 Canvas Builder에서 실제 앱 화면을 구성한 뒤 Windows와 Linux용 산출물로 내보낼 수 있습니다.
 

@@ -187,7 +187,7 @@
         async function loadNodeReference() {
             const target = document.getElementById('node-reference-target');
             try {
-                const markdown = await SiteSecurity.secureFetchText('node-library.md', '68b7068cf09176ef6c51f9375d4f75a51e13a78e16e6513977ba93ad8691f7ee');
+                const markdown = await SiteSecurity.secureFetchText('node-library.md', 'b204f520ced090cf291522e9e0585c0ffb51e8bc876728c562bb518c93d2238f');
                 SiteSecurity.setMarkdown(target, markdown);
             } catch (error) {
                 SiteSecurity.appendTextMessage(target, '노드 문서를 불러오지 못했습니다.');
