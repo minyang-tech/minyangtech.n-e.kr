@@ -101,10 +101,11 @@
 |---|---|---|
 | Scene Manager | 사이드바 버튼으로 현재 Scene을 전환하고 새 Scene을 만듭니다. | Stable |
 | UI Scene 속성 | 각 UI 요소가 표시될 Scene을 지정합니다. | Stable |
+| Node Scene 속성 | 각 노드가 실행되고 표시될 Scene을 지정합니다. | Stable |
 | Go Scene Action | 버튼 액션으로 다른 Scene으로 이동합니다. | Stable |
 | 화면 시작 노드 | 특정 Scene이 활성화되었는지 조건 흐름으로 사용할 수 있습니다. | Stable |
 
-Scene은 `main`을 기본값으로 사용합니다. 새 UI는 현재 활성 Scene에 추가되며, Scene을 정리하면 해당 UI는 기본적으로 `main`으로 이동합니다.
+Scene은 `main`을 기본값으로 사용합니다. 새 UI와 새 노드는 현재 활성 Scene에 추가되며, 다른 Scene으로 전환하면 이전 Scene의 UI와 노드는 워크스페이스와 런타임에서 분리됩니다. Scene을 정리하면 해당 UI와 노드는 기본적으로 `main`으로 이동합니다.
 
 ## Asset Manager
 
@@ -120,10 +121,11 @@ Scene은 `main`을 기본값으로 사용합니다. 새 UI는 현재 활성 Scen
 | 기능 | 역할 | 상태 |
 |---|---|---|
 | Vector Draw Pad | Custom Button과 Vector UI를 마우스로 직접 그려 SVG path로 변환합니다. | Stable |
+| Multi Stroke Drawing | 여러 번 그린 선을 하나의 Vector path에 누적합니다. | Stable |
 | Preset Shapes | Box, Triangle, Star 같은 기본 도형을 즉시 적용합니다. | Stable |
 | Advanced SVG Path | 필요한 경우 직접 SVG path를 편집할 수 있습니다. | Stable |
 
-Vector는 기본적으로 닫힌 path는 채우기(fill), 열린 path는 선(stroke)으로 렌더링합니다.
+Vector는 기본적으로 단일 닫힌 path는 채우기(fill), 열린 path 또는 여러 stroke는 선(stroke)으로 렌더링합니다.
 
 ## Theme Presets
 
