@@ -81,6 +81,65 @@
         .center-email { margin: 40px 0 20px; text-align: center; border-top: 1px solid var(--brd); padding-top: 30px; }
         .center-email a { text-decoration: none; color: var(--accent); font-weight: 700; font-size: 1.1rem; }
 
+        .author-portfolio-section {
+            margin-top: 36px;
+            padding-top: 34px;
+            border-top: 1px solid var(--brd);
+        }
+        .author-portfolio-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+        .author-portfolio-head h2 {
+            margin: 0;
+            font-size: 1.55rem;
+            letter-spacing: -0.03em;
+        }
+        .author-portfolio-head p { margin: 6px 0 0; opacity: 0.65; font-size: 0.95rem; }
+        .author-portfolio-link { color: var(--accent); font-weight: 700; text-decoration: none; white-space: nowrap; }
+        .author-portfolio-link:hover { text-decoration: underline; }
+        .author-portfolio-feed { display: grid; gap: 16px; }
+        .author-portfolio-card {
+            display: grid;
+            grid-template-columns: 168px minmax(0, 1fr);
+            gap: 18px;
+            border: 1px solid var(--brd);
+            border-radius: 18px;
+            padding: 14px;
+            background: var(--card-bg);
+            text-decoration: none;
+            color: var(--txt);
+            transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+            overflow: hidden;
+        }
+        .author-portfolio-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+        .author-portfolio-cover {
+            min-height: 112px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(0,123,255,0.18), rgba(124,92,255,0.18));
+            background-position: center;
+            background-size: cover;
+            border: 1px solid var(--brd);
+        }
+        .author-portfolio-meta { min-width: 0; }
+        .author-portfolio-date { font-size: 0.82rem; color: var(--accent); font-weight: 700; }
+        .author-portfolio-title { margin: 6px 0 8px; font-size: 1.1rem; font-weight: 800; line-height: 1.35; }
+        .author-portfolio-excerpt { margin: 0; opacity: 0.72; font-size: 0.93rem; line-height: 1.55; }
+        .author-portfolio-empty {
+            padding: 18px;
+            border: 1px dashed var(--brd);
+            border-radius: 16px;
+            opacity: 0.72;
+            text-align: center;
+        }
+
         /* --- Footer --- */
         footer {
             width: 100%; padding: 50px 20px; border-top: 1px solid var(--brd);
@@ -103,6 +162,9 @@
             .profile-side { flex: none; width: 100%; max-width: 400px; }
             .side-card { position: static; }
             .profile-main { width: 100%; }
+            .author-portfolio-head { flex-direction: column; align-items: flex-start; }
+            .author-portfolio-card { grid-template-columns: 1fr; }
+            .author-portfolio-cover { min-height: 180px; }
         }
     </style>
 </head>
@@ -201,6 +263,19 @@
             <div class="center-email">
                 <a href="mailto:whoasked@minyangtech.n-e.kr">whoasked@minyangtech.n-e.kr</a>
             </div>
+
+            <section class="author-portfolio-section" aria-labelledby="whoasked-portfolio-title">
+                <div class="author-portfolio-head">
+                    <div>
+                        <h2 id="whoasked-portfolio-title">@Whoasked Portfolio</h2>
+                        <p>portfolio.json에서 작성자가 @whoasked인 항목만 자동으로 불러옵니다.</p>
+                    </div>
+                    <a class="author-portfolio-link" href="https://minyangtech.n-e.kr/portfolio">전체 포트폴리오 보기</a>
+                </div>
+                <div id="whoasked-portfolio-feed" class="author-portfolio-feed">
+                    <p class="author-portfolio-empty">포트폴리오를 불러오는 중입니다.</p>
+                </div>
+            </section>
         </section>
     </main>
 
@@ -221,8 +296,11 @@
         </div>
     </footer>
 
+    <script src="assets/js/security.js"></script>
     <script>
         const toggle = document.getElementById('dark-mode-toggle');
+        const portfolioHash = '5fa0b8325283b7a209278f3f8b1879a8a9f4db8a6c19fd043815fe3f58602b36';
+        const portfolioPlaceholder = 'https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true';
 
         function updateTheme(isDark) {
             document.body.classList.toggle('dark-mode', isDark);
@@ -232,8 +310,79 @@
 
         toggle.addEventListener('change', () => updateTheme(toggle.checked));
 
+        function normalizeAuthorName(value) {
+            return String(value || '').trim().toLowerCase().replace(/^@/, '');
+        }
+
+        function hasPortfolioValue(value) {
+            return value !== undefined && value !== null && String(value).trim() !== '' && String(value).trim() !== '--';
+        }
+
+        function stripMarkdown(markdown) {
+            return String(markdown || '')
+                .replace(/```[\s\S]*?```/g, ' ')
+                .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+                .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+                .replace(/[#>*_`~\-]/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function createPortfolioCard(item) {
+            const card = document.createElement('a');
+            card.className = 'author-portfolio-card';
+            card.href = `https://minyangtech.n-e.kr/portfolio?id=${encodeURIComponent(item.id)}`;
+
+            const imageAsset = Array.isArray(item.assets) ? item.assets.find(asset => asset && asset.type === 'image' && hasPortfolioValue(asset.src)) : null;
+            const coverUrl = SiteSecurity.safeUrl(hasPortfolioValue(item.cover) ? item.cover : (imageAsset?.src || portfolioPlaceholder));
+            const cover = document.createElement('div');
+            cover.className = 'author-portfolio-cover';
+            if (coverUrl) cover.style.backgroundImage = `url("${coverUrl}")`;
+
+            const meta = document.createElement('div');
+            meta.className = 'author-portfolio-meta';
+
+            const date = document.createElement('div');
+            date.className = 'author-portfolio-date';
+            date.textContent = hasPortfolioValue(item.date) ? item.date : '날짜 없음';
+
+            const title = document.createElement('div');
+            title.className = 'author-portfolio-title';
+            title.textContent = hasPortfolioValue(item.title_ko) ? item.title_ko : '제목 없음';
+
+            const excerpt = document.createElement('p');
+            excerpt.className = 'author-portfolio-excerpt';
+            const plainText = stripMarkdown(item.content_ko);
+            excerpt.textContent = plainText ? `${plainText.slice(0, 132)}${plainText.length > 132 ? '...' : ''}` : '설명 없음';
+
+            meta.append(date, title, excerpt);
+            card.append(cover, meta);
+            return card;
+        }
+
+        async function loadWhoaskedPortfolio() {
+            const feed = document.getElementById('whoasked-portfolio-feed');
+            if (!feed) return;
+            try {
+                const data = await SiteSecurity.secureFetchJson('portfolio.json', portfolioHash);
+                const items = data
+                    .filter(item => normalizeAuthorName(item.author_name) === 'whoasked')
+                    .sort((a, b) => (b.id || 0) - (a.id || 0));
+
+                feed.replaceChildren();
+                if (!items.length) {
+                    SiteSecurity.appendTextMessage(feed, '@whoasked가 작성한 포트폴리오가 아직 없습니다.', 'author-portfolio-empty');
+                    return;
+                }
+                feed.append(...items.map(createPortfolioCard));
+            } catch (error) {
+                SiteSecurity.appendTextMessage(feed, '포트폴리오를 불러오지 못했습니다.', 'author-portfolio-empty');
+            }
+        }
+
         window.onload = () => {
             if (localStorage.getItem('darkMode') === 'enabled') updateTheme(true);
+            loadWhoaskedPortfolio();
         };
     </script>
 </body>
