@@ -198,7 +198,7 @@
         async function loadGrammarReference() {
             const target = document.getElementById('grammar-reference-target');
             try {
-                const markdown = await SiteSecurity.secureFetchText('Template Grammer.md', 'a464518e379b55b76018029f78bb70707eefadbd03cb07aa59a01bd7093b9be3');
+                const markdown = await SiteSecurity.secureFetchText('Template Grammer.md', 'edf64a364f8daea685fe4c45335fe561489182cd95216ba6a02acf7eb7160762');
                 SiteSecurity.setMarkdown(target, markdown);
             } catch (error) {
                 SiteSecurity.appendTextMessage(target, '문법 문서를 불러오지 못했습니다.');

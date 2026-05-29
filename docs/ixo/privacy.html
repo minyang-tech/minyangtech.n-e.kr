@@ -125,7 +125,7 @@
         async function loadPrivacyReference() {
             const target = document.getElementById('privacy-reference-target');
             try {
-                const markdown = await SiteSecurity.secureFetchText('privacy-policy.md', '8adaa03dd902c960462c0b95dabd2a495737ff074f5f8818de01e2db847c9c2a');
+                const markdown = await SiteSecurity.secureFetchText('privacy-policy.md', '52ec1e11d14caeb36d3bdcc4f6ca7d6417d142b70face8e5a67febfb209a2aca');
                 SiteSecurity.setMarkdown(target, markdown);
             } catch (error) {
                 SiteSecurity.appendTextMessage(target, '개인정보 처리방침을 불러오지 못했습니다.');
