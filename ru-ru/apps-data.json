@@ -1,0 +1,56 @@
+[
+  {
+    "image": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/MINYANG%20TECH.png?raw=true",
+    "source_url": "https://minyangtech.n-e.kr/404",
+    "download_url": "https://minyangtech.n-e.kr/g/invite1",
+    "is_opensource": false,
+    "is_ai": true,
+    "screenshots": [],
+    "id": 1,
+    "name": "Nawo Bot",
+    "category": "BOT",
+    "short_desc": "Discord-бот для статистики сервера, проверки статуса, опросов и мини-игр.",
+    "description": "# Nawo Bot\nБота можно пригласить через кнопку загрузки. Он предоставляет легкие утилиты для статистики сервера, проверки статуса, опросов и мини-игр.",
+    "platform": "Discord",
+    "min_spec": "Локальные системные требования отсутствуют.",
+    "rec_spec": "Локальные системные требования отсутствуют.",
+    "release_date": "2026-04-05"
+  },
+  {
+    "image": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/MINYANG%20TECH.png?raw=true",
+    "source_url": "https://github.com/minyang-tech/quote-markdown",
+    "download_url": "https://github.com/minyang-tech/quote-markdown/releases/download/release/MarkQuote.Setup.1.0.0.exe",
+    "is_opensource": true,
+    "is_ai": true,
+    "screenshots": [],
+    "id": 2,
+    "name": "MarkQuote",
+    "category": "Apps",
+    "short_desc": "Преобразует Markdown в HTML и создает карточки цитат.",
+    "description": "# MarkQuote\nНебольшое Windows-приложение, вдохновленное инструментами для карточек цитат. Оно преобразует Markdown в HTML и помогает оформлять цитаты.",
+    "platform": "Windows",
+    "min_spec": "CPU уровня Intel i3, 4GB RAM, 200MB памяти.",
+    "rec_spec": "CPU уровня Intel i5 или выше, 8GB RAM, SSD.",
+    "release_date": "2026-04-12"
+  },
+  {
+    "image": "/image/ixo-engine/export.png",
+    "source_url": "https://github.com/minyang-tech/IXO-Engine/",
+    "download_url": "https://github.com/minyang-tech/IXO-Engine/releases/tag/V1.1.3",
+    "is_opensource": true,
+    "is_ai": true,
+    "screenshots": [
+      "/image/ixo-engine/export.png",
+      "/image/ixo-engine/coming-soon.png"
+    ],
+    "id": 3,
+    "name": "IXO Engine",
+    "category": "Apps",
+    "short_desc": "Создавайте приложения визуальными узлами без ручного написания кода.",
+    "description": "# IXO Engine\nIXO Engine — визуальный конструктор приложений на основе узлов, близкий к блочному программированию. В него входят Canvas Builder, UI Viewer, сцены, менеджер ресурсов, настройки экспорта и безопасные сетевые узлы.\n\nНастольная версия для macOS сейчас не поддерживается. Основные платформы проверки — Windows и Linux.",
+    "platform": "Windows / Linux",
+    "min_spec": "Windows 10 64-bit или Linux уровня Ubuntu 20.04, 4GB RAM, двухъядерный CPU, 500MB свободного места.",
+    "rec_spec": "Windows 11 или Ubuntu 22.04/24.04, 8GB RAM, четырехъядерный CPU, 1GB свободного места.",
+    "release_date": "2026-05-20"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "date": "2026-04-19",
+    "title": "CMR-0001: Camera-Objektplatzierung",
+    "content": "# CMR-0001: Camera-Objektplatzierung\n\nNach dem Speichern konnte ein verschobenes Objekt weiterhin als auf dem Board erkannt werden.\n\nStatus: Tracked",
+    "author_name": "@Whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+  },
+  {
+    "id": 2,
+    "date": "2026-04-19",
+    "title": "CMR-0002: Camera-Objekt-Reload",
+    "content": "# CMR-0002: Camera-Objekt-Reload\n\nEinige über Camera gespeicherte Objekte konnten nicht zuverlässig geöffnet oder wiederhergestellt werden.\n\nStatus: Tracked",
+    "author_name": "@Whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+  },
+  {
+    "id": 3,
+    "date": "2026-05-10",
+    "title": "IXO-0001: Canvas-Builder-Editierproblem",
+    "content": "# IXO-0001: Canvas-Builder-Editierproblem\n\nIn Canvas Builder erzeugte UI-Elemente konnten teilweise nicht ausgewählt oder bearbeitet werden.\n\nStatus: Fixed",
+    "author_name": "@Whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "image": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/MINYANG%20TECH.png?raw=true",
+    "source_url": "https://minyangtech.n-e.kr/404",
+    "download_url": "https://minyangtech.n-e.kr/g/invite1",
+    "is_opensource": false,
+    "is_ai": true,
+    "screenshots": [],
+    "id": 1,
+    "name": "Nawo Bot",
+    "category": "BOT",
+    "short_desc": "提供服务器统计、状态检查、投票和小游戏的 Discord 机器人。",
+    "description": "# Nawo Bot\n可通过下载按钮直接邀请到 Discord。它提供服务器统计、状态检查、投票、小游戏等轻量工具。",
+    "platform": "Discord",
+    "min_spec": "无本地系统要求。",
+    "rec_spec": "无本地系统要求。",
+    "release_date": "2026-04-05"
+  },
+  {
+    "image": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/MINYANG%20TECH.png?raw=true",
+    "source_url": "https://github.com/minyang-tech/quote-markdown",
+    "download_url": "https://github.com/minyang-tech/quote-markdown/releases/download/release/MarkQuote.Setup.1.0.0.exe",
+    "is_opensource": true,
+    "is_ai": true,
+    "screenshots": [],
+    "id": 2,
+    "name": "MarkQuote",
+    "category": "Apps",
+    "short_desc": "将 Markdown 转换为可复制的 HTML，并生成引用卡片。",
+    "description": "# MarkQuote\n一款受引用卡片工具启发的 Windows 小应用，可将 Markdown 转换为 HTML，并帮助创建整洁的引用卡片。",
+    "platform": "Windows",
+    "min_spec": "Intel i3 级 CPU、4GB RAM、200MB 存储空间。",
+    "rec_spec": "Intel i5 级或更高、8GB RAM、SSD。",
+    "release_date": "2026-04-12"
+  },
+  {
+    "image": "/image/ixo-engine/export.png",
+    "source_url": "https://github.com/minyang-tech/IXO-Engine/",
+    "download_url": "https://github.com/minyang-tech/IXO-Engine/releases/tag/V1.1.3",
+    "is_opensource": true,
+    "is_ai": true,
+    "screenshots": [
+      "/image/ixo-engine/export.png",
+      "/image/ixo-engine/coming-soon.png"
+    ],
+    "id": 3,
+    "name": "IXO Engine",
+    "category": "Apps",
+    "short_desc": "不用手写代码，通过可视化节点构建应用。",
+    "description": "# IXO Engine\nIXO Engine 是一款可视化节点式应用构建器，工作方式接近积木式编程。它包含 Canvas Builder、UI Viewer、场景工具、资源管理、导出设置以及更安全的网络节点控制。\n\n目前不支持 macOS 桌面应用。Windows 与 Linux 是主要支持平台。",
+    "platform": "Windows / Linux",
+    "min_spec": "Windows 10 64-bit 或 Ubuntu 20.04 级 Linux、4GB RAM、双核 CPU、500MB 可用空间。",
+    "rec_spec": "Windows 11 或 Ubuntu 22.04/24.04、8GB RAM、四核 CPU、1GB 可用空间。",
+    "release_date": "2026-05-20"
+  }
+]

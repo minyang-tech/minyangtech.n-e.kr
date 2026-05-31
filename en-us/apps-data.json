@@ -1,0 +1,56 @@
+[
+  {
+    "image": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/MINYANG%20TECH.png?raw=true",
+    "source_url": "https://minyangtech.n-e.kr/404",
+    "download_url": "https://minyangtech.n-e.kr/g/invite1",
+    "is_opensource": false,
+    "is_ai": true,
+    "screenshots": [],
+    "id": 1,
+    "name": "Nawo Bot",
+    "category": "BOT",
+    "short_desc": "A Discord bot for server statistics, status checks, polls, and mini games.",
+    "description": "# Nawo Bot\nInvite the bot directly from the download button. It provides lightweight server utilities such as statistics, status checks, polls, and mini games.",
+    "platform": "Discord",
+    "min_spec": "No local system requirements.",
+    "rec_spec": "No local system requirements.",
+    "release_date": "2026-04-05"
+  },
+  {
+    "image": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/MINYANG%20TECH.png?raw=true",
+    "source_url": "https://github.com/minyang-tech/quote-markdown",
+    "download_url": "https://github.com/minyang-tech/quote-markdown/releases/download/release/MarkQuote.Setup.1.0.0.exe",
+    "is_opensource": true,
+    "is_ai": true,
+    "screenshots": [],
+    "id": 2,
+    "name": "MarkQuote",
+    "category": "Apps",
+    "short_desc": "Turns Markdown into copyable HTML and creates quote-style cards.",
+    "description": "# MarkQuote\nA small Windows app inspired by quote-card tools. It converts Markdown into HTML and helps create clean quote cards.",
+    "platform": "Windows",
+    "min_spec": "Intel i3-class CPU, 4GB RAM, 200MB storage.",
+    "rec_spec": "Intel i5-class CPU or better, 8GB RAM, SSD.",
+    "release_date": "2026-04-12"
+  },
+  {
+    "image": "/image/ixo-engine/export.png",
+    "source_url": "https://github.com/minyang-tech/IXO-Engine/",
+    "download_url": "https://github.com/minyang-tech/IXO-Engine/releases/tag/V1.1.3",
+    "is_opensource": true,
+    "is_ai": true,
+    "screenshots": [
+      "/image/ixo-engine/export.png",
+      "/image/ixo-engine/coming-soon.png"
+    ],
+    "id": 3,
+    "name": "IXO Engine",
+    "category": "Apps",
+    "short_desc": "Build apps with visual nodes instead of writing code by hand.",
+    "description": "# IXO Engine\nIXO Engine is a visual node-based app builder inspired by block coding workflows. It includes Canvas Builder, UI Viewer, scene tools, asset management, export polish, and safer network-node controls.\n\nmacOS desktop builds are not currently supported. Windows and Linux are the primary supported platforms.",
+    "platform": "Windows / Linux",
+    "min_spec": "Windows 10 64-bit or Ubuntu 20.04-class Linux, 4GB RAM, dual-core CPU, 500MB free storage.",
+    "rec_spec": "Windows 11 or Ubuntu 22.04/24.04, 8GB RAM, quad-core CPU, 1GB free storage.",
+    "release_date": "2026-05-20"
+  }
+]

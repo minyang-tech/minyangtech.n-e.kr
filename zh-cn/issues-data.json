@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "date": "2026-04-19",
+    "title": "CMR-0001: Camera 对象位置问题",
+    "content": "# CMR-0001: Camera 对象位置问题\n\n通过 Camera 流程保存并移动对象后，系统仍可能判断它位于板面上。\n\nStatus: Tracked",
+    "author_name": "@Whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+  },
+  {
+    "id": 2,
+    "date": "2026-04-19",
+    "title": "CMR-0002: Camera 对象重新加载问题",
+    "content": "# CMR-0002: Camera 对象重新加载问题\n\n通过 Camera 保存的部分对象无法稳定打开或恢复。\n\nStatus: Tracked",
+    "author_name": "@Whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+  },
+  {
+    "id": 3,
+    "date": "2026-05-10",
+    "title": "IXO-0001: Canvas Builder 编辑问题",
+    "content": "# IXO-0001: Canvas Builder 编辑问题\n\nCanvas Builder 生成的 UI 元素有时无法选择或编辑。\n\nStatus: Fixed",
+    "author_name": "@Whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+  }
+]

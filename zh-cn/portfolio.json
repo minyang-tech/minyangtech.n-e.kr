@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "date": "2026-05-22",
+    "title": "IXO Engine",
+    "author_name": "@whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "cover": "https://github.com/minyang-tech/IXO-Engine/blob/main/screenshot/export.png?raw=true",
+    "content": "一款可视化节点式应用构建器，让用户无需逐行手写代码即可创建实用桌面应用。工作内容包含网络安全策略、Canvas Builder、场景、资源管理、导出优化和文档。",
+    "assets": [
+      {
+        "type": "image",
+        "src": "https://github.com/minyang-tech/IXO-Engine/blob/main/screenshot/export.png?raw=true"
+      },
+      {
+        "type": "file",
+        "src": "https://github.com/minyang-tech/IXO-Engine",
+        "title": "IXO Engine GitHub",
+        "description": "Repository and release management."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "date": "2026-05-15",
+    "title": "MinyangTech Website",
+    "author_name": "whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "cover": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "content": "基于 GitHub Pages 的网站，用于集中展示 MinyangTech 的文档、新闻、应用、作品集、政策和项目信息。",
+    "assets": []
+  }
+]

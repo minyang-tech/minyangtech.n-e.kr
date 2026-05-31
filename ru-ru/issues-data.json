@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "date": "2026-04-19",
+    "title": "CMR-0001: проблема размещения объекта Camera",
+    "content": "# CMR-0001: проблема размещения объекта Camera\n\nПосле сохранения объект мог по-прежнему определяться как находящийся на доске.\n\nStatus: Tracked",
+    "author_name": "@Whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+  },
+  {
+    "id": 2,
+    "date": "2026-04-19",
+    "title": "CMR-0002: проблема повторной загрузки Camera",
+    "content": "# CMR-0002: проблема повторной загрузки Camera\n\nНекоторые объекты, сохраненные через Camera, не открывались или не восстанавливались стабильно.\n\nStatus: Tracked",
+    "author_name": "@Whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+  },
+  {
+    "id": 3,
+    "date": "2026-05-10",
+    "title": "IXO-0001: проблема редактирования Canvas Builder",
+    "content": "# IXO-0001: проблема редактирования Canvas Builder\n\nUI-элементы, созданные в Canvas Builder, иногда нельзя было выбрать или изменить.\n\nStatus: Fixed",
+    "author_name": "@Whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+  }
+]

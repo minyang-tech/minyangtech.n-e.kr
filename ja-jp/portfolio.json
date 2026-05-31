@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "date": "2026-05-22",
+    "title": "IXO Engine",
+    "author_name": "@whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "cover": "https://github.com/minyang-tech/IXO-Engine/blob/main/screenshot/export.png?raw=true",
+    "content": "すべてのコードを手書きしなくても実用的なデスクトップアプリを作れる、ビジュアルノード型アプリビルダーです。ネットワーク安全ポリシー、Canvas Builder、Scene、Asset 管理、Export 改善、文書化を含みます。",
+    "assets": [
+      {
+        "type": "image",
+        "src": "https://github.com/minyang-tech/IXO-Engine/blob/main/screenshot/export.png?raw=true"
+      },
+      {
+        "type": "file",
+        "src": "https://github.com/minyang-tech/IXO-Engine",
+        "title": "IXO Engine GitHub",
+        "description": "Repository and release management."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "date": "2026-05-15",
+    "title": "MinyangTech Website",
+    "author_name": "whoasked",
+    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_link": "../@whoasked",
+    "cover": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "content": "MinyangTech の Docs、News、Apps、Portfolio、Policy、プロジェクト情報を集約する GitHub Pages ベースのサイトです。",
+    "assets": []
+  }
+]
