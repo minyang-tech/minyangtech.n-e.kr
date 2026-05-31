@@ -7,7 +7,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "CMR-0001: Camera-Objektplatzierung",
+    "content_ko": "# CMR-0001: Camera-Objektplatzierung\n\nNach dem Speichern konnte ein verschobenes Objekt weiterhin als auf dem Board erkannt werden.\n\nStatus: Tracked"
   },
   {
     "id": 2,
@@ -17,7 +19,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "CMR-0002: Camera-Objekt-Reload",
+    "content_ko": "# CMR-0002: Camera-Objekt-Reload\n\nEinige über Camera gespeicherte Objekte konnten nicht zuverlässig geöffnet oder wiederhergestellt werden.\n\nStatus: Tracked"
   },
   {
     "id": 3,
@@ -27,6 +31,8 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "IXO-0001: Canvas-Builder-Editierproblem",
+    "content_ko": "# IXO-0001: Canvas-Builder-Editierproblem\n\nIn Canvas Builder erzeugte UI-Elemente konnten teilweise nicht ausgewählt oder bearbeitet werden.\n\nStatus: Fixed"
   }
 ]

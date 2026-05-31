@@ -19,7 +19,9 @@
         "title": "IXO Engine GitHub",
         "description": "Repository and release management."
       }
-    ]
+    ],
+    "title_ko": "IXO Engine",
+    "content_ko": "A visual node-based app builder for creating practical desktop apps without writing every line of code by hand. The work includes network security policy, Canvas Builder, scenes, asset management, export polish, and documentation."
   },
   {
     "id": 2,
@@ -30,6 +32,8 @@
     "author_link": "../@whoasked",
     "cover": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
     "content": "A GitHub Pages based website that gathers docs, news, apps, portfolio entries, policies, and project information for MinyangTech.",
-    "assets": []
+    "assets": [],
+    "title_ko": "MinyangTech Website",
+    "content_ko": "A GitHub Pages based website that gathers docs, news, apps, portfolio entries, policies, and project information for MinyangTech."
   }
 ]

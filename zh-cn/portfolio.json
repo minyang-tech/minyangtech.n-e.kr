@@ -19,7 +19,9 @@
         "title": "IXO Engine GitHub",
         "description": "Repository and release management."
       }
-    ]
+    ],
+    "title_ko": "IXO Engine",
+    "content_ko": "一款可视化节点式应用构建器，让用户无需逐行手写代码即可创建实用桌面应用。工作内容包含网络安全策略、Canvas Builder、场景、资源管理、导出优化和文档。"
   },
   {
     "id": 2,
@@ -30,6 +32,8 @@
     "author_link": "../@whoasked",
     "cover": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
     "content": "基于 GitHub Pages 的网站，用于集中展示 MinyangTech 的文档、新闻、应用、作品集、政策和项目信息。",
-    "assets": []
+    "assets": [],
+    "title_ko": "MinyangTech Website",
+    "content_ko": "基于 GitHub Pages 的网站，用于集中展示 MinyangTech 的文档、新闻、应用、作品集、政策和项目信息。"
   }
 ]

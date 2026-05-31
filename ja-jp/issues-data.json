@@ -7,7 +7,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "CMR-0001: Camera オブジェクト配置問題",
+    "content_ko": "# CMR-0001: Camera オブジェクト配置問題\n\nCamera の保存処理後、移動したオブジェクトがまだボード上にあると検出される場合がありました。\n\nStatus: Tracked"
   },
   {
     "id": 2,
@@ -17,7 +19,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "CMR-0002: Camera オブジェクト再読込問題",
+    "content_ko": "# CMR-0002: Camera オブジェクト再読込問題\n\nCamera で保存した一部オブジェクトが安定して開けない、または復元できない場合がありました。\n\nStatus: Tracked"
   },
   {
     "id": 3,
@@ -27,6 +31,8 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "IXO-0001: Canvas Builder 編集問題",
+    "content_ko": "# IXO-0001: Canvas Builder 編集問題\n\nCanvas Builder で作成した UI が選択または編集できない場合がありました。\n\nStatus: Fixed"
   }
 ]

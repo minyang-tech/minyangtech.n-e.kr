@@ -19,7 +19,9 @@
         "title": "IXO Engine GitHub",
         "description": "Repository and release management."
       }
-    ]
+    ],
+    "title_ko": "IXO Engine",
+    "content_ko": "すべてのコードを手書きしなくても実用的なデスクトップアプリを作れる、ビジュアルノード型アプリビルダーです。ネットワーク安全ポリシー、Canvas Builder、Scene、Asset 管理、Export 改善、文書化を含みます。"
   },
   {
     "id": 2,
@@ -30,6 +32,8 @@
     "author_link": "../@whoasked",
     "cover": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
     "content": "MinyangTech の Docs、News、Apps、Portfolio、Policy、プロジェクト情報を集約する GitHub Pages ベースのサイトです。",
-    "assets": []
+    "assets": [],
+    "title_ko": "MinyangTech Website",
+    "content_ko": "MinyangTech の Docs、News、Apps、Portfolio、Policy、プロジェクト情報を集約する GitHub Pages ベースのサイトです。"
   }
 ]

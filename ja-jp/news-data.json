@@ -7,7 +7,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "サイト公開",
+    "content_ko": "# サイト公開\n\nMinyangTech のサイトを、ドキュメントとニュースのための軽量なハブとして公開しました。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 2,
@@ -17,7 +19,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "サイト更新",
+    "content_ko": "# サイト更新\n\nDocs と News を整理し、プロジェクト情報を追いやすくしました。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 3,
@@ -27,7 +31,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "一部プロジェクトの停止",
+    "content_ko": "# 一部プロジェクトの停止\n\nより現実的な優先順位に集中するため、いくつかの旧プロジェクトを一時停止しました。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 4,
@@ -37,7 +43,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "Camera プロジェクト案内",
+    "content_ko": "# Camera プロジェクト案内\n\nCamera プロジェクトの概要、ライセンス、開発方針を整理しました。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 5,
@@ -47,7 +55,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "Camera 更新",
+    "content_ko": "# Camera 更新\n\nCamera の基本動作を修正し、小さな改善を追加しました。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 6,
@@ -57,7 +67,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "開発一時休止のお知らせ",
+    "content_ko": "# 開発一時休止のお知らせ\n\n通常の機能開発を一時的に停止し、緊急修正のみ対応できる体制にしました。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 7,
@@ -67,7 +79,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "Nawo Discord ボット紹介",
+    "content_ko": "# Nawo Discord ボット紹介\n\n統計、状態確認、投票、ミニゲーム用の Discord ボットを紹介しました。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 8,
@@ -77,7 +91,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "更新予定のお知らせ",
+    "content_ko": "# 更新予定のお知らせ\n\n試験期間後に既存プロジェクトを順次更新する予定です。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 9,
@@ -87,7 +103,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "標準 EULA 導入",
+    "content_ko": "# 標準 EULA 導入\n\n著作権と利用条件を明確にするため、共通 EULA を導入しました。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 10,
@@ -97,7 +115,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "Roblox ゲームサービス案内",
+    "content_ko": "# Roblox ゲームサービス案内\n\nポリシーと保守上の制約により、古い Roblox 関連サービスを終了しました。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 11,
@@ -107,7 +127,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true"
+    "image": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "title_ko": "EULA 改定案内",
+    "content_ko": "# EULA 改定案内\n\n標準 EULA をより明確な著作権・利用条件に更新しました。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 12,
@@ -117,7 +139,9 @@
     "author_name": "@Whoasked",
     "author_img": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "/image/ixo-engine/export.png"
+    "image": "/image/ixo-engine/export.png",
+    "title_ko": "IXO Engine リリース",
+    "content_ko": "# IXO Engine リリース\n\nIXO Engine が 2026年5月20日に正式リリースされました。ぜひご利用ください。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 13,
@@ -127,7 +151,9 @@
     "author_name": "@whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "/image/ixo-engine/export.png"
+    "image": "/image/ixo-engine/export.png",
+    "title_ko": "IXO Engine 1.1.0 更新",
+    "content_ko": "# IXO Engine 1.1.0 更新\n\n1.1.0 では権限分離、HTTPS 強化、Canvas、Asset Manager、Action System、Export 改善を追加しました。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 14,
@@ -137,7 +163,9 @@
     "author_name": "@whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "/image/ixo-engine/export.png"
+    "image": "/image/ixo-engine/export.png",
+    "title_ko": "IXO Engine V1.1.1 Fix リリース",
+    "content_ko": "# IXO Engine V1.1.1 Fix リリース\n\nUI 修正、Scene 処理、Asset ドラッグ、Vector 描画、パッケージ整理に集中した修正版です。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   },
   {
     "id": 15,
@@ -147,6 +175,8 @@
     "author_name": "@whoasked",
     "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "image": "/image/ixo-engine/export.png"
+    "image": "/image/ixo-engine/export.png",
+    "title_ko": "IXO Engine V1.1.3 配布案内",
+    "content_ko": "# IXO Engine V1.1.3 配布案内\n\n即時更新、F5 プレビュー、属性パネル簡略化、接続点サイズ設定、詳細なネットワーク同意 UI、簡易 UI モードを追加しました。\n\nMinyangTech をご利用いただきありがとうございます。\n\n問い合わせ: <support@minyangtech.n-e.kr>"
   }
 ]
