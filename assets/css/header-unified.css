@@ -46,6 +46,55 @@ header {
     flex-shrink: 0;
 }
 
+.language-menu {
+    position: relative;
+}
+
+.language-menu-button {
+    min-height: 34px;
+    padding: 0 12px;
+    border: 1px solid var(--brd, #ddd);
+    border-radius: 999px;
+    background: var(--bg, #fff);
+    color: var(--txt, #222);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.language-menu-list {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 180px;
+    display: none;
+    padding: 8px;
+    border: 1px solid var(--brd, #ddd);
+    border-radius: 16px;
+    background: var(--card-bg, var(--bg, #fff));
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.16);
+}
+
+.language-menu:hover .language-menu-list,
+.language-menu:focus-within .language-menu-list {
+    display: grid;
+    gap: 4px;
+}
+
+.language-menu-list a {
+    padding: 8px 10px;
+    border-radius: 10px;
+    color: var(--txt, #222);
+    text-decoration: none;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.language-menu-list a:hover,
+.language-menu-list a.active {
+    background: color-mix(in srgb, var(--accent, #007bff) 12%, transparent);
+    color: var(--accent, #007bff);
+}
+
 @media (max-width: 850px) {
     header {
         min-height: 72px;

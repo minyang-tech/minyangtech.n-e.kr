@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>민양테크 News | 새로운 소식</title>
+    <meta property="og:title" content="민양테크 News">
+    <meta property="og:description" content="민양테크의 최신 소식을 확인하세요.">
+    <meta property="og:image" content="https://github.com/minyang-tech/minyangtech.github.io/blob/main/image%2F%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
+    <meta property="og:url" content="https://minyangtech.n-e.kr/news">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="/assets/css/header-unified.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" integrity="sha384-948ahk4ZmxYVYOc+rxN1H2gM1EJ2Duhp7uHtZ4WSLkV4Vtx5MUqnV+l7u9B+jFv+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.3.1/dist/purify.min.js" integrity="sha384-80VlBZnyAwkkqtSfg5NhPyZff6nU4K/qniLBL8Jnm4KDv6jZhLiYtJbhglg/i9ww" crossorigin="anonymous"></script>
+    <script src="/assets/js/security.js"></script>
+
+    <style>
+        :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
+        body.dark-mode { --txt: #f5f5f5; --bg: #121212; --brd: #333; --card-bg: #1e1e1e; }
+
+        body { 
+            font-family: 'Pretendard', sans-serif; 
+            background-color: var(--bg); color: var(--txt); 
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+        }
+
+        header { 
+            width: 100%; height: 80px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 5%; border-bottom: 1px solid var(--brd); 
+            background-color: var(--bg); position: fixed; top: 0; left: 0; z-index: 1000;
+            box-sizing: border-box;
+        }
+        .header-left { display: flex; align-items: center; gap: 40px; }
+        .logo-link img { height: 40px !important; width: auto !important; display: block; }
+        
+        .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+        .nav-links a.active { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
+
+        /* 작성자 프로필 스타일 */
+        .post-author { display: inline-flex; align-items: center; gap: 12px; margin: 15px 0 25px; padding: 8px 12px; border-radius: 12px; transition: 0.2s; }
+        .post-author.clickable { cursor: pointer; }
+        .post-author.clickable:hover { background: rgba(0, 123, 255, 0.05); }
+        .post-author.clickable:hover .author-name { color: var(--accent); text-decoration: underline; }
+        .author-img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: #eee; border: 1px solid var(--brd); }
+        .author-name { font-weight: 700; font-size: 0.95rem; }
+
+        /* 미디어 컨테이너 (비디오/이미지) */
+        .post-media-container { width: 100%; border-radius: 20px; overflow: hidden; margin-bottom: 40px; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .post-hero-img { width: 100%; height: 450px; background-size: cover; background-position: center; }
+        .post-video { width: 100%; aspect-ratio: 16 / 9; display: block; border: none; }
+
+        .filter-container {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 30px; gap: 15px; flex-wrap: wrap;
+        }
+        .search-box { position: relative; flex: 1; min-width: 250px; }
+        .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+        .search-box input {
+            width: 100%; padding: 12px 15px 12px 40px; border-radius: 12px;
+            border: 1px solid var(--brd); background: var(--card-bg);
+            color: var(--txt); font-size: 0.95rem; outline: none; transition: 0.2s;
+            box-sizing: border-box;
+        }
+        .search-box input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+        .sort-select {
+            padding: 12px 15px; border-radius: 12px; border: 1px solid var(--brd);
+            background: var(--card-bg); color: var(--txt); outline: none; cursor: pointer; font-weight: 600;
+        }
+
+        .news-container {
+            max-width: 1000px; margin: 0 auto; min-height: calc(100vh - 160px);
+            padding: 130px 20px 60px;
+        }
+        .news-header { text-align: center; margin-bottom: 40px; }
+        .news-header h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+        
+        .news-list { display: flex; flex-direction: column; gap: 30px; }
+        .news-card {
+            display: flex; background: var(--card-bg); border: 1px solid var(--brd);
+            border-radius: 16px; overflow: hidden; transition: 0.3s;
+            text-decoration: none; color: inherit; cursor: pointer;
+        }
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-color: var(--accent); }
+        .news-img { width: 300px; min-width: 300px; height: 200px; background-size: cover; background-position: center; }
+        .news-info { padding: 30px; flex: 1; display: flex; flex-direction: column; }
+        .news-date { font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+        .news-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; }
+        .news-excerpt { font-size: 0.95rem; opacity: 0.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.6; }
+
+        #post-view { display: none; }
+        .post-back { display: inline-block; margin-bottom: 25px; text-decoration: none; color: var(--accent); font-weight: 600; cursor: pointer; }
+        .post-full-title { font-size: 2.5rem; font-weight: 800; }
+        
+        .post-content { font-size: 1.1rem; line-height: 1.8; color: var(--txt); }
+        .post-content h1, .post-content h2, .post-content h3 { margin-top: 30px; color: var(--accent); }
+        .post-content img { max-width: 100%; height: auto; border-radius: 12px; margin: 25px 0; display: block; }
+        .post-content blockquote { border-left: 4px solid var(--accent); padding-left: 20px; opacity: 0.8; font-style: italic; margin: 20px 0; }
+
+        footer {
+            width: 100%; padding: 50px 20px; border-top: 1px solid var(--brd);
+            background-color: var(--bg); display: flex; flex-direction: column; align-items: center; text-align: center;
+            box-sizing: border-box;
+        }
+        .x-logo-img { height: 24px !important; filter: invert(1); transition: 0.3s; }
+        body.dark-mode .x-logo-img { filter: invert(0); }
+        .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
+
+        .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
+        input:checked + .slider { background: var(--accent); }
+        input:checked + .slider:before { transform: translateX(22px); }
+
+        @media (max-width: 768px) {
+            .news-card { flex-direction: column; }
+            .news-img { width: 100%; height: 180px; }
+            .filter-container { flex-direction: column; align-items: stretch; }
+            .post-hero-img { height: 250px; }
+            .post-full-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="https://minyangtech.n-e.kr" class="logo-link">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="Logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="https://minyangtech.n-e.kr/docs">Docs</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/news" class="active">News</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/apps">Apps</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/portfolio">Portfolio</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/issues">Issues</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/Contributing.html">Contributing</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/eula">EULA</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="controls">
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
+    
+    <div data-locale-route-notice style="max-width:1100px;margin:96px auto 0;padding:14px 18px;border:1px solid var(--brd, #ddd);border-radius:16px;background:var(--card-bg, rgba(0,123,255,0.06));color:var(--txt, inherit);font-weight:700;line-height:1.55;">This page is available as a multilingual route. Core navigation follows the selected language while preserving compatibility with the original content.</div>
+<main class="news-container">
+        <div id="list-ui">
+            <section class="news-header">
+                <h1>새로운 소식</h1>
+                <p>민양테크의 최신 업데이트를 확인하세요.</p>
+            </section>
+
+            <div class="filter-container">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="news-search" placeholder="뉴스 제목이나 내용 검색...">
+                </div>
+                <select id="news-sort" class="sort-select">
+                    <option value="newest">최신순</option>
+                    <option value="oldest">오래된순</option>
+                </select>
+            </div>
+
+            <div class="news-list" id="news-feed"></div>
+        </div>
+
+        <div id="post-view">
+            <a onclick="closePost()" class="post-back"><i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기</a>
+            <div id="post-body"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-sns" style="display: flex; gap: 30px; margin-bottom: 25px; align-items: center;">
+            <a href="https://x.com/minyangtech" target="_blank">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X">
+            </a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </div>
+        <div class="footer-email">
+            <a href="mailto:support@minyangtech.n-e.kr" style="text-decoration:none; color:var(--txt); opacity:0.6;">support@minyangtech.n-e.kr</a>
+        </div>
+        <div class="footer-copyright" style="font-size:13px; opacity:0.4; margin-top:15px;">
+            <p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        let newsData = [];
+        const toggle = document.getElementById('dark-mode-toggle');
+        const searchInput = document.getElementById('news-search');
+        const sortSelect = document.getElementById('news-sort');
+
+        // 테마 설정
+        function updateTheme(isDark) {
+            document.body.classList.toggle('dark-mode', isDark);
+            toggle.checked = isDark;
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+        toggle.addEventListener('change', () => updateTheme(toggle.checked));
+
+        // 뉴스 데이터 로드
+        async function fetchNews() {
+            try {
+                newsData = await SiteSecurity.secureFetchJson('/news-data.json', '36f1e7f7f00a98cb406a459e02e8b582ea0739180cfc3ce52a9cfe1b7c5ef0b8');
+                checkUrlParam();
+            } catch (error) {
+                console.error("Load Error:", error);
+                SiteSecurity.appendTextMessage(document.getElementById('news-feed'), '데이터를 불러올 수 없습니다.');
+            }
+        }
+
+        function renderMedia(url) {
+            const safeUrl = SiteSecurity.safeUrl(url);
+            if (!safeUrl) return null;
+            const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+            const isYoutube = safeUrl.match(youtubeRegex);
+            const container = document.createElement('div');
+            container.className = 'post-media-container';
+            
+            if (isYoutube) {
+                const iframe = document.createElement('iframe');
+                iframe.className = 'post-video';
+                iframe.src = `https://www.youtube.com/embed/${isYoutube[1]}`;
+                iframe.allowFullscreen = true;
+                container.appendChild(iframe);
+                return container;
+            }
+            if (safeUrl.toLowerCase().endsWith('.mp4') || safeUrl.toLowerCase().endsWith('.webm')) {
+                const video = document.createElement('video');
+                video.className = 'post-video';
+                video.controls = true;
+                const source = document.createElement('source');
+                source.src = safeUrl;
+                video.appendChild(source);
+                container.appendChild(video);
+                return container;
+            }
+            const image = document.createElement('div');
+            image.className = 'post-hero-img';
+            image.style.backgroundImage = `url("${safeUrl}")`;
+            container.appendChild(image);
+            return container;
+        }
+
+        // 작성자 링크 리다이렉트
+        function goToAuthor(url) {
+            const safeUrl = SiteSecurity.safeUrl(url);
+            if (safeUrl) window.open(safeUrl, '_blank', 'noopener');
+        }
+
+        function loadTwitterEmbeds(target) {
+            if (!target?.querySelector?.('.twitter-tweet')) return;
+            if (window.twttr?.widgets?.load) {
+                window.twttr.widgets.load(target);
+                return;
+            }
+            if (document.getElementById('twitter-wjs')) return;
+            const script = document.createElement('script');
+            script.id = 'twitter-wjs';
+            script.async = true;
+            script.src = 'https://platform.twitter.com/widgets.js';
+            script.charset = 'utf-8';
+            script.onload = () => window.twttr?.widgets?.load?.(target);
+            document.body.appendChild(script);
+        }
+
+        // 상세 게시글 보기
+        function showPost(id) {
+            const post = newsData.find(item => item.id == id);
+            if (!post) return;
+
+            document.getElementById('list-ui').style.display = 'none';
+            document.getElementById('post-view').style.display = 'block';
+            window.scrollTo(0,0);
+
+            const hasLink = post.author_link && post.author_link !== "#";
+            const authorClass = hasLink ? "post-author clickable" : "post-author";
+            const body = document.getElementById('post-body');
+            body.replaceChildren();
+
+            const date = document.createElement('div');
+            date.className = 'news-date';
+            date.textContent = post.date || '';
+
+            const titleRow = document.createElement('div');
+            titleRow.style.cssText = 'display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:15px;';
+            const title = document.createElement('h1');
+            title.className = 'post-full-title';
+            title.style.margin = '0';
+            title.textContent = post.title_ko || '';
+            const share = document.createElement('button');
+            share.type = 'button';
+            share.style.cssText = 'border:none; background:var(--accent); color:#fff; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600;';
+            share.addEventListener('click', sharePost);
+            const icon = document.createElement('i');
+            icon.className = 'fa-solid fa-share';
+            share.appendChild(icon);
+            titleRow.append(title, share);
+
+            const author = document.createElement('div');
+            author.className = authorClass;
+            if (hasLink) author.addEventListener('click', () => goToAuthor(post.author_link));
+            const authorImg = document.createElement('img');
+            authorImg.className = 'author-img';
+            authorImg.alt = 'Author';
+            authorImg.src = SiteSecurity.safeUrl(post.author_img) || 'https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png';
+            const authorName = document.createElement('span');
+            authorName.className = 'author-name';
+            authorName.textContent = post.author_name || '민양테크';
+            author.append(authorImg, authorName);
+
+            const content = document.createElement('div');
+            content.className = 'post-content';
+            SiteSecurity.setMarkdown(content, post.content_ko || '');
+
+            body.append(date, titleRow, author);
+            const media = renderMedia(post.image);
+            if (media) body.appendChild(media);
+            body.appendChild(content);
+            loadTwitterEmbeds(content);
+
+            if(!window.location.search.includes(`id=${id}`)) history.pushState(null, '', `?id=${id}`);
+        }
+
+        // 검색 및 정렬 로직 적용
+        function applyFilterAndSort() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const sortOrder = sortSelect.value;
+            
+            let filtered = newsData.filter(item => 
+                item.title_ko.toLowerCase().includes(searchTerm) || 
+                item.content_ko.toLowerCase().includes(searchTerm)
+            );
+            
+            filtered.sort((a, b) => sortOrder === 'newest' ? b.id - a.id : a.id - b.id);
+            renderNews(filtered);
+        }
+
+        // 뉴스 목록 렌더링
+        function renderNews(data) {
+            const feed = document.getElementById('news-feed');
+            feed.replaceChildren();
+            if (!data.length) {
+                SiteSecurity.appendTextMessage(feed, '결과가 없습니다.');
+                return;
+            }
+            
+            data.forEach(item => {
+                const tempDiv = document.createElement('div');
+                SiteSecurity.setMarkdown(tempDiv, item.content_ko || '');
+                const plainText = tempDiv.textContent || "";
+
+                const card = document.createElement('div');
+                card.className = 'news-card';
+                card.addEventListener('click', () => showPost(item.id));
+                const image = document.createElement('div');
+                image.className = 'news-img';
+                image.style.backgroundImage = `url("${SiteSecurity.safeUrl(item.image)}")`;
+                const info = document.createElement('div');
+                info.className = 'news-info';
+                const date = document.createElement('span');
+                date.className = 'news-date';
+                date.textContent = item.date || '';
+                const title = document.createElement('h2');
+                title.className = 'news-title';
+                title.style.margin = '10px 0';
+                title.textContent = item.title_ko || '';
+                const excerpt = document.createElement('p');
+                excerpt.className = 'news-excerpt';
+                excerpt.textContent = `${plainText.substring(0, 140)}${plainText.length > 140 ? '...' : ''}`;
+                info.append(date, title, excerpt);
+                card.append(image, info);
+                feed.appendChild(card);
+            });
+        }
+
+        function checkUrlParam() {
+            const params = new URLSearchParams(window.location.search);
+            const postId = params.get('id');
+            postId ? showPost(postId) : showList();
+        }
+
+        function showList() {
+            document.getElementById('list-ui').style.display = 'block';
+            document.getElementById('post-view').style.display = 'none';
+            window.scrollTo(0,0);
+            applyFilterAndSort();
+        }
+
+        function closePost() {
+            history.pushState(null, '', window.location.pathname);
+            showList();
+        }
+
+        function sharePost() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: document.title, text: "민양테크의 최신 소식!", url: url });
+            } else {
+                navigator.clipboard.writeText(url);
+                alert("링크가 복사되었습니다.");
+            }
+        }
+
+        searchInput.addEventListener('input', applyFilterAndSort);
+        sortSelect.addEventListener('change', applyFilterAndSort);
+        window.onpopstate = () => checkUrlParam();
+
+        window.onload = () => {
+            if (localStorage.getItem('darkMode') === 'enabled') updateTheme(true);
+            fetchNews();
+        };
+    </script>
+    <script src="/assets/js/translation-menu.js" defer></script>
+</body>
+</html>

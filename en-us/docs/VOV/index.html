@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>벨리오벨리 | 민양테크 Docs</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="/assets/css/header-unified.css">
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.3.1/dist/purify.min.js" integrity="sha384-80VlBZnyAwkkqtSfg5NhPyZff6nU4K/qniLBL8Jnm4KDv6jZhLiYtJbhglg/i9ww" crossorigin="anonymous"></script>
+    <script src="/assets/js/security.js"></script>
+    <style>
+    /* --- 통합 헤더 스타일 (Docs 레이아웃 최적화) --- */
+    header {
+        width: 100%;
+        height: 80px; /* 높이 엄격 고정 */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 5%;
+        box-sizing: border-box;
+        position: fixed; /* Docs 페이지 상단 고정 */
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background-color: var(--bg);
+        border-bottom: 1px solid var(--brd);
+        overflow: hidden; /* 헤더 전체가 아래로 늘어나는 현상 방지 */
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 28px; /* header-unified.css 규격 */
+        min-width: 0;
+        flex: 1; /* 가용한 공간을 차지하여 nav의 스크롤 영역 확보 */
+    }
+
+    .logo-link img {
+        height: 40px !important;
+        width: auto !important;
+        display: block;
+        flex-shrink: 0; /* 로고 크기 유지 */
+    }
+
+    /* 네비게이션 영역 */
+    header nav {
+        min-width: 0;
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links {
+        display: flex !important;
+        list-style: none;
+        align-items: center;
+        gap: 22px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: var(--txt);
+        font-weight: 600;
+        opacity: 0.7;
+        transition: 0.2s;
+        line-height: 1.2 !important;
+        white-space: nowrap; /* 글자 줄바꿈 방지 */
+    }
+
+    .nav-links a:hover { opacity: 1; color: var(--accent); }
+    .nav-links a.active { 
+        opacity: 1; 
+        color: var(--accent); 
+        border-bottom: 2px solid var(--accent); 
+    }
+
+    .controls {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-shrink: 0;
+        margin-left: 10px;
+    }
+
+    /* --- 모바일 대응 (850px 이하) --- */
+    @media (max-width: 850px) {
+        header {
+            height: 72px; /* 모바일 전용 고정 높이 */
+            padding: 0 4%;
+            gap: 10px;
+        }
+
+        .header-left {
+            gap: 12px;
+            flex: 1;
+            overflow: hidden; /* 내부 요소가 헤더를 벗어나지 않도록 제한 */
+        }
+
+        header nav {
+            overflow-x: auto; /* 메뉴 탭 부분만 가로 스크롤 허용 */
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* 파이어폭스 스크롤바 제거 */
+        }
+
+        header nav::-webkit-scrollbar {
+            display: none; /* 크롬, 사파리 스크롤바 제거 */
+        }
+
+        .nav-links {
+            gap: 15px;
+            padding: 0 5px;
+        }
+
+        .nav-links a {
+            font-size: 14px !important;
+        }
+    }
+</style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="https://minyangtech.n-e.kr" class="logo-link">
+                <!-- 이미지 경로 및 Alt 확인 -->
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="민양테크 로고">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="https://minyangtech.n-e.kr/docs" class="active">Docs</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/news">News</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/apps">Apps</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/portfolio">Portfolio</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/issues">Issues</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/Contributing.html">Contributing</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/eula">EULA</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="controls">
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
+    
+    <div data-locale-route-notice style="max-width:1100px;margin:96px auto 0;padding:14px 18px;border:1px solid var(--brd, #ddd);border-radius:16px;background:var(--card-bg, rgba(0,123,255,0.06));color:var(--txt, inherit);font-weight:700;line-height:1.55;">This page is available as a multilingual route. Core navigation follows the selected language while preserving compatibility with the original content.</div>
+<main class="docs-container">
+        <aside class="docs-sidebar" id="sidebar-target">
+            </aside>
+
+        <article class="docs-content">
+            <h1>벨리오벨리</h1>
+            <p class="subtitle">Valley'O Valley</p>
+            <hr style="border:0; border-top:1px solid var(--brd); margin: 30px 0;">
+            
+            <div class="docs-body">
+                <section>
+                    <h2>개요</h2>
+                    <ul>
+                        <li><strong>제목</strong> <span>Valley'O Valley</span></li>
+                        <li><strong>장르</strong> <span>힐링, 농사</span></li>
+                        <li><strong>플랫폼</strong> <span>Unity</span></li>
+                    </ul>
+
+                    <p style="margin-top:30px; font-weight: 600; color: var(--accent);">현재 개발중인 프로젝트입니다.</p>
+                    
+                    <ul>
+                        <li><strong>출시일</strong> <span>미정</span></li>
+                    </ul>
+                </section>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <h3 style="margin-bottom:20px;">Connect with Us</h3>
+        <div class="footer-sns">
+            <a href="https://x.com/minyangtech" target="_blank">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X Logo">
+            </a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </div>
+        <div class="footer-email">
+            <a href="mailto:support@minyangtech.n-e.kr">support@minyangtech.n-e.kr</a>
+        </div>
+        <div class="footer-copyright">
+            <p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 사이드바 로드 함수
+        async function loadSidebar() {
+            const target = document.getElementById('sidebar-target');
+            try {
+                const data = await SiteSecurity.secureFetchText('/docs/nav.html', '515422a4f137da969e5cc66530cc53caaa32956911b648f6bbd09b63f2d23b9d');
+                SiteSecurity.setSanitizedHtml(target, data);
+
+                const links = target.querySelectorAll('a');
+                const currentPath = window.location.pathname;
+                
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    // 현재 경로를 포함하고 있다면 active 클래스 부여
+                    if (currentPath.includes(href)) {
+                        link.classList.add('active');
+                    }
+                });
+            } catch (error) {
+                SiteSecurity.appendTextMessage(target, '메뉴를 불러오지 못했습니다.');
+            }
+        }
+
+        function toggleDarkMode() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+
+        window.onload = () => {
+            loadSidebar();
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                const toggle = document.getElementById('dark-mode-toggle');
+                if (toggle) toggle.checked = true;
+            }
+        };
+    </script>
+    <script src="/assets/js/translation-menu.js" defer></script>
+</body>
+</html>

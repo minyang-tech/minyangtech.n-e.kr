@@ -1,62 +1,42 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>민양테크 | 민양테크 Docs</title>
-
+    <title>민양테크 Docs | 민양테크</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
     <link rel="stylesheet" href="/common.css">
     <link rel="stylesheet" href="/assets/css/header-unified.css">
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.3.1/dist/purify.min.js" integrity="sha384-80VlBZnyAwkkqtSfg5NhPyZff6nU4K/qniLBL8Jnm4KDv6jZhLiYtJbhglg/i9ww" crossorigin="anonymous"></script>
-    <script src="/assets/js/security.js"></script>
     <style>
         :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
         body.dark-mode { --txt: #f5f5f5; --bg: #121212; --brd: #333; --card-bg: #1e1e1e; }
-
-        body {
-            font-family: 'Pretendard', sans-serif;
-            background-color: var(--bg); color: var(--txt);
-            transition: background-color 0.3s, color 0.3s;
-            margin: 0;
-        }
-
-        header {
-            width: 100%; height: 80px;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 5%; border-bottom: 1px solid var(--brd);
-            background-color: var(--bg); position: fixed; top: 0; left: 0; z-index: 1000;
-            box-sizing: border-box;
-        }
+        body { font-family: 'Pretendard', sans-serif; background-color: var(--bg); color: var(--txt); transition: background-color 0.3s, color 0.3s; margin: 0; }
+        header { width: 100%; min-height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; border-bottom: 1px solid var(--brd); background-color: var(--bg); position: sticky; top: 0; left: 0; z-index: 1000; box-sizing: border-box; }
         .header-left { display: flex; align-items: center; gap: 40px; }
         .logo-link img { height: 40px !important; width: auto !important; display: block; }
-
         .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
         .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
         .nav-links a:hover { opacity: 1; color: var(--accent); }
         .nav-links a.active { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
-
-        .docs-container { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 160px); padding-top: 80px; }
+        .docs-container { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 160px); }
         .docs-sidebar { width: 280px; padding: 40px 20px; border-right: 1px solid var(--brd); position: sticky; top: 80px; height: fit-content; }
-        .docs-sidebar ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
-        .docs-sidebar li { margin-bottom: 8px !important; list-style: none !important; }
-        .docs-sidebar a { text-decoration: none; color: var(--txt); opacity: 0.6; transition: 0.3s; font-size: 0.95rem; display: block; }
+        .docs-sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .docs-sidebar li { margin-bottom: 8px; }
+        .docs-sidebar a { text-decoration: none; color: var(--txt); opacity: 0.68; transition: 0.3s; font-size: 0.95rem; display: block; }
         .docs-sidebar a:hover, .docs-sidebar a.active { opacity: 1; font-weight: bold; color: var(--accent); }
-
         .docs-content { flex: 1; padding: 40px 60px; line-height: 1.8; }
         .docs-content h1 { font-size: 2.5rem; margin: 0 0 10px 0; font-weight: 800; }
         .docs-content .subtitle { font-size: 1.2rem; opacity: 0.6; margin-bottom: 30px; letter-spacing: 1px; }
-
+        .ixo-inspector-hero { margin-bottom: 34px; padding: 26px; border: 1px solid var(--brd); border-radius: 24px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 13%, transparent), var(--card-bg)); box-shadow: 0 14px 36px rgba(0,0,0,0.07); }
+        .ixo-inspector-hero h2 { margin: 0 0 8px; font-size: 1.8rem; }
+        .ixo-inspector-hero p { margin: 0 0 18px; opacity: 0.74; }
+        .ixo-inspector-hero a { display: inline-flex; min-height: 42px; align-items: center; padding: 0 16px; border-radius: 999px; color: #fff; background: var(--accent); text-decoration: none; font-weight: 800; }
         .docs-body h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 2px solid var(--brd); padding-bottom: 10px; }
         .info-list { list-style: none; padding: 0; margin: 20px 0; }
         .info-list li { margin-bottom: 12px; display: flex; align-items: center; }
         .info-list li strong { min-width: 150px; color: var(--accent); font-weight: 700; }
-
-        footer {
-            padding: 60px 20px 40px; text-align: center;
-            border-top: 1px solid var(--brd); background-color: var(--bg);
-        }
+        footer { padding: 60px 20px 40px; text-align: center; border-top: 1px solid var(--brd); background-color: var(--bg); }
         .footer-sns { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; align-items: center; }
         .x-logo-img { height: 24px !important; width: auto !important; filter: invert(1); transition: 0.3s; }
         body.dark-mode .x-logo-img { filter: invert(0); }
@@ -64,19 +44,13 @@
         .footer-email { margin-bottom: 15px; }
         .footer-email a { text-decoration: none; color: var(--txt); opacity: 0.6; font-weight: 500; }
         .footer-copyright { font-size: 0.85rem; opacity: 0.4; }
-
         .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
+        .slider { position: absolute; cursor: pointer; inset: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
         .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
         input:checked + .slider { background: var(--accent); }
         input:checked + .slider:before { transform: translateX(22px); }
-
-        @media (max-width: 900px) {
-            .docs-container { flex-direction: column; }
-            .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; }
-            .docs-content { padding: 40px 20px; }
-        }
+        @media (max-width: 900px) { .docs-container { flex-direction: column; } .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; } .docs-content { padding: 40px 20px; } }
     </style>
 </head>
 <body>
@@ -92,12 +66,23 @@
                     <li><a href="https://minyangtech.n-e.kr/apps">Apps</a></li>
                     <li><a href="https://minyangtech.n-e.kr/portfolio">Portfolio</a></li>
                     <li><a href="https://minyangtech.n-e.kr/issues">Issues</a></li>
-                    <li><a href="https://minyangtech.n-e.kr/Contributing.html">기여</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/Contributing.html">Contributing</a></li>
                     <li><a href="https://minyangtech.n-e.kr/eula">EULA</a></li>
                 </ul>
             </nav>
         </div>
         <div class="controls">
+            <div class="language-menu">
+                <button class="language-menu-button" type="button">번역</button>
+                <div class="language-menu-list">
+                    <a href="/ja-jp/docs/index.html">日本語</a>
+                    <a href="/en-us/docs/index.html">English</a>
+                    <a href="/zh-cn/docs/index.html">中文</a>
+                    <a class="active" href="/docs/index.html">한국어</a>
+                    <a href="/ru-ru/docs/index.html">Русский</a>
+                    <a href="/de-de/docs/index.html">Deutsch</a>
+                </div>
+            </div>
             <label class="switch">
                 <input type="checkbox" id="dark-mode-toggle">
                 <span class="slider"></span>
@@ -106,19 +91,31 @@
     </header>
 
     <main class="docs-container">
-        <aside class="docs-sidebar" id="sidebar-target"></aside>
+        <aside class="docs-sidebar">
+            <ul>
+                <li><a href="#overview" class="active">소개</a></li>
+                <li><a href="/docs/ixo/index.html">IXO Engine</a></li>
+                <li><a href="/docs/ixo/nodes.html">Node Library</a></li>
+                <li><a href="/ixo.html">IXO File Inspector</a></li>
+            </ul>
+        </aside>
 
         <article class="docs-content">
+            <section class="ixo-inspector-hero">
+                <h2>IXO 파일 검사하기</h2>
+                <p>IXO Engine 프로젝트(.ixo) 또는 산출물(.exe)에 포함된 안전 신호를 로컬에서 확인할 수 있습니다.</p>
+                <a href="/ixo.html">검사 페이지 열기</a>
+            </section>
             <h1>민양테크 Docs</h1>
             <p class="subtitle">민양테크 공식 문서 허브</p>
             <hr style="border:0; border-top:1px solid var(--brd); margin: 30px 0;">
-            <div class="docs-body">
+            <div class="docs-body" id="overview">
                 <section>
                     <h2>소개</h2>
                     <p>민양테크 제품과 프로젝트의 공식 문서를 모아둔 페이지입니다.</p>
                     <ul class="info-list">
                         <li><strong>주요 문서</strong><span>IXO Engine, VOV, MAC, Camera</span></li>
-                        <li><strong>업데이트 방식</strong><span>각 프로젝트 소스/릴리즈 기준으로 순차 반영</span></li>
+                        <li><strong>업데이트 방식</strong><span>각 프로젝트 소스와 릴리스 기준으로 순차 반영</span></li>
                         <li><strong>문의</strong><span>support@minyangtech.n-e.kr</span></li>
                     </ul>
                 </section>
@@ -129,47 +126,26 @@
     <footer>
         <h3 style="margin-bottom:20px;">Connect with Us</h3>
         <div class="footer-sns">
-            <a href="https://x.com/minyangtech" target="_blank"><img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X"></a>
-            <a href="https://www.youtube.com/@minyangtech" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://x.com/minyangtech" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X"></a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
         </div>
-        <div class="footer-email">
-            <a href="mailto:support@minyangtech.n-e.kr">support@minyangtech.n-e.kr</a>
-        </div>
-        <div class="footer-copyright">
-            <p>Copyright 2026. MinyangTech. All rights reserved.</p>
-        </div>
+        <div class="footer-email"><a href="mailto:support@minyangtech.n-e.kr">support@minyangtech.n-e.kr</a></div>
+        <div class="footer-copyright"><p>Copyright 2026. MinyangTech. All rights reserved.</p></div>
     </footer>
 
     <script>
-        async function loadSidebar() {
-            const target = document.getElementById('sidebar-target');
-            try {
-                const data = await SiteSecurity.secureFetchText('nav.html', '515422a4f137da969e5cc66530cc53caaa32956911b648f6bbd09b63f2d23b9d');
-                SiteSecurity.setSanitizedHtml(target, data);
-                const links = target.querySelectorAll('a');
-                const currentPath = window.location.pathname;
-                links.forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href && (currentPath.endsWith(href) || currentPath.includes(href))) link.classList.add('active');
-                });
-            } catch (e) {
-                SiteSecurity.appendTextMessage(target, '메뉴를 불러오지 못했습니다.');
-            }
-        }
-
         const darkModeToggle = document.getElementById('dark-mode-toggle');
         darkModeToggle.addEventListener('change', () => {
             const isDark = document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
         });
-
         window.addEventListener('DOMContentLoaded', () => {
-            loadSidebar();
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.body.classList.add('dark-mode');
                 darkModeToggle.checked = true;
             }
         });
     </script>
+    <script src="/assets/js/translation-menu.js" defer></script>
 </body>
 </html>
