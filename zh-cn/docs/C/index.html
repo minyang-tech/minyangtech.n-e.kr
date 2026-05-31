@@ -175,7 +175,7 @@
             const target = document.getElementById('sidebar-target');
             try {
                 // 현재 파일이 docs 하위 폴더에 있다면 '../nav.html', 루트라면 'nav.html'
-                const data = await SiteSecurity.secureFetchText('../nav.html', '73b708c1aeddaacec15a137bfa2cbfedb7ffadebe9bbb6a8458fcc5b5d67f3d8');
+                const data = await SiteSecurity.secureFetchText('../nav.html', '6549e4416f3e38bc0610fad7a5507b5ddabb923b464db7f6e16cb916f9fb3ac9');
                 SiteSecurity.setSanitizedHtml(target, data);
 
                 const links = target.querySelectorAll('a');

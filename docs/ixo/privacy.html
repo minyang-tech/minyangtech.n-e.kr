@@ -103,12 +103,7 @@
         async function loadSidebar() {
             const target = document.getElementById('sidebar-target');
             try {
-                let data;
-                try {
-                    data = await SiteSecurity.secureFetchText('nav.html', '515422a4f137da969e5cc66530cc53caaa32956911b648f6bbd09b63f2d23b9d');
-                } catch {
-                    data = await SiteSecurity.secureFetchText('../nav.html', '515422a4f137da969e5cc66530cc53caaa32956911b648f6bbd09b63f2d23b9d');
-                }
+                const data = await SiteSecurity.secureFetchText('../nav.html', '4a9c5bc5e4b8b238c375262d10382b47d8fddd7619fdf12937b7d131bc86150c');
                 SiteSecurity.setSanitizedHtml(target, data);
                 const links = target.querySelectorAll('a');
                 const currentPath = window.location.pathname;
@@ -149,7 +144,3 @@
     <script src="/assets/js/translation-menu.js" defer></script>
 </body>
 </html>
-
-
-
-

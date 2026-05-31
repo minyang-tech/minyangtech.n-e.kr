@@ -171,7 +171,7 @@
             const target = document.getElementById('sidebar-target');
             try {
                 // 현재 폴더 구조에 따라 nav.html 경로 탐색
-                const data = await SiteSecurity.secureFetchText('../nav.html', '5f890d2321c00e806b8d02730dcd59d324103fd5b9a5a60e64938b7c58ef6663');
+                const data = await SiteSecurity.secureFetchText('../nav.html', '16514016c151dc481383b068b26c45170b4aba007403153f541d9e87add48489');
                 SiteSecurity.setSanitizedHtml(target, data);
 
                 const links = target.querySelectorAll('a');

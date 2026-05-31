@@ -262,15 +262,10 @@ function localeNavHtml(locale) {
     </ul>
 </div>
 <div class="sidebar-group">
-    <h4>[Make A Country]</h4>
+    <h4>[1962: The Last Winter In Moscow]</h4>
     <ul>
-        <li><a href="/${locale}/docs/MAC/gs.html">${esc(t[1])}</a></li>
-    </ul>
-</div>
-<div class="sidebar-group">
-    <h4>[Valley'O Valley]</h4>
-    <ul>
-        <li><a href="/${locale}/docs/VOV/index.html">${esc(t[2])}</a></li>
+        <li><a href="/${locale}/docs/1962/index.html">Home</a></li>
+        <li><a href="/${locale}/docs/1962/story.html">Story</a></li>
     </ul>
 </div>
 <div class="sidebar-group">
@@ -291,6 +286,10 @@ function localeNavHtml(locale) {
 `;
 }
 
+function activeSidebarHtml(html, href) {
+  return html.replace(`href="${href}"`, `href="${href}" class="active"`);
+}
+
 function replaceMain(html, main) {
   return html.replace(/<main[\s\S]*?<\/main>/i, main);
 }
@@ -300,12 +299,7 @@ function makeDocsIndex(locale) {
   let html = normalizeChrome(read("docs/index.html"), locale, "docs", t.docsTitle);
   const main = `<main class="docs-container">
         <aside class="docs-sidebar">
-            <ul>
-                <li><a href="#overview" class="active">${esc(t.docsIntroTitle)}</a></li>
-                <li><a href="/${locale}/docs/ixo/index.html">IXO Engine</a></li>
-                <li><a href="/${locale}/docs/ixo/nodes.html">Node Library</a></li>
-                <li><a href="/${locale}/ixo.html">IXO File Inspector</a></li>
-            </ul>
+${activeSidebarHtml(localeNavHtml(locale), `/${locale}/docs/index.html`)}
         </aside>
 
         <article class="docs-content">
@@ -395,9 +389,7 @@ npm run dev</code></pre><ol><li>Fork the repository.</li><li>Create a branch.</l
 function makeSimpleDocs(locale) {
   const t = i18n[locale];
   const pages = [
-    ["docs/C/index.html", "Camera", "Info"],
-    ["docs/MAC/gs.html", "Make A Country", "Game System"],
-    ["docs/VOV/index.html", "Valley'O Valley", "Info"]
+    ["docs/C/index.html", "Camera", "Info"]
   ];
   for (const [file, title, subtitle] of pages) {
     let html = normalizeChrome(read(file), locale, "docs", title);

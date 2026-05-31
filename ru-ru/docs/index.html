@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru" dir="ltr">
 <head>
     <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Документы MinyangTech | MinyangTech</title>
+    <title>MinyangTech Docs | MinyangTech Docs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
     <link rel="stylesheet" href="/common.css">
     <link rel="stylesheet" href="/assets/css/header-unified.css">
@@ -19,8 +19,17 @@
         .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
         .nav-links a:hover { opacity: 1; color: var(--accent); }
         .nav-links a.active { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
+        .controls { display: flex; align-items: center; gap: 18px; }
+        .language-menu { position: relative; }
+        .language-menu-button { min-height: 34px; padding: 0 13px; border: 1px solid var(--brd); border-radius: 999px; background: var(--card-bg); color: var(--txt); font-weight: 700; cursor: pointer; }
+        .language-menu-list { position: absolute; top: calc(100% + 8px); right: 0; display: none; min-width: 150px; padding: 8px; border: 1px solid var(--brd); border-radius: 14px; background: var(--card-bg); box-shadow: 0 16px 30px rgba(0,0,0,0.16); }
+        .language-menu:hover .language-menu-list { display: grid; gap: 4px; }
+        .language-menu-list a { padding: 8px 10px; border-radius: 10px; color: var(--txt); text-decoration: none; opacity: 0.72; font-weight: 700; }
+        .language-menu-list a:hover, .language-menu-list a.active { color: var(--accent); opacity: 1; background: color-mix(in srgb, var(--accent) 10%, transparent); }
         .docs-container { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 160px); }
         .docs-sidebar { width: 280px; padding: 40px 20px; border-right: 1px solid var(--brd); position: sticky; top: 80px; height: fit-content; }
+        .docs-sidebar .sidebar-group { margin-bottom: 16px; }
+        .docs-sidebar h4 { margin: 0 0 4px; font-size: 1rem; font-weight: 800; color: var(--txt); }
         .docs-sidebar ul { list-style: none; padding: 0; margin: 0; }
         .docs-sidebar li { margin-bottom: 8px; }
         .docs-sidebar a { text-decoration: none; color: var(--txt); opacity: 0.68; transition: 0.3s; font-size: 0.95rem; display: block; }
@@ -28,14 +37,18 @@
         .docs-content { flex: 1; padding: 40px 60px; line-height: 1.8; }
         .docs-content h1 { font-size: 2.5rem; margin: 0 0 10px 0; font-weight: 800; }
         .docs-content .subtitle { font-size: 1.2rem; opacity: 0.6; margin-bottom: 30px; letter-spacing: 1px; }
+        .docs-body h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 2px solid var(--brd); padding-bottom: 10px; }
+        .info-list { list-style: none; padding: 0; margin: 20px 0; }
+        .info-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+        .info-list li strong { min-width: 150px; color: var(--accent); font-weight: 700; }
         .ixo-inspector-hero { margin-bottom: 34px; padding: 26px; border: 1px solid var(--brd); border-radius: 24px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 13%, transparent), var(--card-bg)); box-shadow: 0 14px 36px rgba(0,0,0,0.07); }
         .ixo-inspector-hero h2 { margin: 0 0 8px; font-size: 1.8rem; }
         .ixo-inspector-hero p { margin: 0 0 18px; opacity: 0.74; }
         .ixo-inspector-hero a { display: inline-flex; min-height: 42px; align-items: center; padding: 0 16px; border-radius: 999px; color: #fff; background: var(--accent); text-decoration: none; font-weight: 800; }
-        .docs-body h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 2px solid var(--brd); padding-bottom: 10px; }
-        .info-list { list-style: none; padding: 0; margin: 20px 0; }
-        .info-list li { margin-bottom: 12px; display: flex; align-items: center; }
-        .info-list li strong { min-width: 150px; color: var(--accent); font-weight: 700; }
+        .timeline-list { padding-left: 22px; }
+        .timeline-list li { margin-bottom: 10px; }
+        .quote-box { margin: 24px 0; padding: 20px 24px; border-left: 4px solid var(--accent); border-radius: 16px; background: color-mix(in srgb, var(--accent) 10%, transparent); font-weight: 800; }
+        .status-badge { display: inline-block; background: rgba(0, 123, 255, 0.1); color: var(--accent); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; margin-top: 20px; }
         footer { padding: 60px 20px 40px; text-align: center; border-top: 1px solid var(--brd); background-color: var(--bg); }
         .footer-sns { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; align-items: center; }
         .x-logo-img { height: 24px !important; width: auto !important; filter: invert(1); transition: 0.3s; }
@@ -50,7 +63,7 @@
         .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
         input:checked + .slider { background: var(--accent); }
         input:checked + .slider:before { transform: translateX(22px); }
-        @media (max-width: 900px) { .docs-container { flex-direction: column; } .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; } .docs-content { padding: 40px 20px; } }
+        @media (max-width: 900px) { .docs-container { flex-direction: column; } .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; } .docs-content { padding: 40px 20px; } .nav-links { flex-wrap: wrap; gap: 12px; } header { align-items: flex-start; padding-top: 16px; padding-bottom: 16px; } }
     </style>
 </head>
 <body>
@@ -61,59 +74,90 @@
             </a>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="/ru-ru/docs/index.html" class="active">Документы</a></li>
-                    <li><a href="/ru-ru/news/index.html">Новости</a></li>
-                    <li><a href="/ru-ru/apps.html">Приложения</a></li>
-                    <li><a href="/ru-ru/portfolio.html">Портфолио</a></li>
-                    <li><a href="/ru-ru/issues.html">Задачи</a></li>
+                    <li><a href="/ru-ru/docs/index.html" class="active">Docs</a></li>
+                    <li><a href="/ru-ru/news/index.html">News</a></li>
+                    <li><a href="/ru-ru/apps.html">Apps</a></li>
+                    <li><a href="/ru-ru/portfolio.html">Portfolio</a></li>
+                    <li><a href="/ru-ru/issues.html">Issues</a></li>
                     <li><a href="/ru-ru/Contributing.html">Contributing</a></li>
                     <li><a href="/ru-ru/eula.html">EULA</a></li>
                 </ul>
             </nav>
         </div>
         <div class="controls">
+            <div class="language-menu">
+                <button class="language-menu-button" type="button">Перевод</button>
+                <div class="language-menu-list">
+                    <a href="/ja-jp/docs/index.html">日本語</a>
+                    <a href="/en-us/docs/index.html">English</a>
+                    <a href="/zh-cn/docs/index.html">中文</a>
+                    <a href="/docs/index.html">한국어</a>
+                    <a class="active" href="/ru-ru/docs/index.html">Русский</a>
+                    <a href="/de-de/docs/index.html">Deutsch</a>
+                </div>
+            </div>
             <label class="switch">
                 <input type="checkbox" id="dark-mode-toggle">
                 <span class="slider"></span>
             </label>
         </div>
     </header>
-
     <main class="docs-container">
         <aside class="docs-sidebar">
-            <ul>
-                <li><a href="#overview" class="active">Введение</a></li>
-                <li><a href="/ru-ru/docs/ixo/index.html">IXO Engine</a></li>
-                <li><a href="/ru-ru/docs/ixo/nodes.html">Node Library</a></li>
-                <li><a href="/ru-ru/ixo.html">IXO File Inspector</a></li>
-            </ul>
-        </aside>
+<div class="sidebar-group">
+    <h4>[Main]</h4>
+    <ul>
+        <li><a href="/ru-ru/docs/index.html" class="active">Index (Home)</a></li>
+    </ul>
+</div>
+<div class="sidebar-group">
+    <h4>[1962: The Last Winter In Moscow]</h4>
+    <ul>
+        <li><a href="/ru-ru/docs/1962/index.html">Home</a></li>
+        <li><a href="/ru-ru/docs/1962/story.html">Story</a></li>
+    </ul>
+</div>
+<div class="sidebar-group">
+    <h4>[Camera]</h4>
+    <ul>
+        <li><a href="/ru-ru/docs/C/index.html">Info</a></li>
+    </ul>
+</div>
+<div class="sidebar-group">
+    <h4>[IXO Engine]</h4>
+    <ul>
+        <li><a href="/ru-ru/docs/ixo/index.html">Introduction</a></li>
+        <li><a href="/ru-ru/docs/ixo/nodes.html">Node Library</a></li>
+        <li><a href="/ru-ru/docs/ixo/grammar.html">Template Grammar</a></li>
+        <li><a href="/ru-ru/docs/ixo/privacy.html">Privacy Policy</a></li>
+    </ul>
+</div>
 
+        </aside>
         <article class="docs-content">
-            <section class="ixo-inspector-hero">
-                <h2>Проверить IXO-файл</h2>
-                <p>Локально проверьте safety signals в проектах IXO Engine(.ixo) или экспортированных приложениях(.exe).</p>
-                <a href="/ru-ru/ixo.html">Открыть проверку</a>
-            </section>
-            <h1>Документы MinyangTech</h1>
+            <h1>MinyangTech Docs</h1>
             <p class="subtitle">Официальный центр документации MinyangTech</p>
             <hr style="border:0; border-top:1px solid var(--brd); margin: 30px 0;">
-            <div class="docs-body" id="overview">
+            <div class="docs-body">
+                <section class="ixo-inspector-hero">
+                    <h2>Проверить IXO-файлы</h2>
+                    <p>Локально проверьте сигналы безопасности в проектах IXO Engine(.ixo) или экспортированных приложениях(.exe).</p>
+                    <a href="/ru-ru/ixo.html">Открыть проверку</a>
+                </section>
                 <section>
                     <h2>Введение</h2>
-                    <p>Эта страница объединяет официальные документы продуктов и проектов MinyangTech.</p>
+                    <p>Эта страница собирает официальные документы продуктов и проектов MinyangTech.</p>
                     <ul class="info-list">
-                        <li><strong>Основные документы</strong><span>IXO Engine, VOV, MAC, Camera</span></li>
-                        <li><strong>Политика обновлений</strong><span>Обновляется постепенно на основе исходников и релизов каждого проекта.</span></li>
-                        <li><strong>Контакт</strong><span>support@minyangtech.n-e.kr</span></li>
+                        <li><strong>Основные документы</strong><span>1962: The Last Winter In Moscow, IXO Engine, Camera</span></li>
+                        <li><strong>Порядок обновления</strong><span>Обновляется постепенно на основе исходников и релизов каждого проекта.</span></li>
+                        <li><strong>Контакты</strong><span>support@minyangtech.n-e.kr</span></li>
                     </ul>
                 </section>
             </div>
         </article>
     </main>
-
     <footer>
-        <h3 style="margin-bottom:20px;">Связаться с нами</h3>
+        <h3 style="margin-bottom:20px;">Connect with Us</h3>
         <div class="footer-sns">
             <a href="https://x.com/minyangtech" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X"></a>
             <a href="https://www.youtube.com/@minyangtech" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
@@ -121,7 +165,6 @@
         <div class="footer-email"><a href="mailto:support@minyangtech.n-e.kr">support@minyangtech.n-e.kr</a></div>
         <div class="footer-copyright"><p>Copyright 2026. MinyangTech. All rights reserved.</p></div>
     </footer>
-
     <script>
         const darkModeToggle = document.getElementById('dark-mode-toggle');
         darkModeToggle.addEventListener('change', () => {
