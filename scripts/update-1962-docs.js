@@ -27,9 +27,6 @@ const text = {
     privacy: "Privacy Policy",
     docsTitle: "민양테크 Docs",
     docsSubtitle: "민양테크 공식 문서 허브",
-    inspectorTitle: "IXO 파일 검사하기",
-    inspectorBody: "IXO Engine 프로젝트(.ixo) 또는 산출물(.exe)에 포함된 안전 신호를 로컬에서 확인할 수 있습니다.",
-    inspectorOpen: "검사 페이지 열기",
     docsIntroTitle: "소개",
     docsIntro: "민양테크 제품과 프로젝트의 공식 문서를 모아둔 페이지입니다.",
     mainDocs: "주요 문서",
@@ -97,9 +94,6 @@ const text = {
     privacy: "Privacy Policy",
     docsTitle: "MinyangTech Docs",
     docsSubtitle: "MinyangTech 公式ドキュメントハブ",
-    inspectorTitle: "IXOファイルを検査",
-    inspectorBody: "IXO Engineプロジェクト(.ixo)またはエクスポートされたアプリ(.exe)に含まれる安全信号をローカルで確認できます。",
-    inspectorOpen: "検査ページを開く",
     docsIntroTitle: "紹介",
     docsIntro: "MinyangTechの製品とプロジェクトの公式ドキュメントをまとめたページです。",
     mainDocs: "主要ドキュメント",
@@ -167,9 +161,6 @@ const text = {
     privacy: "Privacy Policy",
     docsTitle: "MinyangTech Docs",
     docsSubtitle: "Official documentation hub for MinyangTech",
-    inspectorTitle: "Inspect IXO files",
-    inspectorBody: "Check safety signals included in IXO Engine projects(.ixo) or exported apps(.exe) locally.",
-    inspectorOpen: "Open inspector",
     docsIntroTitle: "Introduction",
     docsIntro: "This page gathers official documents for MinyangTech products and projects.",
     mainDocs: "Main docs",
@@ -237,9 +228,6 @@ const text = {
     privacy: "Privacy Policy",
     docsTitle: "MinyangTech Docs",
     docsSubtitle: "MinyangTech 官方文档中心",
-    inspectorTitle: "检查 IXO 文件",
-    inspectorBody: "可在本地检查 IXO Engine 项目(.ixo)或导出应用(.exe)中包含的安全信号。",
-    inspectorOpen: "打开检查页面",
     docsIntroTitle: "介绍",
     docsIntro: "这里汇集了 MinyangTech 产品和项目的官方文档。",
     mainDocs: "主要文档",
@@ -307,9 +295,6 @@ const text = {
     privacy: "Privacy Policy",
     docsTitle: "MinyangTech Docs",
     docsSubtitle: "Официальный центр документации MinyangTech",
-    inspectorTitle: "Проверить IXO-файлы",
-    inspectorBody: "Локально проверьте сигналы безопасности в проектах IXO Engine(.ixo) или экспортированных приложениях(.exe).",
-    inspectorOpen: "Открыть проверку",
     docsIntroTitle: "Введение",
     docsIntro: "Эта страница собирает официальные документы продуктов и проектов MinyangTech.",
     mainDocs: "Основные документы",
@@ -377,9 +362,6 @@ const text = {
     privacy: "Privacy Policy",
     docsTitle: "MinyangTech Docs",
     docsSubtitle: "Offizieller Dokumentationshub von MinyangTech",
-    inspectorTitle: "IXO-Dateien prüfen",
-    inspectorBody: "Prüfen Sie lokal die Sicherheitssignale in IXO-Engine-Projekten(.ixo) oder exportierten Apps(.exe).",
-    inspectorOpen: "Prüfseite öffnen",
     docsIntroTitle: "Einführung",
     docsIntro: "Diese Seite bündelt offizielle Dokumente zu Produkten und Projekten von MinyangTech.",
     mainDocs: "Wichtige Dokumente",
@@ -600,10 +582,11 @@ function baseCss() {
         .info-list { list-style: none; padding: 0; margin: 20px 0; }
         .info-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
         .info-list li strong { min-width: 150px; color: var(--accent); font-weight: 700; }
-        .ixo-inspector-hero { margin-bottom: 34px; padding: 26px; border: 1px solid var(--brd); border-radius: 24px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 13%, transparent), var(--card-bg)); box-shadow: 0 14px 36px rgba(0,0,0,0.07); }
-        .ixo-inspector-hero h2 { margin: 0 0 8px; font-size: 1.8rem; }
-        .ixo-inspector-hero p { margin: 0 0 18px; opacity: 0.74; }
-        .ixo-inspector-hero a { display: inline-flex; min-height: 42px; align-items: center; padding: 0 16px; border-radius: 999px; color: #fff; background: var(--accent); text-decoration: none; font-weight: 800; }
+        .faq-list { display: grid; gap: 14px; margin-top: 18px; }
+        .faq-item { padding: 18px 20px; border: 1px solid var(--brd); border-radius: 18px; background: var(--card-bg); }
+        .faq-item h3 { margin: 0 0 8px; font-size: 1.05rem; color: var(--accent); }
+        .faq-item p { margin: 0; }
+        .faq-item a { color: var(--accent); font-weight: 800; text-decoration: none; }
         .timeline-list { padding-left: 22px; }
         .timeline-list li { margin-bottom: 10px; }
         .quote-box { margin: 24px 0; padding: 20px 24px; border-left: 4px solid var(--accent); border-radius: 16px; background: color-mix(in srgb, var(--accent) 10%, transparent); font-weight: 800; }
@@ -655,6 +638,45 @@ function footer(locale) {
     </footer>`;
 }
 
+const faqText = {
+  ko: {
+    title: "FAQ (자주 묻는 질문)",
+    contactQuestion: "Q. 문의는 어떻게 할 수 있나요?",
+    contactAnswer: 'A. <a href="https://discord.com/channels/1462087239868612623/1499186949653790840">디스코드 문의채널</a> 또는 <a href="mailto:support@minyangtech.n-e.kr">지원메일</a>로 주실 수 있습니다.',
+    plannedQuestion: "Q. [더 추가예정]"
+  },
+  "ja-jp": {
+    title: "FAQ（よくある質問）",
+    contactQuestion: "Q. 問い合わせはどこからできますか？",
+    contactAnswer: 'A. <a href="https://discord.com/channels/1462087239868612623/1499186949653790840">Discord問い合わせチャンネル</a> または <a href="mailto:support@minyangtech.n-e.kr">サポートメール</a>からご連絡いただけます。',
+    plannedQuestion: "Q. ［今後追加予定］"
+  },
+  "en-us": {
+    title: "FAQ (Frequently Asked Questions)",
+    contactQuestion: "Q. How can I contact support?",
+    contactAnswer: 'A. You can contact us through the <a href="https://discord.com/channels/1462087239868612623/1499186949653790840">Discord support channel</a> or by <a href="mailto:support@minyangtech.n-e.kr">support email</a>.',
+    plannedQuestion: "Q. [More coming soon]"
+  },
+  "zh-cn": {
+    title: "FAQ（常见问题）",
+    contactQuestion: "Q. 如何进行咨询？",
+    contactAnswer: 'A. 您可以通过 <a href="https://discord.com/channels/1462087239868612623/1499186949653790840">Discord 咨询频道</a> 或 <a href="mailto:support@minyangtech.n-e.kr">支持邮箱</a> 联系我们。',
+    plannedQuestion: "Q. [更多内容将陆续追加]"
+  },
+  "ru-ru": {
+    title: "FAQ (часто задаваемые вопросы)",
+    contactQuestion: "Q. Как можно связаться с поддержкой?",
+    contactAnswer: 'A. Вы можете написать в <a href="https://discord.com/channels/1462087239868612623/1499186949653790840">канал поддержки Discord</a> или на <a href="mailto:support@minyangtech.n-e.kr">почту поддержки</a>.',
+    plannedQuestion: "Q. [Будет добавлено позже]"
+  },
+  "de-de": {
+    title: "FAQ (Häufig gestellte Fragen)",
+    contactQuestion: "Q. Wie kann ich Kontakt aufnehmen?",
+    contactAnswer: 'A. Sie können uns über den <a href="https://discord.com/channels/1462087239868612623/1499186949653790840">Discord-Supportkanal</a> oder per <a href="mailto:support@minyangtech.n-e.kr">Support-E-Mail</a> erreichen.',
+    plannedQuestion: "Q. [Weitere Fragen folgen]"
+  }
+};
+
 function page(locale, title, subtitle, activeHref, bodyHtml, currentPath) {
   const meta = localeMeta[locale];
   return `<!DOCTYPE html>
@@ -695,12 +717,8 @@ ${darkScript()}
 
 function docsIndex(locale) {
   const t = text[locale];
-  const body = `                <section class="ixo-inspector-hero">
-                    <h2>${esc(t.inspectorTitle)}</h2>
-                    <p>${esc(t.inspectorBody)}</p>
-                    <a href="${href(locale, "/ixo.html")}">${esc(t.inspectorOpen)}</a>
-                </section>
-                <section>
+  const faq = faqText[locale];
+  const body = `                <section>
                     <h2>${esc(t.docsIntroTitle)}</h2>
                     <p>${esc(t.docsIntro)}</p>
                     <ul class="info-list">
@@ -708,6 +726,18 @@ function docsIndex(locale) {
                         <li><strong>${esc(t.updatePolicy)}</strong><span>${esc(t.updatePolicyBody)}</span></li>
                         <li><strong>${esc(t.contact)}</strong><span>support@minyangtech.n-e.kr</span></li>
                     </ul>
+                </section>
+                <section>
+                    <h2>${esc(faq.title)}</h2>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <h3>${esc(faq.contactQuestion)}</h3>
+                            <p>${faq.contactAnswer}</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>${esc(faq.plannedQuestion)}</h3>
+                        </div>
+                    </div>
                 </section>`;
   return page(locale, t.docsTitle, t.docsSubtitle, href(locale, "/docs/index.html"), body, "/docs/index.html");
 }
@@ -795,6 +825,14 @@ function removeLegacyDocs(locale) {
   }
 }
 
+function removeIxoInspectorPage(locale) {
+  const full = path.join(root, localePath(locale, "ixo.html"));
+  const relative = path.relative(root, full);
+  if (fs.existsSync(full) && !relative.startsWith("..") && !path.isAbsolute(relative)) {
+    fs.unlinkSync(full);
+  }
+}
+
 function removeDirectoryContents(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
@@ -814,6 +852,7 @@ for (const locale of locales) {
   write(localePath(locale, "docs/1962/story.html"), story1962(locale));
   updateDocsFetchHashes(locale);
   removeLegacyDocs(locale);
+  removeIxoInspectorPage(locale);
 }
 
 console.log("Updated docs navigation and 1962 pages for all supported languages.");

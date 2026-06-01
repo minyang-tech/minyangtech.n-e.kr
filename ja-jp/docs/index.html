@@ -41,10 +41,11 @@
         .info-list { list-style: none; padding: 0; margin: 20px 0; }
         .info-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
         .info-list li strong { min-width: 150px; color: var(--accent); font-weight: 700; }
-        .ixo-inspector-hero { margin-bottom: 34px; padding: 26px; border: 1px solid var(--brd); border-radius: 24px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 13%, transparent), var(--card-bg)); box-shadow: 0 14px 36px rgba(0,0,0,0.07); }
-        .ixo-inspector-hero h2 { margin: 0 0 8px; font-size: 1.8rem; }
-        .ixo-inspector-hero p { margin: 0 0 18px; opacity: 0.74; }
-        .ixo-inspector-hero a { display: inline-flex; min-height: 42px; align-items: center; padding: 0 16px; border-radius: 999px; color: #fff; background: var(--accent); text-decoration: none; font-weight: 800; }
+        .faq-list { display: grid; gap: 14px; margin-top: 18px; }
+        .faq-item { padding: 18px 20px; border: 1px solid var(--brd); border-radius: 18px; background: var(--card-bg); }
+        .faq-item h3 { margin: 0 0 8px; font-size: 1.05rem; color: var(--accent); }
+        .faq-item p { margin: 0; }
+        .faq-item a { color: var(--accent); font-weight: 800; text-decoration: none; }
         .timeline-list { padding-left: 22px; }
         .timeline-list li { margin-bottom: 10px; }
         .quote-box { margin: 24px 0; padding: 20px 24px; border-left: 4px solid var(--accent); border-radius: 16px; background: color-mix(in srgb, var(--accent) 10%, transparent); font-weight: 800; }
@@ -139,11 +140,6 @@
             <p class="subtitle">MinyangTech 公式ドキュメントハブ</p>
             <hr style="border:0; border-top:1px solid var(--brd); margin: 30px 0;">
             <div class="docs-body">
-                <section class="ixo-inspector-hero">
-                    <h2>IXOファイルを検査</h2>
-                    <p>IXO Engineプロジェクト(.ixo)またはエクスポートされたアプリ(.exe)に含まれる安全信号をローカルで確認できます。</p>
-                    <a href="/ja-jp/ixo.html">検査ページを開く</a>
-                </section>
                 <section>
                     <h2>紹介</h2>
                     <p>MinyangTechの製品とプロジェクトの公式ドキュメントをまとめたページです。</p>
@@ -152,6 +148,18 @@
                         <li><strong>更新方式</strong><span>各プロジェクトのソースとリリース状況に基づいて順次反映します。</span></li>
                         <li><strong>問い合わせ</strong><span>support@minyangtech.n-e.kr</span></li>
                     </ul>
+                </section>
+                <section>
+                    <h2>FAQ（よくある質問）</h2>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <h3>Q. 問い合わせはどこからできますか？</h3>
+                            <p>A. <a href="https://discord.com/channels/1462087239868612623/1499186949653790840">Discord問い合わせチャンネル</a> または <a href="mailto:support@minyangtech.n-e.kr">サポートメール</a>からご連絡いただけます。</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>Q. ［今後追加予定］</h3>
+                        </div>
+                    </div>
                 </section>
             </div>
         </article>

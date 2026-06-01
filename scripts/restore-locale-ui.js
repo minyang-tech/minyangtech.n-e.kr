@@ -16,9 +16,6 @@ const i18n = {
     docsSubtitle: "MinyangTech 公式ドキュメントハブ",
     docsIntroTitle: "紹介",
     docsIntro: "MinyangTech の製品とプロジェクトの公式ドキュメントをまとめたページです。",
-    docsInspectorTitle: "IXO ファイルを検査",
-    docsInspectorBody: "IXO Engine プロジェクト(.ixo)または書き出したアプリ(.exe)に含まれる安全信号をローカルで確認できます。",
-    docsInspectorOpen: "検査ページを開く",
     mainDocs: "主要ドキュメント",
     updatePolicy: "更新方式",
     updatePolicyBody: "各プロジェクトのソースとリリースを基準に順次反映します。",
@@ -51,9 +48,6 @@ const i18n = {
     docsSubtitle: "Official documentation hub for MinyangTech",
     docsIntroTitle: "Introduction",
     docsIntro: "This page gathers official documents for MinyangTech products and projects.",
-    docsInspectorTitle: "Inspect IXO files",
-    docsInspectorBody: "Check safety signals included in IXO Engine projects(.ixo) or exported apps(.exe) locally.",
-    docsInspectorOpen: "Open inspector",
     mainDocs: "Main docs",
     updatePolicy: "Update policy",
     updatePolicyBody: "Updated gradually based on each project source and release state.",
@@ -86,9 +80,6 @@ const i18n = {
     docsSubtitle: "MinyangTech 官方文档中心",
     docsIntroTitle: "介绍",
     docsIntro: "本页汇总 MinyangTech 产品与项目的官方文档。",
-    docsInspectorTitle: "检查 IXO 文件",
-    docsInspectorBody: "可在本地检查 IXO Engine 项目(.ixo)或导出应用(.exe)中的安全信号。",
-    docsInspectorOpen: "打开检查页",
     mainDocs: "主要文档",
     updatePolicy: "更新方式",
     updatePolicyBody: "根据各项目源码与发布状态逐步反映。",
@@ -121,9 +112,6 @@ const i18n = {
     docsSubtitle: "Официальный центр документации MinyangTech",
     docsIntroTitle: "Введение",
     docsIntro: "Эта страница объединяет официальные документы продуктов и проектов MinyangTech.",
-    docsInspectorTitle: "Проверить IXO-файл",
-    docsInspectorBody: "Локально проверьте safety signals в проектах IXO Engine(.ixo) или экспортированных приложениях(.exe).",
-    docsInspectorOpen: "Открыть проверку",
     mainDocs: "Основные документы",
     updatePolicy: "Политика обновлений",
     updatePolicyBody: "Обновляется постепенно на основе исходников и релизов каждого проекта.",
@@ -156,9 +144,6 @@ const i18n = {
     docsSubtitle: "Offizieller Dokumentationshub von MinyangTech",
     docsIntroTitle: "Einführung",
     docsIntro: "Diese Seite bündelt offizielle Dokumente zu MinyangTech-Produkten und Projekten.",
-    docsInspectorTitle: "IXO-Dateien prüfen",
-    docsInspectorBody: "Safety Signals in IXO-Engine-Projekten(.ixo) oder exportierten Apps(.exe) lokal prüfen.",
-    docsInspectorOpen: "Prüfseite öffnen",
     mainDocs: "Wichtige Dokumente",
     updatePolicy: "Update-Prinzip",
     updatePolicyBody: "Wird schrittweise anhand von Projektquellen und Releases aktualisiert.",
@@ -303,11 +288,6 @@ ${activeSidebarHtml(localeNavHtml(locale), `/${locale}/docs/index.html`)}
         </aside>
 
         <article class="docs-content">
-            <section class="ixo-inspector-hero">
-                <h2>${esc(t.docsInspectorTitle)}</h2>
-                <p>${esc(t.docsInspectorBody)}</p>
-                <a href="/${locale}/ixo.html">${esc(t.docsInspectorOpen)}</a>
-            </section>
             <h1>${esc(t.docsTitle)}</h1>
             <p class="subtitle">${esc(t.docsSubtitle)}</p>
             <hr style="border:0; border-top:1px solid var(--brd); margin: 30px 0;">
@@ -316,7 +296,7 @@ ${activeSidebarHtml(localeNavHtml(locale), `/${locale}/docs/index.html`)}
                     <h2>${esc(t.docsIntroTitle)}</h2>
                     <p>${esc(t.docsIntro)}</p>
                     <ul class="info-list">
-                        <li><strong>${esc(t.mainDocs)}</strong><span>IXO Engine, VOV, MAC, Camera</span></li>
+                        <li><strong>${esc(t.mainDocs)}</strong><span>1962: The Last Winter In Moscow, IXO Engine, Camera</span></li>
                         <li><strong>${esc(t.updatePolicy)}</strong><span>${esc(t.updatePolicyBody)}</span></li>
                         <li><strong>${esc(t.contact)}</strong><span>support@minyangtech.n-e.kr</span></li>
                     </ul>
@@ -409,7 +389,6 @@ function copyRemainingWithChrome(locale) {
     ["portfolio.html", "portfolio", i18n[locale].nav[3]],
     ["policy.html", "docs", "Policy"],
     ["find/stelrunartist.html", "docs", "Artist Recruitment"],
-    ["ixo.html", "docs", i18n[locale].docsInspectorTitle],
     ["@whoasked.html", "portfolio", "@whoasked"],
     ["@getsystemmetrics.html", "portfolio", "@getsystemmetrics"],
     ["404.html", "docs", "404"]
