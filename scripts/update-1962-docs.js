@@ -20,6 +20,7 @@ const text = {
     home: "Index (Home)",
     game1962Home: "Home",
     game1962Story: "Story",
+    game1962Update: "update log",
     cameraInfo: "Info",
     intro: "Introduction",
     nodeLibrary: "Node Library",
@@ -87,6 +88,7 @@ const text = {
     home: "Index (Home)",
     game1962Home: "Home",
     game1962Story: "Story",
+    game1962Update: "update log",
     cameraInfo: "Info",
     intro: "Introduction",
     nodeLibrary: "Node Library",
@@ -154,6 +156,7 @@ const text = {
     home: "Index (Home)",
     game1962Home: "Home",
     game1962Story: "Story",
+    game1962Update: "update log",
     cameraInfo: "Info",
     intro: "Introduction",
     nodeLibrary: "Node Library",
@@ -221,6 +224,7 @@ const text = {
     home: "Index (Home)",
     game1962Home: "Home",
     game1962Story: "Story",
+    game1962Update: "update log",
     cameraInfo: "Info",
     intro: "Introduction",
     nodeLibrary: "Node Library",
@@ -288,6 +292,7 @@ const text = {
     home: "Index (Home)",
     game1962Home: "Home",
     game1962Story: "Story",
+    game1962Update: "update log",
     cameraInfo: "Info",
     intro: "Introduction",
     nodeLibrary: "Node Library",
@@ -355,6 +360,7 @@ const text = {
     home: "Index (Home)",
     game1962Home: "Home",
     game1962Story: "Story",
+    game1962Update: "update log",
     cameraInfo: "Info",
     intro: "Introduction",
     nodeLibrary: "Node Library",
@@ -525,6 +531,7 @@ function navHtml(locale) {
     <ul>
         <li><a href="${href(locale, "/docs/1962/index.html")}">${esc(t.game1962Home)}</a></li>
         <li><a href="${href(locale, "/docs/1962/story.html")}">${esc(t.game1962Story)}</a></li>
+        <li><a href="${href(locale, "/docs/1962/update.html")}">${esc(t.game1962Update)}</a></li>
     </ul>
 </div>
 <div class="sidebar-group">
@@ -785,6 +792,18 @@ ${t.settingParas.map((item) => `                    <p>${esc(item)}</p>`).join("
   return page(locale, "1962: The Last Winter In Moscow", t.story, href(locale, "/docs/1962/story.html"), body, "/docs/1962/story.html");
 }
 
+function update1962(locale) {
+  const body = `                <section>
+                    <h2>V0.1 Beta</h2>
+                    <blockquote>2026/05/31</blockquote>
+                    <p><strong>주요 변경 사항 :</strong></p>
+                    <ul>
+                        <li>게임 개발이 시작됨</li>
+                    </ul>
+                </section>`;
+  return page(locale, "1962: The Last Winter In Moscow", "update log", href(locale, "/docs/1962/update.html"), body, "/docs/1962/update.html");
+}
+
 function updateDocsFetchHashes(locale) {
   const docsDir = path.join(root, localePath(locale, "docs"));
   if (!fs.existsSync(docsDir)) return;
@@ -850,6 +869,7 @@ for (const locale of locales) {
   write(localePath(locale, "docs/index.html"), docsIndex(locale));
   write(localePath(locale, "docs/1962/index.html"), home1962(locale));
   write(localePath(locale, "docs/1962/story.html"), story1962(locale));
+  write(localePath(locale, "docs/1962/update.html"), update1962(locale));
   updateDocsFetchHashes(locale);
   removeLegacyDocs(locale);
   removeIxoInspectorPage(locale);

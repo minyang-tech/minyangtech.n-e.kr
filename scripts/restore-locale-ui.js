@@ -251,6 +251,7 @@ function localeNavHtml(locale) {
     <ul>
         <li><a href="/${locale}/docs/1962/index.html">Home</a></li>
         <li><a href="/${locale}/docs/1962/story.html">Story</a></li>
+        <li><a href="/${locale}/docs/1962/update.html">update log</a></li>
     </ul>
 </div>
 <div class="sidebar-group">

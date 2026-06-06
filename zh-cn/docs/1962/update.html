@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+<head>
+    <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1962: The Last Winter In Moscow | MinyangTech Docs</title>
+    <meta name="twitter:image" content="https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
+    <meta name="twitter:description" content="민양테크 공식 문서와 프로젝트 정보를 확인하세요.">
+    <meta name="twitter:title" content="1962: The Last Winter In Moscow | MinyangTech Docs">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://minyangtech.n-e.kr/zh-cn/docs/1962/update.html">
+    <meta property="og:image" content="https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
+    <meta property="og:description" content="민양테크 공식 문서와 프로젝트 정보를 확인하세요.">
+    <meta property="og:title" content="1962: The Last Winter In Moscow | MinyangTech Docs">
+    <meta name="description" content="민양테크 공식 문서와 프로젝트 정보를 확인하세요.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="/assets/css/header-unified.css">
+    <style>
+        :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; }
+        body.dark-mode { --txt: #f5f5f5; --bg: #121212; --brd: #333; --card-bg: #1e1e1e; }
+        body { font-family: 'Pretendard', sans-serif; background-color: var(--bg); color: var(--txt); transition: background-color 0.3s, color 0.3s; margin: 0; }
+        header { width: 100%; min-height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; border-bottom: 1px solid var(--brd); background-color: var(--bg); position: sticky; top: 0; left: 0; z-index: 1000; box-sizing: border-box; }
+        .header-left { display: flex; align-items: center; gap: 40px; }
+        .logo-link img { height: 40px !important; width: auto !important; display: block; }
+        .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+        .nav-links a.active { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
+        .controls { display: flex; align-items: center; gap: 18px; }
+        .language-menu { position: relative; }
+        .language-menu-button { min-height: 34px; padding: 0 13px; border: 1px solid var(--brd); border-radius: 999px; background: var(--card-bg); color: var(--txt); font-weight: 700; cursor: pointer; }
+        .language-menu-list { position: absolute; top: calc(100% + 8px); right: 0; display: none; min-width: 150px; padding: 8px; border: 1px solid var(--brd); border-radius: 14px; background: var(--card-bg); box-shadow: 0 16px 30px rgba(0,0,0,0.16); }
+        .language-menu:hover .language-menu-list { display: grid; gap: 4px; }
+        .language-menu-list a { padding: 8px 10px; border-radius: 10px; color: var(--txt); text-decoration: none; opacity: 0.72; font-weight: 700; }
+        .language-menu-list a:hover, .language-menu-list a.active { color: var(--accent); opacity: 1; background: color-mix(in srgb, var(--accent) 10%, transparent); }
+        .docs-container { display: flex; max-width: 1400px; margin: 0 auto; min-height: calc(100vh - 160px); }
+        .docs-sidebar { width: 280px; padding: 40px 20px; border-right: 1px solid var(--brd); position: sticky; top: 80px; height: fit-content; }
+        .docs-sidebar .sidebar-group { margin-bottom: 16px; }
+        .docs-sidebar h4 { margin: 0 0 4px; font-size: 1rem; font-weight: 800; color: var(--txt); }
+        .docs-sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .docs-sidebar li { margin-bottom: 8px; }
+        .docs-sidebar a { text-decoration: none; color: var(--txt); opacity: 0.68; transition: 0.3s; font-size: 0.95rem; display: block; }
+        .docs-sidebar a:hover, .docs-sidebar a.active { opacity: 1; font-weight: bold; color: var(--accent); }
+        .docs-content { flex: 1; padding: 40px 60px; line-height: 1.8; }
+        .docs-content h1 { font-size: 2.5rem; margin: 0 0 10px 0; font-weight: 800; }
+        .docs-content .subtitle { font-size: 1.2rem; opacity: 0.6; margin-bottom: 30px; letter-spacing: 1px; }
+        .docs-body h2 { font-size: 1.8rem; margin-top: 40px; border-bottom: 2px solid var(--brd); padding-bottom: 10px; }
+        .info-list { list-style: none; padding: 0; margin: 20px 0; }
+        .info-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+        .info-list li strong { min-width: 150px; color: var(--accent); font-weight: 700; }
+        .faq-list { display: grid; gap: 14px; margin-top: 18px; }
+        .faq-item { padding: 18px 20px; border: 1px solid var(--brd); border-radius: 18px; background: var(--card-bg); }
+        .faq-item h3 { margin: 0 0 8px; font-size: 1.05rem; color: var(--accent); }
+        .faq-item p { margin: 0; }
+        .faq-item a { color: var(--accent); font-weight: 800; text-decoration: none; }
+        .timeline-list { padding-left: 22px; }
+        .timeline-list li { margin-bottom: 10px; }
+        .quote-box { margin: 24px 0; padding: 20px 24px; border-left: 4px solid var(--accent); border-radius: 16px; background: color-mix(in srgb, var(--accent) 10%, transparent); font-weight: 800; }
+        .status-badge { display: inline-block; background: rgba(0, 123, 255, 0.1); color: var(--accent); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; margin-top: 20px; }
+        footer { padding: 60px 20px 40px; text-align: center; border-top: 1px solid var(--brd); background-color: var(--bg); }
+        .footer-sns { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; align-items: center; }
+        .x-logo-img { height: 24px !important; width: auto !important; filter: invert(1); transition: 0.3s; }
+        body.dark-mode .x-logo-img { filter: invert(0); }
+        .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
+        .footer-email { margin-bottom: 15px; }
+        .footer-email a { text-decoration: none; color: var(--txt); opacity: 0.6; font-weight: 500; }
+        .footer-copyright { font-size: 0.85rem; opacity: 0.4; }
+        .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; inset: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
+        input:checked + .slider { background: var(--accent); }
+        input:checked + .slider:before { transform: translateX(22px); }
+        @media (max-width: 900px) { .docs-container { flex-direction: column; } .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--brd); position: relative; top: 0; } .docs-content { padding: 40px 20px; } .nav-links { flex-wrap: wrap; gap: 12px; } header { align-items: flex-start; padding-top: 16px; padding-bottom: 16px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="https://minyangtech.n-e.kr" class="logo-link">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="Logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/zh-cn/docs/index.html" class="active">Docs</a></li>
+                    <li><a href="/zh-cn/news/index.html">News</a></li>
+                    <li><a href="/zh-cn/apps.html">Apps</a></li>
+                    <li><a href="/zh-cn/Find.html">招募</a></li>
+                    <li><a href="/zh-cn/portfolio.html">Portfolio</a></li>
+                    <li><a href="/zh-cn/issues.html">Issues</a></li>
+                    <li><a href="/zh-cn/Contributing.html">Contributing</a></li>
+                    <li><a href="/zh-cn/eula.html">EULA</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="controls">
+            <div class="language-menu">
+                <button class="language-menu-button" type="button">翻译</button>
+                <div class="language-menu-list">
+                    <a href="/ja-jp/docs/1962/update.html">日本語</a>
+                    <a href="/en-us/docs/1962/update.html">English</a>
+                    <a class="active" href="/zh-cn/docs/1962/update.html">中文</a>
+                    <a href="/docs/1962/update.html">한국어</a>
+                    <a href="/ru-ru/docs/1962/update.html">Русский</a>
+                    <a href="/de-de/docs/1962/update.html">Deutsch</a>
+                </div>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+    <main class="docs-container">
+        <aside class="docs-sidebar">
+<div class="sidebar-group">
+    <h4>[Main]</h4>
+    <ul>
+        <li><a href="/zh-cn/docs/index.html">Index (Home)</a></li>
+    </ul>
+</div>
+<div class="sidebar-group">
+    <h4>[1962: The Last Winter In Moscow]</h4>
+    <ul>
+        <li><a href="/zh-cn/docs/1962/index.html">Home</a></li>
+        <li><a href="/zh-cn/docs/1962/story.html">Story</a></li>
+        <li><a href="/zh-cn/docs/1962/update.html" class="active">update log</a></li>
+    </ul>
+</div>
+<div class="sidebar-group">
+    <h4>[Camera]</h4>
+    <ul>
+        <li><a href="/zh-cn/docs/C/index.html">Info</a></li>
+    </ul>
+</div>
+<div class="sidebar-group">
+    <h4>[IXO Engine]</h4>
+    <ul>
+        <li><a href="/zh-cn/docs/ixo/index.html">Introduction</a></li>
+        <li><a href="/zh-cn/docs/ixo/nodes.html">Node Library</a></li>
+        <li><a href="/zh-cn/docs/ixo/grammar.html">Template Grammar</a></li>
+        <li><a href="/zh-cn/docs/ixo/privacy.html">Privacy Policy</a></li>
+    </ul>
+</div>
+
+        </aside>
+        <article class="docs-content">
+            <h1>1962: The Last Winter In Moscow</h1>
+            <p class="subtitle">update log</p>
+            <hr style="border:0; border-top:1px solid var(--brd); margin: 30px 0;">
+            <div class="docs-body">
+                <section>
+                    <h2>V0.1 Beta</h2>
+                    <blockquote>2026/05/31</blockquote>
+                    <p><strong>주요 변경 사항 :</strong></p>
+                    <ul>
+                        <li>게임 개발이 시작됨</li>
+                    </ul>
+                </section>
+            </div>
+        </article>
+    </main>
+    <footer>
+        <h3 style="margin-bottom:20px;">Connect with Us</h3>
+        <div class="footer-sns">
+            <a href="https://x.com/minyangtech" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X"></a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <div class="footer-email"><a href="mailto:support@minyangtech.n-e.kr">support@minyangtech.n-e.kr</a></div>
+        <div class="footer-copyright"><p>Copyright 2026. MinyangTech. All rights reserved.</p></div>
+    </footer>
+    <script>
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        darkModeToggle.addEventListener('change', () => {
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        });
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+        });
+    </script>
+    <script src="/assets/js/translation-menu.js" defer></script>
+</body>
+</html>

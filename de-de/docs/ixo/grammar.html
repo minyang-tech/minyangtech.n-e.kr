@@ -5,6 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Template Grammar | MinyangTech</title>
+    <meta name="twitter:image" content="https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
+    <meta name="twitter:description" content="민양테크 공식 문서와 프로젝트 정보를 확인하세요.">
+    <meta name="twitter:title" content="Template Grammar | MinyangTech">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://minyangtech.n-e.kr/de-de/docs/ixo/grammar.html">
+    <meta property="og:image" content="https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
+    <meta property="og:description" content="민양테크 공식 문서와 프로젝트 정보를 확인하세요.">
+    <meta property="og:title" content="Template Grammar | MinyangTech">
+    <meta name="description" content="민양테크 공식 문서와 프로젝트 정보를 확인하세요.">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
     <link rel="stylesheet" href="/common.css">
@@ -123,6 +133,7 @@
                     <li><a href="/de-de/docs/index.html" class="active">Dokumente</a></li>
                     <li><a href="/de-de/news/index.html">News</a></li>
                     <li><a href="/de-de/apps.html">Apps</a></li>
+                    <li><a href="/de-de/Find.html">Mitmachen</a></li>
                     <li><a href="/de-de/portfolio.html">Portfolio</a></li>
                     <li><a href="/de-de/issues.html">Issues</a></li>
                     <li><a href="/de-de/Contributing.html">Contributing</a></li>
@@ -174,7 +185,7 @@
         async function loadSidebar() {
             const target = document.getElementById('sidebar-target');
             try {
-                const data = await SiteSecurity.secureFetchText('../nav.html', 'f06c78ee280044610e25162d2cff1c664eb18da5235ab3150419ca1927d6a223');
+                const data = await SiteSecurity.secureFetchText('../nav.html', '407d2c3216b53babdc8edce4f79cd730473fa5bf33095ea0de0637ecd463c138');
                 SiteSecurity.setSanitizedHtml(target, data);
 
                 const links = target.querySelectorAll('a');

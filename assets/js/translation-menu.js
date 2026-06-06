@@ -89,18 +89,19 @@
 
   function localizeCommonNavigation(activeLocale) {
     const labels = {
-      ko: { docs: "Docs", news: "News", apps: "Apps", eula: "EULA", issues: "Issues", portfolio: "Portfolio", policy: "Policy", contributing: "Contributing" },
-      "ja-jp": { docs: "ドキュメント", news: "ニュース", apps: "アプリ", eula: "EULA", issues: "課題", portfolio: "ポートフォリオ", policy: "ポリシー", contributing: "Contributing" },
-      "en-us": { docs: "Docs", news: "News", apps: "Apps", eula: "EULA", issues: "Issues", portfolio: "Portfolio", policy: "Policy", contributing: "Contributing" },
-      "zh-cn": { docs: "文档", news: "新闻", apps: "应用", eula: "EULA", issues: "问题", portfolio: "作品集", policy: "政策", contributing: "Contributing" },
-      "ru-ru": { docs: "Документы", news: "Новости", apps: "Приложения", eula: "EULA", issues: "Задачи", portfolio: "Портфолио", policy: "Политика", contributing: "Contributing" },
-      "de-de": { docs: "Dokumente", news: "News", apps: "Apps", eula: "EULA", issues: "Issues", portfolio: "Portfolio", policy: "Richtlinie", contributing: "Contributing" }
+      ko: { docs: "Docs", news: "News", apps: "Apps", eula: "EULA", issues: "Issues", portfolio: "Portfolio", policy: "Policy", find: "Find", contributing: "Contributing" },
+      "ja-jp": { docs: "ドキュメント", news: "ニュース", apps: "アプリ", eula: "EULA", issues: "課題", portfolio: "ポートフォリオ", policy: "ポリシー", find: "募集", contributing: "Contributing" },
+      "en-us": { docs: "Docs", news: "News", apps: "Apps", eula: "EULA", issues: "Issues", portfolio: "Portfolio", policy: "Policy", find: "Find", contributing: "Contributing" },
+      "zh-cn": { docs: "文档", news: "新闻", apps: "应用", eula: "EULA", issues: "问题", portfolio: "作品集", policy: "政策", find: "招募", contributing: "Contributing" },
+      "ru-ru": { docs: "Документы", news: "Новости", apps: "Приложения", eula: "EULA", issues: "Задачи", portfolio: "Портфолио", policy: "Политика", find: "Поиск команды", contributing: "Contributing" },
+      "de-de": { docs: "Dokumente", news: "News", apps: "Apps", eula: "EULA", issues: "Issues", portfolio: "Portfolio", policy: "Richtlinie", find: "Mitmachen", contributing: "Contributing" }
     }[activeLocale] || {};
     document.querySelectorAll(".nav-links a, header nav a").forEach((link) => {
       const href = (link.getAttribute("href") || "").toLowerCase();
       if (href.includes("/docs")) link.textContent = labels.docs || link.textContent;
       if (href.includes("/news")) link.textContent = labels.news || link.textContent;
       if (href.includes("/apps")) link.textContent = labels.apps || link.textContent;
+      if (href.includes("/find") || href.includes("/Find")) link.textContent = labels.find || link.textContent;
       if (href.includes("/eula")) link.textContent = labels.eula || link.textContent;
       if (href.includes("/issues")) link.textContent = labels.issues || link.textContent;
       if (href.includes("/portfolio")) link.textContent = labels.portfolio || link.textContent;

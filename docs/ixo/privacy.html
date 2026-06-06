@@ -5,6 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IXO Engine Privacy Policy | 민양테크 Docs</title>
+    <meta name="twitter:image" content="https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
+    <meta name="twitter:description" content="민양테크 공식 문서와 프로젝트 정보를 확인하세요.">
+    <meta name="twitter:title" content="IXO Engine Privacy Policy | 민양테크 Docs">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://minyangtech.n-e.kr/docs/ixo/privacy.html">
+    <meta property="og:image" content="https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
+    <meta property="og:description" content="민양테크 공식 문서와 프로젝트 정보를 확인하세요.">
+    <meta property="og:title" content="IXO Engine Privacy Policy | 민양테크 Docs">
+    <meta name="description" content="민양테크 공식 문서와 프로젝트 정보를 확인하세요.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
     <link rel="stylesheet" href="/common.css">
     <link rel="stylesheet" href="/assets/css/header-unified.css">
@@ -65,6 +75,7 @@
                     <li><a href="https://minyangtech.n-e.kr/docs" class="active">Docs</a></li>
                     <li><a href="https://minyangtech.n-e.kr/news">News</a></li>
                     <li><a href="https://minyangtech.n-e.kr/apps">Apps</a></li>
+                    <li><a href="/Find.html">Find</a></li>
                     <li><a href="https://minyangtech.n-e.kr/portfolio">Portfolio</a></li>
                     <li><a href="https://minyangtech.n-e.kr/issues">Issues</a></li>
                     <li><a href="https://minyangtech.n-e.kr/Contributing.html">Contributing</a></li>
@@ -103,7 +114,7 @@
         async function loadSidebar() {
             const target = document.getElementById('sidebar-target');
             try {
-                const data = await SiteSecurity.secureFetchText('../nav.html', '4a9c5bc5e4b8b238c375262d10382b47d8fddd7619fdf12937b7d131bc86150c');
+                const data = await SiteSecurity.secureFetchText('../nav.html', 'ed37fb21a4eb3ff070f17a4124a4d70dd7ec56c420e8b88f48acffe27ba65efa');
                 SiteSecurity.setSanitizedHtml(target, data);
                 const links = target.querySelectorAll('a');
                 const currentPath = window.location.pathname;

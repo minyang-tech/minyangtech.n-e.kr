@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinyangTech Find | 募集</title>
+    <meta name="description" content="MinyangTechプロジェクトの募集情報と協業案内を確認できます。">
+    <meta property="og:title" content="MinyangTech Find | 募集">
+    <meta property="og:description" content="MinyangTechプロジェクトの募集情報と協業案内を確認できます。">
+    <meta property="og:image" content="https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
+    <meta property="og:url" content="https://minyangtech.n-e.kr/ja-jp/Find.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MinyangTech Find | 募集">
+    <meta name="twitter:description" content="MinyangTechプロジェクトの募集情報と協業案内を確認できます。">
+    <meta name="twitter:image" content="https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="/assets/css/header-unified.css">
+    <style>
+        :root { --accent: #007bff; --txt: #333; --bg: #fff; --brd: #eee; --card-bg: #fff; --muted: #667085; --soft: rgba(0,123,255,0.08); }
+        body.dark-mode { --txt: #f5f5f5; --bg: #121212; --brd: #333; --card-bg: #1e1e1e; --muted: #a5adba; --soft: rgba(0,123,255,0.16); }
+        * { box-sizing: border-box; }
+        body { font-family: 'Pretendard', system-ui, sans-serif; background: radial-gradient(circle at 10% 0%, var(--soft), transparent 32rem), var(--bg); color: var(--txt); margin: 0; line-height: 1.7; transition: 0.25s; }
+        header { width: 100%; min-height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; border-bottom: 1px solid var(--brd); background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(14px); position: sticky; top: 0; z-index: 1000; box-sizing: border-box; }
+        .header-left { display: flex; align-items: center; gap: 28px; min-width: 0; }
+        .logo-link img { height: 40px !important; width: auto !important; display: block; }
+        .nav-links { display: flex; list-style: none; gap: 22px; margin: 0; padding: 0; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--txt); font-weight: 700; opacity: 0.72; transition: 0.2s; white-space: nowrap; }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--accent); }
+        .nav-links a.active { border-bottom: 2px solid var(--accent); }
+        .controls { display: flex; align-items: center; gap: 14px; }
+        .language-menu { position: relative; }
+        .language-menu-button { min-height: 34px; padding: 0 12px; border: 1px solid var(--brd); border-radius: 999px; background: var(--card-bg); color: var(--txt); font-weight: 800; cursor: pointer; }
+        .language-menu-list { position: absolute; top: calc(100% + 8px); right: 0; display: none; min-width: 180px; padding: 8px; border: 1px solid var(--brd); border-radius: 16px; background: var(--card-bg); box-shadow: 0 18px 45px rgba(0,0,0,0.18); }
+        .language-menu:hover .language-menu-list, .language-menu:focus-within .language-menu-list { display: grid; gap: 4px; }
+        .language-menu-list a { padding: 8px 10px; border-radius: 10px; color: var(--txt); text-decoration: none; font-weight: 800; white-space: nowrap; }
+        .language-menu-list a:hover, .language-menu-list a.active { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+        .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; inset: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
+        input:checked + .slider { background: var(--accent); }
+        input:checked + .slider:before { transform: translateX(22px); }
+        main { max-width: 1120px; min-height: calc(100vh - 160px); margin: 0 auto; padding: 70px 20px; }
+        footer { width: 100%; padding: 56px 20px 42px; border-top: 1px solid var(--brd); text-align: center; background: var(--bg); }
+        .footer-sns { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; align-items: center; }
+        .x-logo-img { height: 24px !important; width: auto !important; filter: invert(1); transition: 0.3s; }
+        body.dark-mode .x-logo-img { filter: invert(0); }
+        .fa-youtube { font-size: 32px !important; color: #ff0000 !important; }
+        .footer-email a { color: var(--txt); opacity: 0.65; text-decoration: none; }
+        .footer-copyright { opacity: 0.45; font-size: 0.86rem; margin-top: 12px; }
+        @media (max-width: 900px) { header { align-items: flex-start; padding: 12px 4%; gap: 10px; } .header-left { gap: 12px; flex: 1 1 auto; } header nav { min-width: 0; flex: 1 1 auto; } .nav-links { overflow-x: auto; gap: 12px; padding-bottom: 2px; } .nav-links li { flex: 0 0 auto; } .nav-links a { font-size: 14px; } main { padding: 44px 18px; } }
+
+        .page-header { text-align: center; margin-bottom: 34px; }
+        .page-header h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); margin: 0 0 10px; letter-spacing: -0.06em; }
+        .page-header p { margin: 0; color: var(--muted); font-weight: 700; }
+        .find-tools { display: flex; gap: 14px; margin: 28px 0 30px; flex-wrap: wrap; }
+        .find-tools input, .find-tools select { border: 1px solid var(--brd); background: var(--card-bg); color: var(--txt); border-radius: 16px; padding: 13px 15px; font-weight: 700; outline: none; }
+        .find-tools input { flex: 1 1 320px; }
+        .find-tools select { min-width: 160px; }
+        .find-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .find-card { display: flex; flex-direction: column; gap: 14px; padding: 24px; border: 1px solid var(--brd); border-radius: 24px; background: var(--card-bg); text-decoration: none; color: var(--txt); transition: 0.22s; box-shadow: 0 12px 34px rgba(0,0,0,0.05); }
+        .find-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 18px 44px rgba(0,0,0,0.1); }
+        .find-card h2 { margin: 0; font-size: 1.25rem; line-height: 1.35; }
+        .find-card p { margin: 0; color: var(--muted); }
+        .find-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.86rem; }
+        .badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; font-weight: 900; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+        .badge.closed { background: rgba(148,163,184,0.16); color: #94a3b8; }
+        .tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag-list span { padding: 4px 9px; border-radius: 999px; border: 1px solid var(--brd); color: var(--muted); font-weight: 700; font-size: 0.82rem; }
+        .open-link { margin-top: auto; color: var(--accent); font-weight: 900; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="https://minyangtech.n-e.kr" class="logo-link">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="Logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/ja-jp/docs/index.html">ドキュメント</a></li>
+                    <li><a href="/ja-jp/news/index.html">ニュース</a></li>
+                    <li><a href="/ja-jp/apps.html">アプリ</a></li>
+                    <li><a href="/ja-jp/Find.html" class="active">募集</a></li>
+                    <li><a href="/ja-jp/portfolio.html">ポートフォリオ</a></li>
+                    <li><a href="/ja-jp/issues.html">課題</a></li>
+                    <li><a href="/ja-jp/Contributing.html">Contributing</a></li>
+                    <li><a href="/ja-jp/eula.html">EULA</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="controls">
+            <div class="language-menu">
+                <button class="language-menu-button" type="button">翻訳</button>
+                <div class="language-menu-list">
+                    <a class="active" href="/ja-jp/Find.html">日本語</a>
+                    <a href="/en-us/Find.html">English</a>
+                    <a href="/zh-cn/Find.html">中文</a>
+                    <a href="/Find.html">한국어</a>
+                    <a href="/ru-ru/Find.html">Русский</a>
+                    <a href="/de-de/Find.html">Deutsch</a>
+                </div>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+    
+    <main>
+        <section class="page-header">
+            <h1>Find</h1>
+            <p>MinyangTechプロジェクトの募集情報と協業案内を確認できます。</p>
+        </section>
+        <section class="find-tools" aria-label="Find filters">
+            <input id="find-search" type="search" placeholder="募集タイトルや説明を検索...">
+            <select id="find-status"><option value="">すべて</option></select>
+        </section>
+        <section id="find-feed" class="find-grid"></section>
+    </main>
+    
+    <script>
+        const texts = {"all":"すべて","empty":"表示できる募集情報がありません。","open":"詳しく見る"};
+        const dataUrl = "/ja-jp/Find.json";
+        const feed = document.getElementById('find-feed');
+        const search = document.getElementById('find-search');
+        const statusFilter = document.getElementById('find-status');
+        let posts = [];
+        const normalize = (value) => String(value || '').toLowerCase();
+        const isClosed = (status) => {
+            const s = normalize(status);
+            return s.includes('중지') || s.includes('closed') || s.includes('закрыт') || s.includes('geschlossen') || s.includes('停止') || s.includes('已停止');
+        };
+        function makeCard(item) {
+            const card = document.createElement('a');
+            card.className = 'find-card';
+            card.href = item.url;
+            const meta = document.createElement('div');
+            meta.className = 'find-meta';
+            const badge = document.createElement('span');
+            badge.className = 'badge' + (isClosed(item.status) ? ' closed' : '');
+            badge.textContent = item.status;
+            const date = document.createElement('span');
+            date.textContent = item.date || '';
+            meta.append(badge, date);
+            const title = document.createElement('h2');
+            title.textContent = item.title;
+            const project = document.createElement('p');
+            project.textContent = item.project;
+            const summary = document.createElement('p');
+            summary.textContent = item.summary;
+            const tags = document.createElement('div');
+            tags.className = 'tag-list';
+            (item.tags || []).forEach((tag) => {
+                const span = document.createElement('span');
+                span.textContent = tag;
+                tags.appendChild(span);
+            });
+            const open = document.createElement('span');
+            open.className = 'open-link';
+            open.textContent = texts.open + ' →';
+            card.append(meta, title, project, summary, tags, open);
+            return card;
+        }
+        function render() {
+            const q = normalize(search.value);
+            const selected = statusFilter.value;
+            const filtered = posts.filter((item) => {
+                const bag = normalize([item.title, item.project, item.summary, ...(item.tags || []), item.status].join(' '));
+                return (!q || bag.includes(q)) && (!selected || item.status === selected);
+            });
+            feed.innerHTML = '';
+            if (!filtered.length) {
+                const p = document.createElement('p');
+                p.textContent = texts.empty;
+                feed.appendChild(p);
+                return;
+            }
+            filtered.forEach((item) => feed.appendChild(makeCard(item)));
+        }
+        fetch(dataUrl).then((r) => r.json()).then((items) => {
+            posts = Array.isArray(items) ? items : [];
+            const statuses = [...new Set(posts.map((item) => item.status).filter(Boolean))];
+            statuses.forEach((status) => {
+                const option = document.createElement('option');
+                option.value = status;
+                option.textContent = status;
+                statusFilter.appendChild(option);
+            });
+            render();
+        }).catch(() => { feed.textContent = texts.empty; });
+        search.addEventListener('input', render);
+        statusFilter.addEventListener('change', render);
+    </script>
+    
+    <footer>
+        <h3 style="margin-bottom:20px;">Connect with Us</h3>
+        <div class="footer-sns">
+            <a href="https://x.com/minyangtech" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X"></a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <div class="footer-email"><a href="mailto:support@minyangtech.n-e.kr">support@minyangtech.n-e.kr</a></div>
+        <div class="footer-copyright"><p>Copyright 2026. MinyangTech. All rights reserved.</p></div>
+    </footer>
+    <script src="/assets/js/translation-menu.js"></script>
+    <script>
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('change', () => {
+                const isDark = document.body.classList.toggle('dark-mode');
+                localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+            });
+            window.addEventListener('DOMContentLoaded', () => {
+                if (localStorage.getItem('darkMode') === 'enabled') {
+                    document.body.classList.add('dark-mode');
+                    darkModeToggle.checked = true;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

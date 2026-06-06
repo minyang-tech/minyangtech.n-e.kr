@@ -5,6 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IXO Engine | MinyangTech</title>
+    <meta name="twitter:image" content="https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
+    <meta name="twitter:description" content="민양테크 공식 문서와 프로젝트 정보를 확인하세요.">
+    <meta name="twitter:title" content="IXO Engine | MinyangTech">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://minyangtech.n-e.kr/en-us/docs/ixo/index.html">
+    <meta property="og:image" content="https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
+    <meta property="og:description" content="민양테크 공식 문서와 프로젝트 정보를 확인하세요.">
+    <meta property="og:title" content="IXO Engine | MinyangTech">
+    <meta name="description" content="민양테크 공식 문서와 프로젝트 정보를 확인하세요.">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
     <link rel="stylesheet" href="/common.css">
@@ -119,6 +129,7 @@
                     <li><a href="/en-us/docs/index.html" class="active">Docs</a></li>
                     <li><a href="/en-us/news/index.html">News</a></li>
                     <li><a href="/en-us/apps.html">Apps</a></li>
+                    <li><a href="/en-us/Find.html">Find</a></li>
                     <li><a href="/en-us/portfolio.html">Portfolio</a></li>
                     <li><a href="/en-us/issues.html">Issues</a></li>
                     <li><a href="/en-us/Contributing.html">Contributing</a></li>
@@ -171,7 +182,7 @@
             const target = document.getElementById('sidebar-target');
             try {
                 // 현재 폴더 구조에 따라 nav.html 경로 탐색
-                const data = await SiteSecurity.secureFetchText('../nav.html', '7cfa4917d3ebf65d7cc735cb4f933c67900a1a84d0df73858a32f25a41d15846');
+                const data = await SiteSecurity.secureFetchText('../nav.html', '0cf22d5ffdeb5c30d2ff23f8d6e55a7e2ecf8718ed095584005c769569e6b6a7');
                 SiteSecurity.setSanitizedHtml(target, data);
 
                 const links = target.querySelectorAll('a');
