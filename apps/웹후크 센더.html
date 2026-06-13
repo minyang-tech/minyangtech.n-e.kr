@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Webhook Manager</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/minyangtech/minyangtech/refs/heads/main/favicon.ico">
+    <style>
+        :root {
+            --bg-darker: #1e1f22;
+            --bg-main: #2b2d31;
+            --bg-light: #313338;
+            --discord-blue: #5865f2;
+            --discord-green: #248046;
+            --discord-red: #da373c;
+            --text-main: #dbdee1;
+            --text-muted: #949ba4;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 레이아웃 구조 */
+        .sidebar {
+            width: 260px;
+            background-color: var(--bg-main);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #1a1b1e;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .history-panel {
+            width: 320px;
+            background-color: var(--bg-main);
+            border-left: 1px solid #1a1b1e;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        /* 사이드바 스타일 */
+        .sidebar-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1a1b1e;
+        }
+
+        .webhook-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .webhook-item {
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.2s;
+            background: transparent;
+        }
+
+        .webhook-item:hover { background: #35373c; }
+        .webhook-item.active { background: #3f4147; border-left: 4px solid var(--discord-blue); }
+
+        .webhook-info { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; flex: 1; }
+        .webhook-name { font-weight: bold; font-size: 14px; display: block; }
+        .webhook-url-hint { font-size: 11px; color: var(--text-muted); }
+
+        .webhook-actions { display: none; gap: 5px; }
+        .webhook-item:hover .webhook-actions { display: flex; }
+
+        /* 공통 버튼 */
+        button { cursor: pointer; border: none; border-radius: 4px; font-weight: bold; transition: 0.2s; color: white; }
+        .btn-add { background: var(--discord-blue); padding: 5px 10px; font-size: 18px; }
+        .btn-small { padding: 4px 6px; font-size: 11px; background: #4e5058; }
+        .btn-small:hover { background: var(--discord-red); }
+
+        /* 메인 전송창 스타일 */
+        .sender-card {
+            background: var(--bg-main);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .status-bar { font-size: 12px; color: var(--discord-blue); margin-bottom: 10px; font-weight: bold; }
+
+        textarea {
+            width: 100%; height: 150px; background: var(--bg-darker); color: var(--text-main);
+            border: 1px solid var(--bg-darker); border-radius: 8px; padding: 15px;
+            resize: none; outline: none; font-size: 15px; box-sizing: border-box;
+        }
+
+        #sendBtn { width: 100%; padding: 15px; background: var(--discord-green); font-size: 16px; margin-top: 10px; }
+        #sendBtn:hover { background: #1e6638; }
+
+        /* 기록 리스트 */
+        #historyList { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+        .history-item { background: var(--bg-darker); padding: 12px; border-radius: 8px; font-size: 13px; }
+        .history-content { margin-bottom: 8px; white-space: pre-wrap; word-break: break-all; }
+        .history-btns { display: flex; gap: 5px; justify-content: flex-end; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <span style="font-weight: bold;">Webhooks</span>
+            <button class="btn-add" onclick="addNewWebhook()">+</button>
+        </div>
+        <div id="webhookList" class="webhook-list">
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="sender-card">
+            <div id="activeWebhookName" class="status-bar">선택된 웹훅 없음</div>
+
+            <textarea id="msgInput" placeholder="메시지를 입력하세요 (Enter로 전송)"></textarea>
+            
+            <div style="margin-top:15px;">
+                <input type="file" id="imageInput" accept="image/*" multiple onchange="showFileCount(this)">
+                <span id="fileLabel" style="font-size: 12px; color: var(--text-muted);"></span>
+            </div>
+            
+            <button id="sendBtn" onclick="sendMessage()">메시지 전송</button>
+        </div>
+    </div>
+
+    <div class="history-panel">
+        <h3>📜 History</h3>
+        <div id="historyList"></div>
+    </div>
+
+    <script>
+        // 기본 웹훅 제거 및 빈 배열 처리
+        let webhooks = JSON.parse(localStorage.getItem('wh_list')) || [];
+        let activeId = webhooks[0]?.id;
+
+        // 초기 실행
+        renderWebhooks();
+
+        function renderWebhooks() {
+            const list = document.getElementById('webhookList');
+            list.innerHTML = '';
+            webhooks.forEach(wh => {
+                const div = document.createElement('div');
+                div.className = `webhook-item ${wh.id === activeId ? 'active' : ''}`;
+                div.onclick = () => selectWebhook(wh.id);
+                div.innerHTML = `
+                    <div class="webhook-info">
+                        <span class="webhook-name">${wh.name}</span>
+                        <span class="webhook-url-hint">${wh.url.substring(0, 30)}...</span>
+                    </div>
+                    <div class="webhook-actions">
+                        <button class="btn-small" onclick="editWebhook(${wh.id}, event)">수정</button>
+                        <button class="btn-small" onclick="deleteWebhook(${wh.id}, event)">삭제</button>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+            updateActiveUI();
+        }
+
+        function updateActiveUI() {
+            const active = webhooks.find(wh => wh.id === activeId);
+            document.getElementById('activeWebhookName').innerText = active ? `📡 연결됨: ${active.name}` : "⚠️ 웹훅을 선택하세요";
+            document.getElementById('sendBtn').disabled = !active;
+        }
+
+        function selectWebhook(id) {
+            activeId = id;
+            renderWebhooks();
+        }
+
+        function addNewWebhook() {
+            const name = prompt("웹훅 이름을 입력하세요:");
+            const url = prompt("웹훅 URL을 입력하세요:");
+            if (name && url) {
+                const newWh = { id: Date.now(), name, url };
+                webhooks.push(newWh);
+                saveAndRender();
+            }
+        }
+
+        function editWebhook(id, e) {
+            e.stopPropagation();
+            const wh = webhooks.find(w => w.id === id);
+            const newName = prompt("수정할 이름:", wh.name);
+            const newUrl = prompt("수정할 URL:", wh.url);
+            if (newName && newUrl) {
+                wh.name = newName;
+                wh.url = newUrl;
+                saveAndRender();
+            }
+        }
+
+        function deleteWebhook(id, e) {
+            e.stopPropagation();
+            if (!confirm("삭제하시겠습니까?")) return;
+            webhooks = webhooks.filter(w => w.id !== id);
+            if (activeId === id) activeId = webhooks[0]?.id;
+            saveAndRender();
+        }
+
+        function saveAndRender() {
+            localStorage.setItem('wh_list', JSON.stringify(webhooks));
+            renderWebhooks();
+        }
+
+        // --- 전송 로직 ---
+        async function sendMessage() {
+            const active = webhooks.find(wh => wh.id === activeId);
+            const msgInput = document.getElementById('msgInput');
+            const files = document.getElementById('imageInput').files;
+            
+            if (!active || (!msgInput.value && files.length === 0)) return;
+
+            const btn = document.getElementById('sendBtn');
+            btn.disabled = true;
+
+            const formData = new FormData();
+            if (msgInput.value) formData.append('content', msgInput.value);
+            for (let i = 0; i < files.length; i++) formData.append(`file${i}`, files[i]);
+
+            try {
+                const response = await fetch(`${active.url}?wait=true`, { method: 'POST', body: formData });
+                const data = await response.json();
+                if (response.ok) {
+                    addHistory(data.id, msgInput.value, active.url);
+                    msgInput.value = '';
+                    document.getElementById('imageInput').value = '';
+                    document.getElementById('fileLabel').innerText = '';
+                }
+            } catch (e) { alert("전송 실패"); }
+            finally { btn.disabled = false; }
+        }
+
+        function addHistory(id, content, url) {
+            const list = document.getElementById('historyList');
+            const div = document.createElement('div');
+            div.className = 'history-item';
+            div.innerHTML = `
+                <div class="history-content">${content || "[이미지 전송]"}</div>
+                <div class="history-btns">
+                    <button class="btn-small" style="background:var(--discord-blue)" onclick="editSent('${id}', '${url}')">수정</button>
+                    <button class="btn-small" onclick="deleteSent('${id}', '${url}', this)">삭제</button>
+                </div>
+            `;
+            list.prepend(div);
+        }
+
+        async function editSent(id, url) {
+            const newMsg = prompt("수정할 내용:");
+            if (!newMsg) return;
+            await fetch(`${url}/messages/${id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: newMsg })
+            });
+            location.reload(); 
+        }
+
+        async function deleteSent(id, url, btn) {
+            if (confirm("삭제하시겠습니까?")) {
+                await fetch(`${url}/messages/${id}`, { method: 'DELETE' });
+                btn.closest('.history-item').remove();
+            }
+        }
+
+        // --- 기타 기능 ---
+        function showFileCount(input) {
+            document.getElementById('fileLabel').innerText = input.files.length > 0 ? `${input.files.length}개 선택됨` : "";
+        }
+
+        document.getElementById('msgInput').addEventListener('keydown', e => {
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+        });
+    </script>
+</body>
+</html>

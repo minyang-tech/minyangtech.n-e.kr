@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>민양테크 | IXO 안전 신호 검사</title>
+    <meta name="description" content="IXO Engine 산출물 또는 .ixo 프로젝트의 제작 신호를 로컬에서 검사합니다.">
+    
+    <meta property="og:title" content="IXO 안전 신호 검사">
+    <meta property="og:description" content="IXO Engine 산출물 또는 .ixo 프로젝트의 제작 신호를 로컬에서 검사합니다.">
+    <meta property="og:image" content="https://github.com/minyang-tech/minyangtech.github.io/blob/main/image%2F%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png">
+    <meta property="og:url" content="https://minyangtech.n-e.kr/ixo.html">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/header-unified.css">
+    
+    <style>
+        /* 기본 변수 설정 (Light Mode) */
+        :root {
+            --accent: #007bff;
+            --accent-green: #11c987;
+            --accent-2: #44d7ff;
+            --txt: #333;
+            --bg: #fff;
+            --brd: #eee;
+            --card-bg: #f9f9f9;
+            --muted: #666;
+            --metric-bg: #f1f3f5;
+        }
+
+        /* 다크모드 변수 설정 */
+        body.dark-mode {
+            --txt: #f5f5f5;
+            --bg: #121212;
+            --brd: #333;
+            --card-bg: #1e1e1e;
+            --muted: #9bb4aa;
+            --metric-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box !important; }
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--bg);
+            color: var(--txt);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.65;
+        }
+
+        /* --- 헤더 --- */
+        header {
+            width: 100%; height: 80px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; border-bottom: 1px solid var(--brd);
+            background-color: var(--bg);
+            position: fixed; top: 0; left: 0; z-index: 1000;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .header-left { display: flex; align-items: center; gap: 40px; }
+        .logo-link img { height: 40px !important; width: auto !important; display: block; }
+        .nav-links { display: flex; list-style: none; gap: 25px; }
+        .nav-links a { text-decoration: none; color: var(--txt); font-weight: 600; opacity: 0.7; transition: 0.2s; }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+        
+        .controls { display: flex; align-items: center; }
+
+        /* 다크모드 스위치 */
+        .switch { width: 44px; height: 22px; position: relative; display: inline-block; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 20px; transition: 0.3s; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
+        input:checked + .slider { background: var(--accent); }
+        input:checked + .slider:before { transform: translateX(22px); }
+
+        /* --- 메인 콘텐츠 --- */
+        main {
+            max-width: 1120px;
+            width: calc(100% - 32px);
+            margin: 120px auto 60px;
+            display: grid;
+            gap: 24px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 40px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--brd);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+        .hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -0.03em; }
+        .lead { max-width: 800px; margin: 0 auto; color: var(--muted); font-size: 1.05rem; opacity: 0.85; word-break: keep-all; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--brd);
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        }
+        .card h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+
+        /* 파일 드롭존 */
+        .drop-zone {
+            display: grid;
+            place-items: center;
+            min-height: 220px;
+            padding: 30px;
+            border: 2px dashed var(--accent);
+            border-radius: 20px;
+            background: rgba(0, 123, 255, 0.03);
+            text-align: center;
+            transition: border-color 0.2s, transform 0.2s, background 0.2s;
+        }
+        body.dark-mode .drop-zone { border-color: var(--accent-green); background: rgba(17, 201, 135, 0.02); }
+        .drop-zone.dragover {
+            transform: translateY(-2px);
+            border-color: var(--accent-2);
+            background: rgba(68, 215, 255, 0.08);
+        }
+        .drop-zone strong { display: block; font-size: 1.2rem; margin-bottom: 8px; }
+        .drop-zone span { display: block; color: var(--muted); font-size: 14px; opacity: 0.8; }
+
+        .file-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            background: var(--accent);
+            color: #fff !important;
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(0,123,255,0.2);
+        }
+        body.dark-mode .file-button { background: var(--accent-green); color: #052018 !important; box-shadow: 0 4px 12px rgba(17,201,135,0.2); }
+        .file-button:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,123,255,0.3); }
+        .file-button input { display: none; }
+
+        /* 상태 창 */
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid var(--brd);
+            background: var(--metric-bg);
+            color: var(--muted);
+            font-size: 14px;
+        }
+        .status.ok { border-color: rgba(17, 201, 135, 0.5); background: rgba(17, 201, 135, 0.05); color: #11c987; font-weight: 600; }
+        .status.warn { border-color: rgba(255, 209, 102, 0.5); background: rgba(255, 209, 102, 0.05); color: #b78a10; }
+        body.dark-mode .status.warn { color: #ffd166; }
+        .status.error { border-color: rgba(255, 107, 107, 0.55); background: rgba(255, 107, 107, 0.05); color: #ff6b6b; }
+
+        /* 안전 원칙 리스트 */
+        .safety-list { display: grid; gap: 16px; list-style: none; }
+        .safety-list li {
+            padding: 15px;
+            border: 1px solid var(--brd);
+            border-radius: 16px;
+            background: var(--metric-bg);
+        }
+        .safety-list strong { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; color: var(--accent); font-size: 1rem; }
+        body.dark-mode .safety-list strong { color: var(--accent-green); }
+        .safety-list span { color: var(--muted); font-size: 13.5px; display: block; opacity: 0.9; }
+
+        /* 결과 영역 메트릭스 */
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        .metric {
+            padding: 20px 15px;
+            border: 1px solid var(--brd);
+            border-radius: 18px;
+            background: var(--metric-bg);
+            text-align: center;
+        }
+        .metric span { display: block; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+        .metric strong { display: block; font-size: 1.2rem; font-weight: 700; word-break: keep-all; }
+
+        /* 테이블 스탠다드 */
+        .table-wrapper { width: 100%; overflow-x: auto; margin-top: 15px; border-radius: 16px; border: 1px solid var(--brd); }
+        table { width: 100%; border-collapse: collapse; text-align: left; background: var(--bg); }
+        th, td { padding: 14px 16px; border-bottom: 1px solid var(--brd); font-size: 14px; }
+        th { color: var(--muted); font-weight: 600; background: var(--metric-bg); font-size: 13px; }
+        td strong { color: var(--txt); }
+        td span { font-size: 12px; color: var(--muted); }
+
+        .empty-state {
+            color: var(--muted);
+            padding: 30px;
+            text-align: center;
+            border: 1px dashed var(--brd);
+            border-radius: 16px;
+            background: var(--metric-bg);
+            font-size: 14px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 50px;
+            background: rgba(17, 201, 135, 0.15);
+            color: #11c987;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .badge.no {
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+        }
+
+        /* --- 푸터 영역 --- */
+        footer {
+            width: 100%;
+            padding: 50px 20px;
+            border-top: 1px solid var(--brd);
+            background-color: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: auto;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .footer-sns { display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 25px; width: 100%; }
+        .footer-sns a { display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .x-logo-img { height: 24px !important; width: auto !important; display: block; filter: invert(1); transition: filter 0.3s; }
+        body.dark-mode .x-logo-img { filter: invert(0); }
+        .fa-youtube { font-size: 32px !important; color: #FF0000 !important; }
+        .footer-email { margin-bottom: 15px; }
+        .footer-email a { text-decoration: none; color: var(--txt); opacity: 0.6; font-size: 14px; }
+        .footer-copyright { font-size: 13px; opacity: 0.4; line-height: 1.6; }
+
+        @media (max-width: 820px) {
+            .grid, .result-grid { grid-template-columns: 1fr; }
+            .header-left { gap: 15px; }
+            .nav-links { gap: 12px; font-size: 14px; }
+            main { margin-top: 100px; }
+            .hero h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="https://minyangtech.n-e.kr" class="logo-link">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png" alt="Logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="https://minyangtech.n-e.kr/docs">Docs</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/news">News</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/apps">Apps</a></li>
+                    <li><a href="/Find.html">Find</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/portfolio">Portfolio</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/issues">Issues</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/Contributing.html">Contributing</a></li>
+                    <li><a href="https://minyangtech.n-e.kr/eula">EULA</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="controls">
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>IXO 안전 신호 검사</h1>
+            <p class="lead">`.ixo` 프로젝트 또는 IXO Engine으로 내보낸 산출물에서 제작 신호를 읽어, 네트워크 계열 노드 동의 여부와 적용된 노드 메타데이터를 확인합니다. 파일 내용은 서버로 전송되지 않으며 모든 검사는 현재 브라우저 안에서만 수행됩니다.</p>
+        </section>
+
+        <section class="grid">
+            <div class="card">
+                <h2><i class="fa-solid fa-file-shield" style="color:var(--accent)"></i> 파일 검사</h2>
+                <div id="dropZone" class="drop-zone">
+                    <div>
+                        <strong>.ixo 또는 .exe 파일을 끌어오세요</strong>
+                        <span>지원: .ixo, .exe, .json / 최대 250MB / 로컬 검사 전용</span>
+                        <label class="file-button">
+                            파일 선택
+                            <input id="fileInput" type="file" accept=".ixo,.exe,.json,application/json">
+                        </label>
+                    </div>
+                </div>
+                <div id="status" class="status">아직 검사한 파일이 없습니다.</div>
+            </div>
+
+            <aside class="card">
+                <h2><i class="fa-solid fa-shield-halved" style="color:var(--accent)"></i> 안전 원칙</h2>
+                <ul class="safety-list">
+                    <li><strong><i class="fa-solid fa-cloud-arrow-up"></i> 업로드 없음</strong><span>이 페이지는 검사 대상 파일을 서버로 보내지 않습니다.</span></li>
+                    <li><strong><i class="fa-solid fa-ban"></i> 실행 없음</strong><span>업로드된 앱 또는 스크립트를 실행하지 않고 텍스트 신호만 파싱합니다.</span></li>
+                    <li><strong><i class="fa-solid fa-eye-slash"></i> 민감정보 표시 제한</strong><span>URL, 입력값, 토큰, 스크립트 본문, refKey는 표시하지 않습니다.</span></li>
+                    <li><strong><i class="fa-solid fa-circle-info"></i> 압축형 EXE 한계 안내</strong><span>일부 설치형 EXE는 내부 데이터가 압축되어 브라우저에서 신호를 찾지 못할 수 있습니다.</span></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section class="card">
+            <h2><i class="fa-solid fa-square-poll-horizontal" style="color:var(--accent)"></i> 검사 결과</h2>
+            <div class="result-grid">
+                <div class="metric"><span>네트워크 동의</span><strong id="consentValue">-</strong></div>
+                <div class="metric"><span>출시 시각</span><strong id="releaseValue">-</strong></div>
+                <div class="metric"><span>노드 수</span><strong id="nodeCountValue">-</strong></div>
+                <div class="metric"><span>신호 상태</span><strong id="signalValue">-</strong></div>
+            </div>
+            <div id="nodeOutput" class="empty-state">노드 신호가 아직 없습니다.</div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-sns">
+            <a href="https://x.com/minyangtech" target="_blank">
+                <img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X">
+            </a>
+            <a href="https://www.youtube.com/@minyangtech" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </div>
+        <div class="footer-email">
+            <a href="mailto:support@minyangtech.n-e.kr">support@minyangtech.n-e.kr</a>
+        </div>
+        <div class="footer-copyright">
+            <p>민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.</p>
+            <p style="margin-top:5px; opacity: 0.8;">이 검사기는 사용자 안전을 위한 보조 도구입니다. 신호가 없거나 손상된 파일은 신뢰 가능한 출처에서 다시 내려받아 확인해 주세요.</p>
+            <p style="margin-top:5px;">© 2026 Minyang Tech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const MAX_FILE_SIZE = 250 * 1024 * 1024;
+        const dropZone = document.getElementById("dropZone");
+        const fileInput = document.getElementById("fileInput");
+        const statusBox = document.getElementById("status");
+        const consentValue = document.getElementById("consentValue");
+        const releaseValue = document.getElementById("releaseValue");
+        const nodeCountValue = document.getElementById("nodeCountValue");
+        const signalValue = document.getElementById("signalValue");
+        const nodeOutput = document.getElementById("nodeOutput");
+
+        function setStatus(type, message) {
+            statusBox.className = `status ${type || ""}`.trim();
+            statusBox.textContent = message;
+        }
+
+        function cleanText(value, fallback = "-") {
+            return String(value || fallback).replace(/[<>\u0000-\u001f]/g, "").slice(0, 120);
+        }
+
+        function formatMinute(value) {
+            if (!value) return "";
+            const date = value instanceof Date ? value : new Date(value);
+            if (Number.isNaN(date.getTime())) return cleanText(value);
+            const pad = (part) => String(part).padStart(2, "0");
+            return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
+        }
+
+        function findMatchingBrace(text, startIndex) {
+            let depth = 0;
+            let inString = false;
+            let escape = false;
+            for (let index = startIndex; index < text.length; index += 1) {
+                const char = text[index];
+                if (escape) {
+                    escape = false;
+                    continue;
+                }
+                if (char === "\\") {
+                    escape = true;
+                    continue;
+                }
+                if (char === "\"") {
+                    inString = !inString;
+                    continue;
+                }
+                if (inString) continue;
+                if (char === "{") depth += 1;
+                if (char === "}") {
+                    depth -= 1;
+                    if (depth === 0) return index;
+                }
+            }
+            return -1;
+        }
+
+        function extractJsonValueAfterKey(text, key) {
+            const keyIndex = text.indexOf(key);
+            if (keyIndex < 0) return null;
+            const colonIndex = text.indexOf(":", keyIndex + key.length);
+            if (colonIndex < 0) return null;
+            const startIndex = text.indexOf("{", colonIndex);
+            if (startIndex < 0) return null;
+            const endIndex = findMatchingBrace(text, startIndex);
+            if (endIndex < 0) return null;
+            try {
+                return JSON.parse(text.slice(startIndex, endIndex + 1));
+            } catch {
+                return null;
+            }
+        }
+
+        // 기존 로직 유지
+        function collectNodesFromProject(project) {
+            const collect = (nodes, scope) => (Array.isArray(nodes) ? nodes : []).map((node) => ({
+                scope,
+                type: cleanText(node?.data?.nodeType || node?.data?.kind || node?.type, "unknown"),
+                label: cleanText(node?.data?.label, "Unknown Node"),
+                group: cleanText(node?.data?.kind || node?.data?.category, "unknown"),
+                insertedAt: formatMinute(node?.data?.insertedAt || node?.data?.insertedAtMinute || node?.data?.createdAt || "")
+            }));
+
+            const workspaceNodes = collect(project?.nodes, "workspace");
+            const functionNodes = (Array.isArray(project?.functions) ? project.functions : [])
+                .flatMap((item) => collect(item.nodes, `function:${cleanText(item.name || item.id, "anonymous")}`));
+            return [...workspaceNodes, ...functionNodes].slice(0, 1000);
+        }
+
+        function signalFromProject(project) {
+            const embeddedSignal = project?._ixoBuildSignal || null;
+            if (embeddedSignal) return normalizeSignal(embeddedSignal, project);
+            const consent = project?.securityConsent?.networkNodes || {};
+            return normalizeSignal({
+                signalVersion: 0,
+                networkNodeCreatorConsent: {
+                    consented: Boolean(consent.creatorConsented || consent.consented),
+                    consentedAt: consent.consentedAt || "",
+                    scope: "creator-only"
+                },
+                nodeSignals: collectNodesFromProject(project),
+                releasedAt: formatMinute(project?.savedAt || "")
+            }, project);
+        }
+
+        function normalizeSignal(signal, project = {}) {
+            const consent = signal?.networkNodeCreatorConsent || project?.securityConsent?.networkNodes || {};
+            const nodes = Array.isArray(signal?.nodeSignals) && signal.nodeSignals.length
+                ? signal.nodeSignals
+                : collectNodesFromProject(project);
+            return {
+                consented: Boolean(consent.consented || consent.creatorConsented),
+                consentedAt: formatMinute(consent.consentedAt || ""),
+                releasedAt: signal?.releasedAt || formatMinute(signal?.generatedAt || project?.savedAt || ""),
+                nodes: nodes.map((node) => ({
+                    scope: cleanText(node.scope, "workspace"),
+                    type: cleanText(node.type, "unknown"),
+                    label: cleanText(node.label, "Unknown Node"),
+                    group: cleanText(node.group, "unknown"),
+                    insertedAt: cleanText(node.insertedAt || "", "알 수 없음")
+                })),
+                signalVersion: Number(signal?.signalVersion || 0)
+            };
+        }
+
+        function extractSignalFromText(text) {
+            try {
+                const parsed = JSON.parse(text);
+                return signalFromProject(parsed);
+            } catch {
+                // 전체 JSON이 아닌 경우 조각 탐색
+            }
+
+            const direct = extractJsonValueAfterKey(text, "\"_ixoBuildSignal\"");
+            if (direct) return normalizeSignal(direct);
+
+            const origin = text.includes("\"product\"") && text.includes("\"IXO Engine\"") && text.includes("\"nodeSignals\"")
+                ? extractJsonObjectNear(text, "\"nodeSignals\"")
+                : null;
+            if (origin) return normalizeSignal(origin);
+
+            return null;
+        }
+
+        function extractJsonObjectNear(text, token) {
+            const tokenIndex = text.indexOf(token);
+            if (tokenIndex < 0) return null;
+            let startIndex = tokenIndex;
+            while (startIndex >= 0 && text[startIndex] !== "{") startIndex -= 1;
+            while (startIndex >= 0) {
+                const endIndex = findMatchingBrace(text, startIndex);
+                if (endIndex > tokenIndex) {
+                    try {
+                        const candidate = JSON.parse(text.slice(startIndex, endIndex + 1));
+                        if (candidate?.product === "IXO Engine" || candidate?.nodeSignals) return candidate;
+                    } catch {
+                        // 예외 처리 후 바깥 중괄호 탐색
+                    }
+                }
+                startIndex -= 1;
+                while (startIndex >= 0 && text[startIndex] !== "{") startIndex -= 1;
+            }
+            return null;
+        }
+
+        function renderResult(signal) {
+            consentValue.innerHTML = signal.consented
+                ? `<span class="badge">동의됨</span>`
+                : `<span class="badge no">동의 신호 없음</span>`;
+            releaseValue.textContent = signal.releasedAt || "알 수 없음";
+            nodeCountValue.textContent = `${signal.nodes.length}개`;
+            signalValue.textContent = signal.signalVersion ? `v${signal.signalVersion}` : "프로젝트 기반";
+
+            if (!signal.nodes.length) {
+                nodeOutput.className = "empty-state";
+                nodeOutput.textContent = "표시 가능한 노드 신호가 없습니다.";
+                return;
+            }
+
+            nodeOutput.className = "table-wrapper";
+            nodeOutput.innerHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>적용 위치</th>
+                            <th>노드</th>
+                            <th>분류</th>
+                            <th>생성 시각</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${signal.nodes.map((node) => `
+                            <tr>
+                                <td>${node.scope}</td>
+                                <td><strong>${node.label}</strong><br><span>${node.type}</span></td>
+                                <td>${node.group}</td>
+                                <td>${node.insertedAt}</td>
+                            </tr>
+                        `).join("")}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        async function inspectFile(file) {
+            if (!file) return;
+            if (file.size > MAX_FILE_SIZE) {
+                setStatus("error", "파일이 너무 큽니다. 250MB 이하의 파일만 브라우저 로컬에서 검사합니다.");
+                return;
+            }
+
+            setStatus("warn", "파일을 로컬에서 읽는 중입니다. 서버 업로드는 수행하지 않습니다.");
+            const buffer = await file.arrayBuffer();
+            const text = new TextDecoder("utf-8", { fatal: false }).decode(buffer);
+            const signal = extractSignalFromText(text);
+
+            if (!signal) {
+                consentValue.textContent = "-";
+                releaseValue.textContent = "-";
+                nodeCountValue.textContent = "-";
+                signalValue.textContent = "신호 없음";
+                nodeOutput.className = "empty-state";
+                nodeOutput.textContent = "검출 가능한 IXO 제작 신호가 없습니다. 압축형 설치 EXE는 내부 데이터가 보이지 않을 수 있으므로, 가능하면 .ixo 또는 산출물의 .ixo-origin.json도 함께 검사해 주세요.";
+                setStatus("warn", "IXO 제작 신호를 찾지 못했습니다. 파일 출처를 다시 확인해 주세요.");
+                return;
+            }
+
+            renderResult(signal);
+            setStatus("ok", `${file.name} 검사를 완료했습니다. 표시된 항목 외의 값, URL, 스크립트 본문은 읽어도 화면에 노출하지 않습니다.`);
+        }
+
+        fileInput.addEventListener("change", (event) => inspectFile(event.target.files?.[0]));
+
+        ["dragenter", "dragover"].forEach((name) => {
+            dropZone.addEventListener(name, (event) => {
+                event.preventDefault();
+                dropZone.classList.add("dragover");
+            });
+        });
+
+        ["dragleave", "drop"].forEach((name) => {
+            dropZone.addEventListener(name, (event) => {
+                event.preventDefault();
+                dropZone.classList.remove("dragover");
+            });
+        });
+
+        dropZone.addEventListener("drop", (event) => inspectFile(event.dataTransfer.files?.[0]));
+
+        // 다크모드 동적 제어 토글 로직 연동
+        const toggle = document.getElementById('dark-mode-toggle');
+        function updateTheme(isDark) {
+            document.body.classList.toggle('dark-mode', isDark);
+            toggle.checked = isDark;
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+        toggle.addEventListener('change', () => updateTheme(toggle.checked));
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedMode = localStorage.getItem('darkMode');
+            if (savedMode === 'enabled' || (!savedMode && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                updateTheme(true);
+            }
+        });
+    </script>
+    <script src="/assets/js/translation-menu.js" defer></script>
+</body>
+</html>

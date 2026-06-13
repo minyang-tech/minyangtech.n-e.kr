@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>민양테크 Video Player v6</title>
+    <link rel="icon" href="https://minyangtech.n-e.kr/favicon.ico">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --header-bg: #0f0f0f;
+            --text-color: #f1f1f1;
+            --accent-color: #ff0000;
+            --input-bg: #1f1f1f;
+            --card-hover: #212121;
+            --border-color: #2f2f2f;
+            --modal-bg: #212121;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex; flex-direction: column; height: 100vh; overflow: hidden;
+        }
+
+        header {
+            padding: 12px 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            background-color: var(--header-bg); border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+        .logo { font-weight: 700; font-size: 1.3rem; cursor: pointer; color: var(--accent-color); flex-shrink: 0; letter-spacing: -0.5px; }
+        
+        .search-container { position: relative; flex: 0 1 500px; margin: 0 20px; }
+        .search-bar { display: flex; width: 100%; }
+        .search-bar input {
+            width: 100%; padding: 10px 18px; border-radius: 40px 0 0 40px;
+            border: 1px solid var(--border-color); background: var(--input-bg); color: white; outline: none;
+            font-size: 0.95rem; transition: border 0.2s;
+        }
+        .search-bar input:focus { border-color: #4f4f4f; }
+        .search-bar button {
+            padding: 0 24px; border-radius: 0 40px 40px 0; border: 1px solid var(--border-color);
+            border-left: none; background: #2b2b2b; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+        .search-bar button:hover { background: #3b3b3b; }
+
+        .autocomplete-results {
+            position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+            background: #212121; border-radius: 12px; border: 1px solid var(--border-color);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6); display: none; overflow: hidden; z-index: 1001;
+        }
+        .autocomplete-item { padding: 12px 18px; cursor: pointer; display: flex; align-items: center; gap: 12px; font-size: 0.9rem; transition: background 0.2s; }
+        .autocomplete-item:hover { background: var(--card-hover); }
+
+        main { display: flex; flex: 1; overflow: hidden; }
+        #sidebar-nav { width: 240px; padding: 16px; border-right: 1px solid var(--border-color); overflow-y: auto; box-sizing: border-box; }
+        #content-area { flex: 1; padding: 24px; overflow-y: auto; position: relative; }
+
+        .playlist-link { padding: 12px 16px; cursor: pointer; border-radius: 10px; margin-bottom: 4px; transition: background 0.2s, font-weight 0.2s; font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
+        .playlist-link:hover { background: var(--card-hover); }
+        .playlist-link.active { background: #272727; font-weight: 600; }
+
+        /* Video Grid */
+        #video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+        .video-card, .shorts-card { position: relative; cursor: pointer; }
+        
+        .thumb-wrapper, .shorts-thumb-wrapper {
+            position: relative; width: 100%; aspect-ratio: 16/9; 
+            background: #000; border-radius: 12px; overflow: hidden; display: flex; align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s;
+        }
+        .shorts-thumb-wrapper { aspect-ratio: 9/16; }
+        .video-card:hover .thumb-wrapper, .shorts-card:hover .shorts-thumb-wrapper { transform: translateY(-2px); }
+
+        .main-thumb { width: 100%; height: 100%; object-fit: contain; }
+        .preview-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; display: none; }
+        .shorts-card .main-thumb, .shorts-card .preview-video { object-fit: cover; }
+
+        .video-duration {
+            position: absolute; bottom: 8px; right: 8px;
+            background: rgba(0,0,0,0.8); color: white; padding: 3px 6px;
+            border-radius: 4px; font-size: 0.75rem; font-weight: 600; z-index: 2; letter-spacing: 0.5px;
+        }
+
+        .video-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 12px; position: relative; }
+        .video-info { flex: 1; padding-right: 8px; }
+        .video-info h3 { margin: 0; font-size: 0.95rem; font-weight: 500; line-height: 1.4; color: #fff; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;}
+        
+        .hamburger-menu { background: none; border: none; color: #aaa; cursor: pointer; padding: 6px; font-size: 1.2rem; border-radius: 50%; transition: background 0.2s, color 0.2s; }
+        .hamburger-menu:hover { background: rgba(255,255,255,0.1); color: white; }
+
+        .options-dropdown {
+            position: absolute; right: 0; top: 32px; background: #282828; border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: none; z-index: 100; width: 140px; overflow: hidden; border: 1px solid var(--border-color);
+        }
+        .options-dropdown div { padding: 12px 16px; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; }
+        .options-dropdown div:hover { background: #383838; }
+
+        /* Player Views */
+        #player-view { display: none; gap: 20px; width: 100%; }
+        .player-main { flex: 1; text-align: center; }
+        video#main-video { width: 100%; max-height: 80vh; border-radius: 12px; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+        #shorts-player-container {
+            display: none; width: 100%; height: calc(100vh - 100px); justify-content: center; align-items: center; position: relative;
+        }
+        #shorts-video-wrapper { position: relative; height: 95%; aspect-ratio: 9/16; border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        video#shorts-video { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Modals */
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
+            width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .modal-content { background: var(--modal-bg); padding: 30px; border-radius: 16px; width: 90%; max-width: 400px; border: 1px solid var(--border-color); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        .modal-content h3 { margin-top: 0; font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; }
+        .modal-content label { color: #aaa; margin-bottom: 6px; display: inline-block; }
+        .modal-content input, .modal-content select {
+            width: 100%; padding: 12px; margin: 8px 0 20px 0; background: #1a1a1a; border: 1px solid var(--border-color); color: white; border-radius: 8px; box-sizing: border-box; font-size: 0.9rem; outline: none;
+        }
+        .modal-content input:focus, .modal-content select:focus { border-color: #5f5f5f; }
+        
+        .btn-primary { background: var(--accent-color); color: white; border: none; padding: 12px 24px; border-radius: 24px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: background 0.2s, transform 0.1s; }
+        .btn-primary:hover { background: #cc0000; }
+        .btn-primary:active { transform: scale(0.98); }
+        .btn-secondary { background: #333; color: #eee; border: none; padding: 12px 24px; border-radius: 24px; cursor: pointer; margin-right: 8px; font-weight: 600; font-size: 0.9rem; transition: background 0.2s; }
+        .btn-secondary:hover { background: #444; color: white; }
+
+        /* 최초 안내 팝업 전용 스타일 */
+        .info-popup-content { text-align: center; max-width: 440px; padding: 32px; }
+        .info-popup-icon { font-size: 3rem; margin-bottom: 16px; display: inline-block; }
+        .info-popup-text { font-size: 0.95rem; line-height: 1.6; color: #ccc; margin-bottom: 24px; word-break: keep-all; }
+    </style>
+</head>
+<body onclick="closeAllDropdowns()">
+
+<div id="welcome-modal" class="modal">
+    <div class="modal-content info-popup-content">
+        <span class="info-popup-icon">🛡️</span>
+        <h3>로컬 보안 안내</h3>
+        <p class="info-popup-text">
+            본 애플리케이션은 <strong>100% 로컬 환경</strong>에서 가동되며, 업로드하신 비디오를 외부 서버로 절대 유출하거나 전송하지 않습니다.<br><br>
+            모든 영상 데이터는 브라우저 내부의 안전한 저장소인 <strong>IndexedDB</strong>에 암호화 보관되어, 오직 사용자님의 기기에서만 프라이빗하게 시청하실 수 있습니다.
+        </p>
+        <button class="btn-primary" style="width: 100%;" onclick="closeWelcomeModal()">안전하게 시작하기</button>
+    </div>
+</div>
+
+<header>
+    <div class="logo" onclick="location.reload()">[video player]</div>
+    <div class="search-container" onclick="event.stopPropagation()">
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="유사 검색 지원..." oninput="handleAutocomplete(this.value)">
+            <button onclick="handleSearch()">🔍</button>
+        </div>
+        <div id="autocomplete-list" class="autocomplete-results"></div>
+    </div>
+    <button class="btn-primary" onclick="openModal('upload-modal')">업로드</button>
+</header>
+
+<main>
+    <nav id="sidebar-nav">
+        <div class="playlist-link active" onclick="loadCategory('all')">🏠 전체</div>
+        <hr style="border:0; border-top:1px solid var(--border-color); margin:15px 0;">
+        <div id="playlist-menu"></div>
+    </nav>
+
+    <div id="content-area">
+        <div id="home-view">
+            <div id="video-grid"></div>
+            <div id="shorts-section" style="margin-top:40px; display:none;">
+                <h3 style="display:flex; align-items:center; gap:10px; font-weight: 600; margin-bottom: 20px;">⚡ Shorts</h3>
+                <div id="shorts-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;"></div>
+            </div>
+        </div>
+
+        <div id="player-view">
+            <div class="player-main">
+                <video id="main-video" controls loop playsinline></video>
+                <h2 id="playing-title" style="margin-top:20px; text-align: left; font-weight: 600;"></h2>
+                <p id="playing-playlist" style="color:#aaa; text-align: left; margin-bottom: 20px; font-size: 0.9rem;"></p>
+                <div style="text-align: left;">
+                    <button class="btn-secondary" onclick="renderApp()">뒤로가기</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="shorts-player-container">
+            <div id="shorts-video-wrapper">
+                <video id="shorts-video" controls loop playsinline></video>
+            </div>
+            <div style="margin-left:24px; min-width: 200px;">
+                <h2 id="shorts-playing-title" style="font-weight: 600; margin-bottom: 20px;"></h2>
+                <button class="btn-secondary" onclick="renderApp()">닫기</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div id="upload-modal" class="modal">
+    <div class="modal-content">
+        <h3>영상 업로드</h3>
+        <label>비디오 파일 선택</label>
+        <input type="file" id="file-input" accept="video/*" multiple onchange="updateFileList(this)">
+        <div id="selected-files-list" style="font-size:0.8rem; color:#aaa; margin-top:-12px; margin-bottom:20px;"></div>
+        
+        <label>플레이리스트 위치</label>
+        <select id="playlist-select" onchange="toggleNewPlaylistInput(this.value, 'new-playlist-name')">
+            <option value="기본">기본 플레이리스트</option>
+            <option value="new">+ 새 플레이리스트 추가</option>
+        </select>
+        <input type="text" id="new-playlist-name" placeholder="새 플레이리스트 이름" style="display:none;">
+        
+        <div style="display:flex; justify-content: flex-end; margin-top:20px;">
+            <button class="btn-secondary" onclick="closeModal('upload-modal')">취소</button>
+            <button class="btn-primary" id="save-btn" onclick="saveMultipleVideos()">저장</button>
+        </div>
+    </div>
+</div>
+
+<div id="edit-modal" class="modal">
+    <div class="modal-content">
+        <h3>영상 정보 수정</h3>
+        <input type="hidden" id="edit-video-id">
+        <label>제목</label>
+        <input type="text" id="edit-title">
+        <label>플레이리스트</label>
+        <select id="edit-playlist-select" onchange="toggleNewPlaylistInput(this.value, 'edit-new-playlist')">
+            </select>
+        <input type="text" id="edit-new-playlist" placeholder="새 플레이리스트 이름" style="display:none;">
+        <div style="display:flex; justify-content: flex-end; margin-top:20px;">
+            <button class="btn-secondary" onclick="closeModal('edit-modal')">취소</button>
+            <button class="btn-primary" onclick="updateVideo()">수정 완료</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let db;
+    let currentCategory = 'all';
+    let videoObserver;
+
+    // 최초 팝업 노출 로직 (localStorage 기준 검증)
+    document.addEventListener("DOMContentLoaded", () => {
+        if (!localStorage.getItem("pvp_welcome_seen")) {
+            openModal("welcome-modal");
+        }
+    });
+
+    function closeWelcomeModal() {
+        localStorage.setItem("pvp_welcome_seen", "true");
+        closeModal("welcome-modal");
+    }
+
+    // 1. IndexedDB 설정
+    const request = indexedDB.open("ProVideoPlayerV6", 1);
+    request.onupgradeneeded = (e) => {
+        db = e.target.result;
+        if (!db.objectStoreNames.contains("videos")) {
+            const store = db.createObjectStore("videos", { keyPath: "id", autoIncrement: true });
+            store.createIndex("title", "title", { unique: false });
+            store.createIndex("playlist", "playlist", { unique: false });
+        }
+    };
+    request.onsuccess = (e) => { 
+        db = e.target.result; 
+        initObserver();
+        renderApp(); 
+    };
+
+    // 2. Intersection Observer (지연 로딩 알고리즘)
+    function initObserver() {
+        videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+                const dataSrc = video.getAttribute('data-src');
+                if (entry.isIntersecting) {
+                    video.src = dataSrc; 
+                } else {
+                    video.src = ""; 
+                    video.load();
+                }
+            });
+        }, { threshold: 0.1 });
+    }
+
+    // 3. 레벤슈타인 거리 알고리즘 (유사 검색용)
+    function getLevenshteinDistance(a, b) {
+        const matrix = Array.from({ length: a.length + 1 }, () => []);
+        for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
+        for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+        for (let i = 1; i <= a.length; i++) {
+            for (let j = 1; j <= b.length; j++) {
+                const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+                matrix[i][j] = Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j - 1] + cost);
+            }
+        }
+        return matrix[a.length][b.length];
+    }
+
+    // 4. 앱 렌더링 엔진
+    async function renderApp(searchQuery = '') {
+        const videoGrid = document.getElementById('video-grid');
+        const shortsGrid = document.getElementById('shorts-grid');
+        const menu = document.getElementById('playlist-menu');
+        
+        videoGrid.innerHTML = ''; shortsGrid.innerHTML = ''; menu.innerHTML = '';
+        document.getElementById('home-view').style.display = 'block';
+        document.getElementById('player-view').style.display = 'none';
+        document.getElementById('shorts-player-container').style.display = 'none';
+
+        const tx = db.transaction(["videos"], "readonly");
+        const allVideos = await new Promise(r => tx.objectStore("videos").getAll().onsuccess = (e) => r(e.target.result));
+        
+        const playlists = new Set();
+        allVideos.sort((a, b) => b.timestamp - a.timestamp).forEach(video => {
+            playlists.add(video.playlist);
+            if (currentCategory !== 'all' && video.playlist !== currentCategory) return;
+            if (searchQuery && !video.title.toLowerCase().includes(searchQuery.toLowerCase())) return;
+
+            const grid = video.type === 'shorts' ? shortsGrid : videoGrid;
+            renderCard(video, grid);
+        });
+
+        document.getElementById('shorts-section').style.display = shortsGrid.children.length ? 'block' : 'none';
+        
+        // 플레이리스트 메뉴 렌더링
+        playlists.forEach(pl => {
+            const div = document.createElement('div');
+            div.className = `playlist-link ${currentCategory === pl ? 'active' : ''}`;
+            div.innerText = `📁 ${pl}`;
+            div.onclick = () => { currentCategory = pl; renderApp(); };
+            menu.appendChild(div);
+        });
+    }
+
+    // 5. 영상 카드 렌더링 (Shorts와 일반 통합)
+    function renderCard(video, grid) {
+        const isShorts = video.type === 'shorts';
+        const card = document.createElement('div');
+        card.className = isShorts ? 'shorts-card' : 'video-card';
+        card.innerHTML = `
+            <div class="${isShorts ? 'shorts-thumb-wrapper' : 'thumb-wrapper'}" onclick="playVideo(${video.id}, '${video.type}')">
+                <img src="${video.thumbnail}" class="main-thumb">
+                <video data-src="${video.data}" class="preview-video" muted loop playsinline></video>
+                ${!isShorts ? `<div class="video-duration">${video.duration}</div>` : ''}
+            </div>
+            <div class="video-meta">
+                <div class="video-info" onclick="playVideo(${video.id}, '${video.type}')">
+                    <h3 title="${video.title}">${video.title}</h3>
+                    <p style="font-size:0.75rem; color:#888; margin:6px 0 0 0;">${video.playlist}</p>
+                </div>
+                <button class="hamburger-menu" onclick="event.stopPropagation(); toggleDropdown(${video.id})">⋮</button>
+                <div id="drop-${video.id}" class="options-dropdown">
+                    <div onclick="openEditModal(${video.id})">✏️ 수정</div>
+                    <div onclick="deleteVideo(${video.id})" style="color:#ff4444;">🗑️ 삭제</div>
+                </div>
+            </div>
+        `;
+
+        // 가상화 로드 적용
+        const v = card.querySelector('.preview-video');
+        videoObserver.observe(v);
+
+        // 호버 시 미리보기
+        card.onmouseenter = () => { v.style.display = 'block'; v.play().catch(()=>{}); };
+        card.onmouseleave = () => { v.style.display = 'none'; v.pause(); };
+
+        grid.appendChild(card);
+    }
+
+    // 6. 수정 기능 관련
+    async function openEditModal(id) {
+        const tx = db.transaction(["videos"], "readonly");
+        tx.objectStore("videos").get(id).onsuccess = (e) => {
+            const v = e.target.result;
+            document.getElementById('edit-video-id').value = v.id;
+            document.getElementById('edit-title').value = v.title;
+            
+            // 플레이리스트 목록 갱신
+            const select = document.getElementById('edit-playlist-select');
+            select.innerHTML = '<option value="기본">기본 플레이리스트</option><option value="new">+ 새 플레이리스트</option>';
+            
+            db.transaction(["videos"],"readonly").objectStore("videos").getAll().onsuccess = (ev) => {
+                const playlists = [...new Set(ev.target.result.map(i => i.playlist))];
+                playlists.forEach(p => {
+                    if(p !== '기본') select.innerHTML += `<option value="${p}">${p}</option>`;
+                });
+                select.value = v.playlist;
+                openModal('edit-modal');
+            };
+        };
+    }
+
+    async function updateVideo() {
+        const id = parseInt(document.getElementById('edit-video-id').value);
+        let playlist = document.getElementById('edit-playlist-select').value;
+        if(playlist === 'new') playlist = document.getElementById('edit-new-playlist').value || "미분류";
+        const title = document.getElementById('edit-title').value;
+
+        const tx = db.transaction(["videos"], "readwrite");
+        const store = tx.objectStore("videos");
+        store.get(id).onsuccess = (e) => {
+            const data = e.target.result;
+            data.title = title;
+            data.playlist = playlist;
+            store.put(data).onsuccess = () => {
+                closeModal('edit-modal');
+                renderApp();
+            };
+        };
+    }
+
+    // 7. 자동완성 알고리즘 (Levenshtein 거리 활용)
+    async function handleAutocomplete(val) {
+        const list = document.getElementById('autocomplete-list');
+        if(!val) { list.style.display = 'none'; return; }
+
+        const tx = db.transaction(["videos"], "readonly");
+        tx.objectStore("videos").getAll().onsuccess = (e) => {
+            const all = e.target.result;
+            const matches = all.map(v => ({
+                ...v,
+                dist: getLevenshteinDistance(val.toLowerCase(), v.title.toLowerCase())
+            }))
+            .filter(v => v.title.toLowerCase().includes(val.toLowerCase()) || v.dist < 3)
+            .sort((a, b) => a.dist - b.dist)
+            .slice(0, 6);
+
+            if(matches.length > 0) {
+                list.innerHTML = matches.map(m => `
+                    <div class="autocomplete-item" onclick="playVideo(${m.id}, '${m.type}')">
+                        <span>🔍</span> <span>${m.title}</span> <small style="color:#666; margin-left:auto;">${m.playlist}</small>
+                    </div>
+                `).join('');
+                list.style.display = 'block';
+            } else { list.style.display = 'none'; }
+        };
+    }
+
+    // 8. 유틸리티 함수들
+    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+    function toggleNewPlaylistInput(val, targetId) { document.getElementById(targetId).style.display = val === 'new' ? 'block' : 'none'; }
+    function toggleDropdown(id) { 
+        const drop = document.getElementById(`drop-${id}`);
+        const isVisible = drop.style.display === 'block';
+        closeAllDropdowns();
+        if(!isVisible) drop.style.display = 'block';
+    }
+    function closeAllDropdowns() { 
+        document.querySelectorAll('.options-dropdown').forEach(d => d.style.display = 'none'); 
+        document.getElementById('autocomplete-list').style.display = 'none';
+    }
+    function deleteVideo(id) {
+        if(confirm("정말 삭제하시겠습니까?")) {
+            const tx = db.transaction(["videos"], "readwrite");
+            tx.objectStore("videos").delete(id).onsuccess = () => renderApp();
+        }
+    }
+    function updateFileList(input) {
+        document.getElementById('selected-files-list').innerText = `${input.files.length}개의 파일 선택됨`;
+    }
+
+    function playVideo(id, type) {
+        db.transaction(["videos"], "readonly").objectStore("videos").get(id).onsuccess = (e) => {
+            const v = e.target.result;
+            document.getElementById('home-view').style.display = 'none';
+            if(type === 'shorts') {
+                document.getElementById('shorts-player-container').style.display = 'flex';
+                const vid = document.getElementById('shorts-video');
+                vid.src = v.data;
+                document.getElementById('shorts-playing-title').innerText = v.title;
+                vid.play();
+            } else {
+                document.getElementById('player-view').style.display = 'flex';
+                const vid = document.getElementById('main-video');
+                vid.src = v.data;
+                document.getElementById('playing-title').innerText = v.title;
+                document.getElementById('playing-playlist').innerText = v.playlist;
+                vid.play();
+            }
+        };
+    }
+
+    async function getVideoMetadata(file) {
+        return new Promise((resolve) => {
+            const video = document.createElement('video');
+            video.preload = 'metadata';
+            video.src = URL.createObjectURL(file);
+            video.onloadedmetadata = () => { video.currentTime = 1; };
+            video.onseeked = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+                canvas.getContext('2d').drawImage(video, 0, 0);
+                const res = {
+                    thumbnail: canvas.toDataURL('image/jpeg', 0.7),
+                    duration: formatTime(video.duration),
+                    type: video.videoHeight > video.videoWidth ? 'shorts' : 'general'
+                };
+                URL.revokeObjectURL(video.src);
+                resolve(res);
+            };
+        });
+    }
+
+    function formatTime(s) {
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return `${m}:${sec.toString().padStart(2, '0')}`;
+    }
+
+    async function saveMultipleVideos() {
+        const files = document.getElementById('file-input').files;
+        let playlist = document.getElementById('playlist-select').value;
+        if(playlist === 'new') playlist = document.getElementById('new-playlist-name').value || "미분류";
+        if(!files.length) return;
+
+        const btn = document.getElementById('save-btn');
+        btn.innerText = "저장 중..."; btn.disabled = true;
+
+        for (let file of files) {
+            const meta = await getVideoMetadata(file);
+            const reader = new FileReader();
+            await new Promise(r => {
+                reader.onload = (e) => {
+                    const tx = db.transaction(["videos"], "readwrite");
+                    tx.objectStore("videos").add({
+                        title: file.name.split('.')[0],
+                        playlist,
+                        data: e.target.result,
+                        thumbnail: meta.thumbnail,
+                        duration: meta.duration,
+                        type: meta.type,
+                        timestamp: Date.now()
+                    });
+                    tx.oncomplete = r;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+        btn.innerText = "저장"; btn.disabled = false;
+        closeModal('upload-modal');
+        renderApp();
+    }
+
+    function handleSearch() {
+        renderApp(document.getElementById('search-input').value);
+    }
+    
+    function loadCategory(cat) {
+        currentCategory = cat;
+        renderApp();
+    }
+</script>
+</body>
+</html>
