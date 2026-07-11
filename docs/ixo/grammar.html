@@ -185,7 +185,7 @@
         async function loadSidebar() {
             const target = document.getElementById('sidebar-target');
             try {
-                const data = await SiteSecurity.secureFetchText('../nav.html', 'D0C980818D202C5ADC33937C6D8495BCC5918118FA4E4AFFC9F8AA1D05A20A5D');
+                const data = await SiteSecurity.secureFetchText('../nav.html', 'd0c980818d202c5adc33937c6d8495bcc5918118fa4e4affc9f8aa1d05a20a5d');
                 SiteSecurity.setSanitizedHtml(target, data);
 
                 const links = target.querySelectorAll('a');
