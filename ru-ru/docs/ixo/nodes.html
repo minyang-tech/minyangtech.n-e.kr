@@ -194,7 +194,7 @@
         async function loadNodeReference() {
             const target = document.getElementById('node-reference-target');
             try {
-                const markdown = await SiteSecurity.secureFetchText('node-library.md', '580683c6740c7da73559d00d9835e454a136ba54b145f032897f07f15b413b74');
+                const markdown = await SiteSecurity.secureFetchText('node-library.md', '786c9755ad7c43b0ff09340142df224b3278e2c02235092bfa4261dbca7cf4ba');
                 SiteSecurity.setMarkdown(target, markdown);
             } catch (error) {
                 SiteSecurity.appendTextMessage(target, 'Не удалось загрузить документ.');

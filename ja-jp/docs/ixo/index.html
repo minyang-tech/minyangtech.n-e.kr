@@ -202,7 +202,7 @@
         async function loadMainReference() {
             const target = document.getElementById('main-reference-target');
             try {
-                const markdown = await SiteSecurity.secureFetchText('main.md', 'c1caa66207ca4292a11bb59d8e1f20f7fc02dafc8a55b6ec8130793a02e78c5a');
+                const markdown = await SiteSecurity.secureFetchText('main.md', 'fcb7cb2a450b463412f6ac06024577781f2a7a3a0fccf88b55bde9c4ee0550a6');
                 SiteSecurity.setMarkdown(target, markdown);
             } catch (error) {
                 SiteSecurity.appendTextMessage(target, 'ドキュメントを読み込めませんでした。');

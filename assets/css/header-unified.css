@@ -1,22 +1,23 @@
 /* Unified header rules for non-g pages */
 header {
-    width: 100%;
-    min-height: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5%;
-    box-sizing: border-box;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    width: 100% !important;
+    min-height: 80px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 16px !important;
+    padding: 0 5% !important;
+    box-sizing: border-box !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
 }
 
 .header-left {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    min-width: 0;
+    display: flex !important;
+    align-items: center !important;
+    gap: 28px !important;
+    min-width: 0 !important;
 }
 
 .logo-link img {
@@ -40,38 +41,49 @@ header {
 }
 
 .controls {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-shrink: 0;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 14px !important;
+    margin-left: auto !important;
+    flex-shrink: 0 !important;
 }
 
 .language-menu {
-    position: relative;
+    position: relative !important;
+    display: inline-flex !important;
+    order: 0 !important;
+}
+
+.switch {
+    order: 1 !important;
+    flex: 0 0 auto !important;
 }
 
 .language-menu-button {
-    min-height: 34px;
-    padding: 0 12px;
-    border: 1px solid var(--brd, #ddd);
-    border-radius: 999px;
-    background: var(--bg, #fff);
-    color: var(--txt, #222);
-    font-weight: 700;
-    cursor: pointer;
+    min-height: 36px !important;
+    padding: 0 14px !important;
+    border: 1px solid var(--brd, #ddd) !important;
+    border-radius: 999px !important;
+    background: var(--card-bg, var(--bg, #fff)) !important;
+    color: var(--txt, #222) !important;
+    font-weight: 800 !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
 }
 
 .language-menu-list {
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
-    min-width: 180px;
-    display: none;
-    padding: 8px;
-    border: 1px solid var(--brd, #ddd);
-    border-radius: 16px;
-    background: var(--card-bg, var(--bg, #fff));
-    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.16);
+    position: absolute !important;
+    top: calc(100% + 10px) !important;
+    right: 0 !important;
+    left: auto !important;
+    min-width: 190px !important;
+    display: none !important;
+    padding: 8px !important;
+    border: 1px solid var(--brd, #ddd) !important;
+    border-radius: 16px !important;
+    background: var(--card-bg, var(--bg, #fff)) !important;
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.16) !important;
 }
 
 .language-menu:hover .language-menu-list,
@@ -81,30 +93,34 @@ header {
 }
 
 .language-menu-list a {
-    padding: 8px 10px;
-    border-radius: 10px;
-    color: var(--txt, #222);
-    text-decoration: none;
-    font-weight: 700;
-    white-space: nowrap;
+    display: block !important;
+    padding: 9px 11px !important;
+    border-radius: 10px !important;
+    color: var(--txt, #222) !important;
+    text-decoration: none !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
+    opacity: 0.78 !important;
 }
 
 .language-menu-list a:hover,
 .language-menu-list a.active {
-    background: color-mix(in srgb, var(--accent, #007bff) 12%, transparent);
-    color: var(--accent, #007bff);
+    background: color-mix(in srgb, var(--accent, #007bff) 12%, transparent) !important;
+    color: var(--accent, #007bff) !important;
+    opacity: 1 !important;
 }
 
 @media (max-width: 850px) {
     header {
-        min-height: 72px;
-        padding: 10px 4%;
-        gap: 10px;
+        min-height: 72px !important;
+        padding: 10px 4% !important;
+        gap: 10px !important;
+        align-items: flex-start !important;
     }
 
     .header-left {
-        gap: 12px;
-        flex: 1 1 auto;
+        gap: 12px !important;
+        flex: 1 1 auto !important;
     }
 
     header nav {

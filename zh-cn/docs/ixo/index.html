@@ -202,7 +202,7 @@
         async function loadMainReference() {
             const target = document.getElementById('main-reference-target');
             try {
-                const markdown = await SiteSecurity.secureFetchText('main.md', '942325b878cc520d8257e872cb1fcd7d94aefc1c595646b1991d89b6a484b1b6');
+                const markdown = await SiteSecurity.secureFetchText('main.md', 'ca7dfa4d0b557723892b6ba0ae219b0b719bc248b8013c499fbef0d847f25d13');
                 SiteSecurity.setMarkdown(target, markdown);
             } catch (error) {
                 SiteSecurity.appendTextMessage(target, '无法加载文档。');

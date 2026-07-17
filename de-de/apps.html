@@ -211,7 +211,7 @@
 
         async function fetchApps() {
             try {
-                appData = await SiteSecurity.secureFetchJson('apps-data.json', '6ee1ad699f986a6cebc15418e77cbf10c36f383b057e94d0687db6e5c9cd2280');
+                appData = await SiteSecurity.secureFetchJson('apps-data.json', 'e5b3f2f49f6fe97ad64bfe119ac0ae6164803ec4b7f3e690d0f9141377fa51c1');
                 checkUrlParam();
             } catch (error) {
                 console.error("Load Error:", error);
@@ -324,7 +324,7 @@
                     if (!safeSrc) return;
                     const shot = document.createElement('img');
                     shot.src = safeSrc;
-                    shot.alt = `${app.name || 'App'} screenshot ${index + 1}`;
+                    shot.alt = `${app.name || 'App'} Screenshots ${index + 1}`;
                     galleryGrid.appendChild(shot);
                 });
                 if (galleryGrid.children.length) {
@@ -337,7 +337,7 @@
             const table = document.createElement('table');
             table.className = 'app-spec-table';
             [
-                ['출시일', app.release_date],
+                ['Veröffentlichungsdatum', app.release_date],
                 ['Plattform', app.platform],
                 ['Mindestanforderungen', app.min_spec],
                 ['Empfohlene Anforderungen', app.rec_spec],
@@ -360,7 +360,7 @@
                 link.target = '_blank';
                 link.rel = 'noopener';
                 link.style.color = 'var(--accent)';
-                link.textContent = 'GitHub 바로가기';
+                link.textContent = 'GitHub öffnen';
                 td.appendChild(link);
                 row.append(th, td);
             }
@@ -369,12 +369,12 @@
             download.target = '_blank';
             download.rel = 'noopener';
             download.href = SiteSecurity.safeUrl(app.download_url);
-            download.textContent = 'Download';
+            download.textContent = 'Herunterladen';
             right.append(table, download);
             if (app.is_ai) {
                 const notice = document.createElement('div');
                 notice.style.cssText = 'margin-top:20px; padding:15px; background:rgba(0, 123, 255, 0.05); border-radius:12px; border-left:4px solid var(--accent); font-size:0.85rem; line-height:1.6; opacity:0.8;';
-                notice.textContent = '본 애플리케이션은 「인공지능 산업 육성 및 신뢰 기반 조성 등에 관한 기본법」에 의거하여, 제작 과정에서 AI 기술이 활용되었음을 밝힙니다.';
+                notice.textContent = 'Diese Anwendung weist darauf hin, dass bei der Erstellung KI-Technologie verwendet wurde.';
                 right.appendChild(notice);
             }
             wrapper.append(left, right);
@@ -395,7 +395,7 @@
                 navigator.share({ title: document.title, url: url });
             } else {
                 navigator.clipboard.writeText(url);
-                alert("링크가 복사되었습니다!");
+                alert('Der Link wurde kopiert.');
             }
         }
 

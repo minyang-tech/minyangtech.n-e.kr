@@ -211,7 +211,7 @@
 
         async function fetchApps() {
             try {
-                appData = await SiteSecurity.secureFetchJson('apps-data.json', '7d57bc5a06fe09ce8d0d00e44e4ea7ceef1462f0eea0e89c0b3b4e20621e0143');
+                appData = await SiteSecurity.secureFetchJson('apps-data.json', 'b652a1a44614d86516e18263a8c298261774e0414d1150e9218560e9f7271f6c');
                 checkUrlParam();
             } catch (error) {
                 console.error("Load Error:", error);
@@ -250,7 +250,7 @@
             const feed = document.getElementById('app-feed');
             feed.replaceChildren();
             if (!data.length) {
-                SiteSecurity.appendTextMessage(feed, 'Ничего не найдено.');
+                SiteSecurity.appendTextMessage(feed, 'Результатов поиска нет.');
                 return;
             }
 
@@ -316,7 +316,7 @@
                 const gallery = document.createElement('div');
                 gallery.className = 'app-screenshot-gallery';
                 const galleryTitle = document.createElement('h2');
-                galleryTitle.textContent = 'Screenshots';
+                galleryTitle.textContent = 'Скриншоты';
                 const galleryGrid = document.createElement('div');
                 galleryGrid.className = 'app-screenshot-grid';
                 app.screenshots.forEach((src, index) => {
@@ -324,7 +324,7 @@
                     if (!safeSrc) return;
                     const shot = document.createElement('img');
                     shot.src = safeSrc;
-                    shot.alt = `${app.name || 'App'} screenshot ${index + 1}`;
+                    shot.alt = `${app.name || 'Приложение'} Скриншоты ${index + 1}`;
                     galleryGrid.appendChild(shot);
                 });
                 if (galleryGrid.children.length) {
@@ -337,11 +337,11 @@
             const table = document.createElement('table');
             table.className = 'app-spec-table';
             [
-                ['출시일', app.release_date],
+                ['Дата выпуска', app.release_date],
                 ['Платформа', app.platform],
                 ['Минимальные требования', app.min_spec],
                 ['Рекомендуемые требования', app.rec_spec],
-                ['Открытый код', app.is_opensource ? 'Открыто' : 'Закрыто']
+                ['Открытый код', app.is_opensource ? 'Открыт' : 'Закрыт']
             ].forEach(([label, value]) => {
                 const row = table.insertRow();
                 const th = document.createElement('th');
@@ -360,7 +360,7 @@
                 link.target = '_blank';
                 link.rel = 'noopener';
                 link.style.color = 'var(--accent)';
-                link.textContent = 'GitHub 바로가기';
+                link.textContent = 'Открыть GitHub';
                 td.appendChild(link);
                 row.append(th, td);
             }
@@ -374,7 +374,7 @@
             if (app.is_ai) {
                 const notice = document.createElement('div');
                 notice.style.cssText = 'margin-top:20px; padding:15px; background:rgba(0, 123, 255, 0.05); border-radius:12px; border-left:4px solid var(--accent); font-size:0.85rem; line-height:1.6; opacity:0.8;';
-                notice.textContent = '본 애플리케이션은 「인공지능 산업 육성 및 신뢰 기반 조성 등에 관한 기본법」에 의거하여, 제작 과정에서 AI 기술이 활용되었음을 밝힙니다.';
+                notice.textContent = 'Это приложение сообщает, что при его создании использовались технологии ИИ.';
                 right.appendChild(notice);
             }
             wrapper.append(left, right);
@@ -395,7 +395,7 @@
                 navigator.share({ title: document.title, url: url });
             } else {
                 navigator.clipboard.writeText(url);
-                alert("링크가 복사되었습니다!");
+                alert('Ссылка скопирована.');
             }
         }
 

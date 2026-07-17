@@ -194,7 +194,7 @@
         async function loadNodeReference() {
             const target = document.getElementById('node-reference-target');
             try {
-                const markdown = await SiteSecurity.secureFetchText('node-library.md', 'e2f696f3f25b84bf7aa4a4648e96b881e3dce13bc89992d782a068ada386b063');
+                const markdown = await SiteSecurity.secureFetchText('node-library.md', 'd69206b9f4868b0cc2abb21ebea3b571716c97ddba5bfa2077db577457166f9c');
                 SiteSecurity.setMarkdown(target, markdown);
             } catch (error) {
                 SiteSecurity.appendTextMessage(target, 'Unable to load the document.');

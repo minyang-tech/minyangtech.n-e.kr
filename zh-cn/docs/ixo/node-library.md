@@ -1,18 +1,77 @@
-# Node Library
+# IXO Engine Node Library
 
-本页总结 IXO Engine 节点及其当前用途。
+本文总结 IXO Engine V1.1.3 中可用的节点与编辑器功能。
 
-| 分类 | 示例 | 状态 |
+## 状态标签
+
+| Status | Meaning |
+|---|---|
+| Stable | Available in the current public build. |
+| Protected | Available with security consent, permission checks, or restricted execution policy. |
+| Editor | Provided as an editor feature rather than a runtime node. |
+
+## 通用字段
+
+| Field | Description |
+|---|---|
+| Label | Display name of the node or UI element. |
+| Value | Default value calculated or passed by the node. |
+| Ref Key | Name that other nodes or UI can reference as a template variable. |
+| Group Label | Helper label for visually grouping nodes. |
+| Scene | Screen unit that owns the node or UI element. |
+
+## 节点组
+
+| Group | Main Nodes | Status |
 |---|---|---|
-| Core | Start, If/Else, Join Data, Script | Stable / Preview |
-| Control | Delay, Repeat, Message Send/Receive, Scene Start | Preview |
-| Visual | Text, Image, Input Field, Button, UI Text, UI Image | Stable / Preview |
-| Data | Global Variable, Local Variable, Constant | Stable / Preview |
-| Network | HTTPS Request, Browser Open | 带安全策略的 Stable |
-| System | System Info, Audio, File Watcher | Stable / Permission-gated |
-| Logic | Math, Comparison, AND/OR/NOT | Stable / Preview |
-| Utility | Random, Timer, Date, Text Length, RGB to HEX | Stable |
+| Core | Start, Condition Branch, Value Compare, Merge Data, Script | Stable / Protected for Script |
+| Control | Repeat, Wait, Switch, Send Message, Receive Message, Scene Start, Break, Continue, Restart, Clone | Stable |
+| Visual | Text Output, Image Output, Input, Button, Layout Box, UI Text, UI Image, UI Button, UI Container, movement, drawing, visibility | Stable |
+| Data | Global Value, Local Storage, Constant Value, Global Variable, Local Variable | Stable / Editor |
+| Network | HTTPS Request, Browser Open | Protected |
+| System | System Info, Audio Play, File Watch, Sound Play, Stop Sounds, Volume, Speed, Background Music | Stable / Protected for File Watch |
+| Logic | Formula, mouse/object/key checks, pointer hit, number check, AND, OR, NOT, touch support | Stable |
+| Utility | Join Text, Random Value, Random Range, Stopwatch, Date Value, Text Length, Text Position, Replace Text, Case Convert, RGB to HEX, HEX Channel | Stable |
 
-## 说明
+## Canvas Builder 集成
 
-除非出现严重错误或安全问题，否则运行时兼容性会尽量保持。新增节点应记录权限行为、输入、输出以及对 export 的影响。
+- Adding Text, Image, Button, Custom Button, Vector, Input, or Container in Canvas Builder creates or links the matching Visual node.
+- Editing UI values in Inspector updates the linked node Value or Ref Key.
+- Removing UI cleans up unnecessary linked nodes.
+- Image assets can be dragged into Canvas Builder to create image UI and image nodes.
+- .ixo assets can be dragged into Node Workspace or Canvas Builder to paste included nodes and UI into the current project.
+- Press P to move from the selected UI element to its linked node.
+- Responsive preview supports Desktop, Tablet, Mobile, and adjustable preview dimensions.
+
+## Scene / Page
+
+| Feature | Role | Status |
+|---|---|---|
+| Scene tabs | Switch scenes from browser-style tabs. | Stable |
+| Scene rename | Double-click a scene tab to rename it. | Stable |
+| Per-scene nodes | Nodes appear and run only in their own scene. | Stable |
+| Per-scene UI | UI elements appear only in their own scene. | Stable |
+| Local variables | Values scoped to the current scene. | Stable |
+| Go Scene Action | Moves to another scene from a button action. | Stable |
+| Scene Start Node | Starts a flow when a scene becomes active. | Stable |
+
+## 网络安全策略
+
+- Network nodes show consent before first use.
+- Consent can be reviewed or revoked in Settings.
+- Only HTTPS is allowed.
+- URL parse failures, localhost, loopback, and private network addresses are blocked.
+- Requests apply timeout and duplicate in-flight prevention.
+- Logs mask sensitive URL details.
+- Browser Open follows the same URL policy as external links.
+
+## 编辑器功能
+
+| Feature | Description |
+|---|---|
+| Ctrl+F node search | Searches by node name, translated name, type, and group. |
+| Top tabs | Manage Scene, Canvas Builder, Settings, and Function Editor as tabs. |
+| Tab reordering | Drag tabs to reorder them. |
+| Advanced Mode | Switch between simplified and detailed editor UI in Settings. |
+| Log display | Toggle the log panel in Settings. |
+| Handle size | Adjust node connection handle size in Settings. |

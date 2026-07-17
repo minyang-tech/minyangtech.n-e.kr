@@ -202,7 +202,7 @@
         async function loadMainReference() {
             const target = document.getElementById('main-reference-target');
             try {
-                const markdown = await SiteSecurity.secureFetchText('main.md', '0b5cbba9e3d6ec6d4d18c6f35380e5b9cde7e8f9947e7e5034669a9219f4334c');
+                const markdown = await SiteSecurity.secureFetchText('main.md', '64c656598b4aff38758f430b3c388d302472ba4b4f65a93a073f904a0614f0d1');
                 SiteSecurity.setMarkdown(target, markdown);
             } catch (error) {
                 SiteSecurity.appendTextMessage(target, 'Dokument konnte nicht geladen werden.');

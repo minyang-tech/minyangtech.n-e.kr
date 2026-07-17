@@ -202,7 +202,7 @@
         async function loadMainReference() {
             const target = document.getElementById('main-reference-target');
             try {
-                const markdown = await SiteSecurity.secureFetchText('main.md', 'b7de6db907b79da0acfac083105543a6bee2ca3483603fa505730386ea9067e0');
+                const markdown = await SiteSecurity.secureFetchText('main.md', 'ba3a17448e12235d85040c59afd68d0d3d080a2ff010ca4cc5c32b11767ce406');
                 SiteSecurity.setMarkdown(target, markdown);
             } catch (error) {
                 SiteSecurity.appendTextMessage(target, 'Не удалось загрузить документ.');

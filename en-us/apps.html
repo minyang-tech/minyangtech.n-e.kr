@@ -211,7 +211,7 @@
 
         async function fetchApps() {
             try {
-                appData = await SiteSecurity.secureFetchJson('apps-data.json', 'bb75fc9e6dca524ce9ebc39d943fa1bc19497f607559cf43fffcc93bb65d5436');
+                appData = await SiteSecurity.secureFetchJson('apps-data.json', 'da42ec9081a851f7d60959fb44f4f89dc68abd0644398443e19b3114a82f7e12');
                 checkUrlParam();
             } catch (error) {
                 console.error("Load Error:", error);
@@ -324,7 +324,7 @@
                     if (!safeSrc) return;
                     const shot = document.createElement('img');
                     shot.src = safeSrc;
-                    shot.alt = `${app.name || 'App'} screenshot ${index + 1}`;
+                    shot.alt = `${app.name || 'App'} Screenshots ${index + 1}`;
                     galleryGrid.appendChild(shot);
                 });
                 if (galleryGrid.children.length) {
@@ -337,7 +337,7 @@
             const table = document.createElement('table');
             table.className = 'app-spec-table';
             [
-                ['출시일', app.release_date],
+                ['Release date', app.release_date],
                 ['Platform', app.platform],
                 ['Minimum specs', app.min_spec],
                 ['Recommended specs', app.rec_spec],
@@ -360,7 +360,7 @@
                 link.target = '_blank';
                 link.rel = 'noopener';
                 link.style.color = 'var(--accent)';
-                link.textContent = 'GitHub 바로가기';
+                link.textContent = 'Open GitHub';
                 td.appendChild(link);
                 row.append(th, td);
             }
@@ -374,7 +374,7 @@
             if (app.is_ai) {
                 const notice = document.createElement('div');
                 notice.style.cssText = 'margin-top:20px; padding:15px; background:rgba(0, 123, 255, 0.05); border-radius:12px; border-left:4px solid var(--accent); font-size:0.85rem; line-height:1.6; opacity:0.8;';
-                notice.textContent = '본 애플리케이션은 「인공지능 산업 육성 및 신뢰 기반 조성 등에 관한 기본법」에 의거하여, 제작 과정에서 AI 기술이 활용되었음을 밝힙니다.';
+                notice.textContent = 'This application discloses that AI technology was used during production.';
                 right.appendChild(notice);
             }
             wrapper.append(left, right);
@@ -395,7 +395,7 @@
                 navigator.share({ title: document.title, url: url });
             } else {
                 navigator.clipboard.writeText(url);
-                alert("링크가 복사되었습니다!");
+                alert('The link has been copied.');
             }
         }
 
