@@ -1,6 +1,6 @@
 [
   {
-    "image": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/MINYANG%20TECH.png?raw=true",
+    "image": "https://minyangtech.n-e.kr/image/MINYANG%20TECH.png?raw=true",
     "source_url": "https://minyangtech.n-e.kr/404",
     "download_url": "https://minyangtech.n-e.kr/g/invite1",
     "is_opensource": false,
@@ -17,7 +17,7 @@
     "release_date": "2026-04-05"
   },
   {
-    "image": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/MINYANG%20TECH.png?raw=true",
+    "image": "https://minyangtech.n-e.kr/image/MINYANG%20TECH.png?raw=true",
     "source_url": "https://github.com/minyang-tech/quote-markdown",
     "download_url": "https://github.com/minyang-tech/quote-markdown/releases/download/release/MarkQuote.Setup.1.0.0.exe",
     "is_opensource": true,
@@ -34,14 +34,14 @@
     "release_date": "2026-04-12"
   },
   {
-    "image": "/image/ixo-engine/export.png",
+    "image": "https://minyangtech.n-e.kr/image/ixo-engine/export.png",
     "source_url": "https://github.com/minyang-tech/IXO-Engine/",
     "download_url": "https://github.com/minyang-tech/IXO-Engine/releases/tag/V1.1.3",
     "is_opensource": true,
     "is_ai": true,
     "screenshots": [
-      "/image/ixo-engine/export.png",
-      "/image/ixo-engine/coming-soon.png"
+      "https://minyangtech.n-e.kr/image/ixo-engine/export.png",
+      "https://minyangtech.n-e.kr/image/ixo-engine/coming-soon.png"
     ],
     "id": 3,
     "name": "IXO Engine",
@@ -54,7 +54,7 @@
     "release_date": "2026-05-20"
   },
   {
-    "image": "/image/민양테크 바탕화면.png",
+    "image": "https://minyangtech.n-e.kr/image/민양테크 바탕화면.png",
     "source_url": "",
     "download_url": "/apps/ixo.html",
     "is_opensource": false,
@@ -71,7 +71,7 @@
     "release_date": "2026-06-13"
   },
   {
-    "image": "/image/민양테크 바탕화면.png",
+    "image": "https://minyangtech.n-e.kr/image/민양테크 바탕화면.png",
     "source_url": "",
     "download_url": "/apps/videoplayer.html",
     "is_opensource": false,
@@ -88,7 +88,7 @@
     "release_date": "2026-06-13"
   },
   {
-    "image": "/image/민양테크 바탕화면.png",
+    "image": "https://minyangtech.n-e.kr/image/민양테크 바탕화면.png",
     "source_url": "",
     "download_url": "/apps/웹후크 센더.html",
     "is_opensource": false,

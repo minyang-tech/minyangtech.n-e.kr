@@ -5,7 +5,7 @@ const root = path.resolve(__dirname, "..");
 const IMG =
   "https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png";
 const LOGO =
-  "https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png";
+  "https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png";
 const SITE = "https://minyangtech.n-e.kr";
 
 const locales = {
@@ -646,7 +646,7 @@ const footer = `
     <footer>
         <h3 style="margin-bottom:20px;">Connect with Us</h3>
         <div class="footer-sns">
-            <a href="https://x.com/minyangtech" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/minyangtech/minyangtech.github.io/main/image/logo-white.png" class="x-logo-img" alt="X"></a>
+            <a href="https://x.com/minyangtech" target="_blank" rel="noopener noreferrer"><img src="https://minyangtech.n-e.kr/image/logo-white.png" class="x-logo-img" alt="X"></a>
             <a href="https://www.youtube.com/@minyangtech" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
         </div>
         <div class="footer-email"><a href="mailto:support@minyangtech.n-e.kr">support@minyangtech.n-e.kr</a></div>
@@ -696,7 +696,7 @@ function pageShell(locale, active, title, desc, urlPath, extraStyle, bodyHtml, w
   return `<!DOCTYPE html>
 <html lang="${l.lang}">
 <head>
-    <link rel="icon" href="https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
+    <link rel="icon" href="https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%20%ED%85%8C%ED%81%AC.png?raw=true" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     ${metaBlock(title, desc, (l.prefix || "") + urlPath)}

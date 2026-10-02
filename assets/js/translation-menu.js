@@ -272,7 +272,7 @@
         const query = (search?.value || "").toLowerCase();
         const tag = tagSelect.value;
         const result = items.filter((item) => {
-          const text = `${item.title || item.title_ko || ""} ${item.content || item.content_ko || ""}`.toLowerCase();
+          const text = `${item.title || item.title_ko || ""} ${item.content || item.content_ko || ""} ${item.author_name || ""} ${item.author_link || ""}`.toLowerCase();
           const inferredTags = item.tags || ([2, 5, 8, 12, 13, 14, 15].includes(item.id) ? ["up"] : ["blog"]);
           return (!query || text.includes(query)) && (!tag || inferredTags.includes(tag));
         }).sort((a, b) => sort?.value === "oldest" ? a.id - b.id : b.id - a.id);
@@ -298,14 +298,43 @@
       [...new Set(items.map((item) => item.author_name).filter(Boolean))].forEach((author) => {
         const option = document.createElement("option"); option.value = author; option.textContent = author; authorSelect.appendChild(option);
       });
+      const decorateAuthorGroups = () => {
+        const groups = [...document.querySelectorAll("#portfolio-feed .author-group")];
+        const grouped = [];
+        items.forEach((item) => {
+          const key = item.author_link || item.author_name || "unknown";
+          if (!grouped.some((group) => group.key === key)) grouped.push({ key, item });
+        });
+        groups.forEach((group, index) => {
+          const author = grouped[index]?.item;
+          if (!author?.author_link || group.querySelector(".site-author-profile-link")) return;
+          const header = group.querySelector(".author-group-header");
+          if (!header) return;
+          const link = document.createElement("a");
+          link.className = "site-author-profile-link";
+          link.href = author.author_link;
+          link.textContent = author.author_name || author.author_link;
+          link.title = "Open author profile";
+          link.style.cssText = "display:block; color:var(--accent); font-weight:800; text-decoration:none; margin-top:4px;";
+          header.style.cursor = "pointer";
+          header.addEventListener("click", (event) => {
+            if (event.target.closest("a")) return;
+            window.location.href = link.href;
+          });
+          header.querySelector("div > div:last-child")?.replaceChildren(link);
+        });
+      };
+      const feed = document.getElementById("portfolio-feed");
+      new MutationObserver(decorateAuthorGroups).observe(feed, { childList: true, subtree: true });
       const render = () => {
         const query = (search?.value || "").toLowerCase();
         const result = items.filter((item) => {
-          const text = `${item.title || item.title_ko || ""} ${item.content || item.content_ko || ""}`.toLowerCase();
+          const text = `${item.title || item.title_ko || ""} ${item.content || item.content_ko || ""} ${item.author_name || ""} ${item.author_link || ""}`.toLowerCase();
           const status = item.recruitment_status || "not-recruiting";
           return (!query || text.includes(query)) && (!authorSelect.value || item.author_name === authorSelect.value) && (!recruitmentSelect.value || status === recruitmentSelect.value);
         }).sort((a, b) => sort?.value === "oldest" ? a.id - b.id : b.id - a.id);
         if (typeof window.renderPortfolio === "function") window.renderPortfolio(result);
+        decorateAuthorGroups();
       };
       search?.addEventListener("input", render); sort?.addEventListener("change", render);
       authorSelect.addEventListener("change", render); recruitmentSelect.addEventListener("change", render);

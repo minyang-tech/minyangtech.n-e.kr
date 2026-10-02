@@ -4,14 +4,14 @@
     "date": "2026-05-22",
     "title": "IXO Engine",
     "author_name": "@whoasked",
-    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_img": "https://minyangtech.n-e.kr/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "cover": "https://github.com/minyang-tech/IXO-Engine/blob/main/screenshot/export.png?raw=true",
+    "cover": "https://minyangtech.n-e.kr/image/ixo-engine/export.png",
     "content": "Ein visueller Node-App-Builder für praktische Desktop-Apps, ohne jede Codezeile von Hand zu schreiben. Enthalten sind Netzwerksicherheit, Canvas Builder, Szenen, Asset Management, Export-Polish und Dokumentation.",
     "assets": [
       {
         "type": "image",
-        "src": "https://github.com/minyang-tech/IXO-Engine/blob/main/screenshot/export.png?raw=true"
+        "src": "https://minyangtech.n-e.kr/image/ixo-engine/export.png"
       },
       {
         "type": "file",
@@ -28,9 +28,9 @@
     "date": "2026-05-15",
     "title": "MinyangTech Website",
     "author_name": "whoasked",
-    "author_img": "https://github.com/minyang-tech/minyangtech.github.io/blob/main/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
+    "author_img": "https://minyangtech.n-e.kr/image/b395c85a9f3fdfad3721eb1c29180e11.png?raw=true",
     "author_link": "../@whoasked",
-    "cover": "https://github.com/minyangtech/minyangtech.github.io/blob/main/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
+    "cover": "https://minyangtech.n-e.kr/image/%EB%AF%BC%EC%96%91%ED%85%8C%ED%81%AC%20%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4.png?raw=true",
     "content": "Eine GitHub-Pages-Website, die Dokumente, News, Apps, Portfolio, Richtlinien und Projektinformationen von MinyangTech bündelt.",
     "assets": [],
     "title_ko": "MinyangTech Website",

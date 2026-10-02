@@ -590,7 +590,7 @@ function localizeCopiedStaticText(html, locale, file) {
     ["'다운로드'", `'${jsSingle(t.download)}'`],
     ["민양테크가 제작한 모든 제품의 저작권은 민양테크에 있습니다.", i18n[locale].copyright],
     ["navigator.share({ title: document.title, text: \"민양테크의 최신 소식!\", url: url });", `navigator.share({ title: document.title, text: "${t.shareNews}", url: url });`],
-    ["placeholderCover = 'image/", "placeholderCover = '/image/"]
+    ["placeholderCover = 'image/", "placeholderCover = 'https://minyangtech.n-e.kr/image/"]
   ];
 
   if (file === "apps.html") {
