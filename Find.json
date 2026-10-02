@@ -28,5 +28,19 @@
     "date": "2026-05-17",
     "url": "/find/stelrunartist.html",
     "summary": "스텔라이브 팬게임 프로젝트의 2D 그래픽, 일러스트, UI 아티스트 모집 공고입니다."
+  },
+  {
+    "id": "hyupryuk",
+    "title": "게임 제작 협력 요청",
+    "project": "기타",
+    "status": "상시 모집",
+    "tags": [
+      "Roblox",
+      "3D",
+      "모집중"
+    ],
+    "date": "2026-10-03",
+    "url": "worktogether.html",
+    "summary": "저희와 게임 제작 협력 요청을 지원하는 페이지입니다."
   }
 ]

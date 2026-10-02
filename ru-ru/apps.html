@@ -211,7 +211,7 @@
 
         async function fetchApps() {
             try {
-                appData = await SiteSecurity.secureFetchJson('apps-data.json', 'b652a1a44614d86516e18263a8c298261774e0414d1150e9218560e9f7271f6c');
+                appData = await SiteSecurity.secureFetchJson('apps-data.json', '29e46f7f5f821ca7dfce89aede525be514bfc5a3b18e280a85c82e095a6d816c');
                 checkUrlParam();
             } catch (error) {
                 console.error("Load Error:", error);
