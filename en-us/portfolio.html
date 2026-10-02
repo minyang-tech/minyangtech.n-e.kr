@@ -292,7 +292,7 @@
 
         async function fetchPortfolio() {
             try {
-                portfolioData = await SiteSecurity.secureFetchJson('portfolio.json', 'aa05c85e825e72c801fc8f1588b235ed63357a5235e02290a6b7b1486d12cfee');
+                portfolioData = await SiteSecurity.secureFetchJson('portfolio.json');
                 checkUrlParam();
             } catch (error) {
                 console.error('Load Error:', error);

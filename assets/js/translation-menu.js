@@ -12,12 +12,12 @@
   };
 
   const navLabels = {
-    ko: { docs: "Docs", news: "News", apps: "Apps", find: "Find", portfolio: "Portfolio", issues: "Issues", contributing: "Contributing", eula: "EULA", policy: "Policy" },
-    "ja-jp": { docs: "ドキュメント", news: "ニュース", apps: "アプリ", find: "探す", portfolio: "ポートフォリオ", issues: "課題", contributing: "投稿", eula: "EULA", policy: "ポリシー" },
-    "en-us": { docs: "Docs", news: "News", apps: "Apps", find: "Find", portfolio: "Portfolio", issues: "Issues", contributing: "Contributing", eula: "EULA", policy: "Policy" },
-    "zh-cn": { docs: "文档", news: "新闻", apps: "应用", find: "查找", portfolio: "作品集", issues: "问题", contributing: "贡献", eula: "EULA", policy: "政策" },
-    "ru-ru": { docs: "Документы", news: "Новости", apps: "Приложения", find: "Поиск", portfolio: "Портфолио", issues: "Задачи", contributing: "Вклад", eula: "EULA", policy: "Политика" },
-    "de-de": { docs: "Dokumentation", news: "Neuigkeiten", apps: "Apps", find: "Suche", portfolio: "Portfolio", issues: "Probleme", contributing: "Mitwirken", eula: "EULA", policy: "Richtlinie" }
+    ko: { docs: "Docs", news: "News", apps: "Apps", find: "Find", portfolio: "Portfolio", contributing: "Contributing", policy: "Policy" },
+    "ja-jp": { docs: "ドキュメント", news: "ニュース", apps: "アプリ", find: "探す", portfolio: "ポートフォリオ", contributing: "投稿", policy: "ポリシー" },
+    "en-us": { docs: "Docs", news: "News", apps: "Apps", find: "Find", portfolio: "Portfolio", contributing: "Contributing", policy: "Policy" },
+    "zh-cn": { docs: "文档", news: "新闻", apps: "应用", find: "查找", portfolio: "作品集", contributing: "贡献", policy: "政策" },
+    "ru-ru": { docs: "Документы", news: "Новости", apps: "Приложения", find: "Поиск", portfolio: "Портфолио", contributing: "Вклад", policy: "Политика" },
+    "de-de": { docs: "Dokumentation", news: "Neuigkeiten", apps: "Apps", find: "Suche", portfolio: "Portfolio", contributing: "Mitwirken", policy: "Richtlinie" }
   };
 
   const prefixedLocales = localeOrder.filter((locale) => locale !== "ko");
@@ -42,7 +42,7 @@
 
   function isExcludedPath(basePath) {
     const normalized = basePath.toLowerCase();
-    return normalized === "/index.html" || normalized.startsWith("/g/");
+    return normalized.startsWith("/g/");
   }
 
   function buildLocalizedHref(locale, basePath) {
@@ -171,10 +171,12 @@
       else if (href.includes("/apps")) link.textContent = labels.apps;
       else if (href.includes("/find")) link.textContent = labels.find;
       else if (href.includes("/portfolio")) link.textContent = labels.portfolio;
-      else if (href.includes("/issues")) link.textContent = labels.issues;
       else if (href.includes("/contributing")) link.textContent = labels.contributing;
-      else if (href.includes("/eula")) link.textContent = labels.eula;
       else if (href.includes("/policy")) link.textContent = labels.policy;
+    });
+    document.querySelectorAll(".nav-links a, header nav a").forEach((link) => {
+      const href = (link.getAttribute("href") || "").toLowerCase();
+      if (href.includes("issues") || href.includes("eula")) link.closest("li")?.remove();
     });
   }
 
@@ -224,9 +226,136 @@
     else controls.prepend(menu);
   }
 
+  function getDataPath(file) {
+    const { activeLocale } = getRouteInfo();
+    return activeLocale === "ko" ? `/${file}` : `/${activeLocale}/${file}`;
+  }
+
+  function pageLabels(activeLocale) {
+    return {
+      ko: { all: "전체", tag: "태그", author: "작성자", recruitment: "모집 상태", recruiting: "recruiting", notRecruiting: "not-recruiting" },
+      "ja-jp": { all: "すべて", tag: "タグ", author: "作者", recruitment: "募集状況", recruiting: "recruiting", notRecruiting: "not-recruiting" },
+      "en-us": { all: "All", tag: "Tag", author: "Author", recruitment: "Recruitment", recruiting: "recruiting", notRecruiting: "not-recruiting" },
+      "zh-cn": { all: "全部", tag: "标签", author: "作者", recruitment: "招募状态", recruiting: "recruiting", notRecruiting: "not-recruiting" },
+      "ru-ru": { all: "Все", tag: "Тег", author: "Автор", recruitment: "Статус набора", recruiting: "recruiting", notRecruiting: "not-recruiting" },
+      "de-de": { all: "Alle", tag: "Tag", author: "Autor", recruitment: "Recruiting", recruiting: "recruiting", notRecruiting: "not-recruiting" }
+    }[activeLocale] || { all: "All", tag: "Tag", author: "Author", recruitment: "Recruitment", recruiting: "recruiting", notRecruiting: "not-recruiting" };
+  }
+
+  function addFilterSelect(parent, id, label, options) {
+    if (document.getElementById(id)) return document.getElementById(id);
+    const select = document.createElement("select");
+    select.id = id;
+    select.className = "sort-select";
+    select.setAttribute("aria-label", label);
+    options.forEach(([value, text]) => {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = text;
+      select.appendChild(option);
+    });
+    parent.appendChild(select);
+    return select;
+  }
+
+  async function enhanceNewsPage(activeLocale) {
+    const container = document.querySelector(".filter-container");
+    if (!container || !document.getElementById("news-feed")) return;
+    const labels = pageLabels(activeLocale);
+    const tagSelect = addFilterSelect(container, "site-news-tag", labels.tag, [["", labels.all], ["blog", "blog"], ["up", "up"]]);
+    const search = document.getElementById("news-search");
+    const sort = document.getElementById("news-sort");
+    try {
+      const response = await fetch(getDataPath("news-data.json"), { cache: "no-store" });
+      const items = await response.json();
+      const render = () => {
+        const query = (search?.value || "").toLowerCase();
+        const tag = tagSelect.value;
+        const result = items.filter((item) => {
+          const text = `${item.title || item.title_ko || ""} ${item.content || item.content_ko || ""}`.toLowerCase();
+          const inferredTags = item.tags || ([2, 5, 8, 12, 13, 14, 15].includes(item.id) ? ["up"] : ["blog"]);
+          return (!query || text.includes(query)) && (!tag || inferredTags.includes(tag));
+        }).sort((a, b) => sort?.value === "oldest" ? a.id - b.id : b.id - a.id);
+        if (typeof window.renderNews === "function") window.renderNews(result);
+      };
+      search?.addEventListener("input", render);
+      sort?.addEventListener("change", render);
+      tagSelect.addEventListener("change", render);
+    } catch (_) { /* The page's existing loader reports the error. */ }
+  }
+
+  async function enhancePortfolioPage(activeLocale) {
+    const container = document.querySelector(".filter-container");
+    if (!container || !document.getElementById("portfolio-feed")) return;
+    const labels = pageLabels(activeLocale);
+    const authorSelect = addFilterSelect(container, "site-portfolio-author", labels.author, [["", `${labels.author}: ${labels.all}`]]);
+    const recruitmentSelect = addFilterSelect(container, "site-portfolio-recruitment", labels.recruitment, [["", `${labels.recruitment}: ${labels.all}`], ["recruiting", labels.recruiting], ["not-recruiting", labels.notRecruiting]]);
+    const search = document.getElementById("portfolio-search");
+    const sort = document.getElementById("portfolio-sort");
+    try {
+      const response = await fetch(getDataPath("portfolio.json"), { cache: "no-store" });
+      const items = await response.json();
+      [...new Set(items.map((item) => item.author_name).filter(Boolean))].forEach((author) => {
+        const option = document.createElement("option"); option.value = author; option.textContent = author; authorSelect.appendChild(option);
+      });
+      const render = () => {
+        const query = (search?.value || "").toLowerCase();
+        const result = items.filter((item) => {
+          const text = `${item.title || item.title_ko || ""} ${item.content || item.content_ko || ""}`.toLowerCase();
+          const status = item.recruitment_status || "not-recruiting";
+          return (!query || text.includes(query)) && (!authorSelect.value || item.author_name === authorSelect.value) && (!recruitmentSelect.value || status === recruitmentSelect.value);
+        }).sort((a, b) => sort?.value === "oldest" ? a.id - b.id : b.id - a.id);
+        if (typeof window.renderPortfolio === "function") window.renderPortfolio(result);
+      };
+      search?.addEventListener("input", render); sort?.addEventListener("change", render);
+      authorSelect.addEventListener("change", render); recruitmentSelect.addEventListener("change", render);
+    } catch (_) { /* The page's existing loader reports the error. */ }
+  }
+
+  async function enhanceFindPage(activeLocale) {
+    const feed = document.getElementById("find-feed");
+    if (!feed) return;
+    try {
+      const [findResponse, portfolioResponse] = await Promise.all([
+        fetch(getDataPath("Find.json"), { cache: "no-store" }),
+        fetch(getDataPath("portfolio.json"), { cache: "no-store" })
+      ]);
+      const findItems = await findResponse.json();
+      const portfolioItems = await portfolioResponse.json();
+      const recruiting = portfolioItems.filter((item) => item.recruitment_status === "recruiting").map((item) => ({
+        id: `portfolio-${item.id}`, title: item.title || item.title_ko, project: item.title || item.title_ko,
+        status: "recruiting", date: item.date, url: `${getDataPath("portfolio.html")}?post=${encodeURIComponent(item.id)}`,
+        summary: item.content || item.content_ko, tags: ["Portfolio", item.author_name].filter(Boolean)
+      }));
+      if (!recruiting.length) return;
+      const combined = [...findItems, ...recruiting];
+      const search = document.getElementById("find-search");
+      const status = document.getElementById("find-status");
+      const render = () => {
+        const query = (search?.value || "").toLowerCase();
+        feed.replaceChildren(...combined.filter((item) => `${item.title} ${item.project} ${item.summary} ${(item.tags || []).join(" ")}`.toLowerCase().includes(query)).map((item) => {
+          const card = document.createElement("a"); card.className = "find-card"; card.href = item.url;
+          const title = document.createElement("h2"); title.textContent = item.title;
+          const meta = document.createElement("div"); meta.className = "find-meta"; meta.textContent = `${item.status || ""} ${item.date || ""}`;
+          const summary = document.createElement("p"); summary.textContent = item.summary || item.project || "";
+          card.append(meta, title, summary); return card;
+        }));
+      };
+      search?.addEventListener("input", render); status?.addEventListener("change", render); render();
+    } catch (_) { /* The page's existing loader reports the error. */ }
+  }
+
+  function enhanceContentPages() {
+    const { activeLocale, basePath } = getRouteInfo();
+    if (basePath.includes("/news/")) enhanceNewsPage(activeLocale);
+    if (basePath.endsWith("/portfolio.html")) enhancePortfolioPage(activeLocale);
+    if (basePath.endsWith("/Find.html")) enhanceFindPage(activeLocale);
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", mountMenu);
+    document.addEventListener("DOMContentLoaded", () => { mountMenu(); enhanceContentPages(); });
   } else {
     mountMenu();
+    enhanceContentPages();
   }
 })();
