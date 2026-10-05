@@ -60,5 +60,35 @@
         "description": "--"
       }
     ]
+  },
+  {
+    "id": 3,
+    "date": "2026-10-05",
+    "title_ko": "Vroid Studio Model",
+    "author_name": "whoasked",
+    "author_img": "",
+    "author_link": "../@whoasked",
+    "cover": "https://minyangtech.n-e.kr/image/민양테크 바탕화면.png",
+    "content_ko": "Vroid Studio Model을 제작하였음. \n 해당 모델은 Vroid Studio를 통해 제작됨. \n 제작자는 [@whoasked](../@whoasked).",
+    "assets": [
+      {
+        "type": "image",
+        "src": "https://minyangtech.n-e.kr/image/myt_jenny.png"
+      },
+      {
+        "type": "video",
+        "src": "--"
+      },
+      {
+        "type": "embed",
+        "src": "--"
+      },
+      {
+        "type": "file",
+        "src": "https://minyangtech.n-e.kr/제니.vrm",
+        "title": "vroid studio로 제작한 모델",
+        "description": "프리셋과 자체제작에셋 혼용 사용. Copyright 2026. 민양테크. All rights reserved. \n *이름 노린거 아니고 아무 이름 지은겁니다. \n\n 이하 내용은 메타데이터와 동일하며 반드시 읽어주세요. \n 제작자 : Whoasked0482 \n 저작권자 : 2026. 민양테크. All rights Reserved. \n 라이선스 : VRM 퍼블릭 라이선스 \n 과격한 폭력물 사용\t허용\n 성적 용도\t허용 \n 정치/종교적 사용\t허용 \n 반사회적/혐오적 용도\t허용 \n 개인 및 법인의 상업적 허용을 이용합니다. \n 재배포는 금지되며 모델 수정은 허용됩니다. \n 크레딧 표기는 필수사항입니다."
+      }
+    ]
   }
 ]
